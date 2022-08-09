@@ -151,7 +151,7 @@ Pysakointi_3  [Arguments]  ${Tietolaji}  ${Testipaikka}
     Siirry Testipaikkaan                ${Tietolaji}  ${Testipaikka}
     Click Element At Coordinates        ${Kartta}  0  20
     Wait Until Element Is Visible       ${FA_otsikko}
-    Element Should Contain              ${FA_otsikko}  78989143
+    Element Should Contain              ${FA_otsikko}  68836223
     Element Should Contain              ${FA_Pysakointikielto}  on
     Element Should Contain              ${FA_Pysakointirajoitus_Tyyppi}  Pysäköinti kielletty
 

@@ -25,7 +25,7 @@ Pysäkit 2
     [Tags]              JLP
     [Documentation]     Pysäkit, selain: ${BROWSER}
     ...  - Luetaan terminaalipysäkin tiedot
-    KW_JLP.JLP_2  6672029, 385242
+    KW_JLP.JLP_2  6672034, 385242
 
 Pysäkit 3
     [Tags]              JLP

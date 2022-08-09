@@ -10,6 +10,8 @@ ${LocatorForCheckbox}                           css=#feature-attributes .checkbo
 ${LocatorForCheckboxpp}                         xpath=.//label[text() = 'Poista']/input
 ${LocatorForButton}                             css=#feature-attributes .form-group.adjacent-link:last-of-type .new.btn.btn-new
 ${LocatorForRadiobuttons}                       css=#feature-attributes .radio [type="radio"]:not([checked=""])
+${LocatorForEnabledButton}                      css=#feature-attributes .radio [value="enabled"]
+${WidthInputLocator}                            css=.form-control.unit
 #${string}
 
 *** Keywords ***
@@ -262,6 +264,7 @@ Tarkista muokkaustila radio non-unit  [Arguments]      ${locator_TBchanged}  ${T
 
     ${visible}=  Run Keyword And Return Status  SeleniumLibrary.Element Should Be Visible  ${FA_locator_textinput}
     Run Keyword If  '${Visible}'=='True'  SeleniumLibrary.Input text        ${FA_locator_textinput}  12
+    Run Keyword If  '${TL}'=='${TL_Leveys_RB}'  SeleniumLibrary.Input text  ${WidthInputLocator}  100
     Run Keyword If  '${TL}'=='${TL_Tietyöt_RB}'  Aseta Päivämäärä
 
     
@@ -275,18 +278,17 @@ Tarkista muokkaustila radio non-unit  [Arguments]      ${locator_TBchanged}  ${T
 Tarkista muokkaustila radio unit  [Arguments]      ${locator_TBchanged}  ${TL}
     Log     Muokkaustilan muutosten ilmoituslaatikon tarkistus kaikille tietolajeille.
     Log     Tarkistetaan, että tallennusnapit ovat disabloidut ensin, tehdään muutos ja tarkistetaan, että kaikki napit ovat enabloitu ja verifioidaan varoitusikkuna
-
     Tarkista footer disabled
 
     #Run Keyword If                      '${locator_TBchanged}' == '${LocatorForDDM}'              DDM_tietolajit
     Run Keyword If                      '${locator_TBchanged}' in '${LocatorForCheckbox} ${LocatorForRadiobuttons} ${LocatorForButton}'      click element   ${locator_TBchanged}
     #Run Keyword If                      '${TL}' == '${TL_Liikennemäärä_RB}'                       SeleniumLibrary.Input text        ${FA_Liikennemäärä_Rajoitus}      12
 
-
     ${visible}=  Run Keyword And Return Status  SeleniumLibrary.Element Should Be Visible  ${FA_locator_unitinput}
-    Run Keyword If  '${Visible}'=='True'  SeleniumLibrary.Input text        ${FA_locator_unitinput}  12
-    #Run Keyword If  '${TL}'=='${TL_Tietyöt_RB}'  Aseta Päivämäärä
-
+    Run Keyword If  '${Visible}'=='True' and '${TL}'!='${TL_suurin_sallittu_pituus_RB}'  SeleniumLibrary.Input text        ${FA_locator_unitinput}  12
+    Run Keyword If  '${TL}'=='${TL_suurin_sallittu_pituus_RB}'  Click Element   ${LocatorForEnabledButton}
+    Run Keyword If  '${TL}'=='${TL_suurin_sallittu_pituus_RB}'  SeleniumLibrary.Input text  ${WidthInputLocator}  100
+    #Run Keyword If  '${TL}'=='${TL_Tietyöt_RB}'  Aseta Päivämäärä    
     
     Tarkista footer enabled
     wait until element is not visible   ${Map_popup}

@@ -27,7 +27,7 @@ Esterakennelma 2
     ...  - Tarkistetaan esterakenelmien tyyppi
     KW_Esterakennelma.Este_2  6711851,240709  Suljettu yhteys
     KW_Esterakennelma.Este_2  6820366,336639  Avattava puomi
-    KW_Esterakennelma.Este_2  6711833,239489  Geometrian ulkopuolella
+    #KW_Esterakennelma.Este_2  6711833,239489  Geometrian ulkopuolella
 
 Esterakennelma 3
     [Tags]              Este

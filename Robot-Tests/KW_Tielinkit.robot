@@ -103,7 +103,7 @@ ${FA_tielinkki_korjattavien_eka_linkki}         xpath=(.//*[@id='work-list']//*[
 ${Tielinkin palluraaineistot}    ${TL_Palvelupiste_RB} ${TL_Opastustaulu_RB} ${TL_Esterakennelma_RB} ${TL_Rautatien tasoristeys_RB} ${TL_Liikennevalo_RB}
 @{Tielinkin_RB_tekstit}     Toiminnallinen luokka  Tielinkin tyyppi  Hallinnollinen luokka  Silta, alikulku tai tunneli
 @{tielinkin_formin_otsikot}  Linkin ID:  Hallinnollinen luokka   Toiminnallinen luokka   Liikennevirran suunta   Tielinkin tyyppi   Silta, alikulku tai tunneli
-...  Kuntanumero   Tien nimi (Suomi)   Tien nimi (Ruotsi)   Tien nimi (Saame)   Tien numero   Tieosanumero   Osoitenumerot oikealla   Osoitenumerot vasemmalla   MML ID
+...  Kuntanumero   Tiennimi (Suomi)   Tiennimi (Ruotsi)   Tiennimi (Saame)   Tienumero   Tieosanumero   Osoitenumerot oikealla   Osoitenumerot vasemmalla   MML ID
 #Linkin ID
 
 ## KUVAT
@@ -354,6 +354,7 @@ Tielinkit_10  [arguments]  ${testipaikka}  ${EkaLinkId}  ${TokaLinkId}
     ${status}=  Run Keyword And Return Status  List Selection Should Be  ${FA_tielinkki_Liikennevirta_lista}  ${FA_liikennevirta_MolempiinSuuntiin}
     open context menu                           ${FA_tielinkki_Liikennevirta_lista}
     select from list by value                   ${FA_tielinkki_Liikennevirta_lista}     ${FA_liikennevirta_Digit_vastaan}
+    Run Keyword If  '${status}'=='True'  Wait until element is visible  ${MuokkausVaroitus}
     Run Keyword If  '${status}'=='True'  Click Button  ${Muokkausvaroitus_Kyllä_btn}
 
     Log  vaihdetaan tielinkin tyyppi moottoritieksi

@@ -18,14 +18,14 @@ Liikennemerkit 2
     [Tags]              Merkki
     [Documentation]     Liikennemerkit, selain: ${BROWSER}
     ...  - Tarkistetaan kaikki eri tyyppiset liikennemerkit
-    KW_Liikennemerkit.Liikennemerkit 2  6715385, 243668  ${LM_Varoitusmerkit}   Varoitusmerkit
-    KW_Liikennemerkit.Liikennemerkit 2  7320750, 599530  ${LM_Etuajo-oikeus}    Etuajo-oikeus ja väistämismerkit
-    KW_Liikennemerkit.Liikennemerkit 2  7320796, 599590  ${LM_Kielto}           Kielto- ja rajoitusmerkit
-    KW_Liikennemerkit.Liikennemerkit 2  7320761, 599545  ${LM_Määräysmerkit}    Määräysmerkit
-    KW_Liikennemerkit.Liikennemerkit 2  7320120, 599020  ${LM_Sääntömerkit}     Sääntömerkit
+    KW_Liikennemerkit.Liikennemerkit 2  6715396, 243669  ${LM_Varoitusmerkit}   Varoitusmerkit
+    KW_Liikennemerkit.Liikennemerkit 2  7329634, 568664  ${LM_Etuajo-oikeus}    Etuajo-oikeus ja väistämismerkit
+    KW_Liikennemerkit.Liikennemerkit 2  7320804, 599586  ${LM_Kielto}           Kielto- ja rajoitusmerkit
+    KW_Liikennemerkit.Liikennemerkit 2  7329642, 568698  ${LM_Määräysmerkit}    Määräysmerkit
+    KW_Liikennemerkit.Liikennemerkit 2  7320090, 598967  ${LM_Sääntömerkit}     Sääntömerkit
     KW_Liikennemerkit.Liikennemerkit 2  7252914, 514594  ${LM_Opastusmerkit}    Opastusmerkit
-    KW_Liikennemerkit.Liikennemerkit 2  6797906, 339400  ${LM_Palvelukohteet}   Palvelukohteet
-    KW_Liikennemerkit.Liikennemerkit 2  6670497, 385928  ${LM_Muut_merkit}      Muut merkit
+    KW_Liikennemerkit.Liikennemerkit 2  6797931, 339406  ${LM_Palvelukohteet}   Palvelukohteet
+    KW_Liikennemerkit.Liikennemerkit 2  6670510, 385928  ${LM_Muut_merkit}      Muut merkit
 
 Liikennemerkit 3
     [Tags]              Merkki  AWS

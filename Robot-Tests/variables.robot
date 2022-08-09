@@ -233,14 +233,14 @@ ${map_overlay}                                  css=.spinner-overlay.modal-overl
 
 
 @{Tietolajit_radio_non-unit}  
-...  ${TL_Pysäköintikielto_RB}  ${TL_Käpy_tietolaji_RB}  ${TL_Päällyste_RB}  ${TL_Leveys_RB}  ${TL_Valaistus_RB} 
+...  ${TL_Pysäköintikielto_RB}  ${TL_Käpy_tietolaji_RB}  ${TL_Päällyste_RB}  ${TL_Valaistus_RB} 
 ...  ${TL_Kelirikko_RB}  ${TL_Tietyöt_RB}  ${TL_Eurooppatienumero_RB}  ${TL_Liittymänumero_RB}  ${TL_Hoitoluokat_RB}  ${TL_Kaistojen_lukumäärä_RB}
-...  ${TL_Joukkoliikennekaista_RB}  ${TL_Talvinopeusrajoitus_RB} 
+...  ${TL_Joukkoliikennekaista_RB}  ${TL_Talvinopeusrajoitus_RB}  ${TL_Leveys_RB}
 # radio: 14 kpl - poistettu listalta
 
 @{Tietolajit_radio_unit}
-...  ${TL_Kantavuus_RB}  ${TL_suurin_sallittu_massa_RB}  ${TL_Yhdistelmän_suurin_sallittu_massa_RB}  ${TL_suurin_sallittu_akselimassa_RB}  ${TL_suurin_sallittu_telimassa_RB}
-...  ${TL_suurin_sallittu_korkeus_RB}  ${TL_suurin_sallittu_pituus_RB}  ${TL_suurin_sallittu_leveys_RB}
+...  ${TL_suurin_sallittu_leveys_RB}   ${TL_Kantavuus_RB}  ${TL_suurin_sallittu_massa_RB}  ${TL_Yhdistelmän_suurin_sallittu_massa_RB}  ${TL_suurin_sallittu_akselimassa_RB}  ${TL_suurin_sallittu_telimassa_RB}
+...  ${TL_suurin_sallittu_korkeus_RB}  ${TL_suurin_sallittu_pituus_RB}  
 
 #Listaus tietolajeista joissa muokkausvaihtoehdoissa checkbox (listaa ei käytetä missään, vaan selkeyttää tietolajien testausta)
 @{Tietolajit_checkbox}  

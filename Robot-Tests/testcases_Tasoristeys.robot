@@ -21,11 +21,12 @@ Tasoristeys 1
     ...  - Kartalla näkyvät Rautatien tasoristeys kun mittakaava on 1:20000 tai tarkempi.
     KW_Tasoristeys.Tasoristeys_1  6751566, 199829
 
-Tasoristeys 2
-    [Tags]              Tasoristeys
-    [Documentation]     Rautatien tasoristeys, selain: ${BROWSER}
-    ...  - Tarkistetaan olemassa olevaa Rautatien tasoristeystä - Formin id
-    KW_Tasoristeys.Tasoristeys_2
+# Poistettu käytöstä, ei ole geometrian ulkopuolisia tasoristeyksiä
+# Tasoristeys 2
+#     [Tags]              Tasoristeys
+#     [Documentation]     Rautatien tasoristeys, selain: ${BROWSER}
+#     ...  - Tarkistetaan olemassa olevaa Rautatien tasoristeystä - Formin id
+#     KW_Tasoristeys.Tasoristeys_2
 
 Tasoristeys 3
     [Tags]              Tasoristeys

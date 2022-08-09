@@ -3,7 +3,7 @@
 #import pyautogui as ag
 
 from selenium.webdriver.common.action_chains import ActionChains
-from selenium.webdriver.common.touch_actions import TouchActions
+#from selenium.webdriver.common.touch_actions import TouchActions
 from robot.libraries.BuiltIn import BuiltIn
 from selenium.webdriver.common.keys import Keys
 #from pyproj import Proj, transform

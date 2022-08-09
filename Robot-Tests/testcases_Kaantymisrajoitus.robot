@@ -14,10 +14,11 @@ Kääntymisrajoitus 1
     [Documentation]  Takistetaan tielinkki, jolla on yksi kääntymirajoitus.
     KW_Kaantymisrajoitus.KR_1  6671992, 385433
 
-Kääntymisrajoitus 2
-    [Tags]  
-    [Documentation]  Tarkistetaan tielinkki, jossa on useita kääntymisrajoituksia.
-    KW_Kaantymisrajoitus.KR_2  6711114, 238672
+# Testin kohdetta ei Pilvi QA puolella
+# Kääntymisrajoitus 2
+#     [Tags]  
+#     [Documentation]  Tarkistetaan tielinkki, jossa on useita kääntymisrajoituksia.
+#     KW_Kaantymisrajoitus.KR_2  6711114, 238672
 
 Kääntymisrajoitus 3
     [Tags]  AWS

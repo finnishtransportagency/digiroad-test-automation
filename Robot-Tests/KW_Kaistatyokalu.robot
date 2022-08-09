@@ -5,7 +5,6 @@ Documentation       Pageobject for Traffic signs (Liikennemerkit)
 
 Kaistatyökalu_1  [arguments]  ${testipaikka}
     Log  Vaihdetaan experimetal osoitteseen ja siirrytään testipaikkaan.
-    Go To                                       https://testiextranet.vayla.fi/digiroad/?isExperimental=true
     vaihda tietolaji                            ${TL_Kaistan_mallinnustyökalu_RB}
     Paikanna osoite                             ${testipaikka}
     Zoomaa kartta                               5  50 m
@@ -25,24 +24,27 @@ Kaistatyökalu_1  [arguments]  ${testipaikka}
     Click Element                               ${KT_Poista_Lisakaista}
 
     Element should not be visible               ${KT_Poista_Lisakaista}
-    Element Should Contain                      ${KT_Kaista}  11
+    Element Should Contain                      ${KT_Kaista}  1
 
 Kaistatyökalu_2  [arguments]  ${testipaikka}
     Log  Vaihdetaan experimetal osoitteseen ja siirrytään testipaikkaan.
-    Go To                                       https://testiextranet.vayla.fi/digiroad/?isExperimental=true
     vaihda tietolaji                            ${TL_Kaistan_mallinnustyökalu_RB}
     Paikanna osoite                             ${testipaikka}
     Zoomaa kartta                               5  50 m
-
+    
     Click Element At Coordinates                ${Kartta}  0  20
     Wait Until Element Is Visible               ${FA_otsikko}
     Siirry Muokkaustilaan
     Wait Until Element Is Not Visible           ${Map_popup}
-
+    
     Poista Ylimääräiset Kaistat
-
+    
     Click Element                               ${FA_Lisää_kaista_oikealle}
+    Input Text                                  ${KT_Alkupäivämäärä}    18.3.2022
+    Press Keys                                  ${KT_Alkupäivämäärä}    RETURN
     Click Element                               ${FA_Lisää_kaista_vasemmalle}
+    Input Text                                  ${KT_Alkupäivämäärä}    18.3.2022
+    Press Keys                                  ${KT_Alkupäivämäärä}    RETURN
 
     Log  Talletetaan ja päätetään kaistat
     Click Element                               ${FA_footer_Tallenna}
@@ -54,12 +56,14 @@ Kaistatyökalu_2  [arguments]  ${testipaikka}
     Click Element at Coordinates                ${Kartta}  0  20
     Wait Until Element Is Visible               ${FA_otsikko}
     Valitse Kaista                              1
-    Element Should Contain                      ${KT_Kaista}  12
+    
+    Element Should Contain                      ${KT_Kaista}  2
+    
     Click Element                               ${KT_Päätä_Lisakaista}
     Click Element                               ${Muokkausvaroitus_Kyllä_btn}
 
     Valitse Kaista                              2
-    Element Should Contain                      ${KT_Kaista}  13
+    Element Should Contain                      ${KT_Kaista}  3
     Click Element                               ${KT_Päätä_Lisakaista}
     Click Element                               ${Muokkausvaroitus_Kyllä_btn}
 
@@ -81,7 +85,7 @@ Valitse Kaista  [Arguments]  ${indeksi}
 Poista Ylimääräiset Kaistat
     FOR  ${i}  IN RANGE  6
         Valitse Kaista                              1
-        ${status}=  Run Keyword And Return Status  Element Should Contain  ${KT_Kaista}  11
+        ${status}=  Run Keyword And Return Status  Element Should Contain  ${KT_Kaista}  1
         Exit For Loop If  ${status}==True
         Run Keyword If  ${status}==False  Click Element  ${KT_Päätä_Lisakaista}
         Run Keyword If  ${status}==False  Click Element  ${Muokkausvaroitus_Kyllä_btn}
@@ -114,3 +118,4 @@ ${KT_Etäisyys_Alusta}               css=.input-unit-combination div:nth-child(5
 ${KT_Etäisyys_Lopusta}              css=.input-unit-combination div:nth-child(6) p
 ${KT_Hallinnollinen_Luokka}         css=.input-unit-combination div:nth-child(7) p
 ${KT_Kaista}                        css=.input-unit-combination div:nth-child(9) p
+${KT_Alkupäivämäärä}                id=start_date

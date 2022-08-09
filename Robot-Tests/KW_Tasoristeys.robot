@@ -60,7 +60,7 @@ Tasoristeys_3  [arguments]  ${testipaikka}  ${Turvavarustus}
     wait until element is visible               ${valitse tietolaji}
     Siirry Testipaikkaan                        ${TL_Rautatien_tasoristeys_RB}  ${testipaikka}
     Valitse Esterakennelma
-    Element Should Contain                      ${FA_Tasoristeys_turvavarustus}  ${Turvavarustus}
+    Page Should Contain                         ${Turvavarustus}
 
     Log  Siirretään setettä ja tarkistetaan, että siirron jälkeen tulee muokkausvaroitus.
     Siirry muokkaustilaan

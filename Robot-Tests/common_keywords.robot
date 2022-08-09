@@ -1,5 +1,5 @@
 *** Settings ***
-Library                     SeleniumLibrary     timeout=35.0   run_on_failure=Capture Page Screenshot
+Library                     SeleniumLibrary     timeout=60.0   run_on_failure=Capture Page Screenshot
 #Library                     Dialogs
 Library                     String
 Library                     selenium_extensions.py
@@ -29,9 +29,7 @@ Resource                    KW_VAK.robot
 ${BROWSER}                  firefox  #Chrome
 ${DELAY}                    0.2
 
-#${LOGIN URL}               https://devtest.vayla.fi/digiroad/
-#${LOGIN URL}               https://digiroaddev.testivaylapilvi.fi/
-${LOGIN URL}                https://testiextranet.vayla.fi/digiroad/
+${LOGIN URL}                https://digiroadtest.testivaylapilvi.fi/
 ${LiviUserNameField}        id=username
 ${LiviPasswordField}        id=password
 ${LiviLoginButton}          css=.submit

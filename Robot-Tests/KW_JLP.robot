@@ -64,10 +64,11 @@ JLP_1  [arguments]  ${testipaikka}
 JLP_2  [arguments]  ${testipaikka}
     Log  Avataan Terminaali Pysäkki, Tarkistetaan liitetyt pysäkit
     Siirry Testipaikkaan                        ${TL_Joukkoliikenteen_pysäkki_RB}  ${testipaikka}
+    Zoomaa kartta                               5  5 m
     click element at coordinates                ${kartta}  0   20
     Wait Until Element Is Visible               ${FA_otsikko}
-    Element should contain                      ${FA_otsikko}           Valtakunnallinen ID: 312907
-    Element should contain                      ${FA_JLP_Liitetytpysäkit}  232577 Kamppi (M)
+    Element should contain                      ${FA_otsikko}           Valtakunnallinen ID: 317801
+    Element should contain                      ${FA_JLP_Liitetytpysäkit}  182055 Kamppi
 
 
 
