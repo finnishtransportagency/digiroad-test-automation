@@ -9,11 +9,11 @@ Test Setup          Testin Aloitus
 
 *** Test Cases ***
 Kaistatyökalu 1
-    [Tags]              AWS
+    [Tags]              AWS     Kaista
     [Documentation]     Liikennemerkit, selain: ${BROWSER}
-    KW_Kaistatyokalu.Kaistatyökalu_1  6805688, 331942
+    KW_Kaistatyokalu.Kaistatyökalu_1   6805688, 331942
 
 Kaistatyökalu 2
-    [Tags]              AWS
+    [Tags]              AWS     Kaista
     [Documentation]     Liikennemerkit, selain: ${BROWSER}
     KW_Kaistatyokalu.Kaistatyökalu_2  6805688, 331942

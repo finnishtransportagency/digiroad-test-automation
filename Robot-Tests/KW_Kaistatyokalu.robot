@@ -1,3 +1,6 @@
+#   2022    Joni Laari      Sitowise Oy
+
+
 *** Settings ***
 Documentation       Pageobject for Traffic signs (Liikennemerkit)
 
@@ -16,15 +19,17 @@ Kaistatyökalu_1  [arguments]  ${testipaikka}
     Click Element                               ${FA_Lisää_kaista_vasemmalle}
 
     Log  Poistetaan lisäkaistat
+    Valitse Kaista                              5
+    Click Element                               ${KT_Poista_Lisakaista}
+
+
     Valitse Kaista                              1
+    Wait Until Element Is Visible               ${KT_Poista_Lisakaista}
     Click Element                               ${KT_Poista_Lisakaista}
+    Element Should Not Be Clickable             ${KT_Poista_Lisakaista}    
+    Element Should Contain                      ${KT_Kaista}    2
+    Click Element                               ${FA_footer_Peruuta}
 
-
-    Valitse Kaista                              2
-    Click Element                               ${KT_Poista_Lisakaista}
-
-    Element should not be visible               ${KT_Poista_Lisakaista}
-    Element Should Contain                      ${KT_Kaista}  1
 
 Kaistatyökalu_2  [arguments]  ${testipaikka}
     Log  Vaihdetaan experimetal osoitteseen ja siirrytään testipaikkaan.
@@ -82,6 +87,7 @@ Valitse Kaista  [Arguments]  ${indeksi}
     #Kaistan indeksi kasvaa kaistanumeron mukaan vasemmalta oikealle
     Click Element                               css=div.preview-div tr:nth-child(2) td:nth-child(${indeksi})
 
+
 Poista Ylimääräiset Kaistat
     FOR  ${i}  IN RANGE  6
         Valitse Kaista                              1
@@ -90,7 +96,6 @@ Poista Ylimääräiset Kaistat
         Run Keyword If  ${status}==False  Click Element  ${KT_Päätä_Lisakaista}
         Run Keyword If  ${status}==False  Click Element  ${Muokkausvaroitus_Kyllä_btn}
     END
-
     
 
     FOR  ${i}  IN RANGE  6
@@ -102,14 +107,22 @@ Poista Ylimääräiset Kaistat
         Click Element  ${Muokkausvaroitus_Kyllä_btn}
     END
 
+
+Element Should Not Be Clickable
+    #kokeilee, onko argumenttina annettu elementti klikattavissa (ei vain näkyvissä) ja antaa failin jos on
+    [Arguments]   ${element}
+    ${status}=    Run Keyword And Return Status    Click Element    ${element}
+    Run Keyword If    'disabled'=='${status}'    Fail    "Elementin ei tule olla klikattavissa"
+
+
 *** Variables ***
 ${FA_Lisää_kaista}                  css=.list-lane-buttons > li:nth-of-type(1) .btn
 ${FA_Lisää_kaista_oikealle}         css=.list-lane-buttons > li:nth-of-type(3) .btn
 ${FA_Lisää_kaista_vasemmalle}       css=.list-lane-buttons > li:nth-of-type(2) .btn
 ${KT_Kaistan_tyyppi}                lane_type
 ${KT_Kaistan_tyyppi_DDM}            css=.form-control.lane-modelling-tool option:nth-child(2)  #ohituskaista
-${KT_Päätä_Lisakaista}              css=.lane-buttons button:nth-child(1)
-${KT_Poista_Lisakaista}             css=.lane-buttons button:nth-child(2)
+${KT_Päätä_Lisakaista}              css=button.btn.btn-secondary.lane-button.expire-lane    #DROTH-3348
+${KT_Poista_Lisakaista}             css=button.btn.btn-secondary.lane-button.delete-lane    #DROTH-3348
 
 ${KT_Tien_Numero}                   css=.input-unit-combination div:nth-child(2) p
 ${KT_Tien_Osanumero}                css=.input-unit-combination div:nth-child(3) p
