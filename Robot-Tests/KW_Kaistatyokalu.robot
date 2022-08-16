@@ -19,7 +19,7 @@ Kaistatyökalu_1  [arguments]  ${testipaikka}
     Click Element                               ${FA_Lisää_kaista_vasemmalle}
 
     Log  Poistetaan lisäkaistat
-    Valitse Kaista                              5
+    Valitse Kaista                              3
     Click Element                               ${KT_Poista_Lisakaista}
 
 
@@ -27,7 +27,7 @@ Kaistatyökalu_1  [arguments]  ${testipaikka}
     Wait Until Element Is Visible               ${KT_Poista_Lisakaista}
     Click Element                               ${KT_Poista_Lisakaista}
     Element Should Not Be Clickable             ${KT_Poista_Lisakaista}    
-    Element Should Contain                      ${KT_Kaista}    2
+    Element Should Contain                      ${KT_Kaista}    1
     Click Element                               ${FA_footer_Peruuta}
 
 
