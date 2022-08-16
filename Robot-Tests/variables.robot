@@ -246,7 +246,7 @@ ${map_overlay}                                  css=.spinner-overlay.modal-overl
 @{Tietolajit_checkbox}  
 ...  ${TL_Suojatie_RB}      ${TL_Liikennevalo_RB}     ${TL_Kääntymisrajoitus_RB}  
 ...  ${TL_Palvelupiste_RB}  ${TL_Joukkoliikenteen_pysäkki_RB}
-...  ${TL_Opastustaulu_RB}  ${TL_Esterakennelma_RB}   ${TL_Rautatien tasoristeys_RB}
+...  ${TL_Opastustaulu_RB}  ${TL_Esterakennelma_RB}   ${TL_Rautatien tasoristeys_RB}    ${TL_Ajoneuvokohtaiset_rajoitukset_RB}
 # Checkbox 8 kpl
 
 
