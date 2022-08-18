@@ -10,22 +10,31 @@ Palvelupiste_1  [arguments]  ${testipaikka}
     Odota sivun latautuminen
 
     Alusta Testipaikka
-    Luo Palvelupiste
+    #Luo Palvelupiste
 
     Log  Alustetaan testipaikka uusiksi. Tarkistetaan, että Palvelupiste näkyy oikeassa kategoriassa.
-    Siirry Katselutilaan
-    Testin Aloitus
-    Siirry Testipaikkaan                        ${TL_Palvelupiste_RB}  ${Testipaikka}
-    #Click Element                               ${LM_Kielto}
-    Odota sivun latautuminen
-    ${date}=  Get Current Date                  result_format=%d.%m.%Y
-    Click Element At Coordinates                ${Kartta}  0  20
-    Wait Until Element Is Visible               ${FA_otsikko}
-    Tarkista Merkin Kentät                      ${date}
     Siirry Muokkaustilaan
-    Click Element                               ${FA_Poista_chkbx}
+    Click Element                               ${Muokkaustila_AddTool}
+    Click Element At Coordinates                ${Kartta}   0   20
+    Wait Until Element Is Visible               css=.form-control
+    Click Element                               css=.form-control
+    Click Element                               css=.form-control option[value="12"]    #pysäköintialue, väliaikainen ennen nimeämisten muuttumista
+    Click Element                               css=.form-control.select-service-type-extension option[value="2"]   #perusvarustelu, value numeroina
+    Input Text                                  css=.form-control.service-name  Hippoksen parkki
+    Input Text                                  css=.form-control.large-input   Hipposparkin lisätiedot
+    Input Text                                  css=.form-control.service-parking-place-count   300
     Click Element                               ${FA_footer_Tallenna}
-    Wait Until Element Is Not Visible           ${Spinner_Overlay}
+    #Click Element                               ${Muokkaustila_SelectTool}
+    Siirry Katselutilaan
+
+    #Click Element                               ${FA_footer_Tallenna}
+
+    Click Element At Coordinates                ${Kartta}   0   20
+    ${date}=  Get Current Date                  result_format=%d.%m.%Y
+    Wait Until Element Is Visible               ${FA_otsikko}
+    Tarkista Palvelupisteen Kentät              ${date}
+
+    Alusta Testipaikka
 
 
 Palvelupiste_2  [Arguments]  ${testipaikka}  ${Merkin_tyyppi}  ${Merkin_teksti}
@@ -196,53 +205,59 @@ Valitse Kaikki Palvelupisteet
 Luo Palvelupiste
     Siirry Muokkaustilaan
     Odota sivun latautuminen
-    click element                           ${Muokkaustila_AddTool}
+    Click Element                           ${Muokkaustila_AddTool}
     Click Element At Coordinates            ${Kartta}  0  20
     Wait Until Element Is Visible           ${FA_otsikko}
     Element Should Be Enabled                ${FA_footer_Peruuta}
     Täytä Palvelupisteen kentät
     Click Element                           ${FA_footer_Tallenna}
-    sleep  1
+    Sleep  1
     Wait Until Element Is Not Visible           ${Spinner_Overlay}  timeout=30 s
     Odota sivun latautuminen
 
 
 Täytä Palvelupisteen kentät
-    Click Element   ${Tyyppi}
-    Click Element   ${Tyyppi_DDM}
-    Click Element   ${Alityyppi}
-    Click Element   ${Alityyppi_DDM}
-    Input Text      ${Arvo}                 100
-    Input Text      ${Päämerkin_Teksti}     Testi         
-    Input Text      ${Kunnan_ID}            Kunta12                
-    Input Text      ${Lisätieto}            HienoMerkki             
-    Click Element   ${Rakenne}                      
-    Click Element   ${Rakenne_DDM}                    
-    Click Element   ${Kunto}                          
-    Click Element   ${Kunto_DDM}                     
-    Click Element   ${Koko}                          
-    Click Element   ${Koko_DDM}                    
-    Input Text      ${Korkeus}  100                     
-    Click Element   ${Kalvon_Tyypi}                  
-    Click Element   ${Kalvon_Tyypi_DDM}            
-    Click Element   ${Merkin_Materiaali}             
-    Click Element   ${Merkin_Materiaali_DDM}        
-    Click Element   ${Sijaintitarkenne}               
-    Click Element   ${Sijaintitarkenne_DDM}           
-    Input Text      ${Maastokoordinaatti_X}  82          
-    Input Text      ${Maastokoordinaatti_Y}  86         
-    #Input Text      ${Kaista}   2            
-    Click Element   ${Kaistan_Tyyppi}                 
-    Click Element   ${Kaistan_Tyyppi_DDM}             
-    Click Element   ${Tila}                             
-    Click Element   ${Tila_DDM}                       
-    Input Text      ${Alkupäivämäärä}        1.12.2025            
-    Input Text      ${Loppupäivämäärä}       1.12.2026          
-    Click Element   ${Vauriotyyppi}                    
-    Click Element   ${Vauriotyyppi_DDM}                 
-    Click Element   ${Korjauksen_Kiireellisyys}        
-    Click Element   ${Korjauksen_Kiireellisyys_DDM}     
-    Input Text      ${Arvioitu_Käyttöikä}       1     
+    Click Element                               css=.form-control
+    Click Element                               css=.form-control option[value="12"]    #pysäköintialue, väliaikainen ennen nimeämisten muuttumista
+    Click Element                               css=.form-control.select-service-type-extension option[value="2"]   #perusvarustelu, value numeroina
+    Input Text                                  css=.form-control.service-name  Hippoksen parkki
+    Input Text                                  css=.form-control.large-input   Hipposparkin lisätiedot
+    Input Text                                  css=.form-control.service-parking-place-count   300
+#    Click Element   ${Tyyppi}
+#    Click Element   ${Tyyppi_DDM}
+#    Click Element   ${Alityyppi}
+#    Click Element   ${Alityyppi_DDM}
+#    Input Text      ${Arvo}                 100
+#    Input Text      ${Päämerkin_Teksti}     Testi         
+#    Input Text      ${Kunnan_ID}            Kunta12                
+#    Input Text      ${Lisätieto}            HienoMerkki             
+#    Click Element   ${Rakenne}                      
+#    Click Element   ${Rakenne_DDM}                    
+#    Click Element   ${Kunto}                          
+#    Click Element   ${Kunto_DDM}                     
+#    Click Element   ${Koko}                          
+#    Click Element   ${Koko_DDM}                    
+#    Input Text      ${Korkeus}  100                     
+#    Click Element   ${Kalvon_Tyypi}                  
+#    Click Element   ${Kalvon_Tyypi_DDM}            
+#    Click Element   ${Merkin_Materiaali}             
+#    Click Element   ${Merkin_Materiaali_DDM}        
+#    Click Element   ${Sijaintitarkenne}               
+#    Click Element   ${Sijaintitarkenne_DDM}           
+#    Input Text      ${Maastokoordinaatti_X}  82          
+#    Input Text      ${Maastokoordinaatti_Y}  86         
+#    #Input Text      ${Kaista}   2            
+#    Click Element   ${Kaistan_Tyyppi}                 
+#    Click Element   ${Kaistan_Tyyppi_DDM}             
+#    Click Element   ${Tila}                             
+#    Click Element   ${Tila_DDM}                       
+#    Input Text      ${Alkupäivämäärä}        1.12.2025            
+#    Input Text      ${Loppupäivämäärä}       1.12.2026          
+#    Click Element   ${Vauriotyyppi}                    
+#    Click Element   ${Vauriotyyppi_DDM}                 
+#    Click Element   ${Korjauksen_Kiireellisyys}        
+#    Click Element   ${Korjauksen_Kiireellisyys_DDM}     
+#    Input Text      ${Arvioitu_Käyttöikä}       1     
 
 Täytä Lisäkilven Kentät
     Click Element  ${Lisakilpi}
@@ -258,32 +273,33 @@ Täytä Lisäkilven Kentät
     Click Element  ${LK_LisakilvenVari}
     Click Element  ${LK_LisakilvenVari_DDM}
 
-Tarkista Merkin Kentät  
+Tarkista Palvelupisteen Kentät  
     [Arguments]  ${date}
     Element Should Contain                      ${FA_Lisätty_Järjestelmään}  ${date}
-    Element Should Contain                      ${FA_Tyyppi}  Kielto- ja rajoitusmerkit
-    Element Should Contain                      ${FA_Alityyppi}  C32 Nopeusrajoitus
-    Element Should Contain                      ${FA_Arvo}  100
-    Element Should Contain                      ${FA_Päämerkin_Teksti}  Testi
-    Element Should Contain                      ${FA_Kunnan_ID}  Kunta12
-    Element Should Contain                      ${FA_Lisätieto}  HienoMerkki
-    Element Should Contain                      ${FA_Rakenne}  Silta
-    Element Should Contain                      ${FA_Kunto}  Tyydyttävä
-    Element Should Contain                      ${FA_Koko}  Normaalikokoinen merkki
-    Element Should Contain                      ${FA_Korkeus}  100
-    Element Should Contain                      ${FA_Kalvon_Tyyppi}  R2-luokan kalvo
-    Element Should Contain                      ${FA_Merkin_Materiaali}  Alumiini
-    Element Should Contain                      ${FA_Sijaintitarkenne}  Väylän vasen puoli
-    Element Should Contain                      ${FA_Maastokoordinaatti_X}  82
-    Element Should Contain                      ${FA_Maastokoordinaatti_Y}  86
-    Element Should Contain                      ${FA_Kaista}  –
-    Element Should Contain                      ${FA_Kaistan_Tyyppi}  Ohituskaista
-    Element Should Contain                      ${FA_Tila}  Rakenteilla
-    Element Should Contain                      ${FA_Alkupäivämäärä}  01.12.2025
-    Element Should Contain                      ${FA_Loppupäivämäärä}  01.12.2026
-    Element Should Contain                      ${FA_Vauriotyyppi}  Kolhiintunut
-    Element Should Contain                      ${FA_Korjauksen_Kiireellisyys}  Kiireellinen
-    Element Should Contain                      ${FA_Arvioitu_Käyttöikä}  1
+    
+    #Element Should Contain                      ${FA_Tyyppi}  Kielto- ja rajoitusmerkit
+    #Element Should Contain                      ${FA_Alityyppi}  C32 Nopeusrajoitus
+    #Element Should Contain                      ${FA_Arvo}  100
+    #Element Should Contain                      ${FA_Päämerkin_Teksti}  Testi
+    #Element Should Contain                      ${FA_Kunnan_ID}  Kunta12
+    #Element Should Contain                      ${FA_Lisätieto}  HienoMerkki
+    #Element Should Contain                      ${FA_Rakenne}  Silta
+    #Element Should Contain                      ${FA_Kunto}  Tyydyttävä
+    #Element Should Contain                      ${FA_Koko}  Normaalikokoinen merkki
+    #Element Should Contain                      ${FA_Korkeus}  100
+    #Element Should Contain                      ${FA_Kalvon_Tyyppi}  R2-luokan kalvo
+    #Element Should Contain                      ${FA_Merkin_Materiaali}  Alumiini
+    #Element Should Contain                      ${FA_Sijaintitarkenne}  Väylän vasen puoli
+    #Element Should Contain                      ${FA_Maastokoordinaatti_X}  82
+    #Element Should Contain                      ${FA_Maastokoordinaatti_Y}  86
+    #Element Should Contain                      ${FA_Kaista}  –
+    #Element Should Contain                      ${FA_Kaistan_Tyyppi}  Ohituskaista
+    #Element Should Contain                      ${FA_Tila}  Rakenteilla
+    #Element Should Contain                      ${FA_Alkupäivämäärä}  01.12.2025
+    #Element Should Contain                      ${FA_Loppupäivämäärä}  01.12.2026
+    #Element Should Contain                      ${FA_Vauriotyyppi}  Kolhiintunut
+    #Element Should Contain                      ${FA_Korjauksen_Kiireellisyys}  Kiireellinen
+    #Element Should Contain                      ${FA_Arvioitu_Käyttöikä}  1
 
 Syota virheellinen arvo  
     [Arguments]                 ${kenttä}  ${arvo}
@@ -329,14 +345,14 @@ ${LM_Muut_merkit}       otherSigns
 
 #_DMM valitsin on alasvetovalikon valinta.
 
-${Tyyppi}                           css=#main-trafficSigns_type
-${Tyyppi_DDM}                       css=#main-trafficSigns_type > option:nth-child(3)
-${Alityyppi}                        css=#trafficSigns_type
-${Alityyppi_DDM}                    css=#trafficSigns_type > option:nth-child(32)
-${Arvo}                             css=#trafficSigns_value
+${Tyyppi}                           css=#main-service_type
+${Tyyppi_DDM}                       css=#main-service_type > option:nth-child(3)
+${Alityyppi}                        css=#service_type
+${Alityyppi_DDM}                    css=#service_type > option:nth-child(32)
+${Arvo}                             css=#service_value
 ${Päämerkin_Teksti}                 css=#main_sign_text
 ${Kunnan_ID}                        css=#municipality_id
-${Lisätieto}                        css=#trafficSigns_info
+${Lisätieto}                        css=#service_info
 ${Rakenne}                          css=#structure
 ${Rakenne_DDM}                      css=#structure > option:nth-child(3)
 ${Kunto}                            css=#condition
