@@ -1,3 +1,5 @@
+#2022    Joni Laari      Sitowise Oy
+
 *** Settings ***
 Documentation       Regression testcases for Digiroad
 Resource            common_keywords.robot
@@ -33,16 +35,34 @@ Palvelupiste_case_2
     #TODO
     KW_Palvelupiste.Palvelupiste_2  6688614, 387718  ${PP_Tulli}    Tulli
     KW_Palvelupiste.Palvelupiste_2  6719166, 547657  ${PP_Rajanylityspaikka}          Rajanylityspaikka
-    KW_Palvelupiste.Palvelupiste_2  6638302, 272758  ${PP_Lastausterminaali}      Autojen lastausterminaali
+    #KW_Palvelupiste.Palvelupiste_2  6638302, 272758  ${PP_Lastausterminaali}      Autojen lastausterminaali
     KW_Palvelupiste.Palvelupiste_2  6718817, 546054  ${PP_LA_KA_pysäköinti}      Linja- ja kuorma-autojen pysäköintialue
     #KW_Palvelupiste.Palvelupiste_2  6670510, 385928  ${PP_Tierumpu}         Tierumpu
+    #KW_Palvelupiste.Palvelupiste_2  6714733, 504191  ${PP_E18_Rekkaparkki}      E18 rekkaparkki
 
 
 Palvelupiste_case_3
     [Tags]              Palvelupiste  AWS
     [Documentation]     Palvelupiste, selain: ${BROWSER}
     ...  
-    KW_Palvelupiste.Palvelupiste_3  6756201, 489631
+    #KW_Palvelupiste.Palvelupiste_3  6899607, 433900
+
+    KW_Palvelupiste.Palvelupiste_3  6899607, 433900  ${PP_Pysäköintitalo}    Pysäköintitalo
+    KW_Palvelupiste.Palvelupiste_3  6899607, 433900  ${PP_Pysäköintialue}    Pysäköintialue
+    KW_Palvelupiste.Palvelupiste_3  6899607, 433900  ${PP_Merkittävä_Rautatieasema}           Rautatieasema
+    KW_Palvelupiste.Palvelupiste_3  6899607, 433900  ${PP_Vähäisempi_Rautatieasema}           Rautatieasema
+    KW_Palvelupiste.Palvelupiste_3  6899607, 433900  ${PP_Linja_Auto_Asema}    Linja-autoasema
+    KW_Palvelupiste.Palvelupiste_3  6899607, 433900  ${PP_Lentokenttä}          Lentokenttä
+    KW_Palvelupiste.Palvelupiste_3  6899607, 433900  ${PP_Laivaterminaali}      Laivaterminaali
+    KW_Palvelupiste.Palvelupiste_3  6899607, 433900  ${PP_Taksiasema}      Taksiasema
+    KW_Palvelupiste.Palvelupiste_3  6899607, 433900  ${PP_Lepoalue}         Lepoalue
+    #TODO
+    KW_Palvelupiste.Palvelupiste_3  6899607, 433900  ${PP_Tulli}    Tulli
+    KW_Palvelupiste.Palvelupiste_3  6899607, 433900  ${PP_Rajanylityspaikka}          Rajanylityspaikka
+    KW_Palvelupiste.Palvelupiste_3  6899607, 433900  ${PP_Lastausterminaali}      "Autojen lastausterminaali"   #kokeillaan auttavatko heittomerkit 24.8.22
+    KW_Palvelupiste.Palvelupiste_3  6899607, 433900  ${PP_LA_KA_pysäköinti}      Linja- ja kuorma-autojen pysäköintialue
+    KW_Palvelupiste.Palvelupiste_2  6670510, 385928  ${PP_Tierumpu}         Tierumpu
+    #KW_Palvelupiste.Palvelupiste_2  6714733, 504191  ${PP_E18_Rekkaparkki}      E18 rekkaparkki
 
 
 Palvelupiste_case_4
