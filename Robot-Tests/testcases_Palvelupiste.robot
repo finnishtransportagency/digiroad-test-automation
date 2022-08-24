@@ -35,7 +35,7 @@ Palvelupiste_case_2
     #TODO
     KW_Palvelupiste.Palvelupiste_2  6688614, 387718  ${PP_Tulli}    Tulli
     KW_Palvelupiste.Palvelupiste_2  6719166, 547657  ${PP_Rajanylityspaikka}          Rajanylityspaikka
-    #KW_Palvelupiste.Palvelupiste_2  6638302, 272758  ${PP_Lastausterminaali}      Autojen lastausterminaali
+    KW_Palvelupiste.Palvelupiste_2  6638302, 272758  ${PP_Lastausterminaali}      Autojen lastausterminaali
     KW_Palvelupiste.Palvelupiste_2  6718817, 546054  ${PP_LA_KA_pysäköinti}      Linja- ja kuorma-autojen pysäköintialue
     #KW_Palvelupiste.Palvelupiste_2  6670510, 385928  ${PP_Tierumpu}         Tierumpu
     #KW_Palvelupiste.Palvelupiste_2  6714733, 504191  ${PP_E18_Rekkaparkki}      E18 rekkaparkki
@@ -59,7 +59,7 @@ Palvelupiste_case_3
     #TODO
     KW_Palvelupiste.Palvelupiste_3  6899607, 433900  ${PP_Tulli}    Tulli
     KW_Palvelupiste.Palvelupiste_3  6899607, 433900  ${PP_Rajanylityspaikka}          Rajanylityspaikka
-    KW_Palvelupiste.Palvelupiste_3  6899607, 433900  ${PP_Lastausterminaali}      "Autojen lastausterminaali"   #kokeillaan auttavatko heittomerkit 24.8.22
+    #KW_Palvelupiste.Palvelupiste_3  6899607, 433900  ${PP_Lastausterminaali}      "Autojen lastausterminaali"   #kokeillaan auttavatko heittomerkit 24.8.22
     KW_Palvelupiste.Palvelupiste_3  6899607, 433900  ${PP_LA_KA_pysäköinti}      Linja- ja kuorma-autojen pysäköintialue
     KW_Palvelupiste.Palvelupiste_2  6670510, 385928  ${PP_Tierumpu}         Tierumpu
     #KW_Palvelupiste.Palvelupiste_2  6714733, 504191  ${PP_E18_Rekkaparkki}      E18 rekkaparkki

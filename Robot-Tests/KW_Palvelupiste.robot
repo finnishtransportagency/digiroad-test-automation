@@ -1,3 +1,5 @@
+#2022       Joni Laari      Sitowise Oy
+
 *** Settings ***
 Documentation       Pageobject for Traffic signs (Palvelupiste)
 
@@ -18,8 +20,8 @@ Palvelupiste_1  [arguments]  ${testipaikka}
     Click Element At Coordinates                ${Kartta}   0   20
     Wait Until Element Is Visible               css=.form-control
     Click Element                               css=.form-control
-    Click Element                               css=.form-control option[value="12"]    #pysäköintialue, väliaikainen ennen nimeämisten muuttumista
-    Click Element                               css=.form-control.select-service-type-extension option[value="2"]   #perusvarustelu, value numeroina
+    Click Element                               css=.form-control option[data-value="Pysäköintialue"]    #pysäköintialue, väliaikainen ennen nimeämisten muuttumista
+    Click Element                               css=.form-control.select-service-type-extension option[data-value="Perusvarustelu"]   #perusvarustelu, value numeroina
     Input Text                                  css=.form-control.service-name  Hippoksen parkki
     Input Text                                  css=.form-control.large-input   Hipposparkin lisätiedot
     Input Text                                  css=.form-control.service-parking-place-count   300
@@ -49,53 +51,35 @@ Palvelupiste_2  [Arguments]  ${testipaikka}  ${Merkin_tyyppi}  ${Pisteen_teksti}
     Wait Until Element Is Visible   ${FA_otsikko}
     Element Should Contain          css=#feature-attributes-form  ${Pisteen_teksti}
 
-Palvelupiste_3  [Arguments]  ${testipaikka}
-    Log  Loudaan uusi merkki. Tarkistetaan kentän raja-arvot ja xss/html injektiot.
+
+Palvelupiste_3  [Arguments]  ${testipaikka}  ${Merkin_tyyppi}  ${Pisteen_teksti}
+    log  Luodaan uusi Palvelupiste, Täytetään kaikki kentät
     Siirry Testipaikkaan  ${TL_Palvelupiste_RB}  ${Testipaikka}
     #Valitse Kaikki Palvelupisteet
     Odota sivun latautuminen
-
-    Log  Luodaan uusi Palvelupiste, ja testtaan voidaanko virheellisiä arvoja tallettaa
     Alusta Testipaikka
+    #Luo Palvelupiste
+
+    Log  Alustetaan testipaikka uusiksi. Tarkistetaan, että Palvelupiste näkyy oikeassa kategoriassa.
     Siirry Muokkaustilaan
-    Odota sivun latautuminen
-    click element                           ${Muokkaustila_AddTool}
-    Click Element At Coordinates            ${Kartta}  0  20
-    Wait Until Element Is Visible           ${FA_otsikko}
-    Element Should Be Enabled               ${FA_footer_Peruuta}
-    Click Element   ${Tyyppi}
-    Click Element   ${Tyyppi_DDM}
-    Click Element   ${Alityyppi}
-    Click Element   ${Alityyppi_DDM}
+    Click Element                               ${Muokkaustila_AddTool}
+    Click Element At Coordinates                ${Kartta}   0   20
+    Wait Until Element Is Visible               css=.form-control
+    Click Element                               css=.form-control
+    Click Element                               css=.form-control option[data-value= ${Pisteen_teksti}]    #pysäköintialue, väliaikainen ennen nimeämisten muuttumista
+    #Click Element                               css=.form-control.select-service-type-extension option[data-value="Perusvarustelu"]   #perusvarustelu, value numeroina
+    #Input Text                                  css=.form-control.service-name  Hippoksen parkki
+    Input Text                                  css=.form-control.large-input   ${Pisteen_teksti}
+    #Input Text                                  css=.form-control.service-parking-place-count   300
+    Click Element                               ${FA_footer_Tallenna}
 
-    FOR  ${teksti}  IN  @{Haku_Muuttujat}
-        Syota virheellinen arvo                 ${Arvo}  ${teksti}
-    END
-
-    Log  Arvotaan satunnainen numero, tallennus pitäisi olla poissa. Jos nopeus = oikea rajoitus, testiä ei ajeta.
-    ${numero}  ${status}=  Arvo Numero
-    Run Keyword If  '${status}'=='False'  Input Text  ${Arvo}  ${numero}
-    Element Should Be Disabled                  ${FA_footer_Tallenna}
-
-    Log  Arvotaan satunnainen string, tallennus pitäisi olla poissa.
-    ${str}=  Generate Random String
-    Input Text                                  ${Arvo}  ${str}
-    Click Element                               ${Päämerkin_Teksti}
-    Element Should Be Disabled                  ${FA_footer_Tallenna}
-
-    FOR  ${teksti}  IN  @{Nopeusrajoitukset}
-        Syota kelvollinen arvo                  ${Arvo}  ${teksti}
-    END
-
-    Log  Kaista numeron testit
-
-    FOR  ${teksti}  IN  10  00  40  30  100  999
-        Syota virheellinen arvo                 ${Kaista}  ${teksti}
-    END
-
-    FOR  ${teksti}  IN  11  19  25  24  31  39
-        Syota kelvollinen arvo                  ${Kaista}  ${teksti}
-    END
+    Click Element                               ${Muokkaustila_SelectTool}
+    Click Element At Coordinates                ${Kartta}   0   20
+    Siirrä Kohde                                100   0
+    Wait Until Element Is Visible               ${FA_Poista_chkbx}
+    Click Element                               ${FA_Poista_chkbx}
+    Click Element                               ${FA_footer_Tallenna}
+    Siirry Katselutilaan
 
 
 Palvelupiste_4  [Arguments]  ${testipaikka}
@@ -129,7 +113,7 @@ Palvelupiste_4  [Arguments]  ${testipaikka}
     Wait Until Element Is Not Visible       ${Spinner_Overlay}
     Odota sivun latautuminen
 
-    Log  Siirretään Palvelupisteä lisäkilvellä
+    Log  Siirretään Palvelupistettä lisäkilvellä
     Click Element                           ${Muokkaustila_SelectTool}
     Click Element at Coordinates            ${Kartta}  0  20
     Wait Until Element Is Visible           ${FA_otsikko}
@@ -159,7 +143,7 @@ Palvelupiste_5  [Arguments]  ${Testipaikka}
     Odota sivun latautuminen
     Alusta Testipaikka
 
-    Log  Palvelupisteä ei voi lisätä muokkaustyökalulla. Rivi:779
+    Log  Palvelupistettä ei voi lisätä muokkaustyökalulla. Rivi:779
     Siirry Muokkaustilaan
     Click Element At Coordinates            ${Kartta}  0  20
     Repeat Keyword  10 s  Element Should Not Be Visible  ${FA_otsikko}
@@ -322,29 +306,29 @@ Arvo Numero
     [Return]  ${numero}  ${status}
 
 *** Variables ***
-${PP_Pysäköintitalo}            ParkingGarage
-${PP_Pysäköintialue}            ParkingArea
-${PP_Merkittävä_Rautatieasema}  RailwayStation
-${PP_Vähäisempi_Rautatieasema}  RailwayStation
-${PP_Metroasema}                SubwayStation
-${PP_Linja_Auto_Asema}          BusStation
-${PP_Lentokenttä}               Airport
-${PP_Laivaterminaali}           FerryTerminal
-${PP_Taksiasema}                TaxiStation
-${PP_Lepoalue}                  picnicSite
-${PP_Tulli}                     Customs
-${PP_Rajanylityspaikka}         BorderCrossing
-${PP_Lastausterminaali}         TerminalForLoadingCars
-${PP_LA_KA_pysäköinti}          parkingAreaBusesAndTrucks
-${PP_Tierumpu}                  Culvert
-${PP_Tuntematon}                Unknown
+${PP_Pysäköintitalo}            css=.form-control option[data-value="Pysäköintitalo"]
+${PP_Pysäköintialue}            css=.form-control option[data-value="Pysäköintialue"]
+${PP_Merkittävä_Rautatieasema}  css=.form-control.select-service-type-extension option[data-value="Merkittävä rautatieasema"]
+${PP_Vähäisempi_Rautatieasema}  css=.form-control.select-service-type-extension option[data-value="Vähäisempi rautatieasema"]
+${PP_Metroasema}                css=.form-control.select-service-type-extension option[data-value="Maanalainen/metroasema"]
+${PP_Linja_Auto_Asema}          css=.form-control option[data-value="Linja-autoasema"]
+${PP_Lentokenttä}               css=.form-control option[data-value="Lentokenttä"]
+${PP_Laivaterminaali}           css=.form-control option[data-value="Laivaterminaali"]
+${PP_Taksiasema}                css=.form-control option[data-value="Taksiasema"]
+${PP_Lepoalue}                  css=.form-control option[data-value="Lepoalue"]
+${PP_Tulli}                     css=.form-control option[data-value="Tulli"]
+${PP_Rajanylityspaikka}         css=.form-control option[data-value="Rajanylityspaikka"]
+${PP_Lastausterminaali}         css=.form-control option[data-value="Autojen lastausterminaali"]
+${PP_LA_KA_pysäköinti}          css=.form-control option[data-value="Linja- ja kuorma-autojen pysäköintialue"]
+${PP_Tierumpu}                  css=.form-control option[data-value="Tierumpu"]
+${PP_E18_Rekkaparkki}           css=.form-control option[data-value="E18 rekkaparkki"]
 
 @{PP_lista}  
 ...     ${PP_Pysäköintitalo}  ${PP_Pysäköintialue}  ${PP_Merkittävä_Rautatieasema}
 ...     ${PP_Vähäisempi_Rautatieasema}  ${PP_Metroasema}  ${PP_Linja_Auto_Asema}
 ...     ${PP_Lentokenttä}  ${PP_Laivaterminaali}  ${PP_Taksiasema}  ${PP_Lepoalue}
 ...     ${PP_Tulli}  ${PP_Rajanylityspaikka}..${PP_Lastausterminaali}  ${PP_Lastausterminaali}
-...     ${PP_LA_KA_pysäköinti}  ${PP_Tierumpu}
+...     ${PP_LA_KA_pysäköinti}  ${PP_Tierumpu}  ${PP_E18_Rekkaparkki}
 
 @{Nopeusrajoitukset}
 ...     20  30  40  50  60  70  80  90  100  120
@@ -355,10 +339,10 @@ ${PP_Tuntematon}                Unknown
 
 #_DMM valitsin on alasvetovalikon valinta.
 
-${Tyyppi}                           css=#main-service_type
-${Tyyppi_DDM}                       css=#main-service_type > option:nth-child(3)
-${Alityyppi}                        css=#service_type
-${Alityyppi_DDM}                    css=#service_type > option:nth-child(32)
+${Tyyppi}                           css=.form-control option[data-value="Pysäköintialue"]
+${Tyyppi_DDM}                       css=.form-control option[data-value="Pysäköintialue"]
+${Alityyppi}                        css=.form-control.select-service-type-extension option[data-value="Perusvarustelu"]
+${Alityyppi_DDM}                    css=.form-control.select-service-type-extension option[data-value="Perusvarustelu"]
 ${Arvo}                             css=#service_value
 ${Päämerkin_Teksti}                 css=#main_sign_text
 ${Kunnan_ID}                        css=#municipality_id
