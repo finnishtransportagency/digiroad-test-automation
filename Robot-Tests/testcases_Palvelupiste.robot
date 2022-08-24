@@ -19,22 +19,30 @@ Palvelupiste_case_1
 Palvelupiste_case_2
     [Tags]              Palvelupiste
     [Documentation]     Palvelupiste, selain: ${BROWSER}
-    ...  - Tarkistetaan kaikki eri tyyppiset liikennemerkit
-    KW_Palvelupiste.Palvelupiste_2  6715396, 243669  ${LM_Varoitusmerkit}   Varoitusmerkit
-    KW_Palvelupiste.Palvelupiste_2  7329634, 568664  ${LM_Etuajo-oikeus}    Etuajo-oikeus ja väistämismerkit
-    KW_Palvelupiste.Palvelupiste_2  7320804, 599586  ${LM_Kielto}           Kielto- ja rajoitusmerkit
-    KW_Palvelupiste.Palvelupiste_2  7329642, 568698  ${LM_Määräysmerkit}    Määräysmerkit
-    KW_Palvelupiste.Palvelupiste_2  7320090, 598967  ${LM_Sääntömerkit}     Sääntömerkit
-    KW_Palvelupiste.Palvelupiste_2  7252914, 514594  ${LM_Opastusmerkit}    Opastusmerkit
-    KW_Palvelupiste.Palvelupiste_2  6797931, 339406  ${LM_Palvelukohteet}   Palvelukohteet
-    KW_Palvelupiste.Palvelupiste_2  6670510, 385928  ${LM_Muut_merkit}      Muut merkit
+    ...  - Tarkistetaan kaikki eri tyyppiset palvelupisteet
+    KW_Palvelupiste.Palvelupiste_2  6761477, 427461  ${PP_Pysäköintitalo}    Pysäköintitalo
+    KW_Palvelupiste.Palvelupiste_2  6900791, 434121  ${PP_Pysäköintialue}    Pysäköintialue
+    KW_Palvelupiste.Palvelupiste_2  6901701, 435308  ${PP_Merkittävä_Rautatieasema}           Merkittävä rautatieasema
+    KW_Palvelupiste.Palvelupiste_2  6745819, 478333  ${PP_Vähäisempi_Rautatieasema}    Vähäisempi rautatieasema
+    KW_Palvelupiste.Palvelupiste_2  6679260, 393880  ${PP_Metroasema}       Maanalainen/metroasema
+    KW_Palvelupiste.Palvelupiste_2  6879737, 375234  ${PP_Linja_Auto_Asema}    Linja-autoasema
+    KW_Palvelupiste.Palvelupiste_2  6688632, 387709  ${PP_Lentokenttä}          Lentokenttä
+    KW_Palvelupiste.Palvelupiste_2  6671396, 387254  ${PP_Laivaterminaali}      Laivaterminaali
+    KW_Palvelupiste.Palvelupiste_2  6671385, 387269  ${PP_Taksiasema}      Taksiasema
+    KW_Palvelupiste.Palvelupiste_2  6714733, 504191  ${PP_Lepoalue}         Lepoalue
+    #TODO
+    KW_Palvelupiste.Palvelupiste_2  6688614, 387718  ${PP_Tulli}    Tulli
+    KW_Palvelupiste.Palvelupiste_2  6719166, 547657  ${PP_Rajanylityspaikka}          Rajanylityspaikka
+    KW_Palvelupiste.Palvelupiste_2  6638302, 272758  ${PP_Lastausterminaali}      Autojen lastausterminaali
+    KW_Palvelupiste.Palvelupiste_2  6718817, 546054  ${PP_LA_KA_pysäköinti}      Linja- ja kuorma-autojen pysäköintialue
+    #KW_Palvelupiste.Palvelupiste_2  6670510, 385928  ${PP_Tierumpu}         Tierumpu
 
 
 Palvelupiste_case_3
     [Tags]              Palvelupiste  AWS
     [Documentation]     Palvelupiste, selain: ${BROWSER}
     ...  
-    KW_Palvelupiste.Palvelupiste_3  7320569, 599457
+    KW_Palvelupiste.Palvelupiste_3  6756201, 489631
 
 
 Palvelupiste_case_4

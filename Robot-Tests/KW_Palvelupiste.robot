@@ -37,17 +37,17 @@ Palvelupiste_1  [arguments]  ${testipaikka}
     Alusta Testipaikka
 
 
-Palvelupiste_2  [Arguments]  ${testipaikka}  ${Merkin_tyyppi}  ${Merkin_teksti}
+Palvelupiste_2  [Arguments]  ${testipaikka}  ${Merkin_tyyppi}  ${Pisteen_teksti}
     Testin Aloitus
     log  Paikannetaan Palvelupiste. Tarkistetaan palvelupisteen tyyppi.
     Siirry Testipaikkaan            ${TL_Palvelupiste_RB}  ${testipaikka}
-    Valitse Kaikki Palvelupisteet
-    Click Element                   ${Merkin_tyyppi}
+    #Valitse Kaikki Palvelupisteet
+    #Click Element                   ${Merkin_tyyppi}
     Odota sivun latautuminen
 
     Click Element At Coordinates    ${Kartta}  0  20
     Wait Until Element Is Visible   ${FA_otsikko}
-    Element Should Contain          css=#feature-attributes-form  ${Merkin_teksti}
+    Element Should Contain          css=#feature-attributes-form  ${Pisteen_teksti}
 
 Palvelupiste_3  [Arguments]  ${testipaikka}
     Log  Loudaan uusi merkki. Tarkistetaan kentän raja-arvot ja xss/html injektiot.
@@ -198,7 +198,7 @@ Palvelupiste_5  [Arguments]  ${Testipaikka}
 #######################
 
 Valitse Kaikki Palvelupisteet
-    FOR  ${selector}  IN  @{LM_lista}
+    FOR  ${selector}  IN  @{PP_lista}
         Click Element  ${selector}
     END
 
@@ -322,19 +322,29 @@ Arvo Numero
     [Return]  ${numero}  ${status}
 
 *** Variables ***
-${LM_Varoitusmerkit}    generalWarningSigns
-${LM_Etuajo-oikeus}     priorityAndGiveWaySigns
-${LM_Kielto}            prohibitionsAndRestrictions
-${LM_Määräysmerkit}     mandatorySigns
-${LM_Sääntömerkit}      regulatorySigns
-${LM_Opastusmerkit}     informationSigns
-${LM_Palvelukohteet}    serviceSigns
-${LM_Muut_merkit}       otherSigns
+${PP_Pysäköintitalo}            ParkingGarage
+${PP_Pysäköintialue}            ParkingArea
+${PP_Merkittävä_Rautatieasema}  RailwayStation
+${PP_Vähäisempi_Rautatieasema}  RailwayStation
+${PP_Metroasema}                SubwayStation
+${PP_Linja_Auto_Asema}          BusStation
+${PP_Lentokenttä}               Airport
+${PP_Laivaterminaali}           FerryTerminal
+${PP_Taksiasema}                TaxiStation
+${PP_Lepoalue}                  picnicSite
+${PP_Tulli}                     Customs
+${PP_Rajanylityspaikka}         BorderCrossing
+${PP_Lastausterminaali}         TerminalForLoadingCars
+${PP_LA_KA_pysäköinti}          parkingAreaBusesAndTrucks
+${PP_Tierumpu}                  Culvert
+${PP_Tuntematon}                Unknown
 
-@{LM_lista}  
-...     ${LM_Varoitusmerkit}  ${LM_Etuajo-oikeus}  ${LM_Kielto}
-...     ${LM_Määräysmerkit}  ${LM_Sääntömerkit}  ${LM_Opastusmerkit}
-...     ${LM_Palvelukohteet}  ${LM_Muut_merkit}
+@{PP_lista}  
+...     ${PP_Pysäköintitalo}  ${PP_Pysäköintialue}  ${PP_Merkittävä_Rautatieasema}
+...     ${PP_Vähäisempi_Rautatieasema}  ${PP_Metroasema}  ${PP_Linja_Auto_Asema}
+...     ${PP_Lentokenttä}  ${PP_Laivaterminaali}  ${PP_Taksiasema}  ${PP_Lepoalue}
+...     ${PP_Tulli}  ${PP_Rajanylityspaikka}..${PP_Lastausterminaali}  ${PP_Lastausterminaali}
+...     ${PP_LA_KA_pysäköinti}  ${PP_Tierumpu}
 
 @{Nopeusrajoitukset}
 ...     20  30  40  50  60  70  80  90  100  120
