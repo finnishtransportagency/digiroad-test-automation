@@ -49,7 +49,7 @@ Palvelupiste_case_3
     KW_Palvelupiste.Palvelupiste_3  6899607, 433900  ${PP_Pysäköintitalo}    Pysäköintitalo
     KW_Palvelupiste.Palvelupiste_3  6899607, 433900  ${PP_Pysäköintialue}    Pysäköintialue
     KW_Palvelupiste.Palvelupiste_3  6899607, 433900  ${PP_Merkittävä_Rautatieasema}           Rautatieasema
-    KW_Palvelupiste.Palvelupiste_3  6899607, 433900  ${PP_Vähäisempi_Rautatieasema}           Rautatieasema
+    KW_Palvelupiste.Palvelupiste_3  6899607, 436900  ${PP_Vähäisempi_Rautatieasema}           Rautatieasema
     KW_Palvelupiste.Palvelupiste_3  6899737, 434038  ${PP_Linja_Auto_Asema}    Linja-autoasema
     KW_Palvelupiste.Palvelupiste_3  6899607, 433900  ${PP_Lentokenttä}          Lentokenttä
     KW_Palvelupiste.Palvelupiste_3  6899607, 433900  ${PP_Laivaterminaali}      Laivaterminaali
@@ -68,4 +68,4 @@ Palvelupiste_case_4
     [Tags]              Palvelupiste  AWS
     [Documentation]     Palvelupiste, selain: ${BROWSER}
     ...  Liikennemerkkien perustestit.
-    KW_Palvelupiste.Palvelupiste_5  7320574, 599512
+    KW_Palvelupiste.Palvelupiste_4  7023638, 653201    ${PP_Pysäköintialue}    Pysäköintialue

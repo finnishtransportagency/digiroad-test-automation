@@ -2,17 +2,15 @@
 
 *** Settings ***
 Documentation       Pageobject for Traffic signs (Palvelupiste)
+Resource    common_keywords.robot
 
 *** Keywords ***
 
-Palvelupiste_1  [arguments]  ${testipaikka}
+Palvelupiste_1  [arguments]  ${testipaikka}  ${Pisteen_tyyppi}  ${Pisteen_teksti}
     log  Luodaan uusi Palvelupiste, Täytetään kaikki kentät
     Siirry Testipaikkaan  ${TL_Palvelupiste_RB}  ${Testipaikka}
-    #Valitse Kaikki Palvelupisteet
     Odota sivun latautuminen
-
     Alusta Testipaikka
-    #Luo Palvelupiste
 
     Log  Alustetaan testipaikka uusiksi. Tarkistetaan, että Palvelupiste näkyy oikeassa kategoriassa.
     Siirry Muokkaustilaan
@@ -20,10 +18,10 @@ Palvelupiste_1  [arguments]  ${testipaikka}
     Click Element At Coordinates                ${Kartta}   0   20
     Wait Until Element Is Visible               css=.form-control
     Click Element                               css=.form-control
-    Click Element                               ${PP_Tyyppi}
-    Click Element                               ${PP_Alityyppi}
-    Input Text                                  css=.form-control.service-name  Hippoksen parkki
-    Input Text                                  css=.form-control.large-input   Hipposparkin lisätiedot
+    Click Element                               ${PP_Tyyppi_Pysäköinti}
+    Click Element                               ${PP_Alityyppi_Pysäköinti}
+    Input Text                                  css=.form-control.service-name  ${Pisteen_teksti}
+    Input Text                                  css=.form-control.large-input   ${Pisteen_teksti}
     Input Text                                  css=.form-control.service-parking-place-count   300
     Click Element                               ${FA_footer_Tallenna}
     #Click Element                               ${Muokkaustila_SelectTool}
@@ -39,12 +37,12 @@ Palvelupiste_1  [arguments]  ${testipaikka}
     Alusta Testipaikka
 
 
-Palvelupiste_2  [Arguments]  ${testipaikka}  ${Merkin_tyyppi}  ${Pisteen_teksti}
+Palvelupiste_2  [Arguments]  ${testipaikka}  ${Pisteen_tyyppi}  ${Pisteen_teksti}
     Testin Aloitus
     log  Paikannetaan Palvelupiste. Tarkistetaan palvelupisteen tyyppi.
     Siirry Testipaikkaan            ${TL_Palvelupiste_RB}  ${testipaikka}
     #Valitse Kaikki Palvelupisteet
-    #Click Element                   ${Merkin_tyyppi}
+    #Click Element                   ${Pisteen_tyyppi}
     Odota sivun latautuminen
 
     Click Element At Coordinates    ${Kartta}  0  20
@@ -52,7 +50,7 @@ Palvelupiste_2  [Arguments]  ${testipaikka}  ${Merkin_tyyppi}  ${Pisteen_teksti}
     Element Should Contain          css=#feature-attributes-form  ${Pisteen_teksti}
 
 
-Palvelupiste_3  [Arguments]  ${testipaikka}  ${Merkin_tyyppi}  ${Pisteen_teksti}
+Palvelupiste_3  [Arguments]  ${testipaikka}  ${Pisteen_tyyppi}  ${Pisteen_teksti}
     log  Luodaan uusi Palvelupiste, Täytetään kaikki kentät
     Siirry Testipaikkaan  ${TL_Palvelupiste_RB}  ${Testipaikka}
     #Valitse Kaikki Palvelupisteet
@@ -63,7 +61,7 @@ Palvelupiste_3  [Arguments]  ${testipaikka}  ${Merkin_tyyppi}  ${Pisteen_teksti}
     Log  Alustetaan testipaikka uusiksi. Tarkistetaan, että Palvelupiste näkyy oikeassa kategoriassa.
     Siirry Muokkaustilaan
     Click Element                               ${Muokkaustila_AddTool}
-    Sleep                                       3
+    Wait Until Element Is Enabled               ${Kartta}
     Click Element At Coordinates                ${Kartta}   0   20
     Wait Until Element Is Visible               css=.form-control
     Click Element                               css=.form-control
@@ -77,41 +75,43 @@ Palvelupiste_3  [Arguments]  ${testipaikka}  ${Merkin_tyyppi}  ${Pisteen_teksti}
     Click Element                               ${zoombar_minus}
     Siirrä Kohde                                300   0
     Odota sivun latautuminen
+    Zoomaa kartta                               5   50 m
     Wait Until Element Is Visible               ${FA_Poista_chkbx}
     Click Element                               ${FA_Poista_chkbx}
     Click Element                               ${FA_footer_Tallenna}
     Siirry Katselutilaan
+    Alusta Testipaikka
 
 
-Palvelupiste_4  [Arguments]  ${Testipaikka}
+Palvelupiste_4  [Arguments]  ${Testipaikka}    ${Pisteen_tyyppi}  ${Pisteen_teksti}
     Siirry Testipaikkaan  ${TL_Palvelupiste_RB}  ${Testipaikka}
     Odota sivun latautuminen
     Alusta Testipaikka
 
     Log  Palvelupistettä ei voi lisätä muokkaustyökalulla. Rivi:779
     Siirry Muokkaustilaan
-    Click Element At Coordinates            ${Kartta}  0  20
+    Click Element At Coordinates            ${Kartta}  0  50
     Repeat Keyword  10 s  Element Should Not Be Visible  ${FA_otsikko}
 
-    Log  Palvelupisteen voi lisätä lisäystyökalulla. Rivi: 778
-    Click Element                           ${Muokkaustila_AddTool}
-    Click Element At Coordinates            ${Kartta}  0  20
-    Log  Klikkaamalla kartalta sijainti uudelle liikennemerkille, avautuu ominaisuustietonäkymä uudelle liikennemerkille. Rivi: 781
-    Wait Until Element Is Visible           ${FA_otsikko}
+    Log  Tarkistetaan, että lisäystyökalu toimii edellisestä huolimatta
+    Click Element                               ${Muokkaustila_AddTool}
+    Click Element                               ${zoombar_minus}
+    Wait Until Element Is Enabled               ${Kartta}
+    Click Element At Coordinates                ${Kartta}   0   20
+    Wait Until Element Is Visible               css=.form-control
+    Click Element                               css=.form-control
+    Click Element                               css=.form-control option[data-value= "${Pisteen_teksti}"]
+    Input Text                                  css=.form-control.large-input   ${Pisteen_teksti}
 
-    Log  Uuden palvelupisteen luonti peruutetaan painamalla "Peruuta" -painiketta. Rivi: 785
-    Click Element                           ${FA_footer_Peruuta}
-    Wait Until Element Is Not Visible       ${FA_otsikko}
-
-    Click Element                           ${Muokkaustila_SelectTool}
-    Click Element At Coordinates            ${Kartta}  0  20
-    Wait Until Element Is Visible           ${FA_otsikko}
-    Log  Palvelupisteen voi poistaa: Rivi 790
-    Click Element                           ${FA_Poista_chkbx}
-    Click Element                           ${FA_footer_Tallenna}
-    Wait Until Element Is Not Visible       ${Spinner_Overlay}
-    Odota sivun latautuminen
-
+    Click Element                               ${FA_footer_Tallenna}
+    Wait Until Element Is Not Visible           css=.spinner-overlay.modal-overlay
+    Click Element                               ${Muokkaustila_SelectTool}
+    Click Element At Coordinates                ${Kartta}   0   20
+    Wait Until Element Is Visible               ${FA_Poista_chkbx}
+    Click Element                               ${FA_Poista_chkbx}
+    Click Element                               ${FA_footer_Tallenna}
+    Siirry Katselutilaan
+    Alusta Testipaikka
 
 
 #######################
