@@ -15,7 +15,7 @@ Palvelupiste_case_1
     [Tags]              Palvelupiste  AWS
     [Documentation]     Palvelupiste, selain: ${BROWSER}
     ...  
-    KW_Palvelupiste.Palvelupiste_1  6900913, 433458
+    KW_Palvelupiste.Palvelupiste_1  6900913, 433458  ${PP_Pysäköintialue}   Pysäköintialue
 
 
 Palvelupiste_case_2
@@ -45,34 +45,26 @@ Palvelupiste_case_3
     [Tags]              Palvelupiste  AWS
     [Documentation]     Palvelupiste, selain: ${BROWSER}
     ...  
-    #KW_Palvelupiste.Palvelupiste_3  6899607, 433900
 
     KW_Palvelupiste.Palvelupiste_3  6899607, 433900  ${PP_Pysäköintitalo}    Pysäköintitalo
     KW_Palvelupiste.Palvelupiste_3  6899607, 433900  ${PP_Pysäköintialue}    Pysäköintialue
     KW_Palvelupiste.Palvelupiste_3  6899607, 433900  ${PP_Merkittävä_Rautatieasema}           Rautatieasema
     KW_Palvelupiste.Palvelupiste_3  6899607, 433900  ${PP_Vähäisempi_Rautatieasema}           Rautatieasema
-    KW_Palvelupiste.Palvelupiste_3  6899607, 433900  ${PP_Linja_Auto_Asema}    Linja-autoasema
+    KW_Palvelupiste.Palvelupiste_3  6899737, 434038  ${PP_Linja_Auto_Asema}    Linja-autoasema
     KW_Palvelupiste.Palvelupiste_3  6899607, 433900  ${PP_Lentokenttä}          Lentokenttä
     KW_Palvelupiste.Palvelupiste_3  6899607, 433900  ${PP_Laivaterminaali}      Laivaterminaali
-    KW_Palvelupiste.Palvelupiste_3  6899607, 433900  ${PP_Taksiasema}      Taksiasema
+    KW_Palvelupiste.Palvelupiste_3  6899340, 434150  ${PP_Taksiasema}      Taksiasema
     KW_Palvelupiste.Palvelupiste_3  6899607, 433900  ${PP_Lepoalue}         Lepoalue
     #TODO
-    KW_Palvelupiste.Palvelupiste_3  6899607, 433900  ${PP_Tulli}    Tulli
-    KW_Palvelupiste.Palvelupiste_3  6899607, 433900  ${PP_Rajanylityspaikka}          Rajanylityspaikka
-    #KW_Palvelupiste.Palvelupiste_3  6899607, 433900  ${PP_Lastausterminaali}      "Autojen lastausterminaali"   #kokeillaan auttavatko heittomerkit 24.8.22
-    KW_Palvelupiste.Palvelupiste_3  6899607, 433900  ${PP_LA_KA_pysäköinti}      Linja- ja kuorma-autojen pysäköintialue
-    KW_Palvelupiste.Palvelupiste_2  6670510, 385928  ${PP_Tierumpu}         Tierumpu
-    #KW_Palvelupiste.Palvelupiste_2  6714733, 504191  ${PP_E18_Rekkaparkki}      E18 rekkaparkki
+    KW_Palvelupiste.Palvelupiste_3  6778791, 598792  ${PP_Tulli}    Tulli
+    KW_Palvelupiste.Palvelupiste_3  6779095, 599520  ${PP_Rajanylityspaikka}          Rajanylityspaikka
+    #KW_Palvelupiste.Palvelupiste_3  6899607, 433900  ${PP_Lastausterminaali}      Autojen${SPACE}lastausterminaali   #Given css selector expression ".form-control option[data-value=Autojen lastausterminaali]" is invalid: SyntaxError: Document.querySelectorAll: '.form-control option[data-value=Autojen lastausterminaali]' is not a valid selector
+    #KW_Palvelupiste.Palvelupiste_3  6899607, 433900  ${PP_LA_KA_pysäköinti}      Linja-${SPACE}ja kuorma-autojen${SPACE}pysäköintialue     #SyntaxError: Document.querySelectorAll: '.form-control option[data-value=Linja-${SPACE}ja kuorma-autojen${SPACE}pysäköintialue]' is not a valid selector
+    KW_Palvelupiste.Palvelupiste_3  6899607, 433900  ${PP_Tierumpu}         Tierumpu
+    #KW_Palvelupiste.Palvelupiste_3  6714733, 433900  ${PP_E18_Rekkaparkki}      E18${SPACE}rekkaparkki
 
 
 Palvelupiste_case_4
-    [Tags]              Palvelupiste  AWS
-    [Documentation]     Palvelupiste, selain: ${BROWSER}
-    ...  
-    KW_Palvelupiste.Palvelupiste_4  7320574, 599512
-
-
-Palvelupiste_case_5
     [Tags]              Palvelupiste  AWS
     [Documentation]     Palvelupiste, selain: ${BROWSER}
     ...  Liikennemerkkien perustestit.

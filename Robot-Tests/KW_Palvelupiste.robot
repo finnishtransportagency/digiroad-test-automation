@@ -20,8 +20,8 @@ Palvelupiste_1  [arguments]  ${testipaikka}
     Click Element At Coordinates                ${Kartta}   0   20
     Wait Until Element Is Visible               css=.form-control
     Click Element                               css=.form-control
-    Click Element                               css=.form-control option[data-value="Pysäköintialue"]    #pysäköintialue, väliaikainen ennen nimeämisten muuttumista
-    Click Element                               css=.form-control.select-service-type-extension option[data-value="Perusvarustelu"]   #perusvarustelu, value numeroina
+    Click Element                               ${PP_Tyyppi}
+    Click Element                               ${PP_Alityyppi}
     Input Text                                  css=.form-control.service-name  Hippoksen parkki
     Input Text                                  css=.form-control.large-input   Hipposparkin lisätiedot
     Input Text                                  css=.form-control.service-parking-place-count   300
@@ -63,82 +63,27 @@ Palvelupiste_3  [Arguments]  ${testipaikka}  ${Merkin_tyyppi}  ${Pisteen_teksti}
     Log  Alustetaan testipaikka uusiksi. Tarkistetaan, että Palvelupiste näkyy oikeassa kategoriassa.
     Siirry Muokkaustilaan
     Click Element                               ${Muokkaustila_AddTool}
+    Sleep                                       3
     Click Element At Coordinates                ${Kartta}   0   20
     Wait Until Element Is Visible               css=.form-control
     Click Element                               css=.form-control
-    Click Element                               css=.form-control option[data-value= ${Pisteen_teksti}]    #pysäköintialue, väliaikainen ennen nimeämisten muuttumista
-    #Click Element                               css=.form-control.select-service-type-extension option[data-value="Perusvarustelu"]   #perusvarustelu, value numeroina
-    #Input Text                                  css=.form-control.service-name  Hippoksen parkki
+    Click Element                               css=.form-control option[data-value= ${Pisteen_teksti}]
     Input Text                                  css=.form-control.large-input   ${Pisteen_teksti}
-    #Input Text                                  css=.form-control.service-parking-place-count   300
-    Click Element                               ${FA_footer_Tallenna}
 
+    Click Element                               ${FA_footer_Tallenna}
+    Wait Until Element Is Not Visible           css=.spinner-overlay.modal-overlay
     Click Element                               ${Muokkaustila_SelectTool}
     Click Element At Coordinates                ${Kartta}   0   20
-    Siirrä Kohde                                100   0
+    Click Element                               ${zoombar_minus}
+    Siirrä Kohde                                300   0
+    Odota sivun latautuminen
     Wait Until Element Is Visible               ${FA_Poista_chkbx}
     Click Element                               ${FA_Poista_chkbx}
     Click Element                               ${FA_footer_Tallenna}
     Siirry Katselutilaan
 
 
-Palvelupiste_4  [Arguments]  ${testipaikka}
-    Siirry Testipaikkaan  ${TL_Palvelupiste_RB}  ${Testipaikka}
-    #Valitse Kaikki Palvelupisteet
-    Odota sivun latautuminen
-
-    Log  Luodaan uusi merkki, ja sille lisä kilpi. Siirretään molempia yhdessä.
-    Alusta Testipaikka
-
-    Click Element At Coordinates  ${Kartta}  0  -40
-    ${status}=  Run Keyword And Return Status  Wait Until Element Is Visible  ${FA_otsikko}
-    Run Keyword If  ${status}==True  Poista Kohde
-
-
-    Siirry Muokkaustilaan
-    Odota sivun latautuminen
-    click element                           ${Muokkaustila_AddTool}
-    Click Element At Coordinates            ${Kartta}  0  20
-    Wait Until Element Is Visible           ${FA_otsikko}
-    Element Should Be Enabled               ${FA_footer_Peruuta}
-
-    Log  Täytetään palvelupisteen kentät.
-    Click Element                           ${Tyyppi}
-    Click Element                           ${Tyyppi_DDM}
-    Click Element                           ${Alityyppi}
-    Click Element                           ${Alityyppi_DDM}
-    Input Text                              ${Arvo}  100
-    Täytä Lisäkilven Kentät
-    Click Element                           ${FA_footer_Tallenna}
-    Wait Until Element Is Not Visible       ${Spinner_Overlay}
-    Odota sivun latautuminen
-
-    Log  Siirretään Palvelupistettä lisäkilvellä
-    Click Element                           ${Muokkaustila_SelectTool}
-    Click Element at Coordinates            ${Kartta}  0  20
-    Wait Until Element Is Visible           ${FA_otsikko}
-    Siirrä Kohde                            0  -40
-    Click Element                           ${FA_footer_Tallenna}
-    Wait Until Element Is Not Visible       ${Spinner_Overlay}
-    Odota sivun latautuminen
-
-    Log  Tarkistetaan onko Palvelupiste siirtynyt. 
-    Log  Klikataan vanhaan kohtaan, jolloin merkki ei pitäisi aueta
-    Click Element At coordinates            ${Kartta}  0  20
-    ${status}=  Run Keyword And Return Status  Wait Until Element Is Visible  ${FA_otsikko}
-    Run Keyword If  ${status}==True         Alusta Testipaikka
-    Run Keyword If  ${status}==True         Fail  Palvelupiste ei siirtynyt.
-
-    Click Element At coordinates            ${Kartta}  0  -40
-    Wait Until Element Is Visible           ${FA_otsikko}
-    Click Element                           ${FA_Poista_chkbx}
-    Click Element                           ${FA_footer_Tallenna}
-    Wait Until Element Is Not Visible       ${Spinner_Overlay}
-
-    #Siirry Katselutilaan
-    #Alusta Testipaikka
-
-Palvelupiste_5  [Arguments]  ${Testipaikka}
+Palvelupiste_4  [Arguments]  ${Testipaikka}
     Siirry Testipaikkaan  ${TL_Palvelupiste_RB}  ${Testipaikka}
     Odota sivun latautuminen
     Alusta Testipaikka
@@ -157,14 +102,6 @@ Palvelupiste_5  [Arguments]  ${Testipaikka}
     Log  Uuden palvelupisteen luonti peruutetaan painamalla "Peruuta" -painiketta. Rivi: 785
     Click Element                           ${FA_footer_Peruuta}
     Wait Until Element Is Not Visible       ${FA_otsikko}
-
-    Log  Jos lisäystyökalulla klikkaa kohtaa, jolla ei ole linkkiä, Palvelupiste muodostuu lähimmälle linkille. Rivi: 782
-    Click Element At Coordinates            ${Kartta}  40  20
-    Wait Until Element Is Visible           ${FA_otsikko}
-    Log  Uusi Palvelupiste luodaan painamalla "Tallenna"-painiketta. Rivi: 784
-    Click Element                           ${FA_footer_Tallenna}
-    Wait Until Element Is Not Visible       ${Spinner_Overlay}
-    Odota sivun latautuminen
 
     Click Element                           ${Muokkaustila_SelectTool}
     Click Element At Coordinates            ${Kartta}  0  20
@@ -305,6 +242,9 @@ Arvo Numero
     END
     [Return]  ${numero}  ${status}
 
+
+
+
 *** Variables ***
 ${PP_Pysäköintitalo}            css=.form-control option[data-value="Pysäköintitalo"]
 ${PP_Pysäköintialue}            css=.form-control option[data-value="Pysäköintialue"]
@@ -339,77 +279,7 @@ ${PP_E18_Rekkaparkki}           css=.form-control option[data-value="E18 rekkapa
 
 #_DMM valitsin on alasvetovalikon valinta.
 
-${Tyyppi}                           css=.form-control option[data-value="Pysäköintialue"]
-${Tyyppi_DDM}                       css=.form-control option[data-value="Pysäköintialue"]
-${Alityyppi}                        css=.form-control.select-service-type-extension option[data-value="Perusvarustelu"]
-${Alityyppi_DDM}                    css=.form-control.select-service-type-extension option[data-value="Perusvarustelu"]
-${Arvo}                             css=#service_value
-${Päämerkin_Teksti}                 css=#main_sign_text
-${Kunnan_ID}                        css=#municipality_id
-${Lisätieto}                        css=#service_info
-${Rakenne}                          css=#structure
-${Rakenne_DDM}                      css=#structure > option:nth-child(3)
-${Kunto}                            css=#condition
-${Kunto_DDM}                        css=#condition > option:nth-child(3)
-${Koko}                             css=#size
-${Koko_DDM}                         css=#size > option:nth-child(2)
-${Korkeus}                          css=#height
-${Kalvon_Tyypi}                     css=#coating_type
-${Kalvon_Tyypi_DDM}                 css=#coating_type > option:nth-child(2)
-${Merkin_Materiaali}                css=#sign_material
-${Merkin_Materiaali_DDM}            css=#sign_material > option:nth-child(2)
-${Sijaintitarkenne}                 css=#location_specifier
-${Sijaintitarkenne_DDM}             css=#location_specifier > option:nth-child(2)
-${Maastokoordinaatti_X}             css=#terrain_coordinates_x
-${Maastokoordinaatti_Y}             css=#terrain_coordinates_y
-${Kaista}                           css=#lane
-${Kaistan_Tyyppi}                   css=#lane_type
-${Kaistan_Tyyppi_DDM}               css=#lane_type > option:nth-child(2)
-${Tila}                             css=#life_cycle
-${Tila_DDM}                         css=#life_cycle > option:nth-child(2)
-${Alkupäivämäärä}                   css=#trafficSign_start_date
-${Loppupäivämäärä}                  css=#trafficSign_end_date
-${Vauriotyyppi}                     css=#type_of_damage
-${Vauriotyyppi_DDM}                 css=#type_of_damage > option:nth-child(2)
-${Korjauksen_Kiireellisyys}         css=#urgency_of_repair
-${Korjauksen_Kiireellisyys_DDM}     css=#urgency_of_repair > option:nth-child(2)
-${Arvioitu_Käyttöikä}               css=#lifespan_left
-
-#Lisäkilven kentät
-${Lisakilpi}                        css=#additional-panel-checkbox
-${LK_Alityyppi}                     css=#panelType
-${LK_Alityyppi_DDM}                 css=#panelType  > option:nth-child(10)
-${LK_Arvo}                          css=#panelValue
-${LK_Teksti}                        css=#text
-${LK_Lisatieto}                     css=#panelInfo
-${LK_Koko}                          css=.form-group.editable.form-traffic-sign-panel #size
-${LK_Koko_DDM}                      css=.form-group.editable.form-traffic-sign-panel #size > option:nth-child(1)
-${LK_KalvonTyyppi}                  css=.panel-group-container #coating_type
-${LK_KalvonTyyppi_DDM}              css=.panel-group-container #coating_type option:nth-child(2)
-${LK_LisakilvenVari}                css=#additional_panel_color
-${LK_LisakilvenVari_DDM}            css=#additional_panel_color option:nth-child(2)
-
-
-${FA_Tyyppi}                        css=#feature-attributes-form > div > div > div:nth-child(3) > p
-${FA_Alityyppi}                     css=#feature-attributes-form > div > div > div:nth-child(4) > p
-${FA_Arvo}                          css=#feature-attributes-form > div > div > div:nth-child(5) > p
-${FA_Päämerkin_Teksti}              css=#feature-attributes-form > div > div > div:nth-child(6) > p
-${FA_Kunnan_ID}                     css=#feature-attributes-form > div > div > div:nth-child(7) > p
-${FA_Lisätieto}                     css=#feature-attributes-form > div > div > div:nth-child(8) > p
-${FA_Rakenne}                       css=#feature-attributes-form > div > div > div:nth-child(9) > p
-${FA_Kunto}                         css=#feature-attributes-form > div > div > div:nth-child(10) > p
-${FA_Koko}                          css=#feature-attributes-form > div > div > div:nth-child(11) > p
-${FA_Korkeus}                       css=#feature-attributes-form > div > div > div:nth-child(12) > p
-${FA_Kalvon_Tyyppi}                 css=#feature-attributes-form > div > div > div:nth-child(13) > p
-${FA_Merkin_Materiaali}                css=#feature-attributes-form > div > div > div:nth-child(14) > p
-${FA_Sijaintitarkenne}                 css=#feature-attributes-form > div > div > div:nth-child(15) > p
-${FA_Maastokoordinaatti_X}             css=#feature-attributes-form > div > div > div:nth-child(16) > p
-${FA_Maastokoordinaatti_Y}             css=#feature-attributes-form > div > div > div:nth-child(17) > p
-${FA_Kaista}                           css=#feature-attributes-form > div > div > div:nth-child(18) > p
-${FA_Kaistan_Tyyppi}                   css=#feature-attributes-form > div > div > div:nth-child(19) > p
-${FA_Tila}                             css=#feature-attributes-form > div > div > div:nth-child(20) > p
-${FA_Alkupäivämäärä}                   css=#feature-attributes-form > div > div > div:nth-child(21) > p
-${FA_Loppupäivämäärä}                  css=#feature-attributes-form > div > div > div:nth-child(22) > p
-${FA_Vauriotyyppi}                     css=#feature-attributes-form > div > div > div:nth-child(23) > p
-${FA_Korjauksen_Kiireellisyys}         css=#feature-attributes-form > div > div > div:nth-child(24) > p
-${FA_Arvioitu_Käyttöikä}               css=#feature-attributes-form > div > div > div:nth-child(25) > p
+${PP_Tyyppi_Pysäköinti}                           css=.form-control option[data-value="Pysäköintialue"]
+${PP_Tyyppi_DDM_Pysäköinti}                       css=.form-control option[data-value="Pysäköintialue"]
+${PP_Alityyppi_Pysäköinti}                        css=.form-control.select-service-type-extension option[data-value="Perusvarustelu"]
+${PP_Alityyppi_DDM_Pysäköinti}                    css=.form-control.select-service-type-extension option[data-value="Perusvarustelu"]
