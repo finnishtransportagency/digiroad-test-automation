@@ -24,7 +24,7 @@ Resource                    KW_Liikennevalo.robot
 Resource                    KW_KapyTietolaji.robot
 Resource                    KW_VAK.robot
 Resource                    KW_AKR.robot
-#Resource                   KW_Palvelupiste.robot
+Resource                    KW_Palvelupiste.robot
 
 
 *** Variables ***
