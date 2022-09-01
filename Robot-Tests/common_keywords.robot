@@ -86,7 +86,7 @@ VerifyValue         [Arguments]     ${locator}    ${context}
 
 #Verifies value of elements attribute against given value
 VerifyAttribute     [Arguments]     ${locator}    ${context}
-    ${LocatorValue}=                Get Element Attribute       ${locator}
+    ${LocatorValue}=                                            ${locator}
     Should Be Equal                 ${LocatorValue}             ${context}
 
 Odota sivun latautuminen
