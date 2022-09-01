@@ -2,6 +2,7 @@
 
 *** Settings ***
 Documentation       Keywords for vehicle-specific constraints (ajoneuvokohtainen rajoitus)
+Library    SeleniumLibrary
 
 *** Variables ***
 ${LocatorForDDM}                            css=#feature-attributes .form-group.editable. select:first-of-type
@@ -76,6 +77,9 @@ AKR_4   [arguments]     ${testipaikka}
     Zoomaa kartta                               5   50 m
 
     Odota sivun latautuminen
+
+    Nollaa Ajoneuvorajoitus
+
     Siirry Muokkaustilaan
     #Wait Until Element Is Visible               css=#map-tools > div > div.asset-type-container > div.panel-group.simple-limit.prohibitions > div > div.panel-section.panel-toggle-edit-mode > button
 
@@ -164,10 +168,10 @@ AKR_7   [arguments]     ${testipaikka}
     Log  Katkaisun jälkeen peruuta-nappi toimii 206.91
     Element should be visible                   css=.prohibition .cut
     Click Element                               css=.prohibition .cut
-    Sleep                                       5
+    Wait Until Element Is Visible               css=.ol-unselectable
     Click Element At Coordinates                css=.ol-unselectable      -50     0
     Wait Until Element Is Visible               xpath=//*[contains(text(),'Rajoitus')]
-    Sleep                                       5
+    Wait Until Element Is Visible               ${FA_footer_Peruuta}
     Click Element                               ${FA_footer_Peruuta}
 
     Log  Katkaisun jälkeen peruuta-napin painalluksen jälkeen katkaisutyökalu jää käyttöön
@@ -186,8 +190,8 @@ AKR_7   [arguments]     ${testipaikka}
     Click Element                               ${FA_Prohibition_B}
     Click Element                               ${FA_Prohibition_B_DDM}
 
-    Sleep   3
-    Click Element At Coordinates                css=.ol-unselectable      -50     0   #klikattava käsin
+    Wait Until Element Is Visible               css=.ol-unselectable
+    Click Element At Coordinates                css=.ol-unselectable      -50     0   #klikattava käsin?
     Wait Until Element Is Visible               ${MuokkausVaroitus}
     Element Should Contain                      ${MuokkausVaroitus}  ${MuokkausVaroitus_teksti}
     Click Element                               ${Muokkausvaroitus_Sulje_btn}
@@ -199,10 +203,7 @@ AKR_7   [arguments]     ${testipaikka}
     Siirry Katselutilaan
 
     Log  Yhden linkin mittaisen ajoneuvorajoituksen katkaisun jälkeen uudet ajoneuvorajoituspätkien arvot ovat muokattavissa 206.102
-    Click Element At Coordinates                ${Kartta}  0  10
-    
-    #Wait Until Element Is Visible               css=.feature-attributes
-
+    Click Element At Coordinates                ${Kartta}  0  20    
     Siirry Muokkaustilaan
     Click Element                               ${Popup_AjoneuvoRajoitus}
     Click Element                               ${Popup_AjoneuvoRajoitus_Moottori}
