@@ -22,7 +22,7 @@ Päällyste 1
 
 Päällyste 2
     [Tags]  AWS  Päällyste
-    [Documentation]  Ajoneuvorajoituksen muokkaus koko ketjulle
+    [Documentation]  Päällysteen muokkaus koko ketjulle
 
     KW_Paallyste.Päällyste_2      6701160, 494083    ${Popup_Päällyste_Betoni}
     KW_Paallyste.Päällyste_2      6701160, 494083    ${Popup_Päällyste_Kivi}
@@ -31,3 +31,10 @@ Päällyste 2
     KW_Paallyste.Päällyste_2      6701160, 494083    ${Popup_Päällyste_Soratien_pintaus}
     KW_Paallyste.Päällyste_2      6701160, 494083    ${Popup_Päällyste_Sorakulutuskerros}
     KW_Paallyste.Päällyste_2      6701160, 494083    ${Popup_Päällyste_Muut_pinnoitteet}
+
+
+Päällyste 3
+    [Tags]    AWS    Päällyste
+    [Documentation]    Päällysteen poisto
+
+    KW_Paallyste.Päällyste_3      6705045, 494826
