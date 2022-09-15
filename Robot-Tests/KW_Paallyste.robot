@@ -8,7 +8,6 @@ Resource    common_keywords.robot
 *** Variables ***
 ${LocatorForDDM}                            css=#feature-attributes .form-group.editable. select:first-of-type
 ${LocatorForDDM_Selection}                  css=select >option:nth-child(2)
-#varmistusviesti ajoneuvorajoituksen poistolle
 ${Rajoituksen_poisto}                       Haluatko varmasti poistaa rajoituksen?
 
 *** Keywords ***
@@ -22,9 +21,10 @@ Päällyste_1   [arguments]     ${testipaikka}
     Odota sivun latautuminen
     Click Element At Coordinates                ${Kartta}   0  20
     Wait Until Element Is Visible               ${FA_otsikko}
+    
     #Klikataan näkymä pois
     Click Element At Coordinates                ${Kartta}  -100  -100
-    
+
     #double click
     Tupla Klikkaa Kartan Keskelle
     Wait Until Element Is Visible               ${FA_otsikko}
@@ -49,16 +49,17 @@ Päällyste_2    [arguments]    ${testipaikka}    ${päällysteluokka}
     Wait Until Element Is Visible               ${FA_footer_Peruuta}
     Click Element                               ${FA_footer_Peruuta}
 
-    #muutoksen tallennuksen kokeileminen, korjataan kun seleniumin klikkiongelmille viivakohteiden kanssa saadaan jokin selkeä syy.
+    #muutoksen tallennuksen kokeileminen, otetaan käyttöön kun seleniumin klikkiongelmille viivakohteiden kanssa saadaan jokin selkeä syy tai korjaus    15.09.22
     #Wait Until Element Is Visible               ${FA_footer_Tallenna}
     #Click Element                               ${FA_footer_Tallenna}
 
     Wait Until Element Is Not Visible           ${Spinner_Overlay}
     Siirry Katselutilaan
-    #Nollaa Päällyste    #kts rivi 52 ja seleniumin klikkausongelmat
+    #Nollaa Päällyste    #kts rivi 52 ja seleniumin klikkausongelmat     15.09.22
 
 
 Päällyste_3    [arguments]    ${testipaikka}
+    Log    Testataan radio button
     Testin Aloitus
     Vaihda Tietolaji                            ${TL_Päällyste_RB}
     Paikanna osoite                             ${testipaikka}
@@ -85,7 +86,6 @@ Päällyste_3    [arguments]    ${testipaikka}
 
 Nollaa Päällyste
     Odota sivun latautuminen
-    #Wait Until Element Is Not Visible           ${Map_popup}
     Click Element                               ${Kartta}    0    20
     Siirry Muokkaustilaan
     Wait Until Element Is Visible               ${Popup_Päällyste}
@@ -97,13 +97,11 @@ Nollaa Päällyste
     Siirry Katselutilaan
 
 
-
 *** Variables ***
 ${FA_Pavement_A}                                css=.paved_road-a
 ${FA_Pavement_A_DDM}                            css=.paved_road-a option:nth-child(2)
 ${FA_Pavement_B}                                css=.paved_road-b
 ${FA_Pavement_B_DDM}                            css=.paved_road-b option:nth-child(6)
-${FA_Ajoneuvorajoitus}                          css=.feature-attributes-form
 ${Popup_Päällyste}                              css=.form-control
 
 ${Popup_Päällyste_Päällystetty_Tuntematon}      css=.form-control.paved-road option[data-value="paallystetty,-tyyppi-tuntematon"]

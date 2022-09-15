@@ -35,6 +35,6 @@ Päällyste 2
 
 Päällyste 3
     [Tags]    AWS    Päällyste
-    [Documentation]    Päällysteen poisto
+    [Documentation]    Päällysteen radionappien toimivuus
 
     KW_Paallyste.Päällyste_3      6705045, 494826
