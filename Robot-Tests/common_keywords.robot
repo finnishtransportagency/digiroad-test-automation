@@ -27,8 +27,6 @@ Resource                    KW_AKR.robot
 Resource                    KW_Palvelupiste.robot
 Resource                    KW_Paallyste.robot
 
-Resource                    C:/robot/DRownvariables.robot
-
 
 *** Variables ***
 ${BROWSER}                  Firefox  #Chrome
