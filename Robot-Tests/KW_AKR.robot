@@ -28,8 +28,9 @@ AKR_1   [arguments]     ${testipaikka}
     Wait Until Element Is Visible               ${FA_otsikko}
 
 
-AKR_2   [arguments]     ${testipaikka}
+AKR_2   [arguments]     ${testipaikka}    ${kohderajoite}
     Log     Ajoneuvorajoituksen muokkaus koko ketjulle
+    Testin Aloitus
     Vaihda Tietolaji                            ${TL_Ajoneuvokohtaiset_rajoitukset_RB}
     Paikanna osoite                             ${testipaikka}
     Zoomaa kartta                               5   10 m
@@ -39,12 +40,12 @@ AKR_2   [arguments]     ${testipaikka}
     Click Element At Coordinates                ${Kartta}   0   20
     Wait Until Element Is Visible               css=#feature-attributes-form > div > div > div.form-elements-container > div > label
     #väliaikainen, odotetaan fronttikoodin attribuuttien nimeämistä.
-    Click Element                               css=.form-control
-    Click Element                               css=.form-control option[value="10"]
+    Click Element                               ${Popup_AjoneuvoRajoitus}
+    Click Element                               ${kohderajoite}
 
-    #poikkeuksen lisääminen, tässä tapauksessa linja-auto
+    #voimassaoloaika
     Click Element                               css=.form-control.select
-    Click Element                               css=.form-control.select option[value="5"]
+    Click Element                               ${Popup_AjoneuvoRajoitus_Viikonpaiva}
 
     #muutoksen peruutus
     Click Element                               ${FA_footer_Peruuta}
@@ -60,8 +61,7 @@ AKR_3   [arguments]     ${testipaikka}
     Tupla Klikkaa Kartan Keskelle
     Wait Until Element Is Visible               css=.form-elements-container
 
-    #väliaikainen, odotetaan fronttikoodin attribuuttien nimeämistä.
-    Click Element                               css=.form-control
+    Click Element                               ${Popup_AjoneuvoRajoitus}
     Click Element                               ${Popup_AjoneuvoRajoitus_Ajoneuvo}
 
     #muutoksen peruutus
@@ -88,12 +88,12 @@ AKR_4   [arguments]     ${testipaikka}    ${kohderajoite}
     Click Element                               ${kohderajoite}
 
     #voimassaoloaika
-    Click Element                               css=.form-control.select
-    Click Element                               css=.form-control.select option[value="Weekday"]
+    Click Element                               ${Popup_AjoneuvoRajoitus}
+    Click Element                               ${Popup_AjoneuvoRajoitus_Viikonpaiva}
 
     #poikkeus
-    Click Element                               css=.form-control.select
-    Click Element                               css=.form-control.select option[value="Weekday"]
+    Click Element                               ${Popup_AjoneuvoRajoitus}
+    Click Element                               ${Popup_AjoneuvoRajoitus_Lauantai}
 
     #Peruutus
     Element Should Be Visible                   ${FA_footer_Peruuta}
@@ -115,7 +115,7 @@ AKR_5   [arguments]     ${testipaikka}
 
     #Peruutus
     Element Should Be Visible                   ${FA_footer_Peruuta}
-    Click Element                               ${FA_footer_Peruuta}
+    Click Element                               ${FA_footer_Peruuta} 
 
 
 AKR_6   [arguments]                             ${testipaikka}
@@ -193,6 +193,7 @@ AKR_7   [arguments]     ${testipaikka}
     Wait Until Element Is Not Visible           ${Spinner_Overlay}
     Odota sivun latautuminen
     Siirry Katselutilaan
+    Click Element At Coordinates                ${Kartta}    0    20
     Wait Until Element Is Visible               ${FA_otsikko}
     ${date}=                                    Get Current Date                  result_format=%d.%m.%Y %H:%M:%S
     Element Should Contain                      ${FA_Muokattu_viimeksi}     /
@@ -243,6 +244,10 @@ ${Popup_AjoneuvoRajoitus_Traktori}              css=.form-control option[data-va
 
 ${Popup_AjoneuvoRajoitus_Huoltoajo}            css=.form-control option[data-value="huoltoajo"]
 ${Popup_AjoneuvoRajoitus_Numero}    css=.form-control option[value="10"]
+
+${Popup_AjoneuvoRajoitus_Viikonpaiva}    css=.form-control.select option[value="Weekday"]
+${Popup_AjoneuvoRajoitus_Lauantai}    css=.form-control.select option[value="Saturday"]
+${Popup_AjoneuvoRajoitus_Sunnuntai}    css=.form-control.select option[value="Sunday"]
 
 ${FA_Jaa_Ajoneuvorajoitus}    id=separate-limit
 ${AKR_Peruuta_Muutos}        css=.cancel.btn.btn-secondary
