@@ -28,12 +28,12 @@ Leveyden_radionappi
 
 Leveyden_muokkaus_peruutus
     [Tags]  Leveys
-    [Documentation]    Leveyden muokkaus peruutuksella
+    [Documentation]    Leveyden muuttaminen peruutuksella
 
-    KW_Leveys.Leveyden_muokkaus_peruutus    6768570, 484985
+    KW_Leveys.Leveyden_muokkaus_peruutus    6843989, 457267
 
 Leveyden_muokkaus_tallennus
     [Tags]  Leveys
-    [Documentation]    Leveyden muokkaus tallennuksella
+    [Documentation]    Leveyden muuttaminen tallennuksella
 
     KW_Leveys.Leveyden_muokkaus_tallennus    6768570, 484985
