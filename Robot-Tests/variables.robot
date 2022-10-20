@@ -31,6 +31,8 @@ ${Siirry katselutilaan}                         css=.panel-group:not([style="dis
 ${Muokkaustila_SelectTool}                      css=.panel-group:not([style="display: none;"]) .action.select
 ${Muokkaustila_AddTool}                         css=.panel-group:not([style="display: none;"]) .action.add
 ${Muokkaustila_PolygonTool}                     css=div.action.polygon
+${Muokkaustila_Laatikko}                        xpath=//*[@id="map-tools"]/div/div[3]/div[17]/div/div[3]/div[3]
+${Muokkaustila_Leikkaus}                        css=.panel-group:not([style="display: none;"]) .action.cut
 
 ###################
 # Tietolajilista: #

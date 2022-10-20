@@ -204,6 +204,10 @@ Suorita monivalinta
     Click Element At Coordinates                ${Kartta}  100  100
     Doubleclick Element At Coordinates          ${Kartta}  -100  100
 
+Suorita laatikkovalinta
+    Click Element At Coordinates                ${Kartta}  0  0
+    Click Element At Coordinates                ${Kartta}  100  -100
+
 testklick
     [documentation]     Kutsutaan testklick, voidaan hakea testissä clikkaus paikka kohdille
     tklick    0   0

@@ -37,3 +37,21 @@ Leveyden_muokkaus_tallennus
     [Documentation]    Leveyden muuttaminen tallennuksella
 
     KW_Leveys.Leveyden_muokkaus_tallennus    6768570, 484985
+
+Leveyden katkaisu
+    [Tags]    Leveys
+    [Documentation]    Leveyden katkaisu
+
+    KW_Leveys.Leveyden katkaisu              6837954, 514189
+
+Leveystieto usealle linkille
+    [Tags]    Leveys
+    [Documentation]    Leveystiedon lisääminen usealle linkille kahdella tavoin
+
+    KW_Leveys.Leveystieto usealle linkille    6893667, 427076
+
+Usean linkin klikkausvalinta
+    [Tags]    Leveys
+    [Documentation]    Leveystiedon lisääminen usealle linkille ctrl-napin avulla
+
+    KW_Leveys.Usean linkin klikkausvalinta    7406758, 557075
