@@ -44,11 +44,17 @@ Leveyden katkaisu
 
     KW_Leveys.Leveyden katkaisu              6837954, 514189
 
-Leveystieto usealle linkille
+Leveystieto usealle linkille laatikolla
     [Tags]    Leveys
     [Documentation]    Leveystiedon lisääminen usealle linkille kahdella tavoin (laatikko ja polygon)
 
-    KW_Leveys.Leveystieto usealle linkille    6893667, 427076
+    KW_Leveys.Leveystieto usealle linkille laatikolla    6893667, 427076
+
+Leveystieto usealle linkille polygonilla
+    [Tags]    Leveys
+    [Documentation]    Leveystiedon lisääminen usealle linkille kahdella tavoin (laatikko ja polygon)
+
+    KW_Leveys.Leveystieto usealle linkille polygonilla    6893667, 427076
 
 Usean linkin klikkausvalinta
     [Tags]    Leveys

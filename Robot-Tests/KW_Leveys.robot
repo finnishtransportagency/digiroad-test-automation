@@ -35,6 +35,7 @@ Leveyden_tarkistus   [arguments]                ${testipaikka}
 
 
 Leveyden_radionappi  [arguments]                ${testipaikka}
+    #testattava sijainnilla, jossa ei ole olemassaolevaa leveystietoa
     Log    Testataan radio button
     Testin Aloitus
     Vaihda Tietolaji                            ${TL_Leveys_RB}
@@ -88,6 +89,7 @@ Leveyden_muokkaus_peruutus  [arguments]         ${testipaikka}
 
 
 Leveyden_muokkaus_tallennus  [arguments]                ${testipaikka}
+    #jos testi keskeytyy tallennuksen jälkeen, käytävä korjaamassa sijainnin tielinkki käsin
     Log                                         Testataan leveyden muokkaaminen ja tallennus
     Testin Aloitus
     Vaihda Tietolaji                            ${TL_Leveys_RB}
@@ -152,7 +154,8 @@ Leveyden katkaisu    [arguments]    ${testipaikka}
     Click Element                               ${FA_footer_Peruuta}
 
 
-Leveystieto usealle linkille    [arguments]    ${testipaikka}
+Leveystieto usealle linkille laatikolla    [arguments]    ${testipaikka}
+    #testattava sijainnilla, jossa ei ole olemassaolevaa leveystietoa
     Log    Usean leveystiedon lisäämistapojen testaaminen
     Vaihda Tietolaji                            ${TL_Leveys_RB}
     Paikanna osoite                             ${testipaikka}
@@ -177,8 +180,20 @@ Leveystieto usealle linkille    [arguments]    ${testipaikka}
     Element Should Be Visible                   ${Muokkaustila_Laatikko}
     Click Element                               ${Muokkaustila_Laatikko}
     Suorita laatikkovalinta
+    #tarkistetaan, että leveys oli tallentunut
+    Wait Until Element Is Visible               ${Leveys_tekstikenttä}
+    Element Attribute Value Should Be           ${Leveys_tekstikenttä}    value    400
     Wait Until Element Is Visible               road-width
     Click Button                                ${FA_header_Tallenna}
+
+
+Leveystieto usealle linkille polygonilla    [arguments]    ${testipaikka}
+    #testattava sijainnilla, jossa ei ole olemassaolevaa leveystietoa
+    Log    Usean leveystiedon lisäämistapojen testaaminen
+    Vaihda Tietolaji                            ${TL_Leveys_RB}
+    Paikanna osoite                             ${testipaikka}
+    Odota sivun latautuminen
+    Siirry Muokkaustilaan
 
     #Leveyden lisääminen polygontyökalulla
     Log    Tarkistetaan polygontyökalu
@@ -199,6 +214,9 @@ Leveystieto usealle linkille    [arguments]    ${testipaikka}
     Element Should Be Visible                   ${Muokkaustila_PolygonTool}
     Click Element                               ${Muokkaustila_PolygonTool}
     Suorita monivalinta
+    #tarkistetaan, että leveys oli tallentunut
+    Wait Until Element Is Visible               ${Leveys_tekstikenttä}
+    Element Attribute Value Should Be           ${Leveys_tekstikenttä}    value    400
     Wait Until Element Is Visible               road-width
     Click Button                                ${FA_header_Tallenna}
     #varmistetaan, että tietoa ei jää
@@ -211,6 +229,7 @@ Leveystieto usealle linkille    [arguments]    ${testipaikka}
 
 
 Usean linkin klikkausvalinta    [arguments]                   ${testipaikka}
+    #testattava sijainnilla, jossa on suoraan pohjois-etelä-suunnassa kulkeva linkki
     Testin Aloitus
     Log    Usean leveystiedon lisäämistapojen testaaminen
     Vaihda Tietolaji                                          ${TL_Leveys_RB}
