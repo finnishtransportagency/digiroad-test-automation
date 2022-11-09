@@ -13,34 +13,41 @@ Test Setup          Testin Aloitus
 
 
 *** Test Cases ***
-Ajoneuvorajoitus 1
+Ajoneuvorajoituksen tarkastelu zoomilla
     [Tags]  AKR
     [Documentation]  Ajoneuvorajoituksen tarkastelu katselumoodissa.
 
-    KW_AKR.AKR_1      6888907, 429796
+    KW_AKR.Ajoneuvorajoituksen tarkastelu zoomilla      6676461, 386136
 
 
-Ajoneuvorajoitus 2
+Ajoneuvorajoituksen tarkastelu klikkaamalla
+    [Tags]  AKR
+    [Documentation]  Ajoneuvorajoituksen tarkastelu katselumoodissa.
+
+    KW_AKR.Ajoneuvorajoituksen tarkastelu klikkaamalla      6888907, 429796
+
+
+Ajoneuvorajoituksen muokkaus koko ketjulle
     [Tags]  AKR
     [Documentation]  Ajoneuvorajoituksen muokkaus koko ketjulle
 
-    KW_AKR.AKR_2      6748291, 483946    ${Popup_AjoneuvoRajoitus_Ajoneuvo}           
-    KW_AKR.AKR_2      6748291, 483946    ${Popup_AjoneuvoRajoitus_Moottoriajoneuvo}   
-    KW_AKR.AKR_2      6748291, 483946    ${Popup_AjoneuvoRajoitus_Lapiajo}            
-    KW_AKR.AKR_2      6748291, 483946    ${Popup_AjoneuvoRajoitus_Jalankulku}         
-    KW_AKR.AKR_2      6748291, 483946    ${Popup_AjoneuvoRajoitus_Polkupyora}         
-    KW_AKR.AKR_2      6748291, 483946    ${Popup_AjoneuvoRajoitus_Ratsastus}          
-    KW_AKR.AKR_2      6748291, 483946    ${Popup_AjoneuvoRajoitus_Mopo}               
-    KW_AKR.AKR_2      6748291, 483946    ${Popup_AjoneuvoRajoitus_Moottoripyora}      
-    KW_AKR.AKR_2      6748291, 483946    ${Popup_AjoneuvoRajoitus_Moottorikelkka}     
-    KW_AKR.AKR_2      6748291, 483946    ${Popup_AjoneuvoRajoitus_Linja-auto}         
-    KW_AKR.AKR_2      6748291, 483946    ${Popup_AjoneuvoRajoitus_Taksi}              
-    KW_AKR.AKR_2      6748291, 483946    ${Popup_AjoneuvoRajoitus_Henkiloauto}        
-    KW_AKR.AKR_2      6748291, 483946    ${Popup_AjoneuvoRajoitus_Kuorma-auto}        
-    KW_AKR.AKR_2      6748291, 483946    ${Popup_AjoneuvoRajoitus_Matkailuajoneuvo}   
-    KW_AKR.AKR_2      6748291, 483946    ${Popup_AjoneuvoRajoitus_Sotilasajoneuvo}    
-    KW_AKR.AKR_2      6748291, 483946    ${Popup_AjoneuvoRajoitus_Ajoneuvoyhdistelma} 
-    KW_AKR.AKR_2      6748291, 483946    ${Popup_AjoneuvoRajoitus_Traktori}           
+    KW_AKR.Ajoneuvorajoituksen muokkaus koko ketjulle      6748291, 483946    ${Popup_AjoneuvoRajoitus_Ajoneuvo}           
+    KW_AKR.Ajoneuvorajoituksen muokkaus koko ketjulle      6748291, 483946    ${Popup_AjoneuvoRajoitus_Moottoriajoneuvo}   
+    KW_AKR.Ajoneuvorajoituksen muokkaus koko ketjulle      6748291, 483946    ${Popup_AjoneuvoRajoitus_Lapiajo}            
+    KW_AKR.Ajoneuvorajoituksen muokkaus koko ketjulle      6748291, 483946    ${Popup_AjoneuvoRajoitus_Jalankulku}         
+    KW_AKR.Ajoneuvorajoituksen muokkaus koko ketjulle      6748291, 483946    ${Popup_AjoneuvoRajoitus_Polkupyora}         
+    KW_AKR.Ajoneuvorajoituksen muokkaus koko ketjulle      6748291, 483946    ${Popup_AjoneuvoRajoitus_Ratsastus}          
+    KW_AKR.Ajoneuvorajoituksen muokkaus koko ketjulle      6748291, 483946    ${Popup_AjoneuvoRajoitus_Mopo}               
+    KW_AKR.Ajoneuvorajoituksen muokkaus koko ketjulle      6748291, 483946    ${Popup_AjoneuvoRajoitus_Moottoripyora}      
+    KW_AKR.Ajoneuvorajoituksen muokkaus koko ketjulle      6748291, 483946    ${Popup_AjoneuvoRajoitus_Moottorikelkka}     
+    KW_AKR.Ajoneuvorajoituksen muokkaus koko ketjulle      6748291, 483946    ${Popup_AjoneuvoRajoitus_Linja-auto}         
+    KW_AKR.Ajoneuvorajoituksen muokkaus koko ketjulle      6748291, 483946    ${Popup_AjoneuvoRajoitus_Taksi}              
+    KW_AKR.Ajoneuvorajoituksen muokkaus koko ketjulle      6748291, 483946    ${Popup_AjoneuvoRajoitus_Henkiloauto}        
+    KW_AKR.Ajoneuvorajoituksen muokkaus koko ketjulle      6748291, 483946    ${Popup_AjoneuvoRajoitus_Kuorma-auto}        
+    KW_AKR.Ajoneuvorajoituksen muokkaus koko ketjulle      6748291, 483946    ${Popup_AjoneuvoRajoitus_Matkailuajoneuvo}   
+    KW_AKR.Ajoneuvorajoituksen muokkaus koko ketjulle      6748291, 483946    ${Popup_AjoneuvoRajoitus_Sotilasajoneuvo}    
+    KW_AKR.Ajoneuvorajoituksen muokkaus koko ketjulle      6748291, 483946    ${Popup_AjoneuvoRajoitus_Ajoneuvoyhdistelma} 
+    KW_AKR.Ajoneuvorajoituksen muokkaus koko ketjulle      6748291, 483946    ${Popup_AjoneuvoRajoitus_Traktori}           
 
 
 Ajoneuvorajoitus 3

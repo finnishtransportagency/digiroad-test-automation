@@ -3,6 +3,7 @@
 *** Settings ***
 Documentation       Keywords for vehicle-specific constraints (ajoneuvokohtainen rajoitus)
 Library    SeleniumLibrary
+Library    selenium_extensions.py
 Resource    common_keywords.robot
 
 *** Variables ***
@@ -12,7 +13,22 @@ ${Rajoituksen_poisto}                       Haluatko varmasti poistaa rajoitukse
 
 *** Keywords ***
 
-AKR_1   [arguments]     ${testipaikka}
+Ajoneuvorajoituksen tarkastelu zoomilla   [arguments]     ${testipaikka}
+    Log     Rajoituksen tarkastelu katselutilassa.
+    #testataan valinnan toimivuus
+    Vaihda Tietolaji                            ${TL_Ajoneuvokohtaiset_rajoitukset_RB}
+    Paikanna osoite                             ${testipaikka}
+    Zoomaa kartta                               5   200 m
+    Odota sivun latautuminen
+    Wait Until Element Is Visible               ${Kartta}
+    Element Should Be Visible                   ${Kartta}
+    Element Should Be Visible                   ${AKR_Näytä_liikennemerkit_checkbox}
+    Click Element                               ${AKR_Näytä_liikennemerkit_checkbox}
+    Element Should Be Visible                   ${AKR_Näytä_täydentävä_geometria_checkbox}
+    Click Element                               ${AKR_Näytä_täydentävä_geometria_checkbox}
+
+
+Ajoneuvorajoituksen tarkastelu klikkaamalla   [arguments]     ${testipaikka}
     Log     Rajoituksen tarkastelu katselutilassa.
     #testataan valinnan toimivuus
     Vaihda Tietolaji                            ${TL_Ajoneuvokohtaiset_rajoitukset_RB}
@@ -28,7 +44,7 @@ AKR_1   [arguments]     ${testipaikka}
     Wait Until Element Is Visible               ${FA_otsikko}
 
 
-AKR_2   [arguments]     ${testipaikka}    ${kohderajoite}
+Ajoneuvorajoituksen muokkaus koko ketjulle   [arguments]     ${testipaikka}    ${kohderajoite}
     Log     Ajoneuvorajoituksen muokkaus koko ketjulle
     Testin Aloitus
     Vaihda Tietolaji                            ${TL_Ajoneuvokohtaiset_rajoitukset_RB}
@@ -46,8 +62,6 @@ AKR_2   [arguments]     ${testipaikka}    ${kohderajoite}
     #voimassaoloaika
     Click Element                               css=.form-control.select
     Click Element                               ${Popup_AjoneuvoRajoitus_Viikonpaiva}
-
-    #muutoksen peruutus
     Click Element                               ${FA_footer_Peruuta}
 
 
@@ -252,3 +266,6 @@ ${Popup_AjoneuvoRajoitus_Sunnuntai}    css=.form-control.select option[value="Su
 ${FA_Jaa_Ajoneuvorajoitus}    id=separate-limit
 ${AKR_Peruuta_Muutos}        css=.cancel.btn.btn-secondary
 ${AKR_Popup_Peruuta_Muutos}        css=.btn.btn-secondary.close
+
+${AKR_Näytä_liikennemerkit_checkbox}                xpath=/html/body/div[1]/nav/div/div[3]/div[5]/div/div[2]/input
+${AKR_Näytä_täydentävä_geometria_checkbox}          xpath=/html/body/div[1]/nav/div/div[3]/div[5]/div/div[3]/input
