@@ -26,6 +26,8 @@ Resource                    KW_VAK.robot
 Resource                    KW_AKR.robot
 Resource                    KW_Palvelupiste.robot
 Resource                    KW_Paallyste.robot
+Resource                    KW_Leveys.robot
+
 
 
 *** Variables ***
@@ -201,6 +203,10 @@ Suorita monivalinta
     Click Element At Coordinates                ${Kartta}  100  -100
     Click Element At Coordinates                ${Kartta}  100  100
     Doubleclick Element At Coordinates          ${Kartta}  -100  100
+
+Suorita laatikkovalinta
+    Click Element At Coordinates                ${Kartta}  0  0
+    Click Element At Coordinates                ${Kartta}  100  -100
 
 testklick
     [documentation]     Kutsutaan testklick, voidaan hakea testissä clikkaus paikka kohdille

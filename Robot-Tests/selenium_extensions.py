@@ -2,6 +2,7 @@
 
 #import pyautogui as ag
 
+from multiprocessing.sharedctypes import Value
 from selenium.webdriver.common.action_chains import ActionChains
 #from selenium.webdriver.common.touch_actions import TouchActions
 from robot.libraries.BuiltIn import BuiltIn
@@ -119,6 +120,27 @@ def click_element_and_press_control_at_coordinates(locator, xoffset, yoffset):
     driver = s2l.driver
     elem = s2l.find_element(locator)
     ActionChains(driver).key_down(Keys.CONTROL).move_to_element(elem).move_by_offset(xoffset, yoffset).click().key_up(Keys.CONTROL).perform()
+
+def hold_control_and_click_element_at_coordinates(locator, xoffset, yoffset):
+    if not locator:
+        raise ValueError()
+    s2l = BuiltIn().get_library_instance('SeleniumLibrary')
+    driver = s2l.driver
+    elem = s2l.find_element(locator)
+    ActionChains(driver).key_down(Keys.CONTROL).move_to_element(elem).move_by_offset(xoffset, yoffset).click().perform()
+
+def hold_control_and_drag_by_offset(locator, xoffset, yoffset):
+    if not locator:
+        raise ValueError()
+    s2l = BuiltIn().get_library_instance('SeleniumLibrary')
+    driver = s2l.driver
+    element = s2l.find_element(locator)
+    ActionChains(driver).key_down(Keys.CONTROL).drag_and_drop_by_offset(element,int(xoffset), int(yoffset)).perform()
+
+def release_control():
+    s2l = BuiltIn().get_library_instance('SeleniumLibrary')
+    driver = s2l.driver
+    ActionChains(driver).key_up(Keys.CONTROL).perform()
 
 def mouse_cl(locator):
     s2l = BuiltIn().get_library_instance('SeleniumLibrary')
