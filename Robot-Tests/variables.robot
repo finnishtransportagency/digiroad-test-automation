@@ -30,8 +30,8 @@ ${Siirry muokkaustilaan}                        css=.panel-group:not([style="dis
 ${Siirry katselutilaan}                         css=.panel-group:not([style="display: none;"]) .action-mode-btn.btn.btn-block.read-only-btn.btn-secondary
 ${Muokkaustila_SelectTool}                      css=.panel-group:not([style="display: none;"]) .action.select
 ${Muokkaustila_AddTool}                         css=.panel-group:not([style="display: none;"]) .action.add
-${Muokkaustila_PolygonTool}                     xpath=//*[@id="map-tools"]/div/div[3]/div[17]/div/div[3]/div[4]
-${Muokkaustila_Laatikko}                        xpath=//*[@id="map-tools"]/div/div[3]/div[17]/div/div[3]/div[3]
+${Muokkaustila_PolygonTool}                     css=.panel-group:not([style="display: none;"]) .action.polygon
+${Muokkaustila_Laatikko}                        css=.panel-group:not([style="display: none;"]) .action.rectangle
 ${Muokkaustila_Leikkaus}                        css=.panel-group:not([style="display: none;"]) .action.cut
 
 ###################

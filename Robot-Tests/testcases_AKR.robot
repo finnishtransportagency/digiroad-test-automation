@@ -17,87 +17,64 @@ Ajoneuvorajoituksen tarkastelu zoomilla
     [Tags]  AKR
     [Documentation]  Ajoneuvorajoituksen tarkastelu katselumoodissa.
 
-    KW_AKR.Ajoneuvorajoituksen tarkastelu zoomilla      6676461, 386136
+    KW_AKR.Ajoneuvorajoituksen tarkastelu zoomilla      6682951, 382428
 
 
 Ajoneuvorajoituksen tarkastelu klikkaamalla
     [Tags]  AKR
     [Documentation]  Ajoneuvorajoituksen tarkastelu katselumoodissa.
 
-    KW_AKR.Ajoneuvorajoituksen tarkastelu klikkaamalla      6888907, 429796
+    KW_AKR.Ajoneuvorajoituksen tarkastelu klikkaamalla      6821622, 328910
 
 
 Ajoneuvorajoituksen muokkaus koko ketjulle
     [Tags]  AKR
     [Documentation]  Ajoneuvorajoituksen muokkaus koko ketjulle
 
-    KW_AKR.Ajoneuvorajoituksen muokkaus koko ketjulle      6748291, 483946    ${Popup_AjoneuvoRajoitus_Ajoneuvo}           
-    KW_AKR.Ajoneuvorajoituksen muokkaus koko ketjulle      6748291, 483946    ${Popup_AjoneuvoRajoitus_Moottoriajoneuvo}   
-    KW_AKR.Ajoneuvorajoituksen muokkaus koko ketjulle      6748291, 483946    ${Popup_AjoneuvoRajoitus_Lapiajo}            
-    KW_AKR.Ajoneuvorajoituksen muokkaus koko ketjulle      6748291, 483946    ${Popup_AjoneuvoRajoitus_Jalankulku}         
-    KW_AKR.Ajoneuvorajoituksen muokkaus koko ketjulle      6748291, 483946    ${Popup_AjoneuvoRajoitus_Polkupyora}         
-    KW_AKR.Ajoneuvorajoituksen muokkaus koko ketjulle      6748291, 483946    ${Popup_AjoneuvoRajoitus_Ratsastus}          
-    KW_AKR.Ajoneuvorajoituksen muokkaus koko ketjulle      6748291, 483946    ${Popup_AjoneuvoRajoitus_Mopo}               
-    KW_AKR.Ajoneuvorajoituksen muokkaus koko ketjulle      6748291, 483946    ${Popup_AjoneuvoRajoitus_Moottoripyora}      
-    KW_AKR.Ajoneuvorajoituksen muokkaus koko ketjulle      6748291, 483946    ${Popup_AjoneuvoRajoitus_Moottorikelkka}     
-    KW_AKR.Ajoneuvorajoituksen muokkaus koko ketjulle      6748291, 483946    ${Popup_AjoneuvoRajoitus_Linja-auto}         
-    KW_AKR.Ajoneuvorajoituksen muokkaus koko ketjulle      6748291, 483946    ${Popup_AjoneuvoRajoitus_Taksi}              
-    KW_AKR.Ajoneuvorajoituksen muokkaus koko ketjulle      6748291, 483946    ${Popup_AjoneuvoRajoitus_Henkiloauto}        
-    KW_AKR.Ajoneuvorajoituksen muokkaus koko ketjulle      6748291, 483946    ${Popup_AjoneuvoRajoitus_Kuorma-auto}        
-    KW_AKR.Ajoneuvorajoituksen muokkaus koko ketjulle      6748291, 483946    ${Popup_AjoneuvoRajoitus_Matkailuajoneuvo}   
-    KW_AKR.Ajoneuvorajoituksen muokkaus koko ketjulle      6748291, 483946    ${Popup_AjoneuvoRajoitus_Sotilasajoneuvo}    
-    KW_AKR.Ajoneuvorajoituksen muokkaus koko ketjulle      6748291, 483946    ${Popup_AjoneuvoRajoitus_Ajoneuvoyhdistelma} 
-    KW_AKR.Ajoneuvorajoituksen muokkaus koko ketjulle      6748291, 483946    ${Popup_AjoneuvoRajoitus_Traktori}           
+    KW_AKR.Ajoneuvorajoituksen muokkaus koko ketjulle      6905727, 433216    ${Popup_AjoneuvoRajoitus_Ajoneuvo}           ajoneuvo
+    KW_AKR.Ajoneuvorajoituksen muokkaus koko ketjulle      6905727, 433216    ${Popup_AjoneuvoRajoitus_Moottoriajoneuvo}   moottoriajoneuvo
+    KW_AKR.Ajoneuvorajoituksen muokkaus koko ketjulle      6905727, 433216    ${Popup_AjoneuvoRajoitus_Lapiajo}            lapiajo
 
 
-Ajoneuvorajoitus 3
+Ajoneuvorajoituksen osan muokkaus
     [Tags]    AKR
     [Documentation]  Ajoneuvorajoituksen muokkaus ketjun osalle (tuplaklikkaus)
 
-    KW_AKR.AKR_3      6674192, 386227
+    KW_AKR.Ajoneuvorajoituksen osan muokkaus      6820883, 329145    ${Popup_AjoneuvoRajoitus_Ajoneuvo}           ajoneuvo
+    KW_AKR.Ajoneuvorajoituksen osan muokkaus      6820883, 329145    ${Popup_AjoneuvoRajoitus_Moottoriajoneuvo}   moottoriajoneuvo
+    KW_AKR.Ajoneuvorajoituksen osan muokkaus      6820883, 329145    ${Popup_AjoneuvoRajoitus_Lapiajo}            lapiajo
 
 
-Ajoneuvorajoitus 4
+AKR usealle linkille laatikolla
     [Tags]    AKR
-    [Documentation]  Lisätään uusi ajoneuvorajoite
+    [Documentation]    Tarkistetaan monivalinta laatikkotyökalulla
 
-    KW_AKR.AKR_4      6917537, 208490    ${Popup_AjoneuvoRajoitus_Ajoneuvo}           
-    KW_AKR.AKR_4      6917537, 208490    ${Popup_AjoneuvoRajoitus_Moottoriajoneuvo}   
-    KW_AKR.AKR_4      6917537, 208490    ${Popup_AjoneuvoRajoitus_Lapiajo}            
-    KW_AKR.AKR_4      6917537, 208490    ${Popup_AjoneuvoRajoitus_Jalankulku}         
-    KW_AKR.AKR_4      6917537, 208490    ${Popup_AjoneuvoRajoitus_Polkupyora}         
-    KW_AKR.AKR_4      6917537, 208490    ${Popup_AjoneuvoRajoitus_Ratsastus}          
-    KW_AKR.AKR_4      6917537, 208490    ${Popup_AjoneuvoRajoitus_Mopo}               
-    KW_AKR.AKR_4      6917537, 208490    ${Popup_AjoneuvoRajoitus_Moottoripyora}      
-    KW_AKR.AKR_4      6917537, 208490    ${Popup_AjoneuvoRajoitus_Moottorikelkka}     
-    KW_AKR.AKR_4      6917537, 208490    ${Popup_AjoneuvoRajoitus_Linja-auto}         
-    KW_AKR.AKR_4      6917537, 208490    ${Popup_AjoneuvoRajoitus_Taksi}              
-    KW_AKR.AKR_4      6917537, 208490    ${Popup_AjoneuvoRajoitus_Henkiloauto}        
-    KW_AKR.AKR_4      6917537, 208490    ${Popup_AjoneuvoRajoitus_Kuorma-auto}        
-    KW_AKR.AKR_4      6917537, 208490    ${Popup_AjoneuvoRajoitus_Matkailuajoneuvo}   
-    KW_AKR.AKR_4      6917537, 208490    ${Popup_AjoneuvoRajoitus_Sotilasajoneuvo}    
-    KW_AKR.AKR_4      6917537, 208490    ${Popup_AjoneuvoRajoitus_Ajoneuvoyhdistelma} 
-    KW_AKR.AKR_4      6917537, 208490    ${Popup_AjoneuvoRajoitus_Traktori}           
+    KW_AKR.AKR usealle linkille laatikolla    6905798, 433202    ${Popup_AjoneuvoRajoitus_Ajoneuvo}           ajoneuvo
+    #KW_AKR.AKR usealle linkille laatikolla    6905798, 433202    ${Popup_AjoneuvoRajoitus_Moottoriajoneuvo}   moottoriajoneuvo
+    #KW_AKR.AKR usealle linkille laatikolla    6905798, 433202    ${Popup_AjoneuvoRajoitus_Lapiajo}            lapiajo
 
 
-Ajoneuvorajoitus 5
+AKR usealle linkille polygonilla
     [Tags]    AKR
-    [Documentation]  Poistetaan luotu rajoite
+    [Documentation]  Tarkistetaan monivalinta polygonityökalulla
 
-    KW_AKR.AKR_5      6748291, 483943
+    KW_AKR.AKR usealle linkille polygonilla    6905798, 433202    ${Popup_AjoneuvoRajoitus_Ajoneuvo}           ajoneuvo
+    #KW_AKR.AKR usealle linkille polygonilla    6905798, 433202    ${Popup_AjoneuvoRajoitus_Moottoriajoneuvo}   moottoriajoneuvo
+    #KW_AKR.AKR usealle linkille polygonilla    6905798, 433202    ${Popup_AjoneuvoRajoitus_Lapiajo}            lapiajo
 
 
-Ajoneuvorajoitus 6
+AKR usealle linkille klikkaamalla
     [Tags]    AKR
-    [Documentation]  Usean kohteen valinta ja muokkaus monikulmiovalinnalla.
+    [Documentation]  Tarkistetaan monivalinta polygonityökalulla
 
-    KW_AKR.AKR_6      6902077, 432044
+    KW_AKR.AKR usealle linkille klikkaamalla    6902153, 432732    ${Popup_AjoneuvoRajoitus_Ajoneuvo}           ajoneuvo
+    #KW_AKR.AKR usealle linkille klikkaamalla    6902153, 432732    ${Popup_AjoneuvoRajoitus_Moottoriajoneuvo}   moottoriajoneuvo
+    #KW_AKR.AKR usealle linkille klikkaamalla    6902153, 432732    ${Popup_AjoneuvoRajoitus_Lapiajo}            lapiajo
 
 
-#Jätetään odottamaan klikkausten korjausta
-Ajoneuvorajoitus 7
+AKR jako kahdeksi
     [Tags]    AKR
     [Documentation]  Ajoneuvorajoituksen katkaisu kahdeksi osaksi leikkaustyökalulla.
 
-    KW_AKR.AKR_7      6821573, 332374
+    KW_AKR.AKR jako kahdeksi      6893843, 431315    ajoneuvo
 
