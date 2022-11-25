@@ -1,6 +1,7 @@
 *** Settings ***
 Documentation       Keywords for Pysäköintikielto
 
+Resource    common_keywords.robot
 
 *** Keywords ***
 Pysakointi_1  [Arguments]  ${Tietolaji}  ${Testipaikka}
@@ -149,9 +150,10 @@ Pysakointi_2  [Arguments]  ${Tietolaji}  ${Testipaikka}
 Pysakointi_3  [Arguments]  ${Tietolaji}  ${Testipaikka}
     Log  Tarkistetaan olemassa oleva pysäköintirajoitus
     Siirry Testipaikkaan                ${Tietolaji}  ${Testipaikka}
+    Odota sivun latautuminen
     Click Element At Coordinates        ${Kartta}  0  20
     Wait Until Element Is Visible       ${FA_otsikko}
-    Element Should Contain              ${FA_otsikko}  68836223
+    Element Should Contain              ${FA_otsikko}  185315105
     Element Should Contain              ${FA_Pysakointikielto}  on
     Element Should Contain              ${FA_Pysakointirajoitus_Tyyppi}  Pysäköinti kielletty
 

@@ -1,6 +1,7 @@
 
 *** Settings ***
 Documentation       Pageobject for Buststops (JoukkoLiikenteenPysäkki)
+Resource    common_keywords.robot
 
 *** Variables ***
 
@@ -50,6 +51,7 @@ ${kalenterin_nappi_eitietoa}                    kalenteri_eitietoa.png
 JLP_1  [arguments]  ${testipaikka}
     Log  Zoomataan testipaikkaan, tarkistetaan että kohteessa on jotain tietoa
     Siirry Testipaikkaan                        ${TL_Joukkoliikenteen_pysäkki_RB}  ${testipaikka}
+    Odota sivun latautuminen
     Click Element At Coordinates                ${Kartta}  0  20
     Wait Until Element Is Visible               ${FA_otsikko}
 

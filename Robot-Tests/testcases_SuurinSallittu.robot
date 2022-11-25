@@ -18,7 +18,7 @@ Suurin Sallittu 1
     KW_SuurinSallittu.Massa_1  ${TL_Yhdistelmän_suurin_sallittu_massa_RB}  6729702, 476907  32000 Kg
     KW_SuurinSallittu.Massa_1  ${TL_suurin_sallittu_akselimassa_RB}  6895368, 614738  8000 Kg
     KW_SuurinSallittu.Massa_1  ${TL_suurin_sallittu_telimassa_RB}  6673272, 389468  10000 Kg
-    KW_SuurinSallittu.Massa_1  ${TL_suurin_sallittu_korkeus_RB}  6700680, 288626  260 cm
+    KW_SuurinSallittu.Massa_1  ${TL_suurin_sallittu_korkeus_RB}  6700679, 288627  260 cm
     KW_SuurinSallittu.Massa_1  ${TL_suurin_sallittu_pituus_RB}  6677101, 387259  1200 cm
     KW_SuurinSallittu.Massa_1  ${TL_suurin_sallittu_leveys_RB}  6770627, 427967  550 cm
 
