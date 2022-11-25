@@ -1,6 +1,6 @@
 *** Settings ***
 Documentation  Testit ajetaan suoraan api:n kautta. 
-
+Resource   common_keywords.robot
 
 *** Keywords ***
 Valo 1
@@ -25,14 +25,14 @@ Valo 2  [Arguments]  ${testipaikka}
     Click Element At Coordinates        ${Kartta}  0  20
     Wait Until Element Is Visible       ${FA_otsikko}
     Siirry Muokkaustilaan
-    Click Element  css=button.change-validity-direction
+    Click Element                       css=button.change-validity-direction
     Element Should Be Enabled           ${FA_footer_Tallenna}
     Click Element At Coordinates        ${Kartta}  0  -100
     Wait Until Element Is Visible       ${MuokkausVaroitus}
     Wait Until Element Is Not Visible   ${Map_popup}
     Click Element                       ${Muokkausvaroitus_Sulje_btn}
-    Click Element                       ${FA_footer_Peruuta}
     Element Should Be Disabled          ${FA_footer_Tallenna}
+    Click Element                       ${FA_footer_Peruuta}
 
 Valo 3  [Arguments]  ${testipaikka}
     Log  Tarkistetaan onko testipaikassa valmiiksi liikennevalo
@@ -46,6 +46,7 @@ Valo 3  [Arguments]  ${testipaikka}
 
     Log  Talletetaan uusi liikennevalo sekä lisäopastinlaite
     Siirry Muokkaustilaan
+    Wait Until Element Is Not Visible   ${Map_popup}
     Click Element                       ${Muokkaustila_AddTool}
     Click Element At Coordinates        ${Kartta}  0  20
     Wait Until Element Is Visible       ${FA_otsikko}
@@ -66,13 +67,13 @@ Valo 3  [Arguments]  ${testipaikka}
 
     Log  Siirretään liikennevaloa
     Siirry Muokkaustilaan
-    Siirrä Liikennevalo  -20  50
+    Siirrä Liikennevalo                 -20  50
     Click Element                       ${FA_footer_Tallenna}
     Wait Until Element Is Not Visible   ${Spinner_Overlay}
     Odota sivun latautuminen
     Siirry Katselutilaan
 
-    Click Element At Coordinates        ${Kartta}  -18  70
+    Click Element At Coordinates        ${Kartta}  -18    70
     Wait Until Element Is Visible       ${FA_otsikko}
     
     

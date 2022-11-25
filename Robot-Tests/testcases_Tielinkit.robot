@@ -58,7 +58,7 @@ Tielinkit 4
     KW_Tielinkit.Tielinkit_4    Kiertoliittymä                 6711679, 239817
     KW_Tielinkit.Tielinkit_4    Ramppi                         6708746, 257816
     KW_Tielinkit.Tielinkit_4    Jalankulkualue                 6764922, 362677
-    KW_Tielinkit.Tielinkit_4    Kevyen liikenteen väylä        6679499, 388913
+    KW_Tielinkit.Tielinkit_4    Kävelyn ja pyöräilyn väylä     6679499, 388913    #kv-liikenteen väylät testiympäristössä muodossa "tuntematon" - marraskuu 2022
     KW_Tielinkit.Tielinkit_4    Levähdysalue                   6709147, 256454
     KW_Tielinkit.Tielinkit_4    Ajopolku                       6707938, 256842
     KW_Tielinkit.Tielinkit_4    Huoltoaukko moottoritiellä     6707468, 247022
@@ -112,7 +112,7 @@ Tielinkit 10
     ...  Muokattu viimeksi- tieto päivittyy tallennettaessa.
     ...  Jos testi epäonnistuu pitää käydä kyseiset tilinkit muuttamassa käsin.
     # Annetaan link id:t argumentteina jolloin niitä ei tarvitse muokata testistä jos haluaa vaihtaa testauspaikan.
-    KW_Tielinkit.Tielinkit_10   6711434, 240090  Linkin ID: 5790802   Linkin ID: 5790806
+    KW_Tielinkit.Tielinkit_10   6711434, 240090  Linkin ID: cc07a9b8-7ca7-483e-97ed-b049f637b636:1   Linkin ID: 41bfe91c-b92e-4d4a-bcbb-68866a83fc72:1
 
 Tielinkit 11
     [Tags]              Roadlinks  AWS

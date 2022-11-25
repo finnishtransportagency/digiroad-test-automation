@@ -13,7 +13,7 @@ Test Setup          Testin Aloitus
 Liikennevalo 1
     [Tags]              Liikennevalo
     [Documentation]     Tarkisetaan liikennevalon suunnan vaihto
-    KW_Liikennevalo.Valo_2  7049431, 510470
+    KW_Liikennevalo.Valo_2  6674053, 387004
 
 Liikennevalo 2
     [Tags]              Liikennevalo

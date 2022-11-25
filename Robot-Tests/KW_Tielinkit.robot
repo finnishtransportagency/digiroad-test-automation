@@ -1,6 +1,7 @@
 
 *** Settings ***
 Documentation       Pageobject for roadlinks
+Resource            common_keywords.robot
 
 
 *** Variables ***
@@ -103,7 +104,7 @@ ${FA_tielinkki_korjattavien_eka_linkki}         xpath=(.//*[@id='work-list']//*[
 ${Tielinkin palluraaineistot}    ${TL_Palvelupiste_RB} ${TL_Opastustaulu_RB} ${TL_Esterakennelma_RB} ${TL_Rautatien tasoristeys_RB} ${TL_Liikennevalo_RB}
 @{Tielinkin_RB_tekstit}     Toiminnallinen luokka  Tielinkin tyyppi  Hallinnollinen luokka  Silta, alikulku tai tunneli
 @{tielinkin_formin_otsikot}  Linkin ID:  Hallinnollinen luokka   Toiminnallinen luokka   Liikennevirran suunta   Tielinkin tyyppi   Silta, alikulku tai tunneli
-...  Kuntanumero   Tiennimi (Suomi)   Tiennimi (Ruotsi)   Tiennimi (Saame)   Tienumero   Tieosanumero   Osoitenumerot oikealla   Osoitenumerot vasemmalla   MML ID
+...  Kuntanumero   Tiennimi (Suomi)   Tiennimi (Ruotsi)   Tiennimi (Pohjoissaame)    Tiennimi (Inarinsaame)    Tiennimi (Koltansaame)   Tienumero   Tieosanumero   Osoitenumerot oikealla   Osoitenumerot vasemmalla   MML ID
 #Linkin ID
 
 ## KUVAT
@@ -362,7 +363,7 @@ Tielinkit_10  [arguments]  ${testipaikka}  ${EkaLinkId}  ${TokaLinkId}
     select from list by value                   ${FA_tielinkki_tielinkintyyppi_lista}         1
     Log  tallennetaan muutokset
     click element                               ${FA_footer_Tallenna}
-    wait until element is visible               ${map_overlay}
+    Wait Until Element Is Not Visible           ${Spinner_Overlay}
     Odota sivun latautuminen
     Log  Nollataan koko linkin valinta ja käydään tarkistamassa, että molempien linkkien tiedot ovat muuttuneet
     click element at coordinates                ${kartta}  1  -50
@@ -413,7 +414,7 @@ Tielinkit_10  [arguments]  ${testipaikka}  ${EkaLinkId}  ${TokaLinkId}
     set selenium speed                          0.5
     click element at coordinates                ${kartta}  -10  -50
     wait until element is not visible           ${FA_footer_Tallenna}
-    Set Selenium Speed              ${DELAY}
+    Set Selenium Speed                          ${DELAY}
     click element at coordinates                ${kartta}   0  20
     wait until element is visible               ${FA_tielinkki_toiminnallinen_luokka}
     element should be visible                   ${FA_tielinkki_MML_ID}
@@ -426,7 +427,7 @@ Tielinkit_10  [arguments]  ${testipaikka}  ${EkaLinkId}  ${TokaLinkId}
     select from list by value                   ${FA_tielinkki_tielinkintyyppi_lista}   2
     Log  tallennetaan muutokset
     click element                               ${FA_footer_Tallenna}
-    wait until element is visible               ${map_overlay}
+    Wait Until Element Is Not Visible           ${Spinner_Overlay}
     sleep  2
     odota sivun latautuminen
     #Element Should Not Be Visible               ${map_overlay}
