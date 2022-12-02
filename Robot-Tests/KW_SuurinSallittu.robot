@@ -4,21 +4,22 @@ Resource    common_keywords.robot
 
 *** Keywords ***
 
-Massa_1  [arguments]  ${tietolaji}  ${testipaikka}  ${rajoitus}
+Massa_1  [arguments]  ${tietolaji}  ${testipaikka}  ${rajoitus}    ${rajoituksen_arvo}
     Testin Aloitus
     Siirry Testipaikkaan                ${tietolaji}  ${testipaikka}
     Zoomaa kartta  5  5 m
     Odota sivun latautuminen
     Click Element At Coordinates        ${Kartta}  0  20
     Wait Until Element Is Visible       ${FA_otsikko}
-    #Element Should Contain              ${FA_SuurinSallittu_Rajoitus}  on
-    Lue Rajoitus on kenttä              ${tietolaji}
+    ${tunniste}=  Palauta Rajoituksen Tunniste  ${tietolaji}
+    Element Should Contain              css=.form-control-static.${tunniste}  ${rajoituksen_arvo}
+    Lue Rajoitus on kenttä              ${tietolaji}      ${rajoituksen_arvo}
     Element Should Contain              ${FA_Massarajoitus}  ${rajoitus}
 
 Massa_2  [arguments]  ${tietolaji}  ${testipaikka}  ${rajoitus}
     Siirry Testipaikkaan                ${tietolaji}  ${testipaikka}
     Odota sivun latautuminen
-    Click Element At Coordinates        ${Kartta}  0  20
+    Click Element At Coordinates        ${Kartta}  0  10
     Wait Until Element Is Visible       ${FA_otsikko}
     Siirry Muokkaustilaan
     ${tunniste}=  Palauta Rajoituksen Tunniste  ${tietolaji}
@@ -46,22 +47,22 @@ Massa_2  [arguments]  ${tietolaji}  ${testipaikka}  ${rajoitus}
 ### Sisäiset Keywordit ###
 ##########################
 
-Lue Rajoitus on kenttä  [arguments]  ${tietolaji}
+Lue Rajoitus on kenttä  [arguments]  ${tietolaji}      ${rajoituksen_arvo}
     #Ei voitu yhdistää css selektorin kanssa kentän lukua, tehtiin hirveä jossittelu juttu
     IF  '${tietolaji}'=="trailerTruckWeightLimit"
-    Element Should Contain  ${FA_Yhdistelmän_Rajoitus}  on
+    Element Should Contain  ${FA_Yhdistelmän_Rajoitus}  ${rajoituksen_arvo}
     ELSE IF  '${tietolaji}'=="axleWeightLimit"
-    Element Should Contain  ${FA_Akselimassa_rajoitus}  on
+    Element Should Contain  ${FA_Akselimassa_rajoitus}  ${rajoituksen_arvo}
     ELSE IF  '${tietolaji}'=="bogieWeightLimit"
-    Element Should Contain  ${FA_Telimassa_rajoitus}  on
+    Element Should Contain  ${FA_Telimassa_rajoitus}  ${rajoituksen_arvo}
     ELSE IF  '${tietolaji}'=="heightLimit"
-    Element Should Contain  ${FA_Korkeus_rajoitus}  on
+    Element Should Contain  ${FA_Korkeus_rajoitus}  ${rajoituksen_arvo}
     ELSE IF  '${tietolaji}'=="widthLimit"
-    Element Should Contain  ${FA_Leveys_rajoitus}  on
+    Element Should Contain  ${FA_Leveys_rajoitus}  ${rajoituksen_arvo}
     ELSE IF  '${tietolaji}'=="lengthLimit"
-    Element Should Contain  ${FA_Pituus_rajoitus}  on
+    Element Should Contain  ${FA_Pituus_rajoitus}  ${rajoituksen_arvo}
     ELSE IF  '${tietolaji}'=="totalWeightLimit"
-    Element Should Contain  ${FA_SuurinSallittu_rajoitus}  on
+    Element Should Contain  ${FA_SuurinSallittu_rajoitus}  ${rajoituksen_arvo}
     END
 
 Palauta Rajoituksen Tunniste  [arguments]  ${tietolaji}

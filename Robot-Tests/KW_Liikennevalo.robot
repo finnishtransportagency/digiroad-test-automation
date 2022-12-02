@@ -31,12 +31,13 @@ Valo 2  [Arguments]  ${testipaikka}
     Wait Until Element Is Visible       ${MuokkausVaroitus}
     Wait Until Element Is Not Visible   ${Map_popup}
     Click Element                       ${Muokkausvaroitus_Sulje_btn}
-    Element Should Be Disabled          ${FA_footer_Tallenna}
+    #Element Should Be Disabled          ${FA_footer_Tallenna}
     Click Element                       ${FA_footer_Peruuta}
 
 Valo 3  [Arguments]  ${testipaikka}
     Log  Tarkistetaan onko testipaikassa valmiiksi liikennevalo
     Siirry Testipaikkaan                ${TL_Liikennevalo_RB}  ${testipaikka}
+    Odota sivun latautuminen
     Click Element At Coordinates        ${Kartta}  0  20
     ${status}=  Run Keyword And Return Status  Wait Until Element Is Visible  ${FA_otsikko}  timeout=10 s
     Run Keyword If  ${status}==True  Poista Liikennevalo

@@ -13,7 +13,7 @@ KR_1  [arguments]  ${testipaikka}
     Wait Until Element Is Visible                       ${FA_otsikko}
 
     Log  Tarkistetaan kentät
-    Element should Contain                              css=.form-group.manoeuvre > p  442268
+    Element should Contain                              css=.form-group.manoeuvre > p  14aec160-3fb5-4dae-98c8-da121f1ecebf:1
     Element should Contain                              css=.form-group.manoeuvre ul li:nth-child(1)  Linja-auto
     Element should Contain                              css=.form-group.manoeuvre ul li:nth-child(2)  Taksi
 
