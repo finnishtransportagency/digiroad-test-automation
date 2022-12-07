@@ -59,7 +59,7 @@ KR_3  [arguments]  ${testipaikka}
     Siirry Katselutilaan
     Click Element At Coordinates                        ${Kartta}  0  20
     Wait Until Element Is Visible                       ${FA_otsikko}
-    Page Should Contain                                 LINK ID: 2034752
+    Page Should Contain                                 LINK ID: dfaef0a8-3339-45e6-9a75-d7815e988f0f:1
     Element Should Contain                              css=.manoeuvre .exception-group ul li:nth-child(1)   Huoltoajo
     Element Should Contain                              css=.manoeuvre .exception-group ul li:nth-child(2)   Tontille ajo
     Element Should Contain                              css=.form-group.existing-validity-period  La 0:00 – 24:00

@@ -13,7 +13,7 @@ Päällysteen_tarkastelu   [arguments]            ${testipaikka}
     #testataan valinnan toimivuus
     Vaihda Tietolaji                            ${TL_Päällyste_RB}
     Paikanna osoite                             ${testipaikka}
-    Zoomaa kartta                               5   50 m
+    Zoomaa kartta                               5   20 m
     Odota sivun latautuminen
 
     #klikkauksen kokeilu
@@ -30,15 +30,16 @@ Päällysteen_tarkastelu   [arguments]            ${testipaikka}
     Click Element At Coordinates                ${Kartta}    0    100
 
 
-Päällysteen_vaihto_peruutus    [arguments]      ${testipaikka}    ${päällysteluokka_parametri}
+Päällysteen_vaihto_peruutus    [arguments]      ${testipaikka}    ${päällysteluokka_parametri}    ${päällysteluokan_nimi}
     Log                                         Testataan päällysteen vaihto
     Testin Aloitus
     Vaihda Tietolaji                            ${TL_Päällyste_RB}
     Paikanna osoite                             ${testipaikka}
-    Zoomaa kartta                               5   50 m
+    Zoomaa kartta                               5   20 m
     Odota sivun latautuminen
     Siirry Muokkaustilaan
-    Click Element At Coordinates                ${Kartta}   0   20
+    Wait Until Element Is Not Visible           ${Map_popup}
+    Click Element At Coordinates                ${Kartta}  0  20
 
     #kokeillaan päällystelajin vaihto
     Wait Until Element Is Visible               css=.form-control.paved-road
@@ -55,7 +56,7 @@ Päällysteen_vaihto_peruutus    [arguments]      ${testipaikka}    ${päällyst
     #tarkistetaan, että muutoksia ei ole tapahtunut
     Click Element At Coordinates                ${Kartta}    0    20
     Wait Until Element Is Visible               ${Päällysteluokka_Teksti}
-    Element Should Contain                      ${Päällysteluokka_Teksti}    ${Päällyste_Kova_asfaltti}
+    Element Should Contain                      ${Päällysteluokka_Teksti}    Kovat asfalttibetonit    #Tekstinä alkuperäinen päällyste
     Click Element At Coordinates                ${Kartta}    0    100
 
 
@@ -64,15 +65,15 @@ Päällysteen_vaihto_tallennus    [arguments]    ${testipaikka}    ${päällyste
     Testin Aloitus
     Vaihda Tietolaji                            ${TL_Päällyste_RB}
     Paikanna osoite                             ${testipaikka}
-    Zoomaa kartta                               5   50 m
+    Zoomaa kartta                               5   20 m
     Odota sivun latautuminen
     Siirry Muokkaustilaan
-    Click Element At Coordinates                ${Kartta}   0   20
+    Wait Until Element Is Not Visible           ${Map_popup}
+    Click Element At Coordinates                ${Kartta}  0  20
 
     Wait Until Element Is Visible               ${FA_Pavement}
     Select Radio Button                         paved-road    disabled
     Wait Until Element Is Visible               css=.form-control.paved-road
-    Click Element                               css=.form-control.paved-road
     Click Element                               ${päällysteluokka_parametri}
 
     Wait Until Element Is Visible               ${FA_footer_Tallenna}
@@ -81,7 +82,8 @@ Päällysteen_vaihto_tallennus    [arguments]    ${testipaikka}    ${päällyste
     Wait Until Element Is Not Visible           ${Spinner_Overlay}
     Siirry Katselutilaan
     Odota sivun latautuminen
-    Click Element At Coordinates                ${Kartta}    0    30
+    Wait Until Element Is Not Visible           ${Map_popup}
+    Click Element At Coordinates                ${Kartta}  0  20
     Wait Until Element Is Visible               ${Päällysteluokka_Teksti}
     Element Should Contain                      ${Päällysteluokka_Teksti}    ${päällysteen_kuvaus}
     Click Element At Coordinates                ${Kartta}    0    100
@@ -97,7 +99,7 @@ Päällysteen_radionappi    [arguments]    ${testipaikka}
     Zoomaa kartta                               5   20 m
     Odota sivun latautuminen
     Siirry Muokkaustilaan
-
+    Wait Until Element Is Not Visible           ${Map_popup}
     Click Element At Coordinates                ${Kartta}  0  20
     #Ei päällystettä
     Wait Until Element Is Visible               ${FA_Pavement}
@@ -121,7 +123,7 @@ Päällysteen_radionappi    [arguments]    ${testipaikka}
 
 Nollaa Päällyste
     Odota sivun latautuminen
-    Click Element At Coordinates                ${Kartta}  0  20
+    Wait until keyword succeeds  5x  200ms    Click Element At Coordinates    ${Kartta}  0  20
     Siirry Muokkaustilaan
     Wait Until Element Is Visible               ${FA_Pavement}
     Select Radio Button                         paved-road    disabled

@@ -68,13 +68,13 @@ Käyttöliittymä 5_3
     ...  Testi checkboxilla  muokattaville aineistoille
     ...  Tarkistaa tietolajien avautuvan, ei yritä muokata niitä
     Log  Testille annetaan parametrina tietolaji ja paikka jossa se testataan (osoite tai koordinaatti)
-    KW_UI.UI_5_chkbx            ${TL_Suojatie_RB}  7477739, 483052
-    KW_UI.UI_5_chkbx            ${TL_Liikennevalo_RB}  7049431, 510470
+    KW_UI.UI_5_chkbx            ${TL_Suojatie_RB}                  7477711, 483030
+    KW_UI.UI_5_chkbx            ${TL_Liikennevalo_RB}              7049431, 510470
     KW_UI.UI_5_chkbx            ${TL_Joukkoliikenteen_pysäkki_RB}  6711156, 240054
-    KW_UI.UI_5_chkbx            ${TL_Palvelupiste_RB}  6711455,239920
-    KW_UI.UI_5_chkbx            ${TL_Rautatien_tasoristeys_RB}  6712202,240426
-    KW_UI.UI_5_chkbx            ${TL_Esterakennelma_RB}  6711851, 240709
-    KW_UI.UI_5_chkbx            ${TL_Opastustaulu_RB}  6738106,251254
+    KW_UI.UI_5_chkbx            ${TL_Palvelupiste_RB}              6711455,239920
+    KW_UI.UI_5_chkbx            ${TL_Rautatien_tasoristeys_RB}     6712202,240426
+    KW_UI.UI_5_chkbx            ${TL_Esterakennelma_RB}            6711851, 240709
+    KW_UI.UI_5_chkbx            ${TL_Opastustaulu_RB}              6738106,251254
 
 Käyttöliittymä 5_4
     [Tags]              UI   AWS

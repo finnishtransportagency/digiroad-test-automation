@@ -58,7 +58,7 @@ Tielinkit 4
     KW_Tielinkit.Tielinkit_4    Kiertoliittymä                 6711679, 239817
     KW_Tielinkit.Tielinkit_4    Ramppi                         6708746, 257816
     KW_Tielinkit.Tielinkit_4    Jalankulkualue                 6764922, 362677
-    KW_Tielinkit.Tielinkit_4    Kävelyn ja pyöräilyn väylä     6679499, 388913    #kv-liikenteen väylät testiympäristössä muodossa "tuntematon" - marraskuu 2022
+    KW_Tielinkit.Tielinkit_4    Pyörätie tai yhdistetty pyörätie ja jalkakäytävä     6679499, 388913
     KW_Tielinkit.Tielinkit_4    Levähdysalue                   6709147, 256454
     KW_Tielinkit.Tielinkit_4    Ajopolku                       6707938, 256842
     KW_Tielinkit.Tielinkit_4    Huoltoaukko moottoritiellä     6707468, 247022
@@ -71,7 +71,7 @@ Tielinkit 5
     KW_Tielinkit.Tielinkit_5   Kunnan omistama                 6676125, 373042
     KW_Tielinkit.Tielinkit_5   Valtion omistama                6676026, 372929
     KW_Tielinkit.Tielinkit_5   Yksityisen omistama             6676188, 372978
-    KW_Tielinkit.Tielinkit_5   Tuntematon                      6676135, 372839
+    KW_Tielinkit.Tielinkit_5   Ei tiedossa                      6676135, 372839
 
 Tielinkit 6
     [Tags]              Roadlinks  AWS

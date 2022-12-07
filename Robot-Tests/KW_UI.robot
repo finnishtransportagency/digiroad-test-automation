@@ -1,6 +1,7 @@
 *** Settings ***
 Documentation       Pageobject for User Interface testcases
 # Resource            PO_MainPage.robot
+Library    SeleniumLibrary
 
 *** Variables ***
 ${LocatorForDDM}                                css=select.form-control
@@ -46,8 +47,8 @@ UI_3
     FOR  ${string}  IN  @{Haku_Muuttujat}
         SeleniumLibrary.Input Text              ${Hae_syotekentta}       ${string}
         Click Element                           ${Hae_btn}
-        #wait until element is visible           ${Map_popup}
-        Wait until keyword succeeds  2x  200ms  element text should be  ${Map_popup}  ${Hakuvirheilmoitus}
+        Wait until element is visible           ${Map_popup}
+        Wait until keyword succeeds  5x  200ms  element text should be  ${Map_popup}  ${Hakuvirheilmoitus}
         Wait Until Element is not visible       ${Map_popup}
     END
     Siirry Katselutilaan
@@ -109,6 +110,7 @@ UI_5_radio_non-unit  [Arguments]  @{Tietolaji_lista}
     Paikanna osoite                         Brahenkatu 10, Turku
     Zoomaa kartta   5   20 m
     Siirry muokkaustilaan
+    Wait Until Element Is Not Visible      ${Map_popup}
     set test variable  ${koe}  -
     FOR    ${TL}  IN  @{Tietolaji_lista}
       wait until element is visible        ${valitse tietolaji}
@@ -160,6 +162,7 @@ UI_5_chkbx  [Arguments]  ${TL}  ${testipaikka}
     Odota sivun latautuminen
 
     Siirry Muokkaustilaan
+    Wait Until Element Is Not Visible       ${Map_popup}
     click element at coordinates            ${kartta}  0  20
     #Run Keyword If                          '${TL}' == '${TL_Suojatie_RB}'  Siirry muokkaustilaan
     #   Scrollataan formin loppuun, jotta checkbox tulee näkyviin.

@@ -24,26 +24,26 @@ Päällysteen_vaihto_peruutus
     [Tags]  AWS  Päällyste
     [Documentation]  Päällysteen muokkaus koko ketjulle
 
-    KW_Paallyste.Päällysteen_vaihto_peruutus      6701160, 494083    ${Popup_Päällyste_Betoni}                   
-    KW_Paallyste.Päällysteen_vaihto_peruutus      6701160, 494083    ${Popup_Päällyste_Kivi}                     
-    KW_Paallyste.Päällysteen_vaihto_peruutus      6701160, 494083    ${Popup_Päällyste_Kovat_asfalttibetonit}    
-    KW_Paallyste.Päällysteen_vaihto_peruutus      6701160, 494083    ${Popup_Päällyste_Pehmeät_asfalttibetonit}  
-    KW_Paallyste.Päällysteen_vaihto_peruutus      6701160, 494083    ${Popup_Päällyste_Soratien_pintaus}         
-    KW_Paallyste.Päällysteen_vaihto_peruutus      6701160, 494083    ${Popup_Päällyste_Sorakulutuskerros}        
-    KW_Paallyste.Päällysteen_vaihto_peruutus      6701160, 494083    ${Popup_Päällyste_Muut_pinnoitteet}         
+    KW_Paallyste.Päällysteen_vaihto_peruutus      6702779, 495817    ${Popup_Päällyste_Betoni}                   Betoni
+    KW_Paallyste.Päällysteen_vaihto_peruutus      6702779, 495817    ${Popup_Päällyste_Kivi}                     Kivi
+    KW_Paallyste.Päällysteen_vaihto_peruutus      6702779, 495817    ${Popup_Päällyste_Kovat_asfalttibetonit}    Kovat asfalttibetonit
+    KW_Paallyste.Päällysteen_vaihto_peruutus      6702779, 495817    ${Popup_Päällyste_Pehmeät_asfalttibetonit}  Pehmeät asfalttibetonit
+    KW_Paallyste.Päällysteen_vaihto_peruutus      6702779, 495817    ${Popup_Päällyste_Soratien_pintaus}         Soratien pintaus
+    KW_Paallyste.Päällysteen_vaihto_peruutus      6702779, 495817    ${Popup_Päällyste_Sorakulutuskerros}        Sorakulutuskerros
+    KW_Paallyste.Päällysteen_vaihto_peruutus      6702779, 495817    ${Popup_Päällyste_Muut_pinnoitteet}         Muut pinnoitteet
 
 
 Päällysteen_vaihto_tallennus
     [Tags]  AWS  Päällyste
     [Documentation]  Päällysteen muokkaus koko ketjulle
 
-    KW_Paallyste.Päällysteen_vaihto_tallennus     6902636, 431258    ${Popup_Päällyste_Betoni}                       Betoni
-    KW_Paallyste.Päällysteen_vaihto_tallennus     6902636, 431258    ${Popup_Päällyste_Kivi}                         Kivi
-    KW_Paallyste.Päällysteen_vaihto_tallennus     6902636, 431258    ${Popup_Päällyste_Kovat_asfalttibetonit}        Kovat asfalttibetonit
-    KW_Paallyste.Päällysteen_vaihto_tallennus     6902636, 431258    ${Popup_Päällyste_Pehmeät_asfalttibetonit}      Pehmeät asfalttibetonit
-    KW_Paallyste.Päällysteen_vaihto_tallennus     6902636, 431258    ${Popup_Päällyste_Soratien_pintaus}             Soratien pintaus
-    KW_Paallyste.Päällysteen_vaihto_tallennus     6902636, 431258    ${Popup_Päällyste_Sorakulutuskerros}            Sorakulutuskerros
-    KW_Paallyste.Päällysteen_vaihto_tallennus     6902636, 431258    ${Popup_Päällyste_Muut_pinnoitteet}             Muut pinnoitteet
+    KW_Paallyste.Päällysteen_vaihto_tallennus     6905946, 428711    ${Popup_Päällyste_Betoni}                       Betoni
+    KW_Paallyste.Päällysteen_vaihto_tallennus     6905946, 428711    ${Popup_Päällyste_Kivi}                         Kivi
+    KW_Paallyste.Päällysteen_vaihto_tallennus     6905946, 428711    ${Popup_Päällyste_Kovat_asfalttibetonit}        Kovat asfalttibetonit
+    KW_Paallyste.Päällysteen_vaihto_tallennus     6905946, 428711    ${Popup_Päällyste_Pehmeät_asfalttibetonit}      Pehmeät asfalttibetonit
+    KW_Paallyste.Päällysteen_vaihto_tallennus     6905946, 428711    ${Popup_Päällyste_Soratien_pintaus}             Soratien pintaus
+    KW_Paallyste.Päällysteen_vaihto_tallennus     6905946, 428711    ${Popup_Päällyste_Sorakulutuskerros}            Sorakulutuskerros
+    KW_Paallyste.Päällysteen_vaihto_tallennus     6905946, 428711    ${Popup_Päällyste_Muut_pinnoitteet}             Muut pinnoitteet
 
 
 Päällysteen_radionappi

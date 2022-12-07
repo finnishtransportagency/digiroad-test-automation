@@ -37,7 +37,7 @@ Palvelupiste_case_2
     KW_Palvelupiste.Palvelupiste_2  6719166, 547657  ${PP_Rajanylityspaikka}          Rajanylityspaikka
     KW_Palvelupiste.Palvelupiste_2  6638302, 272758  ${PP_Lastausterminaali}      Autojen lastausterminaali
     KW_Palvelupiste.Palvelupiste_2  6718817, 546054  ${PP_LA_KA_pysäköinti}      Linja- ja kuorma-autojen pysäköintialue    #korjataan syntaksi
-    KW_Palvelupiste.Palvelupiste_2  6670510, 385928  ${PP_Tierumpu}         Tierumpu
+    #KW_Palvelupiste.Palvelupiste_2  6670510, 385928  ${PP_Tierumpu}         Tierumpu
     #KW_Palvelupiste.Palvelupiste_2  6714733, 504191  ${PP_E18_Rekkaparkki}      E18 rekkaparkki    #ei vielä implementoitu
 
 
@@ -59,7 +59,7 @@ Palvelupiste_case_3
     KW_Palvelupiste.Palvelupiste_3  6778791, 598792  ${PP_Rajanylityspaikka}          rajanylityspaikka    
     KW_Palvelupiste.Palvelupiste_3  6899607, 433900  ${PP_Lastausterminaali}      autojen-lastausterminaali    
     KW_Palvelupiste.Palvelupiste_3  6899607, 433900  ${PP_LA_KA_pysäköinti}      linja-ja-kuorma-autojen-pysakointialue    
-    KW_Palvelupiste.Palvelupiste_3  6899607, 433900  ${PP_Tierumpu}         tierumpu    
+    #KW_Palvelupiste.Palvelupiste_3  6899607, 433900  ${PP_Tierumpu}         tierumpu    
     #KW_Palvelupiste.Palvelupiste_3  6714733, 433900  ${PP_E18_Rekkaparkki}      e18-rekkaparkki       #ei vielä implementoitu
 
 
