@@ -61,7 +61,7 @@ Tielinkit 4
     KW_Tielinkit.Tielinkit_4    Pyörätie tai yhdistetty pyörätie ja jalkakäytävä     6679499, 388913
     KW_Tielinkit.Tielinkit_4    Levähdysalue                   6709147, 256454
     KW_Tielinkit.Tielinkit_4    Ajopolku                       6707938, 256842
-    KW_Tielinkit.Tielinkit_4    Huoltoaukko moottoritiellä     6707468, 247022
+    KW_Tielinkit.Tielinkit_4    Huoltoaukko                    6707468, 247022
     KW_Tielinkit.Tielinkit_4    Lautta/lossi                   6709978, 238631
 
 Tielinkit 5

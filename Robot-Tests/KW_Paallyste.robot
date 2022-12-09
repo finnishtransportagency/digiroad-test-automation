@@ -86,7 +86,7 @@ Päällysteen_vaihto_tallennus    [arguments]    ${testipaikka}    ${päällyste
     Click Element At Coordinates                ${Kartta}  0  20
     Wait Until Element Is Visible               ${Päällysteluokka_Teksti}
     Element Should Contain                      ${Päällysteluokka_Teksti}    ${päällysteen_kuvaus}
-    Click Element At Coordinates                ${Kartta}    0    100
+    Click Element At Coordinates                ${Kartta}    100    100
 
     Nollaa Päällyste
 
