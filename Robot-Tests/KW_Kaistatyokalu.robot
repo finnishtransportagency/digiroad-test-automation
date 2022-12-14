@@ -42,7 +42,8 @@ Kaistatyökalu_2  [arguments]  ${testipaikka}
     Siirry Muokkaustilaan
     Wait Until Element Is Not Visible           ${Map_popup}
     
-    Poista Ylimääräiset Kaistat
+    #Poista Ylimääräiset Kaistat    
+    #for-loop ei tällä hetkellä mahdollinen fronttikoodin rajoitusten takia 12/2022
     
     Click Element                               ${FA_Lisää_kaista_oikealle}
     Input Text                                  ${KT_Alkupäivämäärä}    18.3.2022
@@ -129,6 +130,8 @@ ${KT_Tien_Osanumero}                css=.input-unit-combination div:nth-child(3)
 ${KT_Ajorata}                       css=.input-unit-combination div:nth-child(4) p
 ${KT_Etäisyys_Alusta}               css=.input-unit-combination div:nth-child(5) p
 ${KT_Etäisyys_Lopusta}              css=.input-unit-combination div:nth-child(6) p
-${KT_Hallinnollinen_Luokka}         css=.input-unit-combination div:nth-child(7) p
-${KT_Kaista}                        css=.input-unit-combination div:nth-child(9) p
+${KT_Pituus}                        css=.input-unit-combination div:nth-child(7) p
+${KT_Hallinnollinen_Luokka}         css=.input-unit-combination div:nth-child(8) p
+${KT_Kaistan_tiedot}                css=.input-unit-combination div:nth-child(9) p
+${KT_Kaista}                        css=.input-unit-combination div:nth-child(10) p
 ${KT_Alkupäivämäärä}                id=start_date

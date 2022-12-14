@@ -22,7 +22,7 @@ Ajoneuvorajoituksen tarkastelu zoomilla   [arguments]     ${testipaikka}
     Checkbox Should Be Selected                 ${AKR_Näytä_liikennemerkit_checkbox}
     Select Checkbox                             ${AKR_Näytä_täydentävä_geometria_checkbox}
     Checkbox Should Be Selected                 ${AKR_Näytä_täydentävä_geometria_checkbox}
-    Take Screenshot    #voidaan tarkistaa tarvittaessa silmämääräisesti logista
+    #Take Screenshot    #voidaan tarkistaa tarvittaessa silmämääräisesti logista
 
 
 Ajoneuvorajoituksen tarkastelu klikkaamalla   [arguments]     ${testipaikka}
