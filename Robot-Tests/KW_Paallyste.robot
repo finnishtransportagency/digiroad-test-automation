@@ -69,6 +69,7 @@ Päällysteen_vaihto_tallennus    [arguments]    ${testipaikka}    ${päällyste
     Odota sivun latautuminen
     Siirry Muokkaustilaan
     Wait Until Element Is Not Visible           ${Map_popup}
+    Sleep                                       5
     Click Element At Coordinates                ${Kartta}  0  20
 
     Wait Until Element Is Visible               ${FA_Pavement}

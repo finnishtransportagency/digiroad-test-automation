@@ -163,6 +163,7 @@ UI_5_chkbx  [Arguments]  ${TL}  ${testipaikka}
 
     Siirry Muokkaustilaan
     Wait Until Element Is Not Visible       ${Map_popup}
+    Sleep                                   3
     click element at coordinates            ${kartta}  0  20
     #Run Keyword If                          '${TL}' == '${TL_Suojatie_RB}'  Siirry muokkaustilaan
     #   Scrollataan formin loppuun, jotta checkbox tulee näkyviin.
