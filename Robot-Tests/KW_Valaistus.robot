@@ -8,7 +8,7 @@ Resource            common_keywords.robot
 
 *** Keywords ***
 Valaistus_tarkistus  [arguments]                ${testipaikka}
-    Log                                         Päällysteen tarkastelu katselumoodissa
+    Log                                         Valaistuksen tarkastelu katselumoodissa
     Vaihda Tietolaji                            ${TL_Valaistus_RB}
     Paikanna osoite                             ${testipaikka}
     Zoomaa kartta                               5    200
@@ -154,7 +154,7 @@ Usean valaistuslinkin klikkausvalinta    [arguments]          ${testipaikka}
     Wait Until Element Is Visible                             ${FA_header_Peruuta}
     Click Button                                              ${FA_header_Peruuta}
 
-    #painetaan control pohjaan ja klikataan
+    #painetaan control pohjaan ja klikataan; varmistetaan ettei tietoa tallentunut
     Hold Control And Click Element At Coordinates             ${Kartta}  0  0
     selenium_extensions.Hold Control And Drag By Offset       ${Kartta}  0  200
     Hold Control And Click Element At Coordinates             ${Kartta}  0  0
