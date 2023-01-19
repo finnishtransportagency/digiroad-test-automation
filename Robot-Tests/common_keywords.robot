@@ -27,6 +27,7 @@ Resource                    KW_AKR.robot
 Resource                    KW_Palvelupiste.robot
 Resource                    KW_Paallyste.robot
 Resource                    KW_Leveys.robot
+Resource                    KW_Valaistus.robot
 
 
 
