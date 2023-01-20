@@ -73,7 +73,8 @@ Päällysteen_vaihto_tallennus    [arguments]    ${testipaikka}    ${päällyste
     Click Element At Coordinates                ${Kartta}  0  20
 
     Wait Until Element Is Visible               ${FA_Pavement}
-    Select Radio Button                         paved-road    disabled
+    Select Radio Button                         paved-road    enabled
+    Radio Button Should Be Set To               paved-road    enabled
     Wait Until Element Is Visible               css=.form-control.paved-road
     Click Element                               ${päällysteluokka_parametri}
 
