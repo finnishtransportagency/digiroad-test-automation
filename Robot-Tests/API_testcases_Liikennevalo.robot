@@ -10,6 +10,7 @@
 #*** Test Cases ***
 #Liikennevalo 1
 #    [Tags]              API  Liikennevalo
+
 #    [Documentation]     Talletetaan uusi liikennevalo API:n kautta. 
 #    ...                 Tarkistetaan arvota ja poistetaan kyseinen liikennemerkki.
-#    API_keywords.Valo_1
+#    KW_Liikennevalo.Valo_1

@@ -3,6 +3,23 @@ Documentation  Testit ajetaan suoraan api:n kautta.
 Resource   common_keywords.robot
 
 *** Keywords ***
+Valo 1
+    #testipaikan koordinaatit 6881312, 290858
+    ${json}=  Muunna Json  ${Liikennevalo_json}
+    Init Session
+    Log  Talletetaan uusi liikennevalo
+    ${response}=  POST On Session  Digiroad  ${API_URI_TL}      json=${json}
+    Log  Etsitään talletettu liikennevalo bbox haulla
+    ${hakutulos}=  Suorita BB Haku  ${API_URI_TL}  ${Likennevalo_bbox}
+    ${n}=  Get Length      ${hakutulos}[propertyData]
+    Log  Tarkisetaan että talletetut arvot ovat oikein
+    FOR  ${i}      IN RANGE      ${n}
+        ${status}=      Run Keyword And Return Status  Dictionary Should Contain Key  ${Tiedot}      ${hakutulos}[propertyData][${i}][publicId]
+        Run Keyword If  ${status}  Should Be Equal As Strings  ${hakutulos}[propertyData][${i}][values][0][propertyDisplayValue]      ${tiedot}[${hakutulos}[propertyData][${i}][publicId]]
+    END
+    [Teardown]  Poista Kohde Apin Kautta  ${API_URI_TL}      ${response.content}
+
+
 Valo 2  [Arguments]  ${testipaikka}
     Log  Vaihdetaan liikennevalon suuntaa
     Siirry Testipaikkaan                ${TL_Liikennevalo_RB}  ${testipaikka}
@@ -100,7 +117,7 @@ ${FA_lisätieto-2}       css=#traffic-light-container-2 > div:nth-child(3) > p
 
 
 
-${API_URI_TL}      api/trafficLights
+${API_URI_TL}     api/trafficLights
 ${Liikennevalo_json}  {"asset":{"propertyData": [
 ...     {"groupedId":1,"name":"Tyyppi","propertyType":"single_choice","publicId":"trafficLight_type","values":[{"propertyValue":1}],"localizedName":"Tyyppi"},
 ...     {"groupedId":1,"name":"Opastimen suhteellinen sijainti","propertyType":"single_choice","publicId":"trafficLight_relative_position","values":[{"propertyValue":"2","propertyDisplayValue":""}],"localizedName":"Opastimen suhteellinen sijainti"},
