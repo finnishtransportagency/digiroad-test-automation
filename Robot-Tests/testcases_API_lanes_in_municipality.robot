@@ -1,3 +1,5 @@
+#    Joni Laari        Sitowise        2023
+
 *** Settings ***
 Documentation       API testitapaukset lanes-in-Municipality
 Resource            common_keywords.robot
@@ -8,8 +10,15 @@ Suite Teardown  Close Browser
 
 
 *** Test Cases ***
+Kaista_kunta_get_ui_vertailu
+    [Tags]              API  Kaistarajapinta
+
+    [Documentation]     Suoritetaan GET-pyyntö rajapinnasta ja verrataan UI:n tuloksiin
+    API_KW_lanes_in_municipality.Kaista_kunta_get_ui_vertailu    6676844, 371888
+
+
 Kaista_kunta_get
     [Tags]              API  Kaistarajapinta
 
-    [Documentation]     tehdään GET pyyntö
-    API_KW_lanes_in_municipality.Kaista_kunta_get    6678559, 373156
+    [Documentation]     Suoritetaan GET-pyyntö rajapinnasta ja verrataan UI:n tuloksiin
+    API_KW_lanes_in_municipality.Kaista_kunta_get    6676844, 371888
