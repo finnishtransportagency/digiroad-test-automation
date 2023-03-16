@@ -11,12 +11,12 @@ Library    RequestsLibrary
 Library    Collections
 
 *** Keywords ***
-Kaista_kunta_get    [Arguments]    ${testipaikka}
-    ${response2}=    GET  ${Kaista_kunta_api_url_235}  headers=${headers}
-    Log    ${response2.content}
-    Request Should Be Successful    ${response2}
+Kaista_kunta_get    [Arguments]        ${kaista_api_kaistamäärä}    ${kaista_api_tienumero}
+    ${response}=    GET  ${Kaista_kunta_api_url_179}  headers=${headers}
+    Log    ${response.content}
+    Request Should Be Successful    ${response}
 
-    FOR   ${item}   IN  @{response2.json()}
+    FOR   ${item}   IN  @{response.json()}
         Log  ${item}
         ${item_roadnumber}=          Set variable    ${item['roadNumber']}
         ${item_roadpartnumber}=      Set variable    ${item['roadPartNumber']}
@@ -25,6 +25,22 @@ Kaista_kunta_get    [Arguments]    ${testipaikka}
         ${item_endaddrmvalue}=       Set variable    ${item['endAddrMValue']}
         ${item_lanecode}=            Set variable    ${item['laneCode']}
         ${item_lanetype}=            Set variable    ${item['laneType']}
+
+        ${item_roadnumber}=          Convert To Integer    ${item_roadnumber}
+        ${item_roadpartnumber}=      Convert To Integer    ${item_roadpartnumber}
+        ${item_track}=               Convert To Integer    ${item_track}
+        ${item_startaddrvalue}=      Convert To Integer    ${item_startaddrvalue}
+        ${item_endaddrmvalue}=       Convert To Integer    ${item_endaddrmvalue}
+        ${item_lanecode}=            Convert To Integer    ${item_lanecode}
+        ${item_lanetype}=            Convert To Integer    ${item_lanetype}
+
+        ${tarkista_tienumero}=    Run Keyword And Return Status    Should Be Equal As Integers   ${item_roadnumber}    ${kaista_api_tienumero}
+        ${kaistan_manuaalivertailu}=    Run Keyword And Return Status    Should Be Equal    ${item_track}    ${kaista_api_kaistamäärä}
+        IF    '${tarkista_tienumero}' == 'False'   CONTINUE
+        IF    '${tarkista_tienumero}' == 'True'    Log To Console   Linkki ${kaista_api_tienumero} löytyi
+        IF    '${tarkista_tienumero}' == 'True'    Run Keyword    ${kaistan_manuaalivertailu}
+        IF    '${kaistan_manuaalivertailu}' == 'True'    Log to Console    Tiedot täsmäävät, kaistoja on ${item_track}
+        IF    '${kaistan_manuaalivertailu}' == 'False'    CONTINUE
     END
 
 
@@ -102,6 +118,9 @@ Kaista_kunta_get_ui_vertailu    [Arguments]    ${testipaikka}
  #  END
 
 *** Variables ***
-${API_URI_lanes_in_municipality}      /externalApi/lanes/lanes_in_municipality
-&{headers}=                           X-Api-Key=${API_autentikointi}    accept=application/json
+${API_URI_lanes_in_municipality}          /externalApi/lanes/lanes_in_municipality
+&{headers}=                               X-Api-Key=${API_autentikointi}    accept=application/json
 ${Kaista_kunta_api_url_235}               https://api.testivaylapilvi.fi/digiroad/externalApi/lanes/lanes_in_municipality?municipality\=235
+${Kaista_kunta_api_url_179}               https://api.testivaylapilvi.fi/digiroad/externalApi/lanes/lanes_in_municipality?municipality\=179
+${Lohikoskentie_kaistamäärä}              4
+${Schaumaninpuistotie_kaistamäärä}        2

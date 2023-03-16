@@ -21,4 +21,5 @@ Kaista_kunta_get
     [Tags]              API  Kaistarajapinta
 
     [Documentation]     Suoritetaan GET-pyyntö rajapinnasta ja verrataan UI:n tuloksiin
-    API_KW_lanes_in_municipality.Kaista_kunta_get    6676844, 371888
+    API_KW_lanes_in_municipality.Kaista_kunta_get    ${Lohikoskentie_kaistamäärä}    637
+    API_KW_lanes_in_municipality.Kaista_kunta_get    ${Schaumaninpuistotie_kaistamäärä}    46504
