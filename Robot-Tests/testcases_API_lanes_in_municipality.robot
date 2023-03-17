@@ -10,16 +10,25 @@ Suite Teardown  Close Browser
 
 
 *** Test Cases ***
+Kaista_kunta_get
+    [Tags]              API  Kaistarajapinta
+
+    [Documentation]     Suoritetaan GET-pyyntö rajapinnasta ja verrataan UI:n tuloksiin
+    API_KW_lanes_in_municipality.Kaista_kunta_get    ${179_Lohikoskentie_kaistamäärä}    637           179
+    API_KW_lanes_in_municipality.Kaista_kunta_get    ${179_Schaumaninpuistotie_kaistamäärä}    46504   179
+    API_KW_lanes_in_municipality.Kaista_kunta_get    ${179_Survontie_kaistamäärä}    46555             179
+    API_KW_lanes_in_municipality.Kaista_kunta_get    ${179_Keuruuntie_kaistamäärä}    18               179
+    API_KW_lanes_in_municipality.Kaista_kunta_get    ${179_Vasarakatu_kaistamäärä}    46508            179
+
+    API_KW_lanes_in_municipality.Kaista_kunta_get    ${286_Kauppalankatu_kaistamäärä}    370    286
+    API_KW_lanes_in_municipality.Kaista_kunta_get    ${286_Mikkelintie_kaistamäärä}    15       286
+    API_KW_lanes_in_municipality.Kaista_kunta_get    ${286_Jyrääntie_kaistamäärä}    14616      286
+    API_KW_lanes_in_municipality.Kaista_kunta_get    ${286_Kalevantie_kaistamäärä}    368       286
+    API_KW_lanes_in_municipality.Kaista_kunta_get    ${286_Kymenlaaksontie_kaistamäärä}    367    286
+
+
 Kaista_kunta_get_ui_vertailu
     [Tags]              API  Kaistarajapinta
 
     [Documentation]     Suoritetaan GET-pyyntö rajapinnasta ja verrataan UI:n tuloksiin
     API_KW_lanes_in_municipality.Kaista_kunta_get_ui_vertailu    6676844, 371888
-
-
-Kaista_kunta_get
-    [Tags]              API  Kaistarajapinta
-
-    [Documentation]     Suoritetaan GET-pyyntö rajapinnasta ja verrataan UI:n tuloksiin
-    API_KW_lanes_in_municipality.Kaista_kunta_get    ${Lohikoskentie_kaistamäärä}    637
-    API_KW_lanes_in_municipality.Kaista_kunta_get    ${Schaumaninpuistotie_kaistamäärä}    46504

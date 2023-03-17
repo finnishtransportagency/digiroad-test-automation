@@ -11,8 +11,9 @@ Library    RequestsLibrary
 Library    Collections
 
 *** Keywords ***
-Kaista_kunta_get    [Arguments]        ${kaista_api_kaistamäärä}    ${kaista_api_tienumero}
-    ${response}=    GET  ${Kaista_kunta_api_url_179}  headers=${headers}
+Kaista_kunta_get    [Arguments]        ${kaista_api_kaistamäärä}    ${kaista_api_tienumero}    ${kaista_api_kuntanumero}
+    ${Kaista_kunta_api_url_blank}=    Set Variable    https://api.testivaylapilvi.fi/digiroad/externalApi/lanes/lanes_in_municipality?municipality\=${kaista_api_kuntanumero}
+    ${response}=    GET  ${Kaista_kunta_api_url_blank}  headers=${headers}
     Log    ${response.content}
     Request Should Be Successful    ${response}
 
@@ -37,10 +38,10 @@ Kaista_kunta_get    [Arguments]        ${kaista_api_kaistamäärä}    ${kaista_
         ${tarkista_tienumero}=    Run Keyword And Return Status    Should Be Equal As Integers   ${item_roadnumber}    ${kaista_api_tienumero}
         ${kaistan_manuaalivertailu}=    Run Keyword And Return Status    Should Be Equal    ${item_track}    ${kaista_api_kaistamäärä}
         IF    '${tarkista_tienumero}' == 'False'   CONTINUE
-        IF    '${tarkista_tienumero}' == 'True'    Log To Console   Linkki ${kaista_api_tienumero} löytyi
-        IF    '${tarkista_tienumero}' == 'True'    Run Keyword    ${kaistan_manuaalivertailu}
-        IF    '${kaistan_manuaalivertailu}' == 'True'    Log to Console    Tiedot täsmäävät, kaistoja on ${item_track}
+        IF    '${tarkista_tienumero}' == 'True'    Log To Console   Road number ${kaista_api_tienumero} starting from ${item_startaddrvalue}, lane ${kaista_api_kaistamäärä} found
         IF    '${kaistan_manuaalivertailu}' == 'False'    CONTINUE
+        IF    '${kaistan_manuaalivertailu}' == 'True'    Log to Console    Tiedot täsmäävät, kaistoja on ${item_track}
+        IF    '${kaistan_manuaalivertailu}' == 'True'    BREAK
     END
 
 
@@ -122,5 +123,15 @@ ${API_URI_lanes_in_municipality}          /externalApi/lanes/lanes_in_municipali
 &{headers}=                               X-Api-Key=${API_autentikointi}    accept=application/json
 ${Kaista_kunta_api_url_235}               https://api.testivaylapilvi.fi/digiroad/externalApi/lanes/lanes_in_municipality?municipality\=235
 ${Kaista_kunta_api_url_179}               https://api.testivaylapilvi.fi/digiroad/externalApi/lanes/lanes_in_municipality?municipality\=179
-${Lohikoskentie_kaistamäärä}              4
-${Schaumaninpuistotie_kaistamäärä}        2
+
+${179_Lohikoskentie_kaistamäärä}              4
+${179_Schaumaninpuistotie_kaistamäärä}        2
+${179_Survontie_kaistamäärä}                  1
+${179_Keuruuntie_kaistamäärä}                 2
+${179_Vasarakatu_kaistamäärä}                 4
+
+${286_Kauppalankatu_kaistamäärä}              3
+${286_Mikkelintie_kaistamäärä}                4
+${286_Jyrääntie_kaistamäärä}                  1
+${286_Kalevantie_kaistamäärä}                 1
+${286_Kymenlaaksontie_kaistamäärä}            3
