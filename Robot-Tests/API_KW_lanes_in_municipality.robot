@@ -11,12 +11,15 @@ Library    RequestsLibrary
 Library    Collections
 
 *** Keywords ***
-Kaista_kunta_get    [Arguments]        ${kaista_api_kaistamäärä}    ${kaista_api_tienumero}    ${kaista_api_kuntanumero}
+Kaista_kunta_get    [Arguments]        ${kaista_api_kaistamäärä}    ${kaista_api_tienumero}    ${kaista_api_tienosanumero}    ${kaista_api_kuntanumero}
+    #GET-pyyntö
     ${Kaista_kunta_api_url_blank}=    Set Variable    https://api.testivaylapilvi.fi/digiroad/externalApi/lanes/lanes_in_municipality?municipality\=${kaista_api_kuntanumero}
     ${response}=    GET  ${Kaista_kunta_api_url_blank}  headers=${headers}
     Log    ${response.content}
     Request Should Be Successful    ${response}
 
+    #Asetetaan vastauksen tiedot muuttujiin ja tarkistetaan ne
+    #Testissä käytetään "maastossa havaittuja" kaistatietoja jota verrataan API:sta saatuun tietoon
     FOR   ${item}   IN  @{response.json()}
         Log  ${item}
         ${item_roadnumber}=          Set variable    ${item['roadNumber']}
@@ -35,10 +38,15 @@ Kaista_kunta_get    [Arguments]        ${kaista_api_kaistamäärä}    ${kaista_
         ${item_lanecode}=            Convert To Integer    ${item_lanecode}
         ${item_lanetype}=            Convert To Integer    ${item_lanetype}
 
+        #tutkitaan löytyykö jsonista maastosta havaittuja arvoja
         ${tarkista_tienumero}=    Run Keyword And Return Status    Should Be Equal As Integers   ${item_roadnumber}    ${kaista_api_tienumero}
         ${kaistan_manuaalivertailu}=    Run Keyword And Return Status    Should Be Equal    ${item_track}    ${kaista_api_kaistamäärä}
+        ${tarkista_tienosanumero}=    Run Keyword And Return Status    Should Be Equal As Integers   ${item_roadpartnumber}    ${kaista_api_tienosanumero}
+
         IF    '${tarkista_tienumero}' == 'False'   CONTINUE
         IF    '${tarkista_tienumero}' == 'True'    Log To Console   Road number ${kaista_api_tienumero} starting from ${item_startaddrvalue}, lane ${kaista_api_kaistamäärä} found
+        IF    '${tarkista_tienosanumero}' == 'False'   CONTINUE
+        IF    '${tarkista_tienosanumero}' == 'True'   Log To Console   Road number ${kaista_api_tienumero}, part ${kaista_api_tienosanumero} starting from ${item_startaddrvalue}, lane ${kaista_api_kaistamäärä} found
         IF    '${kaistan_manuaalivertailu}' == 'False'    CONTINUE
         IF    '${kaistan_manuaalivertailu}' == 'True'    Log to Console    Tiedot täsmäävät, kaistoja on ${item_track}
         IF    '${kaistan_manuaalivertailu}' == 'True'    BREAK
@@ -60,7 +68,7 @@ Kaista_kunta_get_ui_vertailu    [Arguments]    ${testipaikka}
     Testin Aloitus
     Siirry Testipaikkaan                ${TL_Kaistan_mallinnustyökalu_RB}  ${testipaikka}
     Odota sivun latautuminen
-    Sleep    3
+    Sleep    2
     Click Element At Coordinates        ${Kartta}  0  20
     Wait Until Element Is Visible       ${FA_otsikko}
     ${api_TIENNUMERO}=      Get Text    xpath=/html/body/div[1]/div[2]/main/article/div[2]/div/div[3]/div/div[2]/p
@@ -84,7 +92,7 @@ Kaista_kunta_get_ui_vertailu    [Arguments]    ${testipaikka}
     @{api_lista_}=    Create List    ${api_TIENNUMERO}    ${api_TIEOSANUMERO}     ${api_AJORATA}     ${api_ALKUETÄISYYS}     #${api_LOPPUETÄISYYS}     #21     1
     Log    ${api_lista_}
 
-#vertaa vastausta ja ui-tietoja keskenään
+    #vertaa vastausta ja ui-tietoja keskenään
     FOR   ${item}   IN  @{response2.json()}
         Log  ${item}
         ${item_roadnumber}=          Set variable    ${item['roadNumber']}
@@ -111,13 +119,6 @@ Kaista_kunta_get_ui_vertailu    [Arguments]    ${testipaikka}
     END
 
 
- #  #vertaa api-vastausta ui:n kautta haettuihin tietoihin
- #  FOR    ${key}    IN    &{response2.json()}
- #      ${API_lanes_in_municipality_check_json_key_loop}=     Run Keyword and Return Status    Dictionary Should Contain Item    &{api_sanakirja_}    ${key}
- #      #${API_lanes_in_municipality_check_json_value_loop}=    Run Keyword And Return Status    Dictionary Should Contain Value  ${lanes_in_municipality_json}    ${api_sanakirja_}[${key}]
- #      IF    '${API_lanes_in_municipality_check_json_key_loop}' == 'False'    CONTINUE
- #  END
-
 *** Variables ***
 ${API_URI_lanes_in_municipality}          /externalApi/lanes/lanes_in_municipality
 &{headers}=                               X-Api-Key=${API_autentikointi}    accept=application/json
@@ -135,3 +136,21 @@ ${286_Mikkelintie_kaistamäärä}                4
 ${286_Jyrääntie_kaistamäärä}                  1
 ${286_Kalevantie_kaistamäärä}                 1
 ${286_Kymenlaaksontie_kaistamäärä}            3
+
+${285_Karhulantie_kaistamäärä}                1
+${285_Kyminlinnantie_kaistamäärä}             1
+${285_Kouvolantie_kaistamäärä}                1
+${285_Tavastilantie_kaistamäärä}              1
+${285_Seiskatie_kaistamäärä}                  2
+
+${508_Hopunmäentie_kaistamäärä}               1
+${508_Koskelantie_kaistamäärä}                1
+${508_Keuruuntie_kaistamäärä}                 1
+${508_Tehtaantie_kaistamäärä}                 1
+${508_Orivedentie_kaistamäärä}                1
+
+${091_Mannerheimintie_kaistamäärä}            2
+${091_Länsiväylä_kaistamäärä}                 3
+${091_Kuusisaarentie_kaistamäärä}             1
+${091_Vihdintie_kaistamäärä}                  2
+${091_Myllymestarintie_kaistamäärä}           5
