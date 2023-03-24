@@ -19,10 +19,10 @@ Kaista_kunta_get
     API_KW_lanes_in_municipality.Kaista_kunta_get    ${179_Schaumaninpuistotie_kaistamäärä}    46504  1        179
     API_KW_lanes_in_municipality.Kaista_kunta_get    ${179_Survontie_kaistamäärä}             46555    1        179
     API_KW_lanes_in_municipality.Kaista_kunta_get    ${179_Keuruuntie_kaistamäärä}            18      49        179
-    API_KW_lanes_in_municipality.Kaista_kunta_get    ${179_Vasarakatu_kaistamäärä}            46508   1        179
+    API_KW_lanes_in_municipality.Kaista_kunta_get    ${179_Vasarakatu_kaistamäärä}            46508   3        179
 
     API_KW_lanes_in_municipality.Kaista_kunta_get    ${286_Kauppalankatu_kaistamäärä}          370        1       286
-    API_KW_lanes_in_municipality.Kaista_kunta_get    ${286_Mikkelintie_kaistamäärä}            15         1       286
+    API_KW_lanes_in_municipality.Kaista_kunta_get    ${286_Mikkelintie_kaistamäärä}            15         11       286
     API_KW_lanes_in_municipality.Kaista_kunta_get    ${286_Jyrääntie_kaistamäärä}             14616        1       286
     API_KW_lanes_in_municipality.Kaista_kunta_get    ${286_Kalevantie_kaistamäärä}            368         1       286
     API_KW_lanes_in_municipality.Kaista_kunta_get    ${286_Kymenlaaksontie_kaistamäärä}        367        1       286

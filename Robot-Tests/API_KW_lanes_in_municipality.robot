@@ -12,6 +12,8 @@ Library    Collections
 
 *** Keywords ***
 Kaista_kunta_get    [Arguments]        ${kaista_api_kaistamäärä}    ${kaista_api_tienumero}    ${kaista_api_tienosanumero}    ${kaista_api_kuntanumero}
+    [Documentation]    Find given values from response. 
+    ...    This is a negative test, where all lanes from a given municipality are searched for values given as parameters. Unlike ordinary tests, "failure" is a default outcome of sort.
     #GET-pyyntö
     ${Kaista_kunta_api_url_blank}=    Set Variable    https://api.testivaylapilvi.fi/digiroad/externalApi/lanes/lanes_in_municipality?municipality\=${kaista_api_kuntanumero}
     ${response}=    GET  ${Kaista_kunta_api_url_blank}  headers=${headers}
@@ -40,15 +42,15 @@ Kaista_kunta_get    [Arguments]        ${kaista_api_kaistamäärä}    ${kaista_
 
         #tutkitaan löytyykö jsonista maastosta havaittuja arvoja
         ${tarkista_tienumero}=    Run Keyword And Return Status    Should Be Equal As Integers   ${item_roadnumber}    ${kaista_api_tienumero}
-        ${kaistan_manuaalivertailu}=    Run Keyword And Return Status    Should Be Equal    ${item_track}    ${kaista_api_kaistamäärä}
         ${tarkista_tienosanumero}=    Run Keyword And Return Status    Should Be Equal As Integers   ${item_roadpartnumber}    ${kaista_api_tienosanumero}
+        ${kaistan_manuaalivertailu}=    Run Keyword And Return Status    Should Be Equal As Integers    ${item_lanetype}    ${kaista_api_kaistamäärä}
 
         IF    '${tarkista_tienumero}' == 'False'   CONTINUE
-        IF    '${tarkista_tienumero}' == 'True'    Log To Console   Road number ${kaista_api_tienumero} starting from ${item_startaddrvalue}, lane ${kaista_api_kaistamäärä} found
+        IF    '${tarkista_tienumero}' == 'True'    Log   Road number ${kaista_api_tienumero} starting from ${item_startaddrvalue}, lane ${kaista_api_kaistamäärä} found    console=yes
         IF    '${tarkista_tienosanumero}' == 'False'   CONTINUE
-        IF    '${tarkista_tienosanumero}' == 'True'   Log To Console   Road number ${kaista_api_tienumero}, part ${kaista_api_tienosanumero} starting from ${item_startaddrvalue}, lane ${kaista_api_kaistamäärä} found
+        IF    '${tarkista_tienosanumero}' == 'True'   Log   Road number ${kaista_api_tienumero}, part ${kaista_api_tienosanumero} starting from ${item_startaddrvalue}, lane ${kaista_api_kaistamäärä} found    console=yes
         IF    '${kaistan_manuaalivertailu}' == 'False'    CONTINUE
-        IF    '${kaistan_manuaalivertailu}' == 'True'    Log to Console    Tiedot täsmäävät, kaistoja on ${item_track}
+        IF    '${kaistan_manuaalivertailu}' == 'True'    Log    Tiedot täsmäävät, kaistoja on ${item_lanetype}    console=yes
         IF    '${kaistan_manuaalivertailu}' == 'True'    BREAK
     END
 
@@ -61,7 +63,7 @@ Kaista_kunta_get_ui_vertailu    [Arguments]    ${testipaikka}
 #   Evaluoidaan JSON
     ${lanes_in_municipality_json}=    Evaluate    json.loads('''${response2.content}''')    json
     ${typestring}=    Evaluate     type(${lanes_in_municipality_json})
-    Log To Console     ${typestring}
+    Log     ${typestring}    console=yes
 
 #    UI Testin koodi
     Login To DigiRoad
@@ -108,14 +110,8 @@ Kaista_kunta_get_ui_vertailu    [Arguments]    ${testipaikka}
         &{arvosanakirja}=    Create Dictionary    roadNumber=${item_roadnumber}    roadPartNumber=${item_roadpartnumber}    track=${item_track}    startAddrMValue=${item_startaddrvalue}    #endAddrMValue=${item_endaddrmvalue}    #laneCode=${item_lanecode}    laneType=${item_lanetype}
 
         ${listavertaus}=    Run Keyword And Return Status    Lists Should Be Equal   ${arvolista}    ${api_lista_}
-        IF    '${listavertaus}' == 'True'    Log to Console    Tiedot täsmäävät
+        IF    '${listavertaus}' == 'True'    Log    Tiedot täsmäävät    console=yes
         IF    '${listavertaus}' == 'False'    CONTINUE
-
-        FOR    ${j}    IN    @{arvolista}
-            Log    ${j}
-            ${listavertaus}=    Run Keyword And Return Status    Should Be Equal   ${arvolista}    ${api_sanakirja_}
-            IF    '${listavertaus}' == 'False'    CONTINUE
-        END
     END
 
 
@@ -123,7 +119,7 @@ Kaista_kunta_get_ui_vertailu    [Arguments]    ${testipaikka}
 ${API_URI_lanes_in_municipality}          /externalApi/lanes/lanes_in_municipality
 &{headers}=                               X-Api-Key=${API_autentikointi}    accept=application/json
 ${Kaista_kunta_api_url_235}               https://api.testivaylapilvi.fi/digiroad/externalApi/lanes/lanes_in_municipality?municipality\=235
-${Kaista_kunta_api_url_179}               https://api.testivaylapilvi.fi/digiroad/externalApi/lanes/lanes_in_municipality?municipality\=179
+
 
 ${179_Lohikoskentie_kaistamäärä}              4
 ${179_Schaumaninpuistotie_kaistamäärä}        2
@@ -132,7 +128,7 @@ ${179_Keuruuntie_kaistamäärä}                 2
 ${179_Vasarakatu_kaistamäärä}                 4
 
 ${286_Kauppalankatu_kaistamäärä}              3
-${286_Mikkelintie_kaistamäärä}                4
+${286_Mikkelintie_kaistamäärä}                2
 ${286_Jyrääntie_kaistamäärä}                  1
 ${286_Kalevantie_kaistamäärä}                 1
 ${286_Kymenlaaksontie_kaistamäärä}            3
