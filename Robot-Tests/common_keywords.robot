@@ -6,6 +6,7 @@ Library                     selenium_extensions.py
 Library                     DateTime
 
 Resource                    variables.robot
+Resource                    API_KW_lanes_in_municipality.robot
 Resource                    KW_Tielinkit.robot
 Resource                    KW_Kartta.robot
 Resource                    KW_UI.robot
@@ -30,9 +31,8 @@ Resource                    KW_Leveys.robot
 Resource                    KW_Valaistus.robot
 
 
-
 *** Variables ***
-${BROWSER}                  Firefox  #Chrome
+${BROWSER}                  Firefox
 ${DELAY}                    0.2
 
 ${LOGIN URL}                https://digiroadtest.testivaylapilvi.fi/
