@@ -4,6 +4,7 @@ env:
   parameter-store:
     Password: "DigiroadUserPassword"
     Username: "DigiroadUserUsername"
+    APIkey: "/qa/apikey/dr_apikey"
 
 phases:
   build:
@@ -11,7 +12,7 @@ phases:
       - echo Selecting browser based on weekday
       - if [ $( date '+%u' ) -le 5 ]; then SELAIN=headlesschrome; else SELAIN=headlessfirefox;  fi
       - echo Selected Browser=$SELAIN
-      - xvfb-run --server-args="-screen 0 1920x1080x24 -ac" robot --xunit xunitlog.xml -d /robotlogs -T -v LiviUSER:$Username -v LiviPWD:$Password -v BROWSER:$SELAIN Robot-Tests/
+      - xvfb-run --server-args="-screen 0 1920x1080x24 -ac" robot --xunit xunitlog.xml -d /robotlogs -T -v LiviUSER:$Username -v LiviPWD:$Password -v BROWSER:$SELAIN Robot-Tests/ -v APIkey:$API_autentikointi
 
 artifacts:
   files:
