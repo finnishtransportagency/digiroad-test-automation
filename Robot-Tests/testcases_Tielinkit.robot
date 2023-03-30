@@ -42,7 +42,7 @@ Tielinkit 3
     KW_Tielinkit.Tielinkit_3  4  6711456, 239789
     KW_Tielinkit.Tielinkit_3  5  6711466, 239867
     KW_Tielinkit.Tielinkit_3  6  6712002, 240743
-    KW_Tielinkit.Tielinkit_3  7  6712058, 240425
+    KW_Tielinkit.Tielinkit_3  7  6712170, 240529
     KW_Tielinkit.Tielinkit_3  8  6711878, 240628
 
 Tielinkit 4
