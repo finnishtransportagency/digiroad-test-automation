@@ -16,14 +16,14 @@ Kaista_kunta_get    [Arguments]        ${kaista_api_kaistamäärä}    ${kaista_
     ...    This is a negative test, where all lanes from a given municipality are searched for values given as parameters. Unlike ordinary tests, "failure" is a default outcome of sort.
     #GET-pyyntö
     ${Kaista_kunta_api_url_blank}=    Set Variable    https://api.testivaylapilvi.fi/digiroad/externalApi/lanes/lanes_in_municipality?municipality\=${kaista_api_kuntanumero}
-    ${response}=    GET  ${Kaista_kunta_api_url_blank}  headers=${headers}
+    ${response}=    GET    ${Kaista_kunta_api_url_blank}  headers=${headers}
     Log    ${response.content}
     Request Should Be Successful    ${response}
 
     #Asetetaan vastauksen tiedot muuttujiin ja tarkistetaan ne
     #Testissä käytetään "maastossa havaittuja" kaistatietoja jota verrataan API:sta saatuun tietoon
-    FOR   ${item}   IN  @{response.json()}
-        Log  ${item}
+    FOR    ${item}    IN    @{response.json()}
+        Log    ${item}
         ${item_roadnumber}=          Set variable    ${item['roadNumber']}
         ${item_roadpartnumber}=      Set variable    ${item['roadPartNumber']}
         ${item_track}=               Set variable    ${item['track']}
@@ -31,7 +31,6 @@ Kaista_kunta_get    [Arguments]        ${kaista_api_kaistamäärä}    ${kaista_
         ${item_endaddrmvalue}=       Set variable    ${item['endAddrMValue']}
         ${item_lanecode}=            Set variable    ${item['laneCode']}
         ${item_lanetype}=            Set variable    ${item['laneType']}
-
         ${item_roadnumber}=          Convert To Integer    ${item_roadnumber}
         ${item_roadpartnumber}=      Convert To Integer    ${item_roadpartnumber}
         ${item_track}=               Convert To Integer    ${item_track}
@@ -39,25 +38,22 @@ Kaista_kunta_get    [Arguments]        ${kaista_api_kaistamäärä}    ${kaista_
         ${item_endaddrmvalue}=       Convert To Integer    ${item_endaddrmvalue}
         ${item_lanecode}=            Convert To Integer    ${item_lanecode}
         ${item_lanetype}=            Convert To Integer    ${item_lanetype}
-
-        #tutkitaan löytyykö jsonista maastosta havaittuja arvoja
         ${tarkista_tienumero}=    Run Keyword And Return Status    Should Be Equal As Integers   ${item_roadnumber}    ${kaista_api_tienumero}
-        ${tarkista_tienosanumero}=    Run Keyword And Return Status    Should Be Equal As Integers   ${item_roadpartnumber}    ${kaista_api_tienosanumero}
+        ${tarkista_tienosanumero}=    Run Keyword And Return Status    Should Be Equal As Integers    ${item_roadpartnumber}    ${kaista_api_tienosanumero}
         ${kaistan_manuaalivertailu}=    Run Keyword And Return Status    Should Be Equal As Integers    ${item_lanetype}    ${kaista_api_kaistamäärä}
-
-        IF    '${tarkista_tienumero}' == 'False'   CONTINUE
-        IF    '${tarkista_tienumero}' == 'True'    Log   Road number ${kaista_api_tienumero} starting from ${item_startaddrvalue}, lane ${kaista_api_kaistamäärä} found    console=yes
-        IF    '${tarkista_tienosanumero}' == 'False'   CONTINUE
-        IF    '${tarkista_tienosanumero}' == 'True'   Log   Road number ${kaista_api_tienumero}, part ${kaista_api_tienosanumero} starting from ${item_startaddrvalue}, lane ${kaista_api_kaistamäärä} found    console=yes
+        IF    '${tarkista_tienumero}' == 'False'    CONTINUE
+        IF    '${tarkista_tienumero}' == 'True'    Log    Road number ${kaista_api_tienumero} starting from ${item_startaddrvalue}, lane ${kaista_api_kaistamäärä} found    console=yes
+        IF    '${tarkista_tienosanumero}' == 'False'    CONTINUE
+        IF    '${tarkista_tienosanumero}' == 'True'    Log    Road number ${kaista_api_tienumero}, part ${kaista_api_tienosanumero} starting from ${item_startaddrvalue}, lane ${kaista_api_kaistamäärä} found    console=yes
         IF    '${kaistan_manuaalivertailu}' == 'False'    CONTINUE
         IF    '${kaistan_manuaalivertailu}' == 'True'    Log    Tiedot täsmäävät, kaistoja on ${item_lanetype}    console=yes
         IF    '${kaistan_manuaalivertailu}' == 'True'    BREAK
-    END
+        END
 
 
 Kaista_kunta_get_ui_vertailu    [Arguments]    ${testipaikka}
 #   GET-pyyntö
-    ${response2}=    GET  ${Kaista_kunta_api_url_235}  headers=${headers}
+    ${response2}=    GET    ${Kaista_kunta_api_url_235}  headers=${headers}
     Log    ${response2.content}
     Request Should Be Successful    ${response2}
 #   Evaluoidaan JSON
@@ -88,31 +84,25 @@ Kaista_kunta_get_ui_vertailu    [Arguments]    ${testipaikka}
 
     #muodostetaan ui-tiedoista sanakirja
     &{api_sanakirja_}=    Create Dictionary      roadNumber=${api_TIENNUMERO}    roadPartNumber=${api_TIEOSANUMERO}     track=${api_AJORATA}     startAddrMValue=${api_ALKUETÄISYYS}     #endAddrMValue=${api_LOPPUETÄISYYS}     #laneCode=21     laneType=1
-    Log  ${api_sanakirja_}
+    Log    ${api_sanakirja_}
 
     #muodostetaan ui-tiedoista lista
     @{api_lista_}=    Create List    ${api_TIENNUMERO}    ${api_TIEOSANUMERO}     ${api_AJORATA}     ${api_ALKUETÄISYYS}     #${api_LOPPUETÄISYYS}     #21     1
     Log    ${api_lista_}
 
     #vertaa vastausta ja ui-tietoja keskenään
-    FOR   ${item}   IN  @{response2.json()}
-        Log  ${item}
+    FOR    ${item}    IN    @{response2.json()}
+        Log    ${item}
         ${item_roadnumber}=          Set variable    ${item['roadNumber']}
         ${item_roadpartnumber}=      Set variable    ${item['roadPartNumber']}
         ${item_track}=               Set variable    ${item['track']}
         ${item_startaddrvalue}=      Set variable    ${item['startAddrMValue']}
-        #${item_endaddrmvalue}=       Set variable    ${item['endAddrMValue']}
-        #${item_lanecode}=            Set variable    ${item['laneCode']}
-        #${item_lanetype}=            Set variable    ${item['laneType']}
-
-        @{arvolista}=    Create List    ${item_roadnumber}    ${item_roadpartnumber}    ${item_track}    ${item_startaddrvalue}    #${item_endaddrmvalue}    #${item_lanecode}    ${item_lanetype}
-
-        &{arvosanakirja}=    Create Dictionary    roadNumber=${item_roadnumber}    roadPartNumber=${item_roadpartnumber}    track=${item_track}    startAddrMValue=${item_startaddrvalue}    #endAddrMValue=${item_endaddrmvalue}    #laneCode=${item_lanecode}    laneType=${item_lanetype}
-
-        ${listavertaus}=    Run Keyword And Return Status    Lists Should Be Equal   ${arvolista}    ${api_lista_}
+        @{arvolista}=    Create List    ${item_roadnumber}    ${item_roadpartnumber}    ${item_track}    ${item_startaddrvalue}
+        &{arvosanakirja}=    Create Dictionary    roadNumber=${item_roadnumber}    roadPartNumber=${item_roadpartnumber}    track=${item_track}    startAddrMValue=${item_startaddrvalue}
+        ${listavertaus}=    Run Keyword And Return Status    Lists Should Be Equal    ${arvolista}    ${api_lista_}
         IF    '${listavertaus}' == 'True'    Log    Tiedot täsmäävät    console=yes
         IF    '${listavertaus}' == 'False'    CONTINUE
-    END
+        END
 
 
 *** Variables ***
