@@ -7,6 +7,7 @@ Library                     DateTime
 
 Resource                    variables.robot
 Resource                    API_KW_lanes_in_municipality.robot
+Resource                    API_KW_lane_information.robot
 Resource                    KW_Tielinkit.robot
 Resource                    KW_Kartta.robot
 Resource                    KW_UI.robot
