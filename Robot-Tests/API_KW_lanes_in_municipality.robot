@@ -15,8 +15,16 @@ Kaista_kunta_get    [Arguments]        ${kaista_api_kaistamäärä}    ${kaista_
     [Documentation]    Find given values from response. 
     ...    This is a negative test, where all lanes from a given municipality are searched for values given as parameters. Unlike ordinary tests, "failure" is a default outcome of sort.
     #GET-pyyntö
+    #Set Max Redirects
     ${Kaista_kunta_api_url_blank}=    Set Variable    https://api.testivaylapilvi.fi/digiroad/externalApi/lanes/lanes_in_municipality?municipality\=${kaista_api_kuntanumero}
-    ${response}=    GET    ${Kaista_kunta_api_url_blank}  headers=${headers}
+
+    TRY
+            ${response}=    GET    ${Kaista_kunta_api_url_blank}    headers=${headers}
+    EXCEPT
+            ${response}=    GET    ${Kaista_kunta_api_url_blank}    headers=${headers}
+    END
+
+    #${response}=    GET    ${Kaista_kunta_api_url_blank}    headers=${headers}
     Log    ${response.content}
     Request Should Be Successful    ${response}
 
@@ -48,7 +56,8 @@ Kaista_kunta_get    [Arguments]        ${kaista_api_kaistamäärä}    ${kaista_
         IF    '${kaistan_manuaalivertailu}' == 'False'    CONTINUE
         IF    '${kaistan_manuaalivertailu}' == 'True'    Log    Tiedot täsmäävät, kaistoja on ${item_lanetype}    console=yes
         IF    '${kaistan_manuaalivertailu}' == 'True'    BREAK
-        END
+    END
+    #Delete All Sessions
 
 
 Kaista_kunta_get_ui_vertailu    [Arguments]    ${testipaikka}
@@ -102,7 +111,7 @@ Kaista_kunta_get_ui_vertailu    [Arguments]    ${testipaikka}
         ${listavertaus}=    Run Keyword And Return Status    Lists Should Be Equal    ${arvolista}    ${api_lista_}
         IF    '${listavertaus}' == 'True'    Log    Tiedot täsmäävät    console=yes
         IF    '${listavertaus}' == 'False'    CONTINUE
-        END
+    END
 
 
 *** Variables ***

@@ -7,6 +7,7 @@ from selenium.webdriver.common.action_chains import ActionChains
 #from selenium.webdriver.common.touch_actions import TouchActions
 from robot.libraries.BuiltIn import BuiltIn
 from selenium.webdriver.common.keys import Keys
+import requests
 #from pyproj import Proj, transform
 
 #from selenium.webdriver.common.utils import keys_to_typing
@@ -152,3 +153,7 @@ def mouse_cl(locator):
     ActionChains(driver).move_to_element(elem).send_keys(Keys.UP).perform()
 # ActionChains(driver).wheel(elem).perform()
 #   ActionChains(driver).click(elem).perform()
+
+def set_max_redirects():
+    session = requests.Session()
+    session.max_redirects = 100
