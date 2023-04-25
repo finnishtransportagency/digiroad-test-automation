@@ -11,7 +11,7 @@ Library    RequestsLibrary
 Library    Collections
 
 *** Keywords ***
-Kaista_tieto_get    [Arguments]    ${testipaikka}
+Kaista_tieto_get    [Arguments]    ${testipaikka}    ${information_api_tienumero}
     [Documentation]    Find given values from response. 
     ...    This is a negative test, where all changes from a given municipality are searched for values given as parameters. Unlike ordinary tests, "failure" is a default outcome of sort.
     Login To DigiRoad
@@ -44,19 +44,50 @@ Kaista_tieto_get    [Arguments]    ${testipaikka}
     Wait Until Element Is Not Visible           ${Spinner_Overlay}
     Odota sivun latautuminen
     Sleep    60s
+    Close Browser
 
     #GET-pyyntö
+    TRY
     Log    GET-pyyntö    console=yes
     Init Session
-    ${end_date} =    Get Current Date
+    ${end_date} =    Get Current Date    time_zone=UTC
     ${end_date} =    Convert Date    ${end_date}    result_format=%Y-%m-%dT%H:%M:%SZ
-    ${start_date} =    Subtract Time From Date    ${end_date}    60 minutes
+    ${start_date} =    Subtract Time From Date    ${end_date}    22 hours    #oltava mikä vain arvo ennen end_date:a klo 00:00 UTC+0
     ${start_date} =    Convert Date    ${start_date}    result_format=%Y-%m-%dT%H:%M:%SZ
     ${Kaista_tieto_api_url_blank}=    Set Variable    https://api.testivaylapilvi.fi/digiroad/externalApi/changes/lane_information?since=${start_date}&until=${end_date}
-    ${response}=    GET  ${Kaista_tieto_api_url_blank}  headers=${headers}
+    
+        TRY
+            ${response}=    GET    ${Kaista_tieto_api_url_blank}    headers=${headers}
+        EXCEPT
+            ${response}=    GET    ${Kaista_tieto_api_url_blank}    headers=${headers}
+        END
+
+    #${response}=    Wait Until Keyword Succeeds    GET    ${Kaista_tieto_api_url_blank}    headers=${headers}
+
+    #${response}=    GET    ${Kaista_tieto_api_url_blank}    headers=${headers}
     Log    ${response.content}    console=yes
     Request Should Be Successful    ${response}
+    #Delete All Sessions
 
+    FOR    ${item}    IN    @{response.json()}
+        Log    ${item}
+        ${item_roadnumber}=          Set variable    ${item['roadNumber']}
+        ${item_startdate}=          Set variable    ${item['startDate']}
+
+        ${item_roadnumber}=          Convert To Integer    ${item_roadnumber}
+        ${item_startdate}=          Convert Date    ${item_startdate}    result_format=%Y-%m-%dT%H:%M:%SZ
+
+        ${tarkista_tienumero}=    Run Keyword And Return Status    Should Be Equal As Integers    ${item_roadnumber}    ${information_api_tienumero}
+        IF    '${tarkista_tienumero}' == 'False'    CONTINUE
+        IF    '${tarkista_tienumero}' == 'True'    Log    Road number ${information_api_tienumero} starting from ${item_startdate} found    console=yes
+
+        ${tarkista_pvm}=    Should Be Equal    ${item_startdate}    ${start_date}
+        IF    '${tarkista_pvm}' == 'True'    Log    Date ${item_startdate} matches    console=yes
+    END
+
+    FINALLY
+    #Lisättyjen kaistojen poisto
+    Log    Kaistojen poisto    console=yes
     Login To DigiRoad
     Log  Vaihdetaan experimetal osoitteseen ja siirrytään testipaikkaan.
     vaihda tietolaji                            ${TL_Kaistan_mallinnustyökalu_RB}
@@ -82,8 +113,13 @@ Kaista_tieto_get    [Arguments]    ${testipaikka}
     Wait Until Element Is Not Visible           ${Map_popup}
     Click Element                               ${Muokkausvaroitus_Kyllä_btn}
     Wait Until Element Is Not Visible           ${Spinner_Overlay}
-    Odota sivun latautuminen
+    TRY
+        Odota sivun latautuminen
+    EXCEPT    Virhe
+        Odota sivun latautuminen
+    END
     Close All Browsers
+    END
 
 *** Variables ***
 ${API_URI_lane_information}               /externalApi/changes/lane_information
