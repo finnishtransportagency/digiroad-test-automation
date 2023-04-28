@@ -13,7 +13,7 @@ Library    Collections
 *** Keywords ***
 Kaista_tieto_get    [Arguments]    ${testipaikka}    ${information_api_tienumero}
     [Documentation]    Find given values from response. 
-    ...    This is a negative test, where all changes from a given municipality are searched for values given as parameters. Unlike ordinary tests, "failure" is a default outcome of sort.
+    ...
     Login To DigiRoad
     Log  Vaihdetaan experimetal osoitteseen ja siirrytään testipaikkaan.
     vaihda tietolaji                            ${TL_Kaistan_mallinnustyökalu_RB}
@@ -71,8 +71,8 @@ Kaista_tieto_get    [Arguments]    ${testipaikka}    ${information_api_tienumero
 
     FOR    ${item}    IN    @{response.json()}
         Log    ${item}
-        ${item_roadnumber}=          Set variable    ${item['roadNumber']}
-        ${item_startdate}=          Set variable    ${item['startDate']}
+        ${item_roadnumber}=          Set variable    ${item[roadNumber]}
+        ${item_startdate}=          Set variable    ${item[startDate]}
 
         ${item_roadnumber}=          Convert To Integer    ${item_roadnumber}
         ${item_startdate}=          Convert Date    ${item_startdate}    result_format=%Y-%m-%dT%H:%M:%SZ
