@@ -25,10 +25,7 @@ Kaista_tieto_get    [Arguments]    ${testipaikka}    ${information_api_tienumero
     Siirry Muokkaustilaan
     Wait Until Element Is Not Visible           ${Map_popup}
     
-    #Poista Ylimääräiset Kaistat
-    
     ${kaista_PVM} =    Get Current Date
-    #${kaista_PVM} =    Subtract Time From Date    ${kaista_PVM}    24 hours
     ${kaista_PVM} =    Convert Date             ${kaista_PVM}    result_format=%d.%m.%Y
     Click Element                               ${FA_Lisää_kaista_oikealle}
     Input Text                                  ${KT_Alkupäivämäärä}    ${kaista_PVM}
@@ -46,7 +43,7 @@ Kaista_tieto_get    [Arguments]    ${testipaikka}    ${information_api_tienumero
     Sleep    60s
     Close Browser
 
-    #GET-pyyntö
+    #GET-pyyntö: tutkitaan ovatko tehdyt muutokset rajapinnassa nähtävissä
     TRY
     Log    GET-pyyntö    console=yes
     Init Session
@@ -55,24 +52,15 @@ Kaista_tieto_get    [Arguments]    ${testipaikka}    ${information_api_tienumero
     ${start_date} =    Subtract Time From Date    ${end_date}    22 hours    #oltava mikä vain arvo ennen end_date:a klo 00:00 UTC+0
     ${start_date} =    Convert Date    ${start_date}    result_format=%Y-%m-%dT%H:%M:%SZ
     ${Kaista_tieto_api_url_blank}=    Set Variable    https://api.testivaylapilvi.fi/digiroad/externalApi/changes/lane_information?since=${start_date}&until=${end_date}
-    
-        TRY
-            ${response}=    GET    ${Kaista_tieto_api_url_blank}    headers=${headers}
-        EXCEPT
-            ${response}=    GET    ${Kaista_tieto_api_url_blank}    headers=${headers}
-        END
 
-    #${response}=    Wait Until Keyword Succeeds    GET    ${Kaista_tieto_api_url_blank}    headers=${headers}
-
-    #${response}=    GET    ${Kaista_tieto_api_url_blank}    headers=${headers}
-    Log    ${response.content}    console=yes
+    ${response}=    GET    ${Kaista_tieto_api_url_blank}    headers=${headers}
+    #Log    ${response.content}    console=yes
     Request Should Be Successful    ${response}
-    #Delete All Sessions
 
     FOR    ${item}    IN    @{response.json()}
         Log    ${item}
-        ${item_roadnumber}=          Set variable    ${item[roadNumber]}
-        ${item_startdate}=          Set variable    ${item[startDate]}
+        ${item_roadnumber}=          Set variable    ${item['roadNumber']}
+        ${item_startdate}=          Set variable    ${item['startDate']}
 
         ${item_roadnumber}=          Convert To Integer    ${item_roadnumber}
         ${item_startdate}=          Convert Date    ${item_startdate}    result_format=%Y-%m-%dT%H:%M:%SZ
@@ -115,7 +103,7 @@ Kaista_tieto_get    [Arguments]    ${testipaikka}    ${information_api_tienumero
     Wait Until Element Is Not Visible           ${Spinner_Overlay}
     TRY
         Odota sivun latautuminen
-    EXCEPT    Virhe
+    EXCEPT    Virhe kaistojen poistossa
         Odota sivun latautuminen
     END
     Close All Browsers
