@@ -25,13 +25,14 @@ Kaista_tieto_get    [Arguments]    ${testipaikka}    ${information_api_tienumero
     Siirry Muokkaustilaan
     Wait Until Element Is Not Visible           ${Map_popup}
     
-    ${kaista_PVM} =    Get Current Date
-    ${kaista_PVM} =    Convert Date             ${kaista_PVM}    result_format=%d.%m.%Y
+    ${kaista_loppuPVM} =    Get Current Date    result_format=%d.%m.%Y
+    ${kaista_loppuPVM} =    Convert Date             ${kaista_loppuPVM}    date_format=%d.%m.%Y    result_format=%d.%m.%Y
+    ${kaista_alkuPVM}=    Subtract Time From Date    ${kaista_loppuPVM}    1 day    date_format=%d.%m.%Y    result_format=%d.%m.%Y
     Click Element                               ${FA_Lisää_kaista_oikealle}
-    Input Text                                  ${KT_Alkupäivämäärä}    ${kaista_PVM}
+    Input Text                                  ${KT_Alkupäivämäärä}    ${kaista_alkuPVM}
     Press Keys                                  ${KT_Alkupäivämäärä}    RETURN
     Click Element                               ${FA_Lisää_kaista_vasemmalle}
-    Input Text                                  ${KT_Alkupäivämäärä}    ${kaista_PVM}
+    Input Text                                  ${KT_Alkupäivämäärä}    ${kaista_alkuPVM}
     Press Keys                                  ${KT_Alkupäivämäärä}    RETURN
 
     Log  Talletetaan ja päätetään kaistat
@@ -40,7 +41,7 @@ Kaista_tieto_get    [Arguments]    ${testipaikka}    ${information_api_tienumero
     Click Element                               ${Muokkausvaroitus_Kyllä_btn}
     Wait Until Element Is Not Visible           ${Spinner_Overlay}
     Odota sivun latautuminen
-    Sleep    60s
+    Sleep    60s    #annetaan muutoksille aikaa tallentua
     Close Browser
 
     #GET-pyyntö: tutkitaan ovatko tehdyt muutokset rajapinnassa nähtävissä
@@ -49,27 +50,29 @@ Kaista_tieto_get    [Arguments]    ${testipaikka}    ${information_api_tienumero
     Init Session
     ${end_date} =    Get Current Date    time_zone=UTC
     ${end_date} =    Convert Date    ${end_date}    result_format=%Y-%m-%dT%H:%M:%SZ
-    ${start_date} =    Subtract Time From Date    ${end_date}    22 hours    #oltava mikä vain arvo ennen end_date:a klo 00:00 UTC+0
+    ${start_date} =    Subtract Time From Date    ${end_date}    24 hours    #oltava mikä vain arvo ennen end_date:a klo 00:00 UTC+0
     ${start_date} =    Convert Date    ${start_date}    result_format=%Y-%m-%dT%H:%M:%SZ
-    ${Kaista_tieto_api_url_blank}=    Set Variable    https://api.testivaylapilvi.fi/digiroad/externalApi/changes/lane_information?since=${start_date}&until=${end_date}
+    ${start_date_comparable}=    Convert Date    ${start_date}    result_format=%d.%m.%Y
+    ${Kaista_tieto_api_url_blank}=    Set Variable    https://api.testivaylapilvi.fi/digiroad/externalApi/changes/lane_information?since=${start_date}&until=${end_date}&withAdjust=0
 
     ${response}=    GET    ${Kaista_tieto_api_url_blank}    headers=${headers}
-    #Log    ${response.content}    console=yes
+    Log    ${response.content}    console=yes
     Request Should Be Successful    ${response}
+    ${lane_information_json}=    Evaluate    json.loads('''${response.content}''')    json
 
-    FOR    ${item}    IN    @{response.json()}
-        Log    ${item}
-        ${item_roadnumber}=          Set variable    ${item['roadNumber']}
-        ${item_startdate}=          Set variable    ${item['startDate']}
+    #Käydään JSON läpi feature-itemeittäin
+    FOR    ${item}    IN    @{lane_information_json['features']}
+        ${item_roadnumber}=         Set variable    ${item["roadNumber"]}
+        ${item_modified_by}=        Set Variable    ${item["changedBy"]}
+        ${item_startdate}=          Set variable    ${item["startDate"]}
 
         ${item_roadnumber}=          Convert To Integer    ${item_roadnumber}
-        ${item_startdate}=          Convert Date    ${item_startdate}    result_format=%Y-%m-%dT%H:%M:%SZ
 
-        ${tarkista_tienumero}=    Run Keyword And Return Status    Should Be Equal As Integers    ${item_roadnumber}    ${information_api_tienumero}
-        IF    '${tarkista_tienumero}' == 'False'    CONTINUE
-        IF    '${tarkista_tienumero}' == 'True'    Log    Road number ${information_api_tienumero} starting from ${item_startdate} found    console=yes
+        ${tarkista_muokkaaja}=    Run Keyword And Return Status    Should Be Equal    ${item_modified_by}    ${LiviUSER}
+        IF    '${tarkista_muokkaaja}' == 'False'    CONTINUE
+        IF    '${tarkista_muokkaaja}' == 'True'    Log    Link modified by ${item_modified_by} starting from ${start_date} found    console=yes
 
-        ${tarkista_pvm}=    Should Be Equal    ${item_startdate}    ${start_date}
+        ${tarkista_pvm}=    Should Be Equal    ${item_startdate}    ${start_date_comparable}
         IF    '${tarkista_pvm}' == 'True'    Log    Date ${item_startdate} matches    console=yes
     END
 
@@ -88,7 +91,6 @@ Kaista_tieto_get    [Arguments]    ${testipaikka}    ${information_api_tienumero
     Valitse Kaista                              1
     
     Element Should Contain                      ${KT_Kaista}  2
-    
     Click Element                               ${KT_Päätä_Lisakaista}
     Click Element                               ${Muokkausvaroitus_Kyllä_btn}
 
