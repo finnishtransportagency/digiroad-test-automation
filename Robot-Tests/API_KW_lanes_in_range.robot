@@ -11,12 +11,12 @@ Library    RequestsLibrary
 Library    Collections
 
 *** Keywords ***
-Kaista_väli_get    [Arguments]        ${kaista_api_kaistamäärä}    ${kaista_api_tienumero}    ${kaista_api_tienosanumero}    ${kaista_api_välinumero}
+Kaista_väli_get    [Arguments]        ${kaista_api_kaistamäärä}    ${kaista_api_tienumero}    ${kaista_api_aloitusajorata}    ${kaista_api_tienosanumero}    ${kaista_api_aloitusluku}    ${kaista_api_lopetusajorata}    ${kaista_api_lopetusluku}
     [Documentation]    Find given values from response. 
     ...    This is a negative test, where all lanes from a given municipality are searched for values given as parameters. Unlike ordinary tests, "failure" is a default outcome of sort.
     #GET-pyyntö
     #Set Max Redirects
-    ${Kaista_väli_api_url_blank}=    Set Variable    https://api.testivaylapilvi.fi/digiroad/externalApi/lanes/lanes_in_municipality?municipality\=${kaista_api_välinumero}
+    ${Kaista_väli_api_url_blank}=    Set Variable    https://api.testivaylapilvi.fi/digiroad/externalApi/lanes/lanes_in_range?road_number=${kaista_api_tienumero}&track=${kaista_api_aloitusajorata}&start_part=${kaista_api_tienosanumero}&start_addrm=${kaista_api_aloitusluku}&end_part=${kaista_api_lopetusajorata}&end_addrm=${kaista_api_lopetusluku}
 
     TRY
             ${response}=    GET    ${Kaista_väli_api_url_blank}    headers=${headers}
@@ -24,7 +24,7 @@ Kaista_väli_get    [Arguments]        ${kaista_api_kaistamäärä}    ${kaista_
             ${response}=    GET    ${Kaista_väli_api_url_blank}    headers=${headers}
     END
 
-    #${response}=    GET    ${Kaista_väli_api_url_blank}    headers=${headers}
+    ${response}=    GET    ${Kaista_väli_api_url_blank}    headers=${headers}
     Log    ${response.content}
     Request Should Be Successful    ${response}
 
@@ -32,6 +32,7 @@ Kaista_väli_get    [Arguments]        ${kaista_api_kaistamäärä}    ${kaista_
     #Testissä käytetään "maastossa havaittuja" kaistatietoja jota verrataan API:sta saatuun tietoon
     FOR    ${item}    IN    @{response.json()}
         Log    ${item}
+
         ${item_roadnumber}=          Set variable    ${item['roadNumber']}
         ${item_roadpartnumber}=      Set variable    ${item['roadPartNumber']}
         ${item_track}=               Set variable    ${item['track']}
@@ -46,9 +47,11 @@ Kaista_väli_get    [Arguments]        ${kaista_api_kaistamäärä}    ${kaista_
         ${item_endaddrmvalue}=       Convert To Integer    ${item_endaddrmvalue}
         ${item_lanecode}=            Convert To Integer    ${item_lanecode}
         ${item_lanetype}=            Convert To Integer    ${item_lanetype}
+
         ${tarkista_tienumero}=    Run Keyword And Return Status    Should Be Equal As Integers   ${item_roadnumber}    ${kaista_api_tienumero}
         ${tarkista_tienosanumero}=    Run Keyword And Return Status    Should Be Equal As Integers    ${item_roadpartnumber}    ${kaista_api_tienosanumero}
         ${kaistan_manuaalivertailu}=    Run Keyword And Return Status    Should Be Equal As Integers    ${item_lanetype}    ${kaista_api_kaistamäärä}
+        
         IF    '${tarkista_tienumero}' == 'False'    CONTINUE
         IF    '${tarkista_tienumero}' == 'True'    Log    Road number ${kaista_api_tienumero} starting from ${item_startaddrvalue}, lane ${kaista_api_kaistamäärä} found    console=yes
         IF    '${tarkista_tienosanumero}' == 'False'    CONTINUE

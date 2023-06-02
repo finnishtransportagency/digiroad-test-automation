@@ -14,4 +14,4 @@ Kaista_kunta_get
     [Tags]              API  Kaistarajapinta
 
     [Documentation]     Palauttaa kaistatiedot homogenisoituna kysytyltä tieosoiteväliltä 
-    API_KW_lanes_in_range.Kaista_väli_get    ${179_Lohikoskentie_kaistamäärä}         637      1        179
+    API_KW_lanes_in_range.Kaista_väli_get    ${179_Lohikoskentie_kaistamäärä}    51    2    1    225    3    2186
