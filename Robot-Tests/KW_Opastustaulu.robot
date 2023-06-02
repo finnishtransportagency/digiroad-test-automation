@@ -104,7 +104,7 @@ Poista Opastustaulu
     click element                               ${FA_Opastustaulu_Poista_chkbx}
     click element                               ${FA_footer_Tallenna}
     wait until element is visible               ${MuokkausVaroitus}
-    element text should be                      ${MuokkausVaroitus}     ${Opastustaulun_poisto}
+    SeleniumLibrary.Element Text Should Be                      ${MuokkausVaroitus}     ${Opastustaulun_poisto}
     click element                               ${muokkausvaroitus_kyllä_btn}
 
 

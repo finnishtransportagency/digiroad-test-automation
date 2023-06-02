@@ -107,7 +107,7 @@ Poista Suojatie
     click element                               ${FA_Suojatie_Poista_chkbx}
     click element                               ${FA_footer_Tallenna}
     wait until element is visible               ${MuokkausVaroitus}
-    element text should be                      ${MuokkausVaroitus}     ${Suojatien_poisto}
+    SeleniumLibrary.Element Text Should Be                      ${MuokkausVaroitus}     ${Suojatien_poisto}
     click element                               ${muokkausvaroitus_kyllä_btn}
 
 
