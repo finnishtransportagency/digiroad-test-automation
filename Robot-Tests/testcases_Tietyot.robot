@@ -20,15 +20,22 @@ Tietyön_tarkastelu
     KW_Tietyot.Tietyön_tarkastelu      6888602, 430380
 
 
+Tietyön_tarkastelu_FA
+    [Tags]  AWS  Tietyö
+    [Documentation]  Tietyön tarkastelu katselumoodissa.
+
+    KW_Tietyot.Tietyön_tarkastelu_FA      6888602, 430380
+
+
 Tietyön_vaihto_peruutus
     [Tags]  AWS  Tietyö
-    [Documentation]  Tietyön muokkaus koko ketjulle
+    [Documentation]  Tietyön muokkaus tallentamatta koko ketjulle
 
-    KW_Tietyot.Tietyön_vaihto_peruutus      6702779, 495817
+    KW_Tietyot.Tietyön_vaihto_peruutus      6702779, 495817    mielivaltainenmerkkijono
 
 Tietyön_vaihto_tallennus
     [Tags]  AWS  Tietyö
-    [Documentation]  Tietyön muokkaus koko ketjulle
+    [Documentation]  Tietyön muokkaus tallentaen koko ketjulle
 
     KW_Tietyot.Tietyön_vaihto_tallennus     6905946, 428711
 
