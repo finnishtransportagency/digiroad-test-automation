@@ -1,4 +1,4 @@
-ARG image="python:3.9.0-alpine3.12"
+ARG image="python:alpine3.18"
 FROM ${image}
 
 #MAINTAINER 
@@ -32,11 +32,11 @@ ENV ROBOT_GID 1000
 # Dependency versions
 ENV ALPINE_GLIBC 2.35-r1
 #2.31-r0
-ENV CHROMIUM_VERSION 113.0
+ENV CHROMIUM_VERSION 114.0.5735.106-r0
 #86.0
-ENV FIREFOX_VERSION 113
+ENV FIREFOX_VERSION 102.12.0-r0
 #78
-ENV GECKO_DRIVER_VERSION v0.30.0
+ENV GECKO_DRIVER_VERSION v0.33.0
 #v0.26.0
 ENV PABOT_VERSION 2.15.0
 #1.10.0
@@ -78,8 +78,8 @@ RUN apk update \
   #&& mv /usr/lib/chromium/chrome /usr/lib/chromium/chrome-original \
   #&& ln -sfv /opt/robotframework/bin/chromium-browser /usr/lib/chromium/chrome \
 # FIXME: above is a workaround, as the path is ignored
-
 # Install Robot Framework and Selenium Library
+#
   && pip3 install \
     --no-cache-dir \
     robotframework==$ROBOT_FRAMEWORK_VERSION \
@@ -87,8 +87,7 @@ RUN apk update \
     robotframework-seleniumlibrary==$SELENIUM_LIBRARY_VERSION \
     robotframework-requests==$ROBOT_FRAMEWORK_REQUESTS_VERSION \
     PyYAML \
-
-
+#
 # Download the glibc package for Alpine Linux from its GitHub repository
   && wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub \
     && wget -q "https://github.com/sgerrand/alpine-pkg-glibc/releases/download/$ALPINE_GLIBC/glibc-$ALPINE_GLIBC.apk" \
@@ -98,7 +97,7 @@ RUN apk update \
     && rm glibc-$ALPINE_GLIBC.apk \
     && rm glibc-bin-$ALPINE_GLIBC.apk \
     && rm /etc/apk/keys/sgerrand.rsa.pub \
-
+#
 # Download Gecko drivers directly from the GitHub repository
   && wget -q "https://github.com/mozilla/geckodriver/releases/download/$GECKO_DRIVER_VERSION/geckodriver-$GECKO_DRIVER_VERSION-linux64.tar.gz" \
     && tar xzf geckodriver-$GECKO_DRIVER_VERSION-linux64.tar.gz \
