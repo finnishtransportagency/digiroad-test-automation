@@ -27,11 +27,23 @@ Tietyön_tarkastelu_FA
     KW_Tietyot.Tietyön_tarkastelu_FA      6888602, 430380
 
 
-Tietyön_vaihto_peruutus
+Usean_tietyön_muuttaminen_klikkaamalla
     [Tags]  AWS  Tietyö
-    [Documentation]  Tietyön muokkaus tallentamatta koko ketjulle
+    [Documentation]  Usean tietyön valinta ctrl-napilla
 
-    KW_Tietyot.Tietyön_vaihto_peruutus      6702779, 495817    mielivaltainenmerkkijono
+    KW_Tietyot.Usean_tietyön_muuttaminen_klikkaamalla      6899638, 435711    mielivaltainenmerkkijono
+
+Usean_tietyön_muuttaminen_polygonilla
+    [Tags]  AWS  Tietyö
+    [Documentation]  Usean tietyön valinta ctrl-napilla
+
+    KW_Tietyot.Usean_tietyön_muuttaminen_polygonilla      6899638, 435711    mielivaltainenmerkkijono
+
+Usean_tietyön_muuttaminen_laatikolla
+    [Tags]  AWS  Tietyö
+    [Documentation]  Usean tietyön valinta ctrl-napilla
+
+    KW_Tietyot.Usean_tietyön_muuttaminen_laatikolla      6899638, 435711    mielivaltainenmerkkijono
 
 Tietyön_vaihto_tallennus
     [Tags]  AWS  Tietyö
