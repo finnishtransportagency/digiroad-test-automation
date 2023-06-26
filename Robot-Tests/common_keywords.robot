@@ -196,7 +196,7 @@ Valitse Selain
     ${date}=  Get Current Date
     ${date}=  Convert Date  ${date}  result_format=%w
     ${BROWSER}=  Run Keyword If  0<=${date}<5  Set Variable  Chrome
-    ...  ELSE IF  Set Variable  Firefox
+    ...  ELSE IF  Set Variable  ${BROWSER}=    Firefox
     log to console  ${BROWSER}
     [Return]  ${BROWSER}
 
