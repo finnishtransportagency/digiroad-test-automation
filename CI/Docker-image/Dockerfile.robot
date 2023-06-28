@@ -47,7 +47,8 @@ ENV SELENIUM_LIBRARY_VERSION 5.1.3
 #6.0.0 not working, downgraded back to 5.1.3. Hotfix coming in 6.1.1
 ENV XVFB_VERSION 1.20
 ENV ROBOT_FRAMEWORK_REQUESTS_VERSION 0.9.4
-# 0.9.1
+#0.9.4
+ENV SELENIUM_VERSION 4.9.0
 
 # Prepare binaries to be executed
 #COPY bin/chromedriver.sh /opt/robotframework/bin/chromedriver
@@ -84,6 +85,7 @@ RUN apk update \
   && pip3 install \
     --no-cache-dir \
     robotframework==$ROBOT_FRAMEWORK_VERSION \
+    selenium==$SELENIUM_VERSION \
     robotframework-pabot==$PABOT_VERSION \
     robotframework-seleniumlibrary==$SELENIUM_LIBRARY_VERSION \
     robotframework-requests==$ROBOT_FRAMEWORK_REQUESTS_VERSION \
