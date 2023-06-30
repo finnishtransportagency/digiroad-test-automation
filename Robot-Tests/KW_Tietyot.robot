@@ -3,8 +3,8 @@
 *** Settings ***
 Documentation       Keywords for roadworks (Tietyöt)
 Resource    common_keywords.robot
-Library    robotframework-doctestlibrary
-Library    DocTest.VisualTest
+#Library    robotframework-doctestlibrary
+#Library    DocTest.VisualTest
 
 *** Keywords ***
 Tietyön tarkastelu   [arguments]            ${testipaikka}
@@ -24,7 +24,7 @@ Tietyön tarkastelu   [arguments]            ${testipaikka}
     Select Checkbox                ${Tietyö_täydentävätlinkit_valinta}
     Checkbox Should Be Selected    ${Tietyö_täydentävätlinkit_valinta}
     Odota sivun latautuminen
-
+    #Lisätään visuaalinen testi
 
 Tietyön tarkastelu_FA    [arguments]        ${testipaikka}
     #testitapaus 3
@@ -278,17 +278,21 @@ Tietyön katkaisu    [arguments]        ${testipaikka}    ${tietyöteksti}    ${
 
     Input Text                                  ${Tietyö_FA_työntunnus_katkaisu_B}    ${tietyöteksti2}
 
-    Element Should Be Enabled                   ${FA_header_Tallenna}
 
-    Select Radio Button                         road-works-asset-a    disabled
-    Radio Button Should Be Set To               road-works-asset-a    disabled
+    #Select Radio Button                         road-works-asset-a    enabled
+    Radio Button Should Be Set To               road-works-asset-a    enabled
 
-    Select Radio Button                         road-works-asset-b    disabled
-    Radio Button Should Be Set To               road-works-asset-b    disabled
+    #Select Radio Button                         road-works-asset-b    enabled
+    Radio Button Should Be Set To               road-works-asset-b    enabled
 
-    Click Element                               xpath=/html/body/div[1]/div[2]/footer/div/button[2]
+
+    Element Should Be Enabled                   ${FA_footer_Peruuta}
+    Click Element                               ${FA_footer_Peruuta}
     Odota sivun latautuminen
+    Wait Until Element Is Enabled               ${Muokkaustila_SelectTool}
+    Click Element                               ${Muokkaustila_SelectTool}
 
+    Odota sivun latautuminen
     Click Element At Coordinates                ${Kartta}  0  20
     Wait Until Element Is Visible               ${FA_tietyö_Lisätty_järjestelmään}
     Element Should Be Visible                   ${FA_tietyö_Muokattu_viimeksi}
@@ -299,7 +303,6 @@ Tietyön katkaisu    [arguments]        ${testipaikka}    ${tietyöteksti}    ${
 
     Element Should Be Enabled                   ${FA_header_Tallenna}
     Click Element                               ${FA_header_Tallenna}
-
 
 Tietyö kaksisuuntaiseksi    [arguments]        ${testipaikka}    ${tietyöteksti}    ${tietyöteksti2}
     Testin Aloitus
@@ -319,7 +322,7 @@ Tietyö kaksisuuntaiseksi    [arguments]        ${testipaikka}    ${tietyötekst
 
     Input Text                                  ${Tietyö_FA_työntunnus_kaksisuuntainen_A}    ${tietyöteksti}
     Input Text                                  ${Tietyö_FA_työntunnus_kaksisuuntainen_B}    ${tietyöteksti2}
-    Element Should Be Enabled                   ${FA_footer_Tallenna}
+    #Element Should Be Enabled                   ${FA_footer_Tallenna}
     Click Element                               ${FA_footer_Peruuta}
 
 

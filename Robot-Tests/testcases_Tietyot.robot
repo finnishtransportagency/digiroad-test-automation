@@ -47,13 +47,13 @@ Usean_tietyön_muuttaminen_laatikolla
 
 Tietyön katkaisu
     [Tags]  AWS  Tietyö
-    [Documentation]  Tietyön muokkaus tallentaen koko ketjulle
+    [Documentation]  Tietyön katkaisu
 
     KW_Tietyot.Tietyön katkaisu     6890592, 436036    mielivaltainenmerkkijono    merkkijonomielivaltainen
 
 
 Tietyö kaksisuuntaiseksi
     [Tags]    AWS    Tietyö
-    [Documentation]    Tietyön radionappien toimivuus
+    [Documentation]    Tietyön muuntaminen kaksisuuntaiseksi
 
     KW_Tietyot.Tietyö kaksisuuntaiseksi      6746688, 483454    mielivaltainenmerkkijono    merkkijonomielivaltainen
