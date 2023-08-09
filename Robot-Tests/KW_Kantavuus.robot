@@ -75,6 +75,75 @@ Kantavuus_lisäys_virheellinen    [arguments]    ${testipaikka}    ${virheelline
     Element Should Be Enabled                    ${FA_footer_Peruuta}
     Click Element                                ${FA_footer_Peruuta}
 
+Kantavuuden_lisääminen_laatikko    [arguments]    ${testipaikka}    ${routivuuskerroin}
+    #testitapaus nro 3
+    Testin Aloitus
+    Log                                         Tarkistetaan kevätkantavuuden lisäys
+    Vaihda Tietolaji                            ${TL_Kantavuus_RB}
+    Paikanna osoite                             ${testipaikka}
+    Zoomaa kartta                               5    200
+    Odota sivun latautuminen
+
+    #klikkauksen kokeilu, tietolajin vaatimus 2
+    Siirry Muokkaustilaan
+    Odota sivun latautuminen
+    Radio Button Should Be Set To               ${Kantavuus_näkymä_radionappi_group}    ${Kantavuus_radionappi_kevätkantavuus}
+
+    Wait Until Element Is Enabled               ${Muokkaustila_Laatikko}
+    Click Element                               ${Muokkaustila_Laatikko}
+    Suorita laatikkovalinta
+    Wait Until Element Is Visible               ${Kantavuus_popup_valikko}
+    Element Should Be Visible                   ${Kantavuus_popup_valikko}
+    Element Should Be Enabled                   ${FA_header_Tallenna}
+
+    Radio Button Should Be Set To               ${Kantavuus_radionappi_header_kantavuus}    disabled
+    Select Radio Button                         ${Kantavuus_radionappi_header_kantavuus}    enabled
+    Radio Button Should Be Set To               ${Kantavuus_radionappi_header_kantavuus}    enabled
+    Element Should Be Disabled                 ${FA_header_Tallenna}
+
+    Element Should Be Enabled                   ${Kantavuus_tekstikenttä_kevätkantavuus}
+    Input Text                                  ${Kantavuus_tekstikenttä_kevätkantavuus}        100
+    Click Element                                css=.form-control.carrying-capacity
+    Click Element                                css=.form-control.carrying-capacity option[data-value="${routivuuskerroin}"]
+    Element Should Be Enabled                   ${FA_header_Tallenna}
+    Element Should Be Enabled                    ${FA_header_Peruuta}
+    Click Element                                ${FA_header_Peruuta}
+
+
+Kantavuuden_lisääminen_polygon    [arguments]    ${testipaikka}    ${routivuuskerroin}
+    #testitapaus nro 5
+    Testin Aloitus
+    Log                                         Tarkistetaan uean linkin polygonvalinta ja kantavuuden lisäys
+    Vaihda Tietolaji                            ${TL_Kantavuus_RB}
+    Paikanna osoite                             ${testipaikka}
+    Zoomaa kartta                               5    200
+    Odota sivun latautuminen
+
+    #klikkauksen kokeilu, tietolajin vaatimus 2
+    Siirry Muokkaustilaan
+    Odota sivun latautuminen
+    Radio Button Should Be Set To               ${Kantavuus_näkymä_radionappi_group}    ${Kantavuus_radionappi_kevätkantavuus}
+
+    Wait Until Element Is Enabled               ${Muokkaustila_PolygonTool}
+    Click Element                               ${Muokkaustila_PolygonTool}
+    Suorita monivalinta
+    Wait Until Element Is Visible               ${Kantavuus_popup_valikko}
+    Element Should Be Visible                   ${Kantavuus_popup_valikko}
+    Element Should Be Enabled                   ${FA_header_Tallenna}
+
+    Radio Button Should Be Set To               ${Kantavuus_radionappi_header_kantavuus}    disabled
+    Select Radio Button                         ${Kantavuus_radionappi_header_kantavuus}    enabled
+    Radio Button Should Be Set To               ${Kantavuus_radionappi_header_kantavuus}    enabled
+    Element Should Be Disabled                 ${FA_header_Tallenna}
+
+    Element Should Be Enabled                   ${Kantavuus_tekstikenttä_kevätkantavuus}
+    Input Text                                  ${Kantavuus_tekstikenttä_kevätkantavuus}        100
+    Click Element                                css=.form-control.carrying-capacity
+    Click Element                                css=.form-control.carrying-capacity option[data-value="${routivuuskerroin}"]
+    Element Should Be Enabled                   ${FA_header_Tallenna}
+    Element Should Be Enabled                    ${FA_header_Peruuta}
+    Click Element                                ${FA_header_Peruuta}
+
 
 *** Variables ***
 ${Kantavuus_näkymä_radionappi_group}            labelingRadioButton-carrying-capacity
@@ -90,3 +159,4 @@ ${Kantavuus_radionappi_header_kantavuus}       carrying-capacity
 ${Kantavuus_tekstikenttä_kevätkantavuus}       css=#carrying-capacity
 ${Kantavuus_pudotusvalikko_routivuuskerroin}    css=#feature-attributes-form > div > div > div.dynamic-form.editable.form-editable-carrying-capacity > div.input-unit-combination > div:nth-child(2) > select
 ${Kantavuus_pudotusvalikko_routivuuskerroin_erittäinroutiva}    css=#feature-attributes-form > div > div > div.dynamic-form.editable.form-editable-carrying-capacity > div.input-unit-combination > div:nth-child(2) > select > option:nth-child(2)
+${Kantavuus_popup_valikko}                    css=body > div.container > div.modal-overlay.mass-update-modal > div

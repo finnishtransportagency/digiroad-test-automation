@@ -17,10 +17,9 @@ Test Setup          Testin Aloitus
 
 *** Test Cases ***
 Kevätkantavuus_lisäys
-    [Tags]  Valaistus
+    [Tags]  Kantavuus
     [Documentation]  Kantavuuden tarkastelu katselumoodissa.
     Log    Testataan kantavuuden lisäys sekä virheellisen arvon syöttö
-    
     FOR    ${routivuuskerroin}    IN    @{routivuuskertoimet_lista}
         KW_Kantavuus.Kevätkantavuus_lisäys    7311372, 478787    ${routivuuskerroin}
     END
@@ -28,3 +27,17 @@ Kevätkantavuus_lisäys
         Log    ${virheellinen}
         KW_Kantavuus.Kantavuus_lisäys_virheellinen    7311372, 478787    ${virheellinen}
     END
+
+
+Kantavuuden_lisääminen_laatikko
+    [Tags]  Kantavuus
+    [Documentation]  Kantavuuden tarkastelu katselumoodissa.
+    Log    Testataan kantavuuden lisäys sekä virheellisen arvon syöttö
+    KW_Kantavuus.Kantavuuden_lisääminen_laatikko    7311372, 478787    40-erittain-routiva
+
+
+Kantavuuden_lisääminen_polygon
+    [Tags]  Kantavuus
+    [Documentation]  Kantavuuden tarkastelu katselumoodissa.
+    Log    Testataan kantavuuden lisäys sekä virheellisen arvon syöttö
+    KW_Kantavuus.Kantavuuden_lisääminen_polygon    7311372, 478787    40-erittain-routiva
