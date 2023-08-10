@@ -81,6 +81,7 @@ Tietyön_vaihto_peruutus    [arguments]        ${testipaikka}    ${tietyöteksti
     Element Should Be Visible                   ${FA_tietyö_päättymispvm}
     Click Element                               ${FA_tietyö_päättymispvm}
 
+    #Valitaan päivämäärät painamalla nuolinäppäimiä
     FOR    ${tietyö_nuolinäppäin_laskuri}    IN RANGE    10
         Press Keys                              None    ARROW_RIGHT
     END
@@ -279,10 +280,8 @@ Tietyön katkaisu    [arguments]        ${testipaikka}    ${tietyöteksti}    ${
     Input Text                                  ${Tietyö_FA_työntunnus_katkaisu_B}    ${tietyöteksti2}
 
 
-    #Select Radio Button                         road-works-asset-a    enabled
     Radio Button Should Be Set To               road-works-asset-a    enabled
 
-    #Select Radio Button                         road-works-asset-b    enabled
     Radio Button Should Be Set To               road-works-asset-b    enabled
 
 
@@ -304,6 +303,7 @@ Tietyön katkaisu    [arguments]        ${testipaikka}    ${tietyöteksti}    ${
     Element Should Be Enabled                   ${FA_header_Tallenna}
     Click Element                               ${FA_header_Tallenna}
 
+
 Tietyö kaksisuuntaiseksi    [arguments]        ${testipaikka}    ${tietyöteksti}    ${tietyöteksti2}
     Testin Aloitus
     Log    Tietyön vaihto kaksisuuntaiseksi
@@ -322,7 +322,7 @@ Tietyö kaksisuuntaiseksi    [arguments]        ${testipaikka}    ${tietyötekst
 
     Input Text                                  ${Tietyö_FA_työntunnus_kaksisuuntainen_A}    ${tietyöteksti}
     Input Text                                  ${Tietyö_FA_työntunnus_kaksisuuntainen_B}    ${tietyöteksti2}
-    #Element Should Be Enabled                   ${FA_footer_Tallenna}
+    Element Should Be Enabled                   ${FA_footer_Tallenna}
     Click Element                               ${FA_footer_Peruuta}
 
 
@@ -330,10 +330,10 @@ Tietyö kaksisuuntaiseksi    [arguments]        ${testipaikka}    ${tietyötekst
 ${Tietyö_liikennemerkki_valinta}              xpath=/html/body/div[1]/nav/div/div[3]/div[21]/div/div[3]/input
 ${Tietyö_täydentävätlinkit_valinta}           xpath=/html/body/div[1]/nav/div/div[3]/div[21]/div/div[4]/input
 
-${FA_tietyö_kohde_ID}                         xpath=/html/body/div[1]/div[2]/header/div[1]/span
-${FA_tietyö_Lisätty_järjestelmään}            xpath=/html/body/div[1]/div[2]/main/article/div/div/div[1]/p
-${FA_tietyö_Muokattu_viimeksi}                xpath=/html/body/div[1]/div[2]/main/article/div/div/div[2]/p
-${FA_tietyö_Linkkien_lukumäärä}               xpath=/html/body/div[1]/div[2]/main/article/div/div/div[3]/p
+${FA_tietyö_kohde_ID}                         css=#feature-attributes-header > span
+${FA_tietyö_Lisätty_järjestelmään}            css=#feature-attributes-form > div > div > div:nth-child(1) > p
+${FA_tietyö_Muokattu_viimeksi}                css=#feature-attributes-form > div > div > div:nth-child(2) > p
+${FA_tietyö_Linkkien_lukumäärä}               css=#feature-attributes-form > div > div > div:nth-child(3) > p
 ${FA_tietyö_Olemassaoleva_tietyö}             xpath=/html/body/div[1]/div[2]/main/article/div/div/div[4]/p
 ${FA_tietyö_Tietyön_tunnus}                   xpath=/html/body/div[1]/div[2]/main/article/div/div/div[4]/div[2]/div[1]/p
 ${FA_tietyö_Tietyön_pvm}                      xpath=/html/body/div[1]/div[2]/main/article/div/div/div[4]/div[2]/div[2]/ul
