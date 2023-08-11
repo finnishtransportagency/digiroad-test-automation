@@ -26,6 +26,7 @@ Tietyön tarkastelu   [arguments]            ${testipaikka}
     Odota sivun latautuminen
     #Lisätään visuaalinen testi
 
+
 Tietyön tarkastelu_FA    [arguments]        ${testipaikka}
     #testitapaus 3
     Vaihda Tietolaji                            ${TL_Tietyöt_RB}
@@ -82,10 +83,7 @@ Tietyön_vaihto_peruutus    [arguments]        ${testipaikka}    ${tietyöteksti
     Click Element                               ${FA_tietyö_päättymispvm}
 
     #Valitaan päivämäärät painamalla nuolinäppäimiä
-    FOR    ${tietyö_nuolinäppäin_laskuri}    IN RANGE    10
-        Press Keys                              None    ARROW_RIGHT
-    END
-    Press Keys                                  None    ENTER
+    Kalenterin siirto 10x
 
     #muutoksen peruutus
     Element Should Be Enabled                   ${FA_footer_Tallenna}    #tarkistetaan että tallennusnappi on painettavissa, mutta ei paineta
@@ -144,10 +142,7 @@ Usean_tietyön_muuttaminen_klikkaamalla    [arguments]        ${testipaikka}    
     Element Should Be Visible                   ${Tietyö_popup_päättymispvm}
     Click Element                               ${Tietyö_popup_päättymispvm}
 
-    FOR    ${tietyö_nuolinäppäin_laskuri}    IN RANGE    10
-        Press Keys                              None    ARROW_RIGHT
-    END
-    Press Keys                                  None    ENTER
+    Kalenterin siirto 10x
 
     #muutoksen peruutus
     Element Should Be Enabled                   ${FA_header_Tallenna}    #tarkistetaan että tallennusnappi on painettavissa, mutta ei paineta
@@ -185,10 +180,7 @@ Usean_tietyön_muuttaminen_laatikolla    [arguments]        ${testipaikka}    ${
     Element Should Be Visible                   ${Tietyö_popup_päättymispvm}
     Click Element                               ${Tietyö_popup_päättymispvm}
 
-    FOR    ${tietyö_nuolinäppäin_laskuri}    IN RANGE    10
-        Press Keys                              None    ARROW_RIGHT
-    END
-    Press Keys                                  None    ENTER
+    Kalenterin siirto 10x
 
     #muutoksen peruutus
     Element Should Be Enabled                   ${FA_header_Tallenna}    #tarkistetaan että tallennusnappi on painettavissa, mutta ei paineta
@@ -227,10 +219,7 @@ Usean_tietyön_muuttaminen_polygonilla    [arguments]        ${testipaikka}    $
     Element Should Be Visible                   ${Tietyö_popup_päättymispvm}
     Click Element                               ${Tietyö_popup_päättymispvm}
 
-    FOR    ${tietyö_nuolinäppäin_laskuri}    IN RANGE    10
-        Press Keys                              None    ARROW_RIGHT
-    END
-    Press Keys                                  None    ENTER
+    Kalenterin siirto 10x
 
     #muutoksen peruutus
     Element Should Be Enabled                   ${FA_header_Tallenna}    #tarkistetaan että tallennusnappi on painettavissa, mutta ei paineta
@@ -261,10 +250,7 @@ Tietyön katkaisu    [arguments]        ${testipaikka}    ${tietyöteksti}    ${
     Element Should Be Visible                   ${FA_tietyö_päättymispvm}
     Click Element                               ${FA_tietyö_päättymispvm}
 
-    FOR    ${tietyö_nuolinäppäin_laskuri}    IN RANGE    10
-        Press Keys                              None    ARROW_RIGHT
-    END
-    Press Keys                                  None    ENTER
+    Kalenterin siirto 10x
 
     Element Should Be Enabled                   ${FA_footer_Tallenna}
     Click Element                               ${FA_footer_Tallenna}
@@ -322,9 +308,14 @@ Tietyö kaksisuuntaiseksi    [arguments]        ${testipaikka}    ${tietyötekst
 
     Input Text                                  ${Tietyö_FA_työntunnus_kaksisuuntainen_A}    ${tietyöteksti}
     Input Text                                  ${Tietyö_FA_työntunnus_kaksisuuntainen_B}    ${tietyöteksti2}
-    Element Should Be Enabled                   ${FA_footer_Tallenna}
     Click Element                               ${FA_footer_Peruuta}
 
+
+Kalenterin siirto 10x
+    FOR    ${tietyö_nuolinäppäin_laskuri}    IN RANGE    10
+        Press Keys                              None    ARROW_RIGHT
+    END
+    Press Keys                                  None    ENTER
 
 *** Variables ***
 ${Tietyö_liikennemerkki_valinta}              xpath=/html/body/div[1]/nav/div/div[3]/div[21]/div/div[3]/input
