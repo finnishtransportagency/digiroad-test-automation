@@ -23,6 +23,11 @@ Kevätkantavuus_lisäys
     FOR    ${routivuuskerroin}    IN    @{routivuuskertoimet_lista}
         KW_Kantavuus.Kevätkantavuus_lisäys    7311372, 478787    ${routivuuskerroin}
     END
+
+
+Kantavuus_lisäys_virheellinen
+    [Tags]  Kantavuus
+    [Documentation]  Lisätään virheellisiä kantavuustietoja.
     FOR    ${virheellinen}    IN    @{kevätkantavuus_virheelliset_lista}
         Log    ${virheellinen}
         KW_Kantavuus.Kantavuus_lisäys_virheellinen    7311372, 478787    ${virheellinen}
@@ -41,3 +46,10 @@ Kantavuuden_lisääminen_polygon
     [Documentation]  Kantavuuden tarkastelu katselumoodissa.
     Log    Testataan kantavuuden lisäys sekä virheellisen arvon syöttö
     KW_Kantavuus.Kantavuuden_lisääminen_polygon    7311372, 478787    40-erittain-routiva
+
+
+Kantavuuden katkaisu
+    [Tags]    Kantavuus
+    [Documentation]    Kantavuustiedon katkaisu
+    Log    Testataan kantavuuden katkaisu
+    KW_Kantavuus.Kantavuuden katkaisu    7310648, 477675    40-erittain-routiva
