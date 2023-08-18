@@ -31,6 +31,7 @@ Resource                    KW_Paallyste.robot
 Resource                    KW_Leveys.robot
 Resource                    KW_Valaistus.robot
 Resource                    KW_Kantavuus.robot
+Resource                    KW_Tietyot.robot
 
 
 
@@ -198,7 +199,7 @@ Valitse Selain
     ${date}=  Get Current Date
     ${date}=  Convert Date  ${date}  result_format=%w
     ${BROWSER}=  Run Keyword If  0<=${date}<5  Set Variable  Chrome
-    ...  ELSE IF  Set Variable  Firefox
+    ...  ELSE IF  Set Variable  ${BROWSER}=    Firefox
     log to console  ${BROWSER}
     [Return]  ${BROWSER}
 
