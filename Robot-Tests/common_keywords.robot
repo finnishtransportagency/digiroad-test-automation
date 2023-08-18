@@ -30,7 +30,9 @@ Resource                    KW_Palvelupiste.robot
 Resource                    KW_Paallyste.robot
 Resource                    KW_Leveys.robot
 Resource                    KW_Valaistus.robot
+Resource                    KW_Kantavuus.robot
 Resource                    KW_Tietyot.robot
+
 
 
 *** Variables ***
