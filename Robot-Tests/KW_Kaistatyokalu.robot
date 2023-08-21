@@ -2,7 +2,7 @@
 
 
 *** Settings ***
-Documentation       Pageobject for Traffic signs (Liikennemerkit)
+Documentation       Pageobject for lane tool (Kaistatyökalu)
 
 *** Keywords ***
 

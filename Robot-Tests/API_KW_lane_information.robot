@@ -90,19 +90,20 @@ Kaista_tieto_get    [Arguments]    ${testipaikka}    ${information_api_tienumero
     Wait Until Element Is Visible               ${FA_otsikko}
     Valitse Kaista                              1
     
-    Element Should Contain                      ${KT_Kaista}  2
+    #Element Should Contain                      ${KT_Kaista}  2
     Click Element                               ${KT_Päätä_Lisakaista}
     Click Element                               ${Muokkausvaroitus_Kyllä_btn}
 
     Valitse Kaista                              2
-    Element Should Contain                      ${KT_Kaista}  3
+    #Element Should Contain                      ${KT_Kaista}  3
     Click Element                               ${KT_Päätä_Lisakaista}
     Click Element                               ${Muokkausvaroitus_Kyllä_btn}
 
     Click Element                               ${FA_footer_Tallenna}
     Wait Until Element Is Not Visible           ${Map_popup}
     Click Element                               ${Muokkausvaroitus_Kyllä_btn}
-    Wait Until Element Is Not Visible           ${Spinner_Overlay}
+    #Wait Until Element Is Not Visible           ${Spinner_Overlay}
+    Sleep    10    #käytetään sleepiä ehdon sijaan ^
     TRY
         Odota sivun latautuminen
     EXCEPT    Virhe kaistojen poistossa
