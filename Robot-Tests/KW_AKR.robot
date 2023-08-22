@@ -238,7 +238,6 @@ AKR jako kahdeksi   [arguments]     ${testipaikka}    ${tietolajinimi}
 
     Element Should Be Enabled                    ${FA_footer_Tallenna}    #tarkistetaan että tallennusnappi on painettavissa, mutta ei paineta
     Click Element                                ${FA_footer_Peruuta}
-END
 
 
 ##########################

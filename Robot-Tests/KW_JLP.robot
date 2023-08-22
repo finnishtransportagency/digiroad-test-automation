@@ -70,8 +70,7 @@ JLP_2  [arguments]  ${testipaikka}
     click element at coordinates                ${kartta}  0   20
     Wait Until Element Is Visible               ${FA_otsikko}
     Element should contain                      ${FA_otsikko}           Valtakunnallinen ID: 317801
-    Element should contain                      ${FA_JLP_Liitetytpysäkit}  182055 Kamppi
-
+    Element should contain                      ${FA_JLP_Liitetytpysäkit}  182058 Kamppi
 
 
 JLP_3  [arguments]  ${testipaikka}  ${ELY}
