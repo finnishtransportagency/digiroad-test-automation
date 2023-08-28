@@ -131,6 +131,10 @@ ENV PATH=/opt/robotframework/bin:/opt/robotframework/drivers:$PATH
 ENV CHROME_BIN=/usr/bin/chromium-browser \
     CHROME_PATH=/usr/lib/chromium/
 
+# Add path for Firefox
+ENV FIREFOX_BIN=/usr/bin/firefox \
+    FIREFOX_PATH=/usr/lib/firefox/
+
 # Set up a volume for the generated reports
 VOLUME ${ROBOT_REPORTS_DIR}
 
