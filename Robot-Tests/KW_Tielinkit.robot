@@ -111,6 +111,8 @@ ${Tielinkin palluraaineistot}    ${TL_Palvelupiste_RB} ${TL_Opastustaulu_RB} ${T
 ${tielinkkinakyma_turku}                    turku1_50000.png
 #${tielinkki_img}                            tielinkki_sin.png
 
+${korjattavien_tsekkaus}=    Run Keyword And Return Status    Page Should Contain    css=#work-list > div > div > div > div > div
+
 *** Keywords ***
 Tielinkit_1
     Log  Avataan selain, vaihdetaan tietolajiksi tielinkki
@@ -433,6 +435,7 @@ Tielinkit_10  [arguments]  ${testipaikka}  ${EkaLinkId}  ${TokaLinkId}
     #Element Should Not Be Visible               ${map_overlay}
 
 Tielinkit_11
+
     vaihda tietolaji                            ${TL_Tielinkki_RB}
     Odota sivun latautuminen
     wait until element is visible               ${FA_Link_incomplete-links}  10
@@ -447,6 +450,11 @@ Tielinkit_11
     page should contain                         Valtion omistama
 
     Log  Tarkistetaan, että listan linkeistä satunnaisesti valittu paikka/linkki
+        #selector korjattava kun listaan saadaan sisältöä
+    IF    '${korjattavien_tsekkaus}' == 'False'
+        Sleep    5
+        Click Element    css=#work-list > div > div > div > header > a
+    ELSE
     Arvo linkki korjattavien listalta
     wait until element is visible               ${tmp_ListLocator}
     Log  otetaan linkin ID talteen ennen sen klikkaamista
@@ -462,6 +470,7 @@ Tielinkit_11
 
     Log  varmistetaan että kartalta klikattu linkin ID täsmää listalta otettuun.
     Set Selenium Speed                          ${DELAY}
+    END
 
 Tielinkit_13
     #Ei testata, CTRL valinta on vanha ominaisuus

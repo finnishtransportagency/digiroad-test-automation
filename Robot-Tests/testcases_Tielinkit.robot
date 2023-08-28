@@ -114,12 +114,13 @@ Tielinkit 10
     # Annetaan link id:t argumentteina jolloin niitä ei tarvitse muokata testistä jos haluaa vaihtaa testauspaikan.
     KW_Tielinkit.Tielinkit_10   6711434, 240090  Linkin ID: cc07a9b8-7ca7-483e-97ed-b049f637b636:1   Linkin ID: 41bfe91c-b92e-4d4a-bcbb-68866a83fc72:1
 
-Tielinkit 11
-    [Tags]              Roadlinks  AWS
-    [Documentation]     Tielinkit, selain: ${BROWSER}
-    ...  - Korjattavien linkkien lista, tarkistettaan että kyseisestä linkistä aukeaa lista ja sivun ryhmittely on ok.
-    ...  Tarkistetaan, että listan linkeistä aukeaa kyseinen paikka
-    KW_Tielinkit.Tielinkit_11
+#Tielinkit 11
+    #ei tarvetta testata atm 08/23
+#    [Tags]              Roadlinks  AWS
+#    [Documentation]     Tielinkit, selain: ${BROWSER}
+#    ...  - Korjattavien linkkien lista, tarkistettaan että kyseisestä linkistä aukeaa lista ja sivun ryhmittely on ok.
+#    ...  Tarkistetaan, että listan linkeistä aukeaa kyseinen paikka
+#    KW_Tielinkit.Tielinkit_11
 
 
 #Tielinkit 13
