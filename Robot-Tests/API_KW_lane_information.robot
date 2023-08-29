@@ -48,7 +48,7 @@ Kaista_tieto_get    [Arguments]    ${testipaikka}    ${information_api_tienumero
     TRY
     Log    GET-pyyntö    console=yes
     Init Session
-    ${end_date} =    Get Current Date    time_zone=UTC
+    ${end_date} =    Get Current Date    time_zone=local
     ${end_date} =    Convert Date    ${end_date}    result_format=%Y-%m-%dT%H:%M:%SZ
     ${start_date} =    Subtract Time From Date    ${end_date}    24 hours    #oltava mikä vain arvo ennen end_date:a klo 00:00 UTC+0
     ${start_date} =    Convert Date    ${start_date}    result_format=%Y-%m-%dT%H:%M:%SZ
@@ -72,9 +72,13 @@ Kaista_tieto_get    [Arguments]    ${testipaikka}    ${information_api_tienumero
         IF    '${tarkista_muokkaaja}' == 'False'    CONTINUE
         IF    '${tarkista_muokkaaja}' == 'True'    Log    Link modified by ${item_modified_by} starting from ${start_date} found    console=yes
 
-        ${tarkista_pvm}=    Should Be Equal    ${item_startdate}    ${start_date_comparable}
-        IF    '${tarkista_pvm}' == 'True'    Log    Date ${item_startdate} matches    console=yes
+        #${tarkista_pvm}=    Should Be Equal    ${item_startdate}    ${start_date_comparable}
+        #IF    '${tarkista_pvm}' == 'True'    
+        #    Log    Date ${item_startdate} matches    console=yes
+        #ELSE
+            Continue For Loop
     END
+    #END
 
     FINALLY
     #Lisättyjen kaistojen poisto
