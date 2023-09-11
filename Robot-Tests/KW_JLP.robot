@@ -83,7 +83,7 @@ JLP_3  [arguments]  ${testipaikka}  ${ELY}
     Odota sivun latautuminen
     wanha Siirrä Pysäkkiä                       -300  -100
     wait until element is visible               ${MuokkausVaroitus}
-    run keyword if  '${ELY}' == 'kyllä'         SeleniumLibrary.Element Text Should Be   ${MuokkausVaroitus}    ${ELY_Pysakin_siirto_yli50m_popup}
+    run keyword if  '${ELY}' == 'kyllä'         SeleniumLibrary.Element Text Should Be   ${MuokkausVaroitus}    ${Pysakin_siirto_yli50m_popup}    #${ELY_Pysakin_siirto_yli50m_popup}
     ...  ELSE                                   SeleniumLibrary.Element Text Should Be   ${MuokkausVaroitus}    ${Pysakin_siirto_yli50m_popup}
     click element                               ${muokkausvaroitus_ei_btn}
     click element                               ${FA_footer_Peruuta}
