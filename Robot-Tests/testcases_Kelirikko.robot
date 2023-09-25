@@ -1,8 +1,5 @@
 #     Joni Laari        Sitowise     2023
 
-*** Variables ***
-
-
 *** Settings ***
 Documentation       Regression testcases for Digiroad
 Resource            common_keywords.robot

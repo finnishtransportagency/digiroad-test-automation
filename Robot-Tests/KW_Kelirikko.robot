@@ -9,7 +9,7 @@ Resource            common_keywords.robot
 *** Keywords ***
 Kelirikkotiedon tarkastelu    [arguments]    ${testipaikka}
     Testin Aloitus
-    Log                                         Tarkistetaan kelirikon lisäys
+    Log                                         Testataan kelirikon tarkastelu
     Vaihda Tietolaji                            ${TL_Kelirikko_RB}
     Paikanna osoite                             ${testipaikka}
     Zoomaa kartta                               5    50
@@ -41,7 +41,7 @@ Kelirikkotiedon lisääminen    [arguments]    ${testipaikka}
 
 Kelirikkotiedon virheellinen lisääminen        [arguments]    ${testipaikka}
     Testin Aloitus
-    Log                                         Tarkistetaan kelirikon lisäys
+    Log                                         Tarkistetaan virheellisen kelirikon lisäys
     Vaihda Tietolaji                            ${TL_Kelirikko_RB}
     Paikanna osoite                             ${testipaikka}
     Zoomaa kartta                               5    50
@@ -177,6 +177,7 @@ Kelirikon lisääminen ctrl    [arguments]        ${testipaikka}
 
 Kelirikon katkaisu    [arguments]    ${testipaikka}    ${kelirikkorajoitus}
     Testin Aloitus
+    Log                                         Tarkistetaan kelirikkotiedon katkaisu kahdeksi
     Vaihda Tietolaji                            ${TL_Kelirikko_RB}
     Paikanna osoite                             ${testipaikka}
     Zoomaa kartta                               5   50 m
@@ -218,8 +219,5 @@ ${Popup_kelirikkokausi_päättymispvm}             css=#datePeriod-end1
 ${Kelirikko_rajoitusarvo_a}                      xpath=/html/body/div[1]/div[2]/main/article/div/div/div[4]/div[2]/div[1]/input
 ${Kelirikko_rajoitusarvo_b}                      xpath=html/body/div[1]/div[2]/main/article/div/div/div[5]/div[2]/div[1]/input
 
-${Kelirikkokausi_aloituspvm_a}                     id=datePeriod-start1
-${Kelirikkokausi_lopetuspvm_a}                     id=datePeriod-end1
-
-${Kelirikkokausi_aloituspvm_b}                     id=datePeriod-start2
-${Kelirikkokausi_lopetuspvm_b}                     id=datePeriod-end2
+${Kelirikkokausi_aloituspvm_a}                   id=datePeriod-start1
+${Kelirikkokausi_lopetuspvm_a}                   id=datePeriod-end1
