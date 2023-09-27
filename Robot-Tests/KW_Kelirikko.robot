@@ -170,7 +170,7 @@ Kelirikon lisääminen ctrl    [arguments]        ${testipaikka}
     Wait Until Element Is Visible                             road-damaged-by-thaw
     Select Radio Button                                       road-damaged-by-thaw    enabled
     Radio Button Should Be Set To                             road-damaged-by-thaw    enabled
-    Wait Until Element Is Visible                             ${Valaistus_popup_otsikko}
+    Wait Until Element Is Visible                             ${Kelirikko_popup_otsikko}
     Wait Until Element Is Visible                             ${FA_header_Peruuta}
     Click Button                                              ${FA_header_Peruuta}
 
@@ -209,6 +209,7 @@ Kelirikon katkaisu    [arguments]    ${testipaikka}    ${kelirikkorajoitus}
 
 *** Variables ***
 ${FA_header_Kelirikko_otsikko}                   css=#feature-attributes-header
+${Kelirikko_popup_otsikko}                       css=body > div.container > div.modal-overlay.mass-update-modal > div > div.form-elements-container > div > label
 ${Kelirikko_input_kenttä_header}                 css=#road-damaged-by-thaw
 ${Kelirikko_näkymä_radionappi_group}             road-damaged-by-thaw
 ${Kelirikko_popup_toistuuvuosittain_checkbox}    css=body > div.container > div.modal-overlay.mass-update-modal > div > div.form-elements-container > div > div.input-unit-combination > div:nth-child(3) > div > input
