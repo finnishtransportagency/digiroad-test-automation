@@ -33,6 +33,7 @@ Resource                    KW_Valaistus.robot
 Resource                    KW_Kantavuus.robot
 Resource                    KW_Tietyot.robot
 Resource                    KW_Kelirikko.robot
+Resource                    KW_Eurooppatienumero.robot
 
 
 
