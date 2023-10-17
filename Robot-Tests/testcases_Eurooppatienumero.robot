@@ -46,11 +46,11 @@ Eurooppatienumeron lisääminen ctrl
     [Tags]    Eurooppatienumero
     [Documentation]    Lisätään useita eurooppatienumeroja ctrl-napilla
     Log    Lisätään useita eurooppatienumeroja ctrl-napilla
-    KW_Eurooppatienumero.Eurooppatienumeron lisääminen ctrl    6893280, 450604
+    KW_Eurooppatienumero.Eurooppatienumeron lisääminen ctrl    6774708, 505522    6775802, 505291
 
 
 Eurooppatienumeron katkaisu
     [Tags]    Eurooppatienumero
     [Documentation]    Eurooppatienumeron katkaisu
     Log    Testataan eurooppatienumeron katkaisu
-    KW_Eurooppatienumero.Eurooppatienumeron katkaisu    6893280, 450604    12000
+    KW_Eurooppatienumero.Eurooppatienumeron katkaisu    6956319, 530010    63

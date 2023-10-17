@@ -119,22 +119,23 @@ Eurooppatienumeron lisääminen polygon    [arguments]    ${testipaikka}
     Click Element                               ${FA_header_Peruuta}
 
 
-Eurooppatienumeron lisääminen ctrl    [arguments]        ${testipaikka}
+Eurooppatienumeron lisääminen ctrl    [arguments]        ${testipaikka_1}    ${testipaikka_2}
     Testin Aloitus
     Log                                                       Tarkistetaan usean eurooppatienumeron lisäys ctrl-napilla
     Vaihda Tietolaji                                          ${TL_Eurooppatienumero_RB}
-    Paikanna osoite                                           ${testipaikka}
-    Zoomaa kartta                                             5    200
+    Paikanna osoite                                           ${testipaikka_1}
+    Zoomaa kartta                                             3    200
     Siirry Muokkaustilaan
     Odota sivun latautuminen
     Sleep    3
 
     #painetaan control pohjaan ja klikataan
     Hold Control And Click Element At Coordinates             ${Kartta}  0  0
-    selenium_extensions.Hold Control And Drag By Offset       ${Kartta}  0  100
-    Click Element At Coordinates                              ${Kartta}  0  0
-    selenium_extensions.Hold Control And Drag By Offset       ${Kartta}  0  -200
-    Click Element At Coordinates                              ${Kartta}  0  0
+    #selenium_extensions.Hold Control And Drag By Offset       ${Kartta}  0  100
+    #Click Element At Coordinates                              ${Kartta}  0  0
+    #selenium_extensions.Hold Control And Drag By Offset       ${Kartta}  0  -200
+    #Paikanna osoite                                           ${testipaikka_2}
+    #Click Element At Coordinates                              ${Kartta}  0  0
     Release Control
 
     #lisätään tietoja
@@ -150,7 +151,7 @@ Eurooppatienumeron lisääminen ctrl    [arguments]        ${testipaikka}
     Click Element                               ${FA_header_Peruuta}
 
 
-Eurooppatienumeron katkaisu    [arguments]    ${testipaikka}    ${eurooppatienumerorajoitus}
+Eurooppatienumeron katkaisu    [arguments]    ${testipaikka}    ${eurooppatienumero_luku}
     Testin Aloitus
     Log                                         Tarkistetaan eurooppatienumeron katkaisu kahdeksi
     Vaihda Tietolaji                            ${TL_Eurooppatienumero_RB}
@@ -167,19 +168,12 @@ Eurooppatienumeron katkaisu    [arguments]    ${testipaikka}    ${eurooppatienum
     Wait Until Element Is Visible               ${FA_Lisätty_Järjestelmään}
     Element Should Be Visible                   ${FA_Muokattu_viimeksi}
     Element Should Be Visible                   ${FA_linkkien_lukumaara}
-    Radio Button Should Be Set To               european-roads-a    enabled
-    Radio Button Should Be Set To               european-roads-b    enabled
-    Element Attribute Value Should Be           ${Eurooppatienumero_rajoitusarvo_a}    value    ${eurooppatienumerorajoitus}
-    Element Attribute Value Should Be           ${Eurooppatienumero_rajoitusarvo_b}    value    ${eurooppatienumerorajoitus}
-    Element Attribute Value Should Be           ${Eurooppatienumero_rajoitusarvo_b}    value    ${eurooppatienumerorajoitus}
-    Element Attribute Value Should Be           ${Eurooppatienumero_rajoitusarvo_b}    value    ${eurooppatienumerorajoitus}
-
-    Element Should Be Visible                   ${Eurooppatienumerokausi_aloituspvm_a}
-    Element Should Be Visible                   ${Eurooppatienumerokausi_aloituspvm_a}
-    #Päivämääräkentän tarkkaa sisältöä ei kannata testata, sillä sisältö vaihtuu turhan usein
-
-    Checkbox Should Be Selected                 name=annual_repetition-a
-    Checkbox Should Be Selected                 name=annual_repetition-b
+    Radio Button Should Be Set To               european-road-a    enabled
+    Radio Button Should Be Set To               european-road-b    enabled
+    Element Attribute Value Should Be           ${Eurooppatienumero_katkaistu_a}    value    ${eurooppatienumero_luku}
+    Element Attribute Value Should Be           ${Eurooppatienumero_katkaistu_b}    value    ${eurooppatienumero_luku}
+    Element Attribute Value Should Be           ${Eurooppatienumero_katkaistu_b}    value    ${eurooppatienumero_luku}
+    Element Attribute Value Should Be           ${Eurooppatienumero_katkaistu_b}    value    ${eurooppatienumero_luku}
 
 
 *** Variables ***
@@ -193,9 +187,8 @@ ${Popup_eurooppatienumero_päättymispvm}                  css=#datePeriod-
 
 ${Eurooppatienro_popup_valikko}                          css=body > div.container > div.modal-overlay.mass-update-modal > div
 
-#xpathit pakollisia johtuen elementtien nimeämisistä
-${Eurooppatienumero_rajoitusarvo_a}                      xpath=/html/body/div[1]/div[2]/main/article/div/div/div[4]/div[2]/div[1]/input
-${Eurooppatienumero_rajoitusarvo_b}                      xpath=html/body/div[1]/div[2]/main/article/div/div/div[5]/div[2]/div[1]/input
+${Eurooppatienumero_katkaistu_a}                         css=#feature-attributes-form > div > div > div.form-elements-container > div:nth-child(1) > div > div.input-unit-combination.input-group > textarea
+${Eurooppatienumero_katkaistu_b}                         css=#feature-attributes-form > div > div > div.form-elements-container > div:nth-child(2) > div > div.input-unit-combination.input-group > textarea
 
 ${Eurooppatienumerokausi_aloituspvm_a}                   id=datePeriod-start1
 ${Eurooppatienumerokausi_lopetuspvm_a}                   id=datePeriod-end1
