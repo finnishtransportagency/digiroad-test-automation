@@ -12,11 +12,29 @@ Eurooppatienumeron tarkastelu    [arguments]    ${testipaikka}
     Log                                         Testataan eurooppatienumeron tarkastelu
     Vaihda Tietolaji                            ${TL_Eurooppatienumero_RB}
     Paikanna osoite                             ${testipaikka}
-    Zoomaa kartta                               5    50
+    Zoomaa kartta                               2    50
     Odota sivun latautuminen
 
     Click Element At Coordinates                ${Kartta}    0    20
     Wait Until Element Is Visible               ${FA_header_Eurooppatienumero_otsikko}
+    Element Should Be Enabled                   ${FA_Lisätty_Järjestelmään}
+    Element Should Be Visible                   ${FA_Muokattu_viimeksi}
+    Element Should Be Visible                   ${FA_Linkkien_lkm}
+    Element Should Contain                      ${Eurooppatienumero_header_arvo}    75
+
+    #tuplaklikkauksella linkin osa näkyviin
+    Testin Aloitus
+    Vaihda Tietolaji                            ${TL_Eurooppatienumero_RB}
+    Paikanna osoite                             ${testipaikka}
+    Zoomaa kartta                               2    50
+    Odota sivun latautuminen
+
+    Tupla Klikkaa Kartan Keskelle
+    Wait Until Element Is Visible               ${FA_header_Eurooppatienumero_otsikko}
+    Element Should Be Enabled                   ${FA_Lisätty_Järjestelmään}
+    Element Should Be Visible                   ${FA_Muokattu_viimeksi}
+    Element Should Be Visible                   ${FA_Linkkien_lkm}
+    Element Should Contain                      ${Eurooppatienumero_header_arvo}    75
 
 
 Eurooppatienumeron lisääminen    [arguments]    ${testipaikka}
@@ -50,7 +68,7 @@ Eurooppatienumeron virheellinen lisääminen        [arguments]    ${testipaikka
 
     Click Element At Coordinates                ${Kartta}    0    20
     Wait Until Element Is Visible               ${FA_header_Eurooppatienumero_otsikko}
-    Element Should Be Disabled                   ${Eurooppatienumero_input_kenttä_header}
+    Element Should Be Disabled                  ${Eurooppatienumero_input_kenttä_header}
     Select Radio Button                         european-road    enabled
     Radio Button Should Be Set To               european-road    enabled
 
@@ -119,7 +137,7 @@ Eurooppatienumeron lisääminen polygon    [arguments]    ${testipaikka}
     Click Element                               ${FA_header_Peruuta}
 
 
-Eurooppatienumeron lisääminen ctrl    [arguments]        ${testipaikka_1}    ${testipaikka_2}
+Eurooppatienumeron lisääminen ctrl    [arguments]        ${testipaikka_1}
     Testin Aloitus
     Log                                                       Tarkistetaan usean eurooppatienumeron lisäys ctrl-napilla
     Vaihda Tietolaji                                          ${TL_Eurooppatienumero_RB}
@@ -131,11 +149,8 @@ Eurooppatienumeron lisääminen ctrl    [arguments]        ${testipaikka_1}    $
 
     #painetaan control pohjaan ja klikataan
     Hold Control And Click Element At Coordinates             ${Kartta}  0  0
-    #selenium_extensions.Hold Control And Drag By Offset       ${Kartta}  0  100
-    #Click Element At Coordinates                              ${Kartta}  0  0
-    #selenium_extensions.Hold Control And Drag By Offset       ${Kartta}  0  -200
-    #Paikanna osoite                                           ${testipaikka_2}
-    #Click Element At Coordinates                              ${Kartta}  0  0
+    selenium_extensions.Hold Control And Drag By Offset       ${Kartta}  0  100
+    Click Element At Coordinates                              ${Kartta}  0  0
     Release Control
 
     #lisätään tietoja
@@ -181,14 +196,7 @@ ${FA_header_Eurooppatienumero_otsikko}                   css=#feature-attributes
 ${Eurooppatienumero_popup_otsikko}                       css=body > div.container > div.modal-overlay.mass-update-modal > div > div.form-elements-container > div > label
 ${Eurooppatienumero_input_kenttä_header}                 css=#feature-attributes-form > div > div > div.form-elements-container > div > div > div.input-unit-combination.input-group > textarea
 ${Eurooppatienumero_näkymä_radionappi_group}             name=european-road
-${Eurooppatienumero_popup_toistuuvuosittain_checkbox}    css=body > div.container > div.modal-overlay.mass-update-modal > div > div.form-elements-container > div > div.input-unit-combination > div:nth-child(3) > div > input
-${Popup_eurooppatienumero_aloituspvm}                    css=#datePeriod-start1
-${Popup_eurooppatienumero_päättymispvm}                  css=#datePeriod-
-
 ${Eurooppatienro_popup_valikko}                          css=body > div.container > div.modal-overlay.mass-update-modal > div
-
 ${Eurooppatienumero_katkaistu_a}                         css=#feature-attributes-form > div > div > div.form-elements-container > div:nth-child(1) > div > div.input-unit-combination.input-group > textarea
 ${Eurooppatienumero_katkaistu_b}                         css=#feature-attributes-form > div > div > div.form-elements-container > div:nth-child(2) > div > div.input-unit-combination.input-group > textarea
-
-${Eurooppatienumerokausi_aloituspvm_a}                   id=datePeriod-start1
-${Eurooppatienumerokausi_lopetuspvm_a}                   id=datePeriod-end1
+${Eurooppatienumero_header_arvo}    css=#feature-attributes-form > div > div > div.form-elements-container > div > p
