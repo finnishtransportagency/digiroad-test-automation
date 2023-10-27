@@ -1,7 +1,7 @@
 #       Joni Laari        Sitowise        2023
 
 *** Settings ***
-Documentation       Keywords for thaw damage (Eurooppatienumero)
+Documentation       Keywords for European road number (Eurooppatienumero)
 Library             SeleniumLibrary
 Resource            common_keywords.robot
 
