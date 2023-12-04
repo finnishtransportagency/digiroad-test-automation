@@ -268,10 +268,10 @@ Tarkista muokkaustila radio non-unit  [Arguments]      ${locator_TBchanged}  ${T
 
     ${visible}=  Run Keyword And Return Status  SeleniumLibrary.Element Should Be Visible  ${FA_locator_textinput}
     Run Keyword If  '${Visible}'=='True'  SeleniumLibrary.Input text        ${FA_locator_textinput}  12
+    Run Keyword If  '${TL}'=='${TL_Leveys_RB}'    Select Radio Button    road-width    enabled
     Run Keyword If  '${TL}'=='${TL_Leveys_RB}'  SeleniumLibrary.Input text  ${WidthInputLocator}  100
     Run Keyword If  '${TL}'=='${TL_Tietyöt_RB}'  Aseta Päivämäärä
 
-    
     Tarkista footer enabled
     wait until element is not visible   ${Map_popup}
     log  ${koe}

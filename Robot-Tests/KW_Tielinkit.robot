@@ -388,6 +388,7 @@ Tielinkit_10  [arguments]  ${testipaikka}  ${EkaLinkId}  ${TokaLinkId}
     SeleniumLibrary.Element Text Should Be                      ${FA_otsikko}                           ${EkaLinkId}
     List Selection Should Be                    ${FA_tielinkki_toiminnallinen_luokka}   1
     List Selection Should Be                    ${FA_tielinkki_Liikennevirta_lista}     ${FA_liikennevirta_Digit_vastaan}
+    Sleep    3
     List Selection Should Be                    ${FA_tielinkki_tielinkintyyppi_lista}         1
     Log  Tarkistetaan toisen tielinkin tiedot
     click element                               ${zoombar_minus}
