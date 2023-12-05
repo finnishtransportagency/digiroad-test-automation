@@ -12,8 +12,7 @@ Library    Collections
 
 *** Keywords ***
 Kaista_väli_get    [Arguments]        ${kaista_api_kaistamäärä}    ${kaista_api_tienumero}    ${kaista_api_aloitusajorata}    ${kaista_api_tienosanumero}    ${kaista_api_aloitusluku}    ${kaista_api_lopetusajorata}    ${kaista_api_lopetusluku}
-    [Documentation]    Find given values from response. 
-    ...    This is a negative test, where all lanes from a given municipality are searched for values given as parameters. Unlike ordinary tests, "failure" is a default outcome of sort.
+    [Documentation]    Testataan Lanes in range -API:n vastaus
     #GET-pyyntö
     #Set Max Redirects
     ${Kaista_väli_api_url_blank}=    Set Variable    https://api.testivaylapilvi.fi/digiroad/externalApi/lanes/lanes_in_range?road_number=${kaista_api_tienumero}&track=${kaista_api_aloitusajorata}&start_part=${kaista_api_tienosanumero}&start_addrm=${kaista_api_aloitusluku}&end_part=${kaista_api_lopetusajorata}&end_addrm=${kaista_api_lopetusluku}
@@ -29,7 +28,6 @@ Kaista_väli_get    [Arguments]        ${kaista_api_kaistamäärä}    ${kaista_
     Request Should Be Successful    ${response}
 
     #Asetetaan vastauksen tiedot muuttujiin ja tarkistetaan ne
-    #Testissä käytetään "maastossa havaittuja" kaistatietoja jota verrataan API:sta saatuun tietoon
     FOR    ${item}    IN    @{response.json()}
         Log    ${item}
 
@@ -60,7 +58,7 @@ Kaista_väli_get    [Arguments]        ${kaista_api_kaistamäärä}    ${kaista_
         IF    '${kaistan_manuaalivertailu}' == 'True'    Log    Tiedot täsmäävät, kaistoja on ${item_lanetype}    console=yes
         IF    '${kaistan_manuaalivertailu}' == 'True'    BREAK
     END
-    #Delete All Sessions
+    Delete All Sessions
 
 
 *** Variables ***
