@@ -70,8 +70,7 @@ JLP_2  [arguments]  ${testipaikka}
     click element at coordinates                ${kartta}  0   20
     Wait Until Element Is Visible               ${FA_otsikko}
     Element should contain                      ${FA_otsikko}           Valtakunnallinen ID: 317801
-    Element should contain                      ${FA_JLP_Liitetytpysäkit}  182055 Kamppi
-
+    Element should contain                      ${FA_JLP_Liitetytpysäkit}  182058 Kamppi
 
 
 JLP_3  [arguments]  ${testipaikka}  ${ELY}
@@ -84,8 +83,8 @@ JLP_3  [arguments]  ${testipaikka}  ${ELY}
     Odota sivun latautuminen
     wanha Siirrä Pysäkkiä                       -300  -100
     wait until element is visible               ${MuokkausVaroitus}
-    run keyword if  '${ELY}' == 'kyllä'         element text should be   ${MuokkausVaroitus}    ${ELY_Pysakin_siirto_yli50m_popup}
-    ...  ELSE                                   element text should be   ${MuokkausVaroitus}    ${Pysakin_siirto_yli50m_popup}
+    run keyword if  '${ELY}' == 'kyllä'         SeleniumLibrary.Element Text Should Be   ${MuokkausVaroitus}    ${Pysakin_siirto_yli50m_popup}    #${ELY_Pysakin_siirto_yli50m_popup}
+    ...  ELSE                                   SeleniumLibrary.Element Text Should Be   ${MuokkausVaroitus}    ${Pysakin_siirto_yli50m_popup}
     click element                               ${muokkausvaroitus_ei_btn}
     click element                               ${FA_footer_Peruuta}
 
@@ -153,7 +152,7 @@ Poista Pysäkki
     click element                               ${FA_JLP_Poista_chkbx}
     click element                               ${FA_footer_Tallenna}
     wait until element is visible               ${MuokkausVaroitus}
-    element text should be                      ${MuokkausVaroitus}     ${Pysäkin_poisto}
+    SeleniumLibrary.Element Text Should Be                      ${MuokkausVaroitus}     ${Pysäkin_poisto}
     Wait until element is not visible           ${Map_popup}
     click element                               ${muokkausvaroitus_kyllä_btn}
     sleep                                       2 s

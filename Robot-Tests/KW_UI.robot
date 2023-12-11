@@ -19,7 +19,7 @@ ${WidthInputLocator}                            css=.form-control.unit
 UI_1
     Log     Skandinaaviset aakkoset näkyvät oikein
     wait until element is visible           ${Käyttöohje}
-    element text should be                  ${Käyttöohje}           ${Käyttöohje_cont}
+    SeleniumLibrary.Element Text Should Be                  ${Käyttöohje}           ${Käyttöohje_cont}
 
     Log     Tarkistetaan kartan spinner-taustakuva, joka näkyy karttaa ladatessa.
     ${temp}    Execute Javascript           return document.defaultView.getComputedStyle(document.getElementById("contentMap"),null)['background-image']
@@ -48,7 +48,7 @@ UI_3
         SeleniumLibrary.Input Text              ${Hae_syotekentta}       ${string}
         Click Element                           ${Hae_btn}
         Wait until element is visible           ${Map_popup}
-        Wait until keyword succeeds  5x  200ms  element text should be  ${Map_popup}  ${Hakuvirheilmoitus}
+        Wait until keyword succeeds  5x  200ms  SeleniumLibrary.Element Text Should Be  ${Map_popup}  ${Hakuvirheilmoitus}
         Wait Until Element is not visible       ${Map_popup}
     END
     Siirry Katselutilaan
@@ -62,12 +62,12 @@ UI_4
     wait until element is visible           ${Taustakartta}
     wait until element is enabled           ${Taustakartta}
     Siirry muokkaustilaan
-    element text should be                  ${Map_popup}                ${Muokkaustila_Popup_context}
+    SeleniumLibrary.Element Text Should Be                  ${Map_popup}                ${Muokkaustila_Popup_context}
     Log     Loopataan kaikki tietolajit läpi - klikataan aina kyseisen tietolajin muokkaustila päälle ja tarkistetaan ilmoitusteksti
 
     FOR    ${i}  IN  @{Tietolaji_radiobtns}
            vaihda tietolaji                    ${i}
-           element text should be              ${Muokkaustila_ilmoitus}  ${Muokkaustila_ilmoitus_cont}
+           SeleniumLibrary.Element Text Should Be              ${Muokkaustila_ilmoitus}  ${Muokkaustila_ilmoitus_cont}
            wait until element is not visible   ${Map_popup}
     END
 
@@ -268,10 +268,10 @@ Tarkista muokkaustila radio non-unit  [Arguments]      ${locator_TBchanged}  ${T
 
     ${visible}=  Run Keyword And Return Status  SeleniumLibrary.Element Should Be Visible  ${FA_locator_textinput}
     Run Keyword If  '${Visible}'=='True'  SeleniumLibrary.Input text        ${FA_locator_textinput}  12
+    Run Keyword If  '${TL}'=='${TL_Leveys_RB}'    Select Radio Button    road-width    enabled
     Run Keyword If  '${TL}'=='${TL_Leveys_RB}'  SeleniumLibrary.Input text  ${WidthInputLocator}  100
     Run Keyword If  '${TL}'=='${TL_Tietyöt_RB}'  Aseta Päivämäärä
 
-    
     Tarkista footer enabled
     wait until element is not visible   ${Map_popup}
     log  ${koe}

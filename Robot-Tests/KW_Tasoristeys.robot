@@ -118,7 +118,7 @@ Poista tasoristeys
     click element                               ${FA_Tasoristeys_Poista_chkbx}
     click element                               ${FA_footer_Tallenna}
     wait until element is visible               ${MuokkausVaroitus}
-    element text should be                      ${MuokkausVaroitus}     ${tasoristeyksen_poisto}
+    SeleniumLibrary.Element Text Should Be                      ${MuokkausVaroitus}     ${tasoristeyksen_poisto}
     click element                               ${muokkausvaroitus_kyllä_btn}
 
 

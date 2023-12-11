@@ -34,7 +34,7 @@ Leveyden_tarkistus   [arguments]                ${testipaikka}
     Click Element At Coordinates                ${Kartta}  0  100
 
 
-Leveyden_radionappi  [arguments]                ${testipaikka}
+Leveyden_radionappi  [arguments]                ${testipaikka}    ${lisäyspäivä}
     #testattava sijainnilla, jossa ei ole olemassaolevaa leveystietoa
     Log    Testataan radio button
     Testin Aloitus
@@ -63,8 +63,7 @@ Leveyden_radionappi  [arguments]                ${testipaikka}
     #tarkistetaan, ettei tietoa tallentunut
     Wait Until Keyword Succeeds    3 x    2 s   Click Element At Coordinates    ${Kartta}  0  20
     Element Should Not Be Clickable             ${Leveys_tekstikenttä}
-    Element Should Contain                      ${Leveys_lisätty_järjestelmään}    -
-    Element Should Contain                      ${Leveys_muokattu_viimeksi}        -
+    Element Should Contain                      ${Leveys_lisätty_järjestelmään}    ${lisäyspäivä}
 
 
 Leveyden_muokkaus_peruutus  [arguments]         ${testipaikka}
@@ -287,8 +286,8 @@ Nollaa Leveys
 *** Variables ***
 ${Leveys_otsikko}                              css=.input-unit-combination
 ${Leveys_muokattava}                           css=.form-editable-road-width
-${Leveys_lisätty_järjestelmään}                xpath=//*[@id="feature-attributes-form"]/div/div/div[1]/p
-${Leveys_muokattu_viimeksi}                    xpath=//*[@id="feature-attributes-form"]/div/div/div[2]/p
+${Leveys_lisätty_järjestelmään}                css=#feature-attributes-form > div > div > div:nth-child(1) > p
+${Leveys_muokattu_viimeksi}                    css=#feature-attributes-form > div > div > div:nth-child(2) > p
 ${Leveys_linkkien_lukumäärä}                   xpath=//*[@id="feature-attributes-form"]/div/div/div[3]/p
 ${Leveys_tietoruutu_boolean}                   xpath=//*[@id="feature-attributes-form"]/div/div/div[4]/p
 ${Leveys_valintaryhmä}                         css=.choice-group

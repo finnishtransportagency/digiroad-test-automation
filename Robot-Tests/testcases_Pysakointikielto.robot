@@ -23,4 +23,4 @@ Pysäköintikielto 2
 Pysäköintikielto 3
     [Tags]              Pysakointikielto
     [Documentation]     Pysakointikielto, selain: ${BROWSER}
-    KW_Pysakointikielto.Pysakointi_3  ${TL_Pysäköintikielto_RB}  6696193, 372522
+    KW_Pysakointikielto.Pysakointi_3  ${TL_Pysäköintikielto_RB}  6695662, 372171

@@ -24,7 +24,7 @@ Leveyden_radionappi
     [Tags]  Leveys
     [Documentation]    Leveyden radionappien toimivuus
 
-    KW_Leveys.Leveyden_radionappi    6768570, 484985
+    KW_Leveys.Leveyden_radionappi    6768639, 484305    -
 
 Leveyden_muokkaus_peruutus
     [Tags]  Leveys

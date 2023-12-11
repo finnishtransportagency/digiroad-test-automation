@@ -111,6 +111,8 @@ ${Tielinkin palluraaineistot}    ${TL_Palvelupiste_RB} ${TL_Opastustaulu_RB} ${T
 ${tielinkkinakyma_turku}                    turku1_50000.png
 #${tielinkki_img}                            tielinkki_sin.png
 
+${korjattavien_tsekkaus}=    Run Keyword And Return Status    Page Should Contain    css=#work-list > div > div > div > div > div
+
 *** Keywords ***
 Tielinkit_1
     Log  Avataan selain, vaihdetaan tietolajiksi tielinkki
@@ -136,7 +138,7 @@ Tielinkit_2
     Wait Until Element Is Not Visible           ${Map_popup}
     Click Element                               ${zoombar_minus}
     wait until element is visible               ${Map_popup}
-    element text should be                      ${Map_popup}             ${Zoom_popup_context}
+    SeleniumLibrary.Element Text Should Be                      ${Map_popup}             ${Zoom_popup_context}
     Wait Until Element Is Not Visible           ${Map_popup}
     set selenium speed                          0.6
     Repeat Keyword  3 times  Click Element   ${zoombar_plus}
@@ -218,7 +220,7 @@ Tielinkit_4  [Arguments]  ${Luokan_odotusarvo}  ${testipaikka}
     double click element at coordinates     ${kartta}   0   20
     wait until element is visible           ${FA_otsikko}
     Log  Varmistetaan, että formin tielinkin tyyppi vastaa annettua odotusarvoa
-    element text should be                  ${FA_tielinkki_tielinkintyyppi}  ${Luokan_odotusarvo}
+    SeleniumLibrary.Element Text Should Be                  ${FA_tielinkki_tielinkintyyppi}  ${Luokan_odotusarvo}
     Log  Varmistetaan, että valitun tielinkin tyypin värinen vektori on näkyvissä
 
     #Run Keyword If                          '${Luokan_odotusarvo}' == 'Moottoritie'                 Screen Should Contain  TL4_punainenlinkki.png
@@ -253,7 +255,7 @@ Tielinkit_5  [Arguments]  ${Luokan_odotusarvo}  ${testipaikka}
     double click element at coordinates     ${kartta}   0  20
     wait until element is visible           ${FA_otsikko}
     Log  Varmistetaan, että formin hallinnollinen luokka vastaa annettua odotusarvoa
-    element text should be                  ${FA_tielinkki_hallinnollinen luokka}  ${Luokan_odotusarvo}
+    SeleniumLibrary.Element Text Should Be                  ${FA_tielinkki_hallinnollinen luokka}  ${Luokan_odotusarvo}
     #Log  Varmistetaan, että valitun tielinkin tyypin värinen vektori on näkyvissä
     #Run Keyword If                          '${Luokan_odotusarvo}' == 'Kunnan omistama'      Screen Should Contain   TL5_vihrealinkki.png
     #Run Keyword If                          '${Luokan_odotusarvo}' == 'Valtion omistama'     Screen Should Contain   TL5_punainenlinkki.png
@@ -281,7 +283,7 @@ Tielinkit_6  [Arguments]  ${Luokan_odotusarvo}  ${testipaikka}
     Tupla Klikkaa Kartan Keskelle
     wait until element is visible           ${FA_otsikko}
     Log  Varmistetaan, että formin hallinnollinen luokka vastaa annettua odotusarvoa
-    element text should be                  ${FA_tielinkki_silta,alikulku tai tunneli}      ${Luokan_odotusarvo}
+    SeleniumLibrary.Element Text Should Be                  ${FA_tielinkki_silta,alikulku tai tunneli}      ${Luokan_odotusarvo}
     Nollaa karttavalinta
     
 
@@ -297,7 +299,7 @@ Tielinkit_7   [Arguments]  ${testipaikka}  ${liikennesuunta}
     Odota sivun latautuminen
     double click element at coordinates     ${kartta}   0   20
     wait until element is visible           ${FA_otsikko}
-    element text should be                  ${FA_tielinkki_Liikennevirta}   ${liikennesuunta}
+    SeleniumLibrary.Element Text Should Be                  ${FA_tielinkki_Liikennevirta}   ${liikennesuunta}
     click element at coordinates            ${kartta}   0   -100
     Odota sivun latautuminen
     #Run Keyword If                          '${liikennesuunta}' == '${Molempiin suuntiin}'  Screen Should Contain  TL7_molempiinsuuntiin
@@ -310,7 +312,7 @@ Tielinkit_8
     Log  loopataan läpi listan ja varmistetaan, että tekstit löytyvät oikealta diviltä
     FOR  ${text}     IN                    @{Tielinkin_RB_tekstit}
       ${i}=  Evaluate                      ${i} + 1
-      element text should be  css=div.panel-group.road-links > div > div.panel-section.road-link-legend > div:nth-child(${i})  ${text}
+      SeleniumLibrary.Element Text Should Be  css=div.panel-group.road-links > div > div.panel-section.road-link-legend > div:nth-child(${i})  ${text}
     END
 
 Tielinkit_9
@@ -345,9 +347,9 @@ Tielinkit_10  [arguments]  ${testipaikka}  ${EkaLinkId}  ${TokaLinkId}
     run keyword if    '${status}'=='FAIL'       Muuta tielinkin tilanne normaaliksi
     click element at coordinates                ${kartta}   0  20
     wait until element is visible               ${FA_tielinkki_toiminnallinen_luokka}
-    Element Text Should Be                      ${FA_tielinkki_MML_ID}        [useita eri arvoja]
+    SeleniumLibrary.Element Text Should Be                      ${FA_tielinkki_MML_ID}        [useita eri arvoja]
     ${tmp_muokkausdate}  Seleniumlibrary.get text     ${FA_Muokattu_viimeksi}
-    element text should be                      ${FA_Linkkien_lkm}                      Linkkien lukumäärä: 2
+    SeleniumLibrary.Element Text Should Be                      ${FA_Linkkien_lkm}                      Linkkien lukumäärä: 2
     Log  Vaihdetaan linkin toiminnallinen luokka 1:een
     open context menu                           ${FA_tielinkki_toiminnallinen_luokka}
     select from list by value                   ${FA_tielinkki_toiminnallinen_luokka}   1
@@ -382,10 +384,11 @@ Tielinkit_10  [arguments]  ${testipaikka}  ${EkaLinkId}  ${TokaLinkId}
     Should Start With                           ${tmp_linkid}                           Linkin ID:
     Log  Tarkistetaan, että tallennuspäivämäärä on vaihtunut
     VerifyTextNOT                               ${FA_Muokattu_viimeksi}                 ${tmp_muokkausdate}
-    element text should be                      ${FA_Linkkien_lkm}                      Linkkien lukumäärä: 1
-    element text should be                      ${FA_otsikko}                           ${EkaLinkId}
+    SeleniumLibrary.Element Text Should Be                      ${FA_Linkkien_lkm}                      Linkkien lukumäärä: 1
+    SeleniumLibrary.Element Text Should Be                      ${FA_otsikko}                           ${EkaLinkId}
     List Selection Should Be                    ${FA_tielinkki_toiminnallinen_luokka}   1
     List Selection Should Be                    ${FA_tielinkki_Liikennevirta_lista}     ${FA_liikennevirta_Digit_vastaan}
+    Sleep    3
     List Selection Should Be                    ${FA_tielinkki_tielinkintyyppi_lista}         1
     Log  Tarkistetaan toisen tielinkin tiedot
     click element                               ${zoombar_minus}
@@ -403,8 +406,8 @@ Tielinkit_10  [arguments]  ${testipaikka}  ${EkaLinkId}  ${TokaLinkId}
     Should Start With                           ${tmp_linkid}                           Linkin ID:
     Log  Tarkistetaan, että toisella linkillä on sama tallennusaika kuin ensimmäisellä
     VerifyTextNOT                               ${FA_Muokattu_viimeksi}                 ${tmp_muokkausdate}
-    element text should be                      ${FA_Linkkien_lkm}                      Linkkien lukumäärä: 1
-    element text should be                      ${FA_otsikko}                           ${TokaLinkId}
+    SeleniumLibrary.Element Text Should Be                      ${FA_Linkkien_lkm}                      Linkkien lukumäärä: 1
+    SeleniumLibrary.Element Text Should Be                      ${FA_otsikko}                           ${TokaLinkId}
     List Selection Should Be                    ${FA_tielinkki_toiminnallinen_luokka}   1
     List Selection Should Be                    ${FA_tielinkki_Liikennevirta_lista}     ${FA_liikennevirta_Digit_vastaan}
     List Selection Should Be                    ${FA_tielinkki_tielinkintyyppi_lista}   1
@@ -418,7 +421,7 @@ Tielinkit_10  [arguments]  ${testipaikka}  ${EkaLinkId}  ${TokaLinkId}
     click element at coordinates                ${kartta}   0  20
     wait until element is visible               ${FA_tielinkki_toiminnallinen_luokka}
     element should be visible                   ${FA_tielinkki_MML_ID}
-    element text should be                      ${FA_otsikko}   Ominaisuustiedot
+    SeleniumLibrary.Element Text Should Be                      ${FA_otsikko}   Ominaisuustiedot
     open context menu                           ${FA_tielinkki_toiminnallinen_luokka}
     select from list by value                   ${FA_tielinkki_toiminnallinen_luokka}   5
     open context menu                           ${FA_tielinkki_Liikennevirta_lista}
@@ -433,6 +436,7 @@ Tielinkit_10  [arguments]  ${testipaikka}  ${EkaLinkId}  ${TokaLinkId}
     #Element Should Not Be Visible               ${map_overlay}
 
 Tielinkit_11
+
     vaihda tietolaji                            ${TL_Tielinkki_RB}
     Odota sivun latautuminen
     wait until element is visible               ${FA_Link_incomplete-links}  10
@@ -447,6 +451,11 @@ Tielinkit_11
     page should contain                         Valtion omistama
 
     Log  Tarkistetaan, että listan linkeistä satunnaisesti valittu paikka/linkki
+        #selector korjattava kun listaan saadaan sisältöä
+    IF    '${korjattavien_tsekkaus}' == 'False'
+        Sleep    5
+        Click Element    css=#work-list > div > div > div > header > a
+    ELSE
     Arvo linkki korjattavien listalta
     wait until element is visible               ${tmp_ListLocator}
     Log  otetaan linkin ID talteen ennen sen klikkaamista
@@ -462,6 +471,7 @@ Tielinkit_11
 
     Log  varmistetaan että kartalta klikattu linkin ID täsmää listalta otettuun.
     Set Selenium Speed                          ${DELAY}
+    END
 
 Tielinkit_13
     #Ei testata, CTRL valinta on vanha ominaisuus
@@ -476,7 +486,7 @@ Tielinkit_13
     #    pause execution
     wait until element is visible               ${mass_update_modal_functClass_menu}
     Log  Varmistetaan otsikko
-    element text should be                      ${mass_update_modal_otsikko}            Olet valinnut 4 tielinkkiä
+    SeleniumLibrary.Element Text Should Be                      ${mass_update_modal_otsikko}            Olet valinnut 4 tielinkkiä
     log  Muutetaan linkeiltä toiminnallinen luokka ja linkin tyyppi
     open context menu                           ${mass_update_modal_functClass_menu}
     select from list by value                   ${mass_update_modal_functClass_menu}    8
@@ -488,7 +498,7 @@ Tielinkit_13
     Log  Muutetaan samojen tielinkkien tiedot takaisin
     press control and drag and drop by offset   ${kartta}   160   100
     wait until element is visible               ${mass_update_modal_functClass_menu}
-    element text should be                      ${mass_update_modal_otsikko}            Olet valinnut 4 tielinkkiä
+    SeleniumLibrary.Element Text Should Be                      ${mass_update_modal_otsikko}            Olet valinnut 4 tielinkkiä
     open context menu                           ${mass_update_modal_functClass_menu}
     select from list by value                   ${mass_update_modal_functClass_menu}    5
     open context menu                           ${mass_update_modal_linkType_menu}

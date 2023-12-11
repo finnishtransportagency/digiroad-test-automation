@@ -2,7 +2,7 @@
 
 
 *** Settings ***
-Documentation       Pageobject for Traffic signs (Liikennemerkit)
+Documentation       Pageobject for lane tool (Kaistatyökalu)
 
 *** Keywords ***
 
@@ -135,3 +135,4 @@ ${KT_Hallinnollinen_Luokka}         css=.input-unit-combination div:nth-child(8)
 ${KT_Kaistan_tiedot}                css=.input-unit-combination div:nth-child(9) p
 ${KT_Kaista}                        css=.input-unit-combination div:nth-child(10) p
 ${KT_Alkupäivämäärä}                id=start_date
+${KT_Loppupäivämäärä}               id=end_date

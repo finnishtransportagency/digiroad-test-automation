@@ -6,9 +6,9 @@ if [ $SELAIN==- ]
 then
     if [ $( date '+%u' ) -le 5 ]
     then
-        SELAIN=Chrome
+        SELAIN=Firefox  #Chrome
     else
-        SELAIN=Firefox
+        SELAIN=Chrome    #Firefox
     fi
 fi
 

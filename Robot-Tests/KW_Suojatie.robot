@@ -5,17 +5,13 @@ Documentation       Pageobject for obstacles (Suojatie)
 *** Variables ***
 ${LocatorForDDM}                                css=#feature-attributes .form-group.editable select:first-of-type
 ${LocatorForDDM_Selection}                      css=select > option:nth-child(2)
-
 ${Suojatien_poisto}                        Haluatko varmasti poistaa Suojatien?
 
 ##### Suojatiet ####
 ${FA_Suojatie_Poista_chkbx}                          id=removebox
 
 
-
-
 *** Keywords ***
-
 Suojatie_1  [arguments]  ${testipaikka}
     Log  Zoomataan testipaikkaan, tarkistetaan että kohteessa on jotain tietoa
     Vaihda Tietolaji                    ${TL_Suojatie_RB}
@@ -33,6 +29,7 @@ Suojatie_1  [arguments]  ${testipaikka}
     Wait Until Element Is Not Visible   ${Map_popup}
     Click Element At Coordinates        ${Kartta}  0  20
     Repeat Keyword  10 s                Element Should Not Be Visible   ${FA_otsikko}
+
 
 Suojatie_2  [arguments]  ${Lista}
     Log  Arvotaan Geometrian ulkopuolelle jääneet opastustaulut tai Laatuvirhe Listalta kohde ja tarkistetaan, että ID Täsmää.
@@ -58,6 +55,7 @@ Suojatie_2  [arguments]  ${Lista}
     Log  varmistetaan että kartalta klikattu linkin ID täsmää listalta otettuun.
     element should contain                      ${FA_otsikko}  ${tmp_linkID}
 
+
 Suojatie_3  [arguments]  ${testipaikka}
     Log  Valitaan Suojatie ja siirretään sitä, siirtoa ei talleteta.
     Siirry Testipaikkaan                        ${TL_Suojatie_RB}  ${testipaikka}
@@ -65,11 +63,12 @@ Suojatie_3  [arguments]  ${testipaikka}
     Click Element At Coordinates                ${Kartta}  0  20
     Wait Until Element Is Visible               ${FA_otsikko}
     Siirry muokkaustilaan
-    Siirrä Kohde                         40   5
+    Siirrä Kohde                                40   5
     Click element at coordinates                ${Kartta}  100  100
     Wait Until Element Is Visible               ${MuokkausVaroitus}
     Click Button                                Sulje
     click element                               ${FA_footer_Peruuta}
+
 
 Suojatie_4  [arguments]  ${testipaikka}
     ${date}=  Get Current Date                  result_format=%d.%m.%Y
@@ -79,7 +78,6 @@ Suojatie_4  [arguments]  ${testipaikka}
     Alusta Testipaikka
     Log  Luodaan uusi suojatie, tarkistetaan Datetimen avulla luontipäivä.
 
-
     Luo Suojatie                                tyyppi
     Siirry Katselutilaan
     Click Element At Coordinates                ${Kartta}  0  20
@@ -87,15 +85,16 @@ Suojatie_4  [arguments]  ${testipaikka}
     Element Should Contain                      ${FA_Lisätty_Järjestelmään}  ${date}
     Poista Kohde
 
+
 #######################
 ## Sisäiset keywordit #
 #######################
-
 Siirrä Suojatie  [Arguments]  ${xKoord}  ${yKoord}
 # Siirtää valittua Suojatie annetun offsetin verran, arvot positiivisia keskipisteestä oikealle ja alas
     Seleniumlibrary.mouse down                      css=[class='crosshair crosshair-center']
     Seleniumlibrary.drag and drop by offset         css=[class='crosshair crosshair-center']  ${xKoord}  ${yKoord}
     Seleniumlibrary.mouse up                        css=[class='crosshair crosshair-center']
+
 
 Tarkista Suojatien olemassaolo
 # Käytetään uutta Suojatietä luotaessa - Tarkistaa jos Suojatie on jo olemassa ja poistaa sen.
@@ -103,11 +102,12 @@ Tarkista Suojatien olemassaolo
     ${passed}=  Run Keyword And Return Status   wait until element is visible    ${FA_otsikko}  timeout=3
     run keyword if  ${passed}  Poista Suojatie
 
+
 Poista Suojatie
     click element                               ${FA_Suojatie_Poista_chkbx}
     click element                               ${FA_footer_Tallenna}
     wait until element is visible               ${MuokkausVaroitus}
-    element text should be                      ${MuokkausVaroitus}     ${Suojatien_poisto}
+    SeleniumLibrary.Element Text Should Be                      ${MuokkausVaroitus}     ${Suojatien_poisto}
     click element                               ${muokkausvaroitus_kyllä_btn}
 
 

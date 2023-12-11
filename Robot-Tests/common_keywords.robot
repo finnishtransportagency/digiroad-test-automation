@@ -8,6 +8,7 @@ Library                     DateTime
 Resource                    variables.robot
 Resource                    API_KW_lanes_in_municipality.robot
 Resource                    API_KW_lanes_in_range.robot
+#Resource                    API_KW_lane_information.robot
 Resource                    KW_Tielinkit.robot
 Resource                    KW_Kartta.robot
 Resource                    KW_UI.robot
@@ -30,6 +31,12 @@ Resource                    KW_Palvelupiste.robot
 Resource                    KW_Paallyste.robot
 Resource                    KW_Leveys.robot
 Resource                    KW_Valaistus.robot
+Resource                    KW_Kantavuus.robot
+Resource                    KW_Tietyot.robot
+Resource                    KW_Kelirikko.robot
+Resource                    KW_Eurooppatienumero.robot
+Resource                    KW_Liittymänumero.robot
+
 
 
 *** Variables ***
@@ -196,7 +203,7 @@ Valitse Selain
     ${date}=  Get Current Date
     ${date}=  Convert Date  ${date}  result_format=%w
     ${BROWSER}=  Run Keyword If  0<=${date}<5  Set Variable  Chrome
-    ...  ELSE IF  Set Variable  Firefox
+    ...  ELSE IF  Set Variable  ${BROWSER}=    Firefox
     log to console  ${BROWSER}
     [Return]  ${BROWSER}
 
