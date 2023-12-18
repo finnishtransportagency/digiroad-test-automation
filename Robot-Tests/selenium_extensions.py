@@ -10,6 +10,11 @@ from selenium.webdriver.common.keys import Keys
 import requests
 #from pyproj import Proj, transform
 
+from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
+from selenium import webdriver
+firefox_binary = FirefoxBinary()
+driver = webdriver.Firefox(firefox_binary=firefox_binary)
+
 #from selenium.webdriver.common.utils import keys_to_typing
 
 #def wheel(locator, offset):
