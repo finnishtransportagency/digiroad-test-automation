@@ -37,7 +37,7 @@ ENV CHROMIUM_VERSION 119.0.6045.159
 #86.0
 ENV FIREFOX_VERSION 115.5.0-r0
 #78
-ENV GECKO_DRIVER_VERSION v0.33.0
+ENV GECKO_DRIVER_VERSION v0.34.0
 #v0.26.0
 ENV PABOT_VERSION 2.15.0
 #1.10.0
@@ -49,7 +49,7 @@ ENV XVFB_VERSION 1.20
 ENV ROBOT_FRAMEWORK_REQUESTS_VERSION 0.9.4
 #0.9.4
 ENV SELENIUM_VERSION 4.9.1
-#4.9.0
+#4.9.1 latest working version
 
 # Prepare binaries to be executed
 #COPY bin/chromedriver.sh /opt/robotframework/bin/chromedriver
