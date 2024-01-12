@@ -24,13 +24,15 @@ Talvinopeus perustestit    [arguments]    ${testipaikka}
 
     Log  Tarkistaa, että nopeusrajoitukset ovat laskevassa järjestyksessä.
     Click Element                               ${Popup_TalviNopeusRajoitus}
-    FOR  ${i}  IN RANGE  2  6
-        ${n}=  Evaluate  -${i}+1
+    FOR  ${i}  IN RANGE  2  5
+        ${n}=  Evaluate  ${i}-1
         Element Should Contain  xpath=/html/body/div[1]/div[2]/main/article/div/div/div[4]/div/div/div[3]/select  ${Talvinopeusrajoitukset}[${n}]
+        Click Element    css=#feature-attributes-form > div > div > div.form-elements-container > div > div > div.input-unit-combination > select option:nth-child(${n})
+        Capture Page Screenshot
     END
 
-    Siirry Katselutilaan
-    Click Element At Coordinates                ${Kartta}  50  50
+    #Siirry Katselutilaan
+    Click Element            ${FA_footer_Peruuta}
     Sleep  5 s
     Element Should Not Be Visible               ${FA_otsikko}
 
@@ -41,6 +43,10 @@ Talvinopeus perustestit    [arguments]    ${testipaikka}
     Odota sivun latautuminen
     Click Element At Coordinates                ${Kartta}  0  20
     Repeat Keyword  10 s  Element Should Not Be Visible    ${FA_otsikko}
+
+
+Talvinopeusrajoitus monivalinta    [arguments]    ${testipaikka}
+    vaihda tietolaji                            ${TL_Talvinopeusrajoitus_RB}
 
 
 *** Variables ***
