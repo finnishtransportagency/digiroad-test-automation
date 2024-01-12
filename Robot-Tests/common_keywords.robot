@@ -158,7 +158,7 @@ Tupla Klikkaa Kartan Keskelle
     Set Selenium Speed  0
     Click Element At Coordinates  ${Kartta}  0  20
     Click Element At Coordinates  ${Kartta}  0  20
-    doubleclick element at coordinates  ${Kartta}  0  20
+   selenium_extensions.doubleclick element at coordinates  ${Kartta}  0  20
     Set Selenium Speed  ${DELAY}
 
 Siirry Testipaikkaan
@@ -211,7 +211,7 @@ Suorita monivalinta
     Click Element At Coordinates                ${Kartta}  -100  -100
     Click Element At Coordinates                ${Kartta}  100  -100
     Click Element At Coordinates                ${Kartta}  100  100
-    Doubleclick Element At Coordinates          ${Kartta}  -100  100
+   selenium_extensions.doubleclick Element At Coordinates          ${Kartta}  -100  100
 
 Suorita laatikkovalinta
     Click Element At Coordinates                ${Kartta}  0  0
