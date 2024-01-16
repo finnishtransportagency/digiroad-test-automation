@@ -50,6 +50,8 @@ ENV ROBOT_FRAMEWORK_REQUESTS_VERSION 0.9.4
 #0.9.4
 ENV SELENIUM_VERSION 4.9.1
 #4.9.1 latest working version
+ENV EDGE_VERSION 6.7.0-r0
+ENV EDGEDRIVER_VERSION 120.0.2210.133
 
 # Prepare binaries to be executed
 #COPY bin/chromedriver.sh /opt/robotframework/bin/chromedriver
@@ -70,12 +72,14 @@ RUN apk update \
     make \
     musl-dev \
     openssl-dev \
+    unzip \
     which \
     wget \
   && apk --no-cache add \
     "chromium~$CHROMIUM_VERSION" \
     "chromium-chromedriver~$CHROMIUM_VERSION" \
     "firefox-esr~$FIREFOX_VERSION" \
+    "linux-edge~$EDGE_VERSION" \
     xauth \
     "xvfb-run~$XVFB_VERSION" \
   #&& mv /usr/lib/chromium/chrome /usr/lib/chromium/chrome-original \
@@ -108,10 +112,18 @@ RUN apk update \
     && rm geckodriver-$GECKO_DRIVER_VERSION-linux64.tar.gz \
     && chmod +x geckodriver \
     && mv geckodriver /usr/bin/ \
-  && apk del --no-cache --update-cache .build-deps
 
     #&& mkdir -p /opt/robotframework/drivers/ \
     #&& mv geckodriver /opt/robotframework/drivers/geckodriver \
+
+
+#Download EdgeDriver directly from Microsoft and unzip
+  && wget -q "https://msedgedriver.azureedge.net/$EDGEDRIVER_VERSION/edgedriver_linux64.zip" \
+    && unzip edgedriver_linux64.zip \
+    && rm edgedriver_linux64.zip \
+    && chmod +x msedgedriver \
+    && mv msedgedriver /usr/bin/ \
+  && apk del --no-cache --update-cache .build-deps
 
 # Create the default report and work folders with the default user to avoid runtime issues
 # These folders are writeable by anyone, to ensure the user can be changed on the command line.
