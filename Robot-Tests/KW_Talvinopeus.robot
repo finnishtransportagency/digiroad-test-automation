@@ -47,9 +47,59 @@ Talvinopeus perustestit    [arguments]    ${testipaikka}
 
 Talvinopeusrajoitus monivalinta    [arguments]    ${testipaikka}
     vaihda tietolaji                            ${TL_Talvinopeusrajoitus_RB}
+    Paikanna osoite                             ${testipaikka}
+    Odota sivun latautuminen
+
+    Siirry Muokkaustilaan
+    Wait Until Element Is Enabled               ${Muokkaustila_PolygonTool}
+    Click Element                               ${Muokkaustila_PolygonTool}
+    Suorita monivalinta
+    Wait Until Element Is Visible               ${Popup_valikko_talvinopeus}
+    Element Should Be Visible                   ${Popup_valikko_talvinopeus}
+    Element Should Be Enabled                   ${FA_header_Tallenna}
+    Click Element                               ${FA_header_Peruuta}
+
+    Siirry Katselutilaan
+    sleep  1 s
+    Click Element at Coordinates                ${Kartta}  0  20
+    Wait Until Element contains                 ${FA_Nopeusrajoitus}  60 km/h
+
+    Log  Ei voi aloittaa monivalintaa, jos on muokannut jotain toista nopeusrajoitusta ensin 206.118
+    Siirry Muokkaustilaan
+    Click Element                               ${Popup_NopeusRajoitus}
+    Click Element                               ${Popup_NopeusRajoitus_120}
+    Click Element                               css=.${TL_Talvinopeus_RB} .polygon
+    Wait Until Element Is Visible               ${MuokkausVaroitus}
+    Wait Until Element Is Not Visible           ${Map_popup}
+    Click Element                               ${Muokkausvaroitus_Sulje_btn}
+    Click Element                               ${FA_footer_Peruuta}
+
+    Log  Talletetaan rajoitus monivalintatyökalulla.
+    Click Element                               css=.${TL_Talvinopeus_RB} .polygon
+    Suorita monivalinta
+    Click Element                               ${Popup_NopeusRajoitus}
+    Click Element                               ${Popup_NopeusRajoitus_120}
+    Click Element                               ${FA_header_Tallenna}
+    Wait Until Element Is Not Visible           ${Spinner_Overlay}
+    Odota sivun latautuminen
+
+    Log  Tarkistetaan edellinen talletus, sekä asetetaan rajoitus\=60 km/h
+    Siirry Katselutilaan
+    Double Click Element At Coordinates         ${Kartta}  0  20
+    Wait Until Element Is Visible               ${FA_otsikko}
+    Element Should Contain                      ${FA_Nopeusrajoitus}  120 km/h
+    Siirry Muokkaustilaan
+    Click Element                               css=.${TL_Talvinopeus_RB} .polygon
+    Suorita monivalinta
+    Click Element                               ${Popup_NopeusRajoitus}
+    Click Element                               ${Popup_NopeusRajoitus_DDM}
+    Click Element                               ${FA_header_Tallenna}
+    Wait Until Element Is Not Visible           ${Spinner_Overlay}
+    Odota sivun latautuminen
 
 
 *** Variables ***
 
 ${aloitussivu}    css=.panel-group:not([style="display: none;"]) .action.select.action
 ${Popup_TalviNopeusRajoitus}    css=#feature-attributes-form > div > div > div.form-elements-container > div > div > div.input-unit-combination > select
+${Popup_valikko_talvinopeus}                css=body > div.container > div.modal-overlay.mass-update-modal > div > div.form-elements-container > div

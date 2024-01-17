@@ -20,8 +20,8 @@ Talvinopeus perustestit
     KW_Talvinopeus.Talvinopeus perustestit    6782293, 446161
 
 
-Talvinopeusrajoitus 3
+Talvinopeusrajoitus monivalinta
     [Tags]  AWS  testi  Nopeus
     [Documentation]  Nopeusrajotusten muokkaus monivalintatyökalulla.
     ...  Testaa regressio testit 206.116, 206.118
-    KW_Talvinopeusrajoitus.Talvinopeusrajoitus monivalinta  6938911, 393122
+    KW_Talvinopeus.Talvinopeusrajoitus monivalinta  6783934, 508727
