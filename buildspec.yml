@@ -10,7 +10,7 @@ phases:
   build:
     commands:
       - echo Selecting browser based on weekday
-      - if [ $( date '+%u' ) -le 3 ]; then SELAIN=headlesschrome; else if [ $( date '+%u' ) -le 5 ]; then SELAIN=edge; else SELAIN=headlessfirefox;  fi
+      - if [ $( date '+%u' ) -le 3 ]; then SELAIN=headlesschrome else if [ $( date '+%u' ) -le 5 ]; then SELAIN=edge else SELAIN=headlessfirefox  fi
       - echo Selected Browser=$SELAIN
       - xvfb-run --server-args="-screen 0 1920x1080x24 -ac" robot --xunit xunitlog.xml -d /robotlogs -T -v LiviUSER:$Username -v LiviPWD:$Password -v BROWSER:$SELAIN -v API_autentikointi:$APIkey Robot-Tests/
 
