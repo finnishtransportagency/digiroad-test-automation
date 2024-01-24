@@ -108,7 +108,7 @@ RUN apk update \
     && tar xzf geckodriver-$GECKO_DRIVER_VERSION-linux64.tar.gz \
     && rm geckodriver-$GECKO_DRIVER_VERSION-linux64.tar.gz \
     && chmod +x geckodriver \
-    && mv geckodriver /usr/bin/ \
+    && mv geckodriver /usr/bin/
 #
     #&& mkdir -p /opt/robotframework/drivers/ \
     #&& mv geckodriver /opt/robotframework/drivers/geckodriver \
