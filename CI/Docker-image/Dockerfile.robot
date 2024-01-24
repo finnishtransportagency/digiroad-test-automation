@@ -1,35 +1,35 @@
 ARG image="python:alpine3.18"
 #FROM ${image}
 FROM public.ecr.aws/docker/library/python:alpine3.18
-
+#
 #MAINTAINER 
 LABEL description Robot Framework in Docker.
-
+#
 # Set the reports directory environment variable
 ENV ROBOT_REPORTS_DIR /opt/robotframework/reports
-
+#
 # Set the tests directory environment variable
 ENV ROBOT_TESTS_DIR /opt/robotframework/tests
-
+#
 # Set the keyword directory enviroment variable
 ENV ROBOT_KW_DIR /opt/robotframework/tests/keywords
-
+#
 # Set the working directory environment variable
 ENV ROBOT_WORK_DIR /opt/robotframework/temp
-
+#
 # Setup X Window Virtual Framebuffer
 ENV SCREEN_COLOUR_DEPTH 24
 ENV SCREEN_HEIGHT 1080
 ENV SCREEN_WIDTH 1920
-
+#
 # Set number of threads for parallel execution
 # By default, no parallelisation
 ENV ROBOT_THREADS 1
-
+#
 # Define the default user who'll run the tests
 ENV ROBOT_UID 1000
 ENV ROBOT_GID 1000
-
+#
 # Dependency versions
 ENV ALPINE_GLIBC 2.35-r1
 #2.31-r0
@@ -50,19 +50,17 @@ ENV ROBOT_FRAMEWORK_REQUESTS_VERSION 0.9.4
 #0.9.4
 ENV SELENIUM_VERSION 4.9.1
 #4.9.1 latest working version
-ENV EDGE_VERSION 6.6.4-r0
-ENV EDGEDRIVER_VERSION 120.0.2210.133
-
+#
 # Prepare binaries to be executed
 #COPY bin/chromedriver.sh /opt/robotframework/bin/chromedriver
 #COPY bin/chromium-browser.sh /opt/robotframework/bin/chromium-browser
 #COPY bin/run-tests-in-virtual-screen.sh /opt/robotframework/bin/
 #RUN ["chmod", "+x", "/opt/robotframework/bin/run-tests-in-virtual-screen.sh"]
-
+#
 # Install system dependencies
 RUN rm -rf /var/cache/apk/* && \
     rm -rf /tmp/*
-
+#
 RUN apk update \
   && apk --no-cache upgrade \
   && apk --no-cache --virtual .build-deps add \
@@ -79,7 +77,6 @@ RUN apk update \
     "chromium~$CHROMIUM_VERSION" \
     "chromium-chromedriver~$CHROMIUM_VERSION" \
     "firefox-esr~$FIREFOX_VERSION" \
-    "linux-edge~$EDGE_VERSION" \
     xauth \
     "xvfb-run~$XVFB_VERSION" \
   #&& mv /usr/lib/chromium/chrome /usr/lib/chromium/chrome-original \
@@ -112,19 +109,10 @@ RUN apk update \
     && rm geckodriver-$GECKO_DRIVER_VERSION-linux64.tar.gz \
     && chmod +x geckodriver \
     && mv geckodriver /usr/bin/ \
-
+#
     #&& mkdir -p /opt/robotframework/drivers/ \
     #&& mv geckodriver /opt/robotframework/drivers/geckodriver \
-
-
-#Download EdgeDriver directly from Microsoft and unzip
-  && wget -q "https://msedgedriver.azureedge.net/$EDGEDRIVER_VERSION/edgedriver_linux64.zip" \
-    && unzip edgedriver_linux64.zip \
-    && rm edgedriver_linux64.zip \
-    && chmod +x msedgedriver \
-    && mv msedgedriver /usr/bin/ \
-  && apk del --no-cache --update-cache .build-deps
-
+#
 # Create the default report and work folders with the default user to avoid runtime issues
 # These folders are writeable by anyone, to ensure the user can be changed on the command line.
 RUN mkdir -p ${ROBOT_REPORTS_DIR} \
@@ -132,25 +120,26 @@ RUN mkdir -p ${ROBOT_REPORTS_DIR} \
   && chown ${ROBOT_UID}:${ROBOT_GID} ${ROBOT_REPORTS_DIR} \
   && chown ${ROBOT_UID}:${ROBOT_GID} ${ROBOT_WORK_DIR} \
   && chmod ugo+w ${ROBOT_REPORTS_DIR} ${ROBOT_WORK_DIR}
-
+#
 # Allow any user to write logs
 RUN chmod ugo+w /var/log \
   && chown ${ROBOT_UID}:${ROBOT_GID} /var/log
-
 # Update system path
 ENV PATH=/opt/robotframework/bin:/opt/robotframework/drivers:$PATH
-
+#
 # Add path for google chrome as chromium-browser
 ENV CHROME_BIN=/usr/bin/chromium-browser \
     CHROME_PATH=/usr/lib/chromium/
-
+# Path and binary location for firefox esr
+ENV FIREFOX_BIN=/usr/bin/firefox-esr \
+    FIREFOX_PATH=/usr/lib/firefox-esr/
 # Set up a volume for the generated reports
 VOLUME ${ROBOT_REPORTS_DIR}
-
+#
 USER ${ROBOT_UID}:${ROBOT_GID}
-
+#
 # A dedicated work folder to allow for the creation of temporary files
 WORKDIR ${ROBOT_WORK_DIR}
-
+#
 # Execute all robot tests
 #CMD ["run-tests-in-virtual-screen.sh"]
