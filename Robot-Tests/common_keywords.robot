@@ -38,7 +38,7 @@ Resource                    KW_Eurooppatienumero.robot
 Resource                    KW_Liittymänumero.robot
 Resource                    KW_Talvinopeus.robot
 
-
+Resource                    C:/Users/joni.laari/Documents/DRownvariables.robot
 
 *** Variables ***
 ${BROWSER}                  Firefox
@@ -119,6 +119,7 @@ Vaihda Tietolaji  [Arguments]  ${tietolaji_locator}
     click element                   ${valitse tietolaji}
     wait until element is visible   ${Valitse_tietolaji_ikkuna}
     select radio button             ${Tietolaji_RB_group}  ${tietolaji_locator}
+    Radio Button Should Be Set To   ${Tietolaji_RB_group}  ${tietolaji_locator}
     #    wait until element is visible   ${Siirry muokkaustilaan}
 
 Zoomaa kartta  [Arguments]   ${loopvalue}  ${maxskaala}
