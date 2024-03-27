@@ -70,9 +70,9 @@ Käyttöliittymä 5_3
     Log  Testille annetaan parametrina tietolaji ja paikka jossa se testataan (osoite tai koordinaatti)
     KW_UI.UI_5_chkbx            ${TL_Suojatie_RB}                  7477738, 483051
     KW_UI.UI_5_chkbx            ${TL_Liikennevalo_RB}              6671805, 384624
-    KW_UI.UI_5_chkbx            ${TL_Joukkoliikenteen_pysäkki_RB}  6671857, 384643
+    KW_UI.UI_5_chkbx            ${TL_Joukkoliikenteen_pysäkki_RB}  6671985, 384652
     KW_UI.UI_5_chkbx            ${TL_Palvelupiste_RB}              6711455, 239920
-    KW_UI.UI_5_chkbx            ${TL_Rautatien_tasoristeys_RB}     6712202, 240424
+    KW_UI.UI_5_chkbx            ${TL_Rautatien_tasoristeys_RB}     6878773, 369547
     KW_UI.UI_5_chkbx            ${TL_Esterakennelma_RB}            6711849, 240709
     KW_UI.UI_5_chkbx            ${TL_Opastustaulu_RB}              6738104, 251253
 

@@ -12,3 +12,4 @@ testi.robot
 .mozilla
 .config
 *.ps1
+.venv

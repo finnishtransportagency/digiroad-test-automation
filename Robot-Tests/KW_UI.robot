@@ -175,11 +175,13 @@ UI_5_chkbx  [Arguments]  ${TL}  ${testipaikka}
     ...  Execute Javascript                 var element = document.getElementById("feature-attributes-form");
     ...                                     element.scrollIntoView({block: "end"});
     Run Keyword If     '${TL}' == '${TL_Joukkoliikenteen_pysäkki_RB}'    set focus to element    css=#removebox
+
     Run Keyword If     '${TL}' == '${TL_Joukkoliikenteen_pysäkki_RB}'    wait until element is visible           ${LocatorForCheckboxpp}
     ...  ELSE     wait until element is visible           ${LocatorForCheckbox}
+    Run Keyword If     '${TL}' == '${TL_Joukkoliikenteen_pysäkki_RB}'    Click Element    css=#feature-attributes-form > div > div > div > div:nth-child(25) > select > option:nth-child(4)
     # pause execution
     Run Keyword If     '${TL}' == '${TL_Rautatien_tasoristeys_RB}'    Tarkista Muokkaustila radio non-unit  ${LocatorForCheckbox}  ${TL}
-    ...  ELSE     Tarkista muokkaustila radio non-unit  ${LocatorForCheckbox}  EMPTY
+#    ...  ELSE     Tarkista muokkaustila radio non-unit  ${LocatorForCheckbox}  EMPTY
     Siirry Katselutilaan
 
 UI_5_liikennevalo  [Arguments]  ${TL}  ${testipaikka}

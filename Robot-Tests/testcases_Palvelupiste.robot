@@ -25,7 +25,7 @@ Palvelupiste_case_2
 
     KW_Palvelupiste.Palvelupiste_2  6761477, 427461  ${PP_Pysäköintitalo}    Pysäköintitalo
     KW_Palvelupiste.Palvelupiste_2  6900791, 434121  ${PP_Pysäköintialue}    Pysäköintialue
-    KW_Palvelupiste.Palvelupiste_2  6901701, 435308  ${PP_Merkittävä_Rautatieasema}           Merkittävä rautatieasema
+    KW_Palvelupiste.Palvelupiste_2  6822567, 328280  ${PP_Merkittävä_Rautatieasema}           Merkittävä rautatieasema
     KW_Palvelupiste.Palvelupiste_2  6745819, 478333  ${PP_Vähäisempi_Rautatieasema}    Vähäisempi rautatieasema
     KW_Palvelupiste.Palvelupiste_2  6679260, 393880  ${PP_Metroasema}       Maanalainen/metroasema
     KW_Palvelupiste.Palvelupiste_2  6879737, 375234  ${PP_Linja_Auto_Asema}    Linja-autoasema
