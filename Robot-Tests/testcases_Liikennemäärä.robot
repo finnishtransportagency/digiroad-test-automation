@@ -23,11 +23,18 @@ Liikennemäärän tarkastelu klikkaamalla
     [Tags]    Liikennemäärä
     [Documentation]    Liikennemäärän tarkastelu klikkaamalla
 
-    KW_Liikennemäärä.Liikennemäärän tarkastelu klikkaamalla    6905144, 434064
+    KW_Liikennemäärä.Liikennemäärän tarkastelu klikkaamalla    6899004, 433707
 
 
 Liikennemäärän muokkaus koko ketjulle
     [Tags]    Liikennemäärä
     [Documentation]    Liikennemäärän muokkaus koko ketjulle
+
+    KW_Liikennemäärä.Liikennemäärän muokkaus koko ketjulle    6905144, 434064
+
+
+Liikennemäärän muokkaus ketjun osalle
+    [Tags]    Liikennemäärä
+    [Documentation]    Liikennemäärän muokkaus ketjun osalle
 
     KW_Liikennemäärä.Liikennemäärän muokkaus koko ketjulle    6905144, 434064
