@@ -38,3 +38,24 @@ Liikennemäärän muokkaus ketjun osalle
     [Documentation]    Liikennemäärän muokkaus ketjun osalle
 
     KW_Liikennemäärä.Liikennemäärän muokkaus koko ketjulle    6905144, 434064
+
+
+Liikennemäärän laatikkovalinta
+    [Tags]    Liikennemäärä
+    [Documentation]    Liikennemäärän laatikkovalinta
+
+    KW_Liikennemäärä.Liikennemäärän laatikkovalinta           6905144, 434064
+
+
+Liikennemäärän polygonvalinta
+    [Tags]    Liikennemäärä
+    [Documentation]    Liikennemäärän monikulmiovalinta
+
+    KW_Liikennemäärä.Liikennemäärän polygonvalinta           6905144, 434064
+    
+
+Liikennemäärän ctrlvalinta
+    [Tags]    Liikennemäärä
+    [Documentation]    Liikennemäärän ctrl-valinta
+
+    KW_Liikennemäärä.Liikennemäärän ctrlvalinta           6905144, 434064

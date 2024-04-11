@@ -61,7 +61,7 @@ Liikennemäärän muokkaus koko ketjulle    [arguments]    ${testipaikka}
     Element Should Be Visible                   ${FA_Muokattu_viimeksi}
     Element Should Be Visible                   ${FA_Linkkien_lukumaara}
     Radio Button Should Be Set To               traffic-volume    enabled
-    Input Text                                  class=form-control.traffic-volume    99999
+    Input Text                                  ${FA_Liikennemäärä_tekstikenttä}    99999
     Element Should Be Enabled                   ${FA_footer_Tallenna}
     Click Element                               ${FA_footer_Peruuta}
     Odota sivun latautuminen
@@ -91,9 +91,9 @@ Liikennemäärän muokkaus ketjun osalle    [arguments]    ${testipaikka}
     Element Should Be Visible                   ${FA_Muokattu_viimeksi}
     Element Should Be Visible                   ${FA_Linkkien_lukumaara}
     Radio Button Should Be Set To               traffic-volume    enabled
-    Input Text                                  class=form-control.traffic-volume    99999
+    Input Text                                  ${FA_Liikennemäärä_tekstikenttä}    99999
     Element Should Be Enabled                   ${FA_footer_Tallenna}
-    Clear Element Text                          class=form-control.traffic-volume
+    Clear Element Text                          ${FA_Liikennemäärä_tekstikenttä}
     Element Should Be Disabled                  ${FA_footer_Tallenna}
     Click Element                               ${FA_footer_Peruuta}
     Odota sivun latautuminen
@@ -110,8 +110,61 @@ Liikennemäärän muokkaus ketjun osalle    [arguments]    ${testipaikka}
     Odota sivun latautuminen
 
 
+Liikennemäärän laatikkovalinta    [arguments]    ${testipaikka}
+    Log    Liikennemäärän laatikkovalinta
+    Vaihda Tietolaji    ${TL_Liikennemäärä_RB}
+    Paikanna osoite                             ${testipaikka}
+    Zoomaa kartta                               5   50 m
+    Odota sivun latautuminen
+    Siirry Muokkaustilaan
+    Wait Until Element Is Not Visible           ${Map_popup}
+    Log    Tarkistetaan laatikkotyökalu
+    Wait Until Element Is Visible               ${Muokkaustila_Laatikko}
+    Click Element                               ${Muokkaustila_Laatikko}
+    Suorita laatikkovalinta
+    Wait Until Element Is Visible               css=.modal-dialog
+    Radio Button Should Be Set To               traffic-volume    disabled
+    Select Radio Button                         traffic-volume    enabled
+    Radio Button Should Be Set To               traffic-volume    enabled
+    Input Text                                  ${FA_Liikennemäärä_tekstikenttä}    99999
+    Element Should Be Enabled                   ${FA_header_Tallenna}
+    Click Element                               ${FA_header_Peruuta}
+    Odota sivun latautuminen
 
+
+Liikennemäärän polygonvalinta    [arguments]    ${testipaikka}
+    Log    Liikennemäärän polgyonvalinta
+    Vaihda Tietolaji    ${TL_Liikennemäärä_RB}
+    Paikanna osoite                             ${testipaikka}
+    Zoomaa kartta                               5   50 m
+    Odota sivun latautuminen
+    Siirry Muokkaustilaan
+    Wait Until Element Is Not Visible           ${Map_popup}
+    Log    Tarkistetaan polygontyökalu
+    Wait Until Element Is Visible               ${Muokkaustila_PolygonTool}
+    Click Element                               ${Muokkaustila_PolygonTool}
+    Suorita monivalinta
+    Wait Until Element Is Visible               css=.modal-dialog
+    Radio Button Should Be Set To               traffic-volume    disabled
+    Select Radio Button                         traffic-volume    enabled
+    Radio Button Should Be Set To               traffic-volume    enabled
+    Input Text                                  ${FA_Liikennemäärä_tekstikenttä}    99999
+    Element Should Be Enabled                   ${FA_header_Tallenna}
+    Click Element                               ${FA_header_Peruuta}
+    Odota sivun latautuminen
+
+
+Liikennemäärän ctrlvalinta    [arguments]    ${testipaikka}
+    Log    Liikennemäärän ctrl-valinta
+    Vaihda Tietolaji    ${TL_Liikennemäärä_RB}
+    Paikanna osoite                             ${testipaikka}
+    Zoomaa kartta                               5   50 m
+    Odota sivun latautuminen
+    Siirry Muokkaustilaan
+    Wait Until Element Is Not Visible           ${Map_popup}
+    Log    Tarkistetaan monivalinta ctrl-nappi pohjassa
 
 
 *** Variables ***
 ${FA_Liikennemäärä_lukema}    css=#feature-attributes-form > div > div > div.form-elements-container > div > p
+${FA_Liikennemäärä_tekstikenttä}    class=form-control.traffic-volume

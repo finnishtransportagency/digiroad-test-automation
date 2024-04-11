@@ -120,7 +120,7 @@ AKR usealle linkille laatikolla   [arguments]     ${testipaikka}    ${rajoitelaj
     Odota sivun latautuminen
     Siirry Muokkaustilaan
     Wait Until Element Is Not Visible           ${Map_popup}
-    #Leveyden lisääminen laatikkotyökalulla
+    #Ajoneuvorajoituksen lisääminen laatikkotyökalulla
     Log    Tarkistetaan laatikkotyökalu
     Wait Until Element Is Visible               ${Muokkaustila_Laatikko}
     Click Element                               ${Muokkaustila_Laatikko}
@@ -154,7 +154,7 @@ AKR usealle linkille polygonilla   [arguments]     ${testipaikka}    ${rajoitela
     Odota sivun latautuminen
     Siirry Muokkaustilaan
     Wait Until Element Is Not Visible           ${Map_popup}
-    #Leveyden lisääminen polygontyökalulla
+    #Ajoneuvorajoituksen lisääminen polygontyökalulla
     Log    Tarkistetaan polygontyökalu
     Wait Until Element Is Visible               ${Muokkaustila_PolygonTool}
     Click Element                               ${Muokkaustila_PolygonTool}
@@ -185,7 +185,7 @@ AKR usealle linkille klikkaamalla    [arguments]    ${testipaikka}    ${rajoitel
     Siirry Muokkaustilaan
     Wait Until Element Is Not Visible           ${Map_popup}
 
-    #Leveyden lisääminen ctrl+klikkauksella
+    #Ajoneuvorajoituksen lisääminen ctrl+klikkauksella
     Log    Tarkistetaan monivalinta hiirellä
     Hold Control And Click Element At Coordinates             ${Kartta}  0  0
     selenium_extensions.Hold Control And Drag By Offset       ${Kartta}  0  100
