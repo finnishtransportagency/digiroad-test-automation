@@ -38,7 +38,7 @@ Resource                    KW_Eurooppatienumero.robot
 Resource                    KW_Liittymänumero.robot
 Resource                    KW_Liikennemäärä.robot
 
-Resource                    C:/Users/joni.laari/Documents/DRownvariables.robot
+
 
 *** Variables ***
 ${BROWSER}                  Firefox

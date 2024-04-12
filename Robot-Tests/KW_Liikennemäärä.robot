@@ -154,17 +154,30 @@ Liikennemäärän polygonvalinta    [arguments]    ${testipaikka}
     Odota sivun latautuminen
 
 
-Liikennemäärän ctrlvalinta    [arguments]    ${testipaikka}
-    Log    Liikennemäärän ctrl-valinta
+Liikennemäärän katkaisu    [arguments]    ${testipaikka}
+    Log    Liikennemäärän katkaisu
     Vaihda Tietolaji    ${TL_Liikennemäärä_RB}
-    Paikanna osoite                             ${testipaikka}
+    Paikanna osoite    ${testipaikka}
     Zoomaa kartta                               5   50 m
     Odota sivun latautuminen
     Siirry Muokkaustilaan
+    
+    Log  Leikataan kahteen osaan
     Wait Until Element Is Not Visible           ${Map_popup}
-    Log    Tarkistetaan monivalinta ctrl-nappi pohjassa
+    Click Element                               ${Muokkaustila_Leikkaus}
+    Click Element At Coordinates                ${Kartta}   0  10
+    Wait Until Element Is Visible               ${FA_AKR_Lisätty_järjestelmään}
+    Element Should Be Visible                   ${FA_AKR_Muokattu_viimeksi}
+    Element Should Be Visible                   ${FA_AKR_Linkkien_lukumäärä}
+    Element Should Be Visible                   ${FA_Liikennemäärä_katkaisu_a}
+    Element Should Be Visible                   ${FA_Liikennemäärä_katkaisu_b}
+    Input Text                                  ${FA_Liikennemäärä_katkaisu_b}    9999
+    Element Should Be Enabled                   ${FA_header_Tallenna}
+    Click Element                               ${FA_header_Peruuta}
 
 
 *** Variables ***
 ${FA_Liikennemäärä_lukema}    css=#feature-attributes-form > div > div > div.form-elements-container > div > p
 ${FA_Liikennemäärä_tekstikenttä}    class=form-control.traffic-volume
+${FA_Liikennemäärä_katkaisu_a}    css=#feature-attributes-form > div > div > div.form-elements-container > div:nth-child(1) > div > div.input-unit-combination.input-group > input
+${FA_Liikennemäärä_katkaisu_b}    css=#feature-attributes-form > div > div > div.form-elements-container > div:nth-child(2) > div > div.input-unit-combination.input-group > input

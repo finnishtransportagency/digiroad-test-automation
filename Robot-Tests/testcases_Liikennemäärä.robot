@@ -54,8 +54,8 @@ Liikennemäärän polygonvalinta
     KW_Liikennemäärä.Liikennemäärän polygonvalinta           6905144, 434064
     
 
-Liikennemäärän ctrlvalinta
+Liikennemäärän katkaisu
     [Tags]    Liikennemäärä
-    [Documentation]    Liikennemäärän ctrl-valinta
+    [Documentation]    Liikennemäärän katkaisu
 
-    KW_Liikennemäärä.Liikennemäärän ctrlvalinta           6905144, 434064
+    KW_Liikennemäärä.Liikennemäärän katkaisu           6905144, 434064
