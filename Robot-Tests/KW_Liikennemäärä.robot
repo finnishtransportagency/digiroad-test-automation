@@ -156,12 +156,12 @@ Liikennemäärän polygonvalinta    [arguments]    ${testipaikka}
 
 Liikennemäärän katkaisu    [arguments]    ${testipaikka}
     Log    Liikennemäärän katkaisu
-    Vaihda Tietolaji    ${TL_Liikennemäärä_RB}
-    Paikanna osoite    ${testipaikka}
+    Vaihda Tietolaji            ${TL_Liikennemäärä_RB}
+    Paikanna osoite            ${testipaikka}
     Zoomaa kartta                               5   50 m
     Odota sivun latautuminen
     Siirry Muokkaustilaan
-    
+
     Log  Leikataan kahteen osaan
     Wait Until Element Is Not Visible           ${Map_popup}
     Click Element                               ${Muokkaustila_Leikkaus}
