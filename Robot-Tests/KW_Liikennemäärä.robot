@@ -107,7 +107,6 @@ Liikennemäärän muokkaus ketjun osalle    [arguments]    ${testipaikka}
     Radio Button Should Be Set To               traffic-volume    disabled
     Element Should Be Enabled                   ${FA_footer_Tallenna}
     Click Element                               ${FA_footer_Peruuta}
-    Odota sivun latautuminen
 
 
 Liikennemäärän laatikkovalinta    [arguments]    ${testipaikka}
@@ -166,14 +165,14 @@ Liikennemäärän katkaisu    [arguments]    ${testipaikka}
     Wait Until Element Is Not Visible           ${Map_popup}
     Click Element                               ${Muokkaustila_Leikkaus}
     Click Element At Coordinates                ${Kartta}   0  10
-    Wait Until Element Is Visible               ${FA_AKR_Lisätty_järjestelmään}
-    Element Should Be Visible                   ${FA_AKR_Muokattu_viimeksi}
-    Element Should Be Visible                   ${FA_AKR_Linkkien_lukumäärä}
+    Wait Until Element Is Visible               ${FA_Lisätty_järjestelmään}
+    Element Should Be Visible                   ${FA_Muokattu_viimeksi}
+    Element Should Be Visible                   ${FA_Linkkien_lukumaara}
     Element Should Be Visible                   ${FA_Liikennemäärä_katkaisu_a}
     Element Should Be Visible                   ${FA_Liikennemäärä_katkaisu_b}
     Input Text                                  ${FA_Liikennemäärä_katkaisu_b}    9999
-    Element Should Be Enabled                   ${FA_header_Tallenna}
-    Click Element                               ${FA_header_Peruuta}
+    Element Should Be Enabled                   ${FA_footer_Tallenna}
+    Click Element                               ${FA_footer_Peruuta}
 
 
 *** Variables ***
