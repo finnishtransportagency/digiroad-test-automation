@@ -17,8 +17,6 @@ Liikennemäärän tarkastelu zoomilla   [arguments]     ${testipaikka}
     Odota sivun latautuminen
     Wait Until Element Is Visible               ${Kartta}
     Element Should Be Visible                   ${Kartta}
-    #Linkkien visualisoitumisen tarkistus
-    #Take Screenshot                             LOGDIR/liikennemäärä.jpg    #voidaan tarkistaa silmämääräisesti logista
 
 
 Liikennemäärän tarkastelu klikkaamalla    [arguments]    ${testipaikka}
@@ -37,7 +35,6 @@ Liikennemäärän tarkastelu klikkaamalla    [arguments]    ${testipaikka}
     Click Element At Coordinates                ${Kartta}  -100  -100
     Sleep    3
 
-    #doubleclick
     Tupla Klikkaa Kartan Keskelle
     Wait Until Element Is Visible               ${FA_otsikko}
     Element Should Be Visible    ${FA_Lisätty_Järjestelmään}
@@ -79,8 +76,8 @@ Liikennemäärän muokkaus koko ketjulle    [arguments]    ${testipaikka}
 
 
 Liikennemäärän muokkaus ketjun osalle    [arguments]    ${testipaikka}
-    Log    Liikennemäärän muokkaus koko ketjulle
-    Vaihda Tietolaji    ${TL_Liikennemäärä_RB}
+    Log    Liikennemäärän muokkaus ketjun osalle
+    Vaihda Tietolaji                            ${TL_Liikennemäärä_RB}
     Paikanna osoite                             ${testipaikka}
     Zoomaa kartta                               5   50 m
     Odota sivun latautuminen
