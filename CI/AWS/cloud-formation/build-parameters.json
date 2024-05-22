@@ -1,0 +1,22 @@
+[
+    {
+      "ParameterKey": "ApplicationName",
+      "ParameterValue": "Run-Robot-Automation-Tests"
+    },
+    {
+      "ParameterKey": "GitBranchName",
+      "ParameterValue": "AWS-QA"
+    },
+    {
+      "ParameterKey": "GitRepositoryName",
+      "ParameterValue": "digiroad-test-automation"
+    },
+    {
+      "ParameterKey": "GitHubOwner",
+      "ParameterValue": "finnishtransportagency"
+    },
+    {
+      "ParameterKey": "GitHubWebhookSecret",
+      "ParameterValue": "arn:aws:secretsmanager:eu-west-1:475079312496:secret:GITHUB_PAT-CqR1N2"
+    }
+  ]
