@@ -18,6 +18,8 @@ ${hoitoluokka_dropdown_indeksi}    0
 
 @{hoitoluokka_vuodenaika_lista}=    greenCare    winterCare
 
+@{hoitoluokka_alkukirjain_lista}=    P    K    T    A    B    C
+
 
 *** Test Cases ***
 Hoitoluokan tarkastelu
@@ -55,3 +57,21 @@ Hoitoluokan muokkaus ketjun osalle
         END
     END
     ${hoitoluokka_dropdown_indeksi}=    Evaluate    ${hoitoluokka_dropdown_indeksi} * 0
+
+
+Hoitoluokan laatikkovalinta
+    [Tags]    AWS    Hoitoluokat
+    [Documentation]    Hoitoluokan lisääminen usealle linkille laatikolla
+    FOR    ${i}    IN    @{hoitoluokka_alkukirjain_lista}
+        Log    ${i}
+        KW_Hoitoluokat.Hoitoluokan laatikkovalinta    6912831, 443186    ${i}
+    END
+
+
+Hoitoluokan polygonvalinta
+    [Tags]    Hoitoluokat
+    [Documentation]    Hoitoluokan lisääminen usealle linkille polygonilla
+    FOR    ${i}    IN    @{hoitoluokka_alkukirjain_lista}
+        Log    ${i}
+        KW_Hoitoluokat.Hoitoluokan polygonvalinta    6902605, 436143    ${i}
+    END

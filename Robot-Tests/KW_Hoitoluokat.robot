@@ -104,6 +104,56 @@ Hoitoluokan muokkaus ketjun osalle    [arguments]    ${testipaikka}    ${hoitolu
     END
 
 
+Hoitoluokan laatikkovalinta    [arguments]    ${testipaikka}    ${dropdown_nappi}
+    Log    Hoitoluokan lisääminen laatikolla
+    Vaihda Tietolaji    ${TL_Hoitoluokat_RB}
+    Paikanna osoite                             ${testipaikka}
+    Zoomaa kartta                               5   50 m
+    Odota sivun latautuminen
+    Siirry Muokkaustilaan
+    Wait Until Element Is Not Visible           ${Map_popup}
+    Log    Tarkistetaan laatikkotyökalu
+    Wait Until Element Is Visible               ${Muokkaustila_Laatikko}
+    Click Element                               ${Muokkaustila_Laatikko}
+    Suorita laatikkovalinta
+    Wait Until Element Is Visible               css=.modal-dialog
+    Radio Button Should Be Set To               careClass    disabled
+    Select Radio Button                         careClass    enabled
+    Radio Button Should Be Set To               careClass    enabled
+    Click Element    css=body > div.container > div.modal-overlay.mass-update-modal > div > div.form-elements-container > div > div.input-unit-combination > div > select
+    Press Keys    None    P
+    Press Keys    None    Enter
+    Element Should Be Enabled                   ${FA_header_Tallenna}
+    Click Element                               ${FA_header_Peruuta}
+    Odota sivun latautuminen
+    Siirry Katselutilaan
+
+
+Hoitoluokan polygonvalinta    [arguments]    ${testipaikka}    ${dropdown_nappi}
+    Log    Hoitoluokan lisääminen polygonilla
+    Vaihda Tietolaji    ${TL_Hoitoluokat_RB}
+    Paikanna osoite                             ${testipaikka}
+    Zoomaa kartta                               5   50 m
+    Odota sivun latautuminen
+    Siirry Muokkaustilaan
+    Wait Until Element Is Not Visible           ${Map_popup}
+    Log    Tarkistetaan polygontyökalu
+    Wait Until Element Is Visible               ${Muokkaustila_PolygonTool}
+    Click Element                               ${Muokkaustila_PolygonTool}
+    Suorita monivalinta
+    Wait Until Element Is Visible               css=body > div.container > div.modal-overlay.mass-update-modal > div
+    Radio Button Should Be Set To               careClass    disabled
+    Select Radio Button                         careClass    enabled
+    Radio Button Should Be Set To               careClass    enabled
+    Click Element    css=body > div.container > div.modal-overlay.mass-update-modal > div > div.form-elements-container > div > div.input-unit-combination > div > select
+    Press Keys    None    ${dropdown_nappi}
+    Press Keys    None    Enter
+    Element Should Be Enabled                   ${FA_header_Tallenna}
+    Click Element                               ${FA_header_Peruuta}
+    Odota sivun latautuminen
+    Siirry Katselutilaan
+
+
 *** Variables ***
 ${FA_Hoitoluokka}    css=#feature-attributes-form > div > div > div.dynamic-form.editable.form-editable-careClass > p
 ${FA_Talvihoitoluokka}    css=#feature-attributes-form > div > div > div.dynamic-form.editable.form-editable-careClass > div.input-unit-combination > div:nth-child(1) > p
