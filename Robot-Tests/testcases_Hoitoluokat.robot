@@ -12,13 +12,13 @@ Test Setup          Testin Aloitus
 *** Variables ***
 @{Hoitoluokka_lista}=    paakadut-ja-vilkkaat-vaylat    kokoojakadut    tonttikadut    a-luokan-vaylat    b-luokan-vaylat    c-luokan-vaylat
 
-@{Hoitoluokka_numero_lista}=    20    30    40    50    60    70
+@{Hoitoluokka_numero_lista}=    20    30    40    50    60    70    #hoitoluokkien sisäiset koodit
 
-${hoitoluokka_dropdown_indeksi}    0
+${hoitoluokka_dropdown_indeksi}    0    #muokkaus koko ketjulle -testiä varten
 
 @{hoitoluokka_vuodenaika_lista}=    greenCare    winterCare
 
-@{hoitoluokka_alkukirjain_lista}=    P    K    T    A    B    C
+@{hoitoluokka_alkukirjain_lista}=    P    K    T    A    B    C    #dropdown-menua varten
 
 
 *** Test Cases ***

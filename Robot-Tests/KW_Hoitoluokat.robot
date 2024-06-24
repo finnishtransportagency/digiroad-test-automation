@@ -1,7 +1,7 @@
 #       Joni Laari        Sitowise        2024
 
 *** Settings ***
-Documentation       Keywords for maintenance class (Hoitoluokka)
+Documentation       Keywords for care class (Hoitoluokka)
 Library             SeleniumLibrary
 Resource            common_keywords.robot
 
@@ -38,15 +38,12 @@ Hoitoluokan tarkastelu    [arguments]    ${testipaikka}
 
 
 Hoitoluokan muokkaus koko ketjulle    [arguments]    ${testipaikka}    ${hoitoluokan_arvo}    ${hoitoluokan_vuodenaika}    ${indeksi}
-    Log    Hoitotiedon muokkaus koko ketjulle
+    Log    Hoitoluokan muokkaus koko ketjulle
     Vaihda Tietolaji                 ${TL_Hoitoluokat_RB}
     Paikanna osoite                  ${testipaikka}
     Zoomaa kartta    3    200
     Select Radio Button    labelRadio    ${hoitoluokan_vuodenaika}
     ${hoitoluokan radionappi boolean}=    Radio Button Should Be Set To    labelRadio    ${hoitoluokan_vuodenaika}
-    #IF  ${hoitoluokan radionappi boolean} == $FALSE
-    #    Select Radio Button    labelRadio    ${hoitoluokan_vuodenaika}
-    #END
     Odota sivun latautuminen
 
     Click Element At Coordinates     ${Kartta}    0    20
@@ -72,7 +69,7 @@ Hoitoluokan muokkaus koko ketjulle    [arguments]    ${testipaikka}    ${hoitolu
 
 
 Hoitoluokan muokkaus ketjun osalle    [arguments]    ${testipaikka}    ${hoitoluokan_arvo}    ${hoitoluokan_vuodenaika}    ${indeksi}
-    Log    Hoitotiedon muokkaus ketjun osalle
+    Log    Hoitoluokan muokkaus ketjun osalle
     Vaihda Tietolaji                  ${TL_Hoitoluokat_RB}
     Paikanna osoite                   ${testipaikka}
     Zoomaa kartta    3    200
