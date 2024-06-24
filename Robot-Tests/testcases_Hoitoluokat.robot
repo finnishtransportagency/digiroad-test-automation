@@ -75,3 +75,12 @@ Hoitoluokan polygonvalinta
         Log    ${i}
         KW_Hoitoluokat.Hoitoluokan polygonvalinta    6902605, 436143    ${i}
     END
+
+
+Hoitoluokan katkaisu
+    [Tags]    Hoitoluokat
+    [Documentation]    Hoitoluokan katkaisu kahdeksi osaksi
+    FOR    ${i}    IN    @{hoitoluokka_alkukirjain_lista}
+        Log    ${i}
+        KW_Hoitoluokat.Hoitoluokan katkaisu    6762827, 486878    ${i}
+    END

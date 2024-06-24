@@ -77,7 +77,6 @@ Hoitoluokan muokkaus ketjun osalle    [arguments]    ${testipaikka}    ${hoitolu
     Paikanna osoite                   ${testipaikka}
     Zoomaa kartta    3    200
 
-    
     Select Radio Button               labelRadio    ${hoitoluokan_vuodenaika}
     Radio Button Should Be Set To     labelRadio    ${hoitoluokan_vuodenaika}
     Odota sivun latautuminen
@@ -154,9 +153,38 @@ Hoitoluokan polygonvalinta    [arguments]    ${testipaikka}    ${dropdown_nappi}
     Siirry Katselutilaan
 
 
+Hoitoluokan katkaisu    [arguments]    ${testipaikka}    ${dropdown_nappi}
+    Log    Hoitoluokan katkaisu
+    Vaihda Tietolaji            ${TL_Hoitoluokat_RB}
+    Paikanna osoite            ${testipaikka}
+    Zoomaa kartta                               5   50 m
+    Odota sivun latautuminen
+    Siirry Muokkaustilaan
+
+    Log  Leikataan kahteen osaan
+    Wait Until Element Is Not Visible           ${Map_popup}
+    Click Element                               ${Muokkaustila_Leikkaus}
+    Click Element At Coordinates                ${Kartta}   0  10
+    Wait Until Element Is Visible               ${FA_Lisätty_järjestelmään}
+    FOR    ${i}    IN    @{FA_Hoitoluokan_katkaisu_kohteet}
+        Log    ${i}
+        Element Should Be Visible    ${i}
+    END
+    Radio Button Should Be Set To    careClass-a    enabled
+    Radio Button Should Be Set To    careClass-b    enabled
+    Click Element    css=#feature-attributes-form > div > div > div.dynamic-form.editable.form-editable-careClass-a > div.input-unit-combination > div > select
+    Press Keys    None    ${dropdown_nappi}
+    Press Keys    None    Enter
+    Element Should Be Enabled                   ${FA_header_Tallenna}
+    Click Element                               css=#feature-attributes-footer > div > button.cancel.btn.btn-secondary    #cancel eikä close jostain syystä
+    Odota sivun latautuminen
+    Siirry Katselutilaan
+
+
 *** Variables ***
 ${FA_Hoitoluokka}    css=#feature-attributes-form > div > div > div.dynamic-form.editable.form-editable-careClass > p
 ${FA_Talvihoitoluokka}    css=#feature-attributes-form > div > div > div.dynamic-form.editable.form-editable-careClass > div.input-unit-combination > div:nth-child(1) > p
 ${FA_Viherhoitoluokka}    css=#feature-attributes-form > div > div > div.dynamic-form.editable.form-editable-careClass > div.input-unit-combination > div:nth-child(1) > p
 ${FA_Hoitoluokka_choicegroup}    css=#feature-attributes-form > div > div > div.dynamic-form.editable.form-editable-careClass > div.edit-control-group.choice-group
 ${FA_Hoitoluokka_Dropdownmenu}    css=#feature-attributes-form > div > div > div.dynamic-form.editable.form-editable-careClass > div.input-unit-combination > div > select
+@{FA_Hoitoluokan_katkaisu_kohteet}=    ${FA_Lisätty_järjestelmään}    ${FA_Muokattu_viimeksi}    ${FA_Linkkien_lukumaara}    css=#feature-attributes-form > div > div > div.dynamic-form.editable.form-editable-careClass-a > label    css=#feature-attributes-form > div > div > div.dynamic-form.editable.form-editable-careClass-b > label    css=#feature-attributes-form > div > div > div.dynamic-form.editable.form-editable-careClass-a > span    css=#feature-attributes-form > div > div > div.dynamic-form.editable.form-editable-careClass-b > span
