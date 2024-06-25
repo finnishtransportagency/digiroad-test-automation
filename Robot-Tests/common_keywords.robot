@@ -37,6 +37,7 @@ Resource                    KW_Kelirikko.robot
 Resource                    KW_Eurooppatienumero.robot
 Resource                    KW_Liittymänumero.robot
 Resource                    KW_Liikennemäärä.robot
+Resource                    KW_Hoitoluokat.robot
 
 
 
