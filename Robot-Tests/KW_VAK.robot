@@ -1,5 +1,6 @@
 *** Settings ***
 Documentation       Pageobject for Vaarallisten aineden kuljetus rajoitukset.
+Resource    common_keywords.robot
 
 *** Keywords ***
 
@@ -44,6 +45,7 @@ VAK_1  [Arguments]  ${tietolaji}  ${testipaikka}
     Wait Until Element Is Not Visible   ${Spinner_Overlay}
     Odota sivun latautuminen
     Siirry Katselutilaan
+    Odota sivun latautuminen
 
     Click Element At Coordinates    ${Kartta}  -20  18
     Wait Until Element Is Visible   ${FA_otsikko}
