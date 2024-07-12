@@ -21,7 +21,7 @@ Talvinopeusrajoitus monivalinta
     [Tags]  AWS  Talvinopeus
     [Documentation]  Nopeusrajotusten muokkaus monivalintatyökalulla.
     ...  Testaa regressio testit 206.116, 206.118
-    KW_Talvinopeus.Talvinopeusrajoitus monivalinta  6783934, 508727
+    KW_Talvinopeus.Talvinopeusrajoitus monivalinta  6949888, 642685
 
 Talvinopeusrajoituksen katkaisu
     [Tags]    AWS    Talvinopeus

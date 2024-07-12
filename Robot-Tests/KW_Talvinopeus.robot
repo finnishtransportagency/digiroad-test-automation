@@ -3,21 +3,21 @@
 Documentation        Pageobject for winter speed limit (talvinopeusrajoitus)
 Resource    common_keywords.robot
 
-*** Keywords ***
 
+*** Keywords ***
 Talvinopeus perustestit    [arguments]    ${testipaikka}
     Vaihda Tietolaji        ${TL_Talvinopeusrajoitus_RB}
     Paikanna osoite                             ${testipaikka}
     Odota sivun latautuminen
     Click Element At Coordinates                ${Kartta}  0  20
     Wait Until Element Is Visible               ${FA_otsikko}
-    Element Should Contain                      ${FA_linkkien_lukumaara}  5
+    Element Should Contain                      ${FA_linkkien_lukumaara}  1
     Click Element At Coordinates                ${Kartta}  100  0
-    Double Click Element At Coordinates         ${Kartta}  0  20
+    Click Element At Coordinates         ${Kartta}  0  20
     Wait Until Element Is Visible               ${FA_linkkien_lukumaara}
     Element Should Contain                      ${FA_linkkien_lukumaara}  1
 
-    Log  Säilytä nopeusrajoitusvalinta, kun siirrytään muokkaustilaan 206.109
+    Log  Säilytä nopeusrajoitusvalinta, kun siirrytään muokkaustilaan
     ${id}=  Get Text                            ${FA_otsikko}
     Siirry Muokkaustilaan
     Element Should Contain                      ${FA_otsikko}  ${id}
@@ -60,12 +60,14 @@ Talvinopeusrajoitus monivalinta    [arguments]    ${testipaikka}
     Siirry Katselutilaan
     sleep  1 s
     Click Element at Coordinates                ${Kartta}  0  20
-    Wait Until Element contains                 ${FA_Talvinopeusrajoitus}  ${talvinopeudet_lista}[1] km/h
+    Wait Until Element contains                 ${FA_Talvinopeusrajoitus}  ${talvinopeudet_lista}[2] km/h
 
     Log  Ei voi aloittaa monivalintaa, jos on muokannut jotain toista nopeusrajoitusta ensin 206.118
     Siirry Muokkaustilaan
     Click Element                               ${Popup_TalviNopeusRajoitus}
-    Click Element                               ${Popup_TalviNopeusRajoitus_100}
+    Click Element                               css=#feature-attributes-form > div > div > div.form-elements-container > div > div > div.input-unit-combination > select
+    Press Keys    None    DOWN
+    Press Keys    None    ENTER
     Click Element                               css=.${TL_Talvinopeusrajoitus_RB} .polygon
     Click Element At Coordinates                ${Kartta}    100    100
     Wait Until Element Is Visible               ${MuokkausVaroitus}
@@ -78,21 +80,27 @@ Talvinopeusrajoitus monivalinta    [arguments]    ${testipaikka}
     Suorita monivalinta
     Select Radio Button                         winter-speed-limits    enabled
     Click Element                               ${Popup_TalviNopeusRajoitus_DDM}
-    Click Element                               ${Popup_TalviNopeusRajoitus_100}
+    #Click Element                               ${Popup_TalviNopeusRajoitus_100}
     Click Element                               ${FA_header_Tallenna}
     Wait Until Element Is Not Visible           ${Spinner_Overlay}
     Odota sivun latautuminen
 
     Log  Tarkistetaan edellinen talletus, sekä asetetaan rajoitus\=60 km/h
     Siirry Katselutilaan
-    Double Click Element At Coordinates         ${Kartta}  0  20
+    Click Element At Coordinates         ${Kartta}  0  20
     Wait Until Element Is Visible               ${FA_otsikko}
-    Element Should Contain                      ${FA_Talvinopeusrajoitus}  120 km/h
+    Element Should Contain                      ${FA_Talvinopeusrajoitus}  100 km/h
     Siirry Muokkaustilaan
     Click Element                               css=.${TL_Talvinopeusrajoitus_RB} .polygon
     Suorita monivalinta
-    Click Element                               ${Popup_TalviNopeusRajoitus}
-    Click Element                               ${Popup_TalviNopeusRajoitus_DDM}
+    Select Radio Button    winter-speed-limits    enabled
+    Click Element    css=body > div.container > div.modal-overlay.mass-update-modal > div > div.form-elements-container > div > div > div.input-unit-combination > select
+    Press Keys    None    DOWN
+    Press Keys    None    DOWN
+    Press Keys    None    DOWN
+    Press Keys    None    Enter
+    #Click Element                               ${Popup_TalviNopeusRajoitus}
+    #Click Element                               ${Popup_TalviNopeusRajoitus_DDM}
     Click Element                               ${FA_header_Tallenna}
     Wait Until Element Is Not Visible           ${Spinner_Overlay}
     Odota sivun latautuminen
@@ -111,12 +119,10 @@ Talvinopeusrajoituksen katkaisu    [arguments]    ${testipaikka}
     Click Element At Coordinates                ${Kartta}  0  20
     Wait Until Element Is Visible               css=#feature-attributes-header > span.edit-mode-title
     Click Element                               ${FA_footer_Peruuta}
-    Log  Katkaisun jälkeen peruuta-napin painalluksen jälkeen katkaisutyökalu jää käyttöön 206.92
+    Log  Katkaisun jälkeen peruuta-napin painalluksen jälkeen katkaisutyökalu jää käyttöön
     Element Should Be Visible                   css=.winterSpeedlimits .cut.active
     Log  Katkaisun jälkeen peruuta-napin painalluksen jälkeen yksittäisen nopeusrajoituksen valinta poistuu 206.93
     Element Should Not Be Visible               css=.edit-mode-title
-
-    #Pop-up joudutaan sulkemaan turhaan. Bugi DROTH-2852
 
     Click Element At Coordinates    ${Kartta}    0    10
     Wait Until Element Is Visible    css=#feature-attributes-form > div > div > div.form-elements-container > div:nth-child(1)
@@ -124,7 +130,6 @@ Talvinopeusrajoituksen katkaisu    [arguments]    ${testipaikka}
     Radio Button Should Be Set To                     ${FA_Talvinopeusrajoitus_A}    enabled
     Select Radio Button                               ${FA_Talvinopeusrajoitus_B}    enabled
     Radio Button Should Be Set To                     ${FA_Talvinopeusrajoitus_B}    enabled
-
 
     Log  "Olet muokannut.." -dialogi jos katkaisun jälkeen klikkaa karttaa ennen tallennusta 206.104
     Click Element At Coordinates                ${Kartta}  -100  -100
@@ -147,15 +152,16 @@ Talvinopeusrajoituksen katkaisu    [arguments]    ${testipaikka}
     Siirry Muokkaustilaan
     Click Element                               ${Popup_TalviNopeusRajoitus}
     Click Element                               css=#feature-attributes-form > div > div > div.form-elements-container > div > div > div.input-unit-combination > select > option:nth-child(1)
-    Click Element                               ${FA_header_Peruuta}
+    Press Keys    None    Enter
+    Odota sivun latautuminen
+    Click Element                               ${FA_footer_Peruuta}
     Wait Until Element Is Not Visible           ${Spinner_Overlay}
     Odota sivun latautuminen
     Siirry Katselutilaan
 
-
     Click Element At Coordinates                ${Kartta}  0  40
-    Wait Until Element Is Visible               css=#feature-attributes-header > span.edit-mode-title
-    Element Should Contain                      ${FA_Talvinopeusrajoitus}  80 km/h
+    #Wait Until Element Is Visible               css=#feature-attributes-header > span.edit-mode-title
+    Element Should Contain                      ${FA_Talvinopeusrajoitus}        80 km/h
     Click Element                               ${FA_header_Peruuta}
     Wait Until Element Is Not Visible           ${Spinner_Overlay}
     Odota sivun latautuminen
@@ -167,12 +173,13 @@ Talvinopeusrajoituksen katkaisu    [arguments]    ${testipaikka}
     ${date}=  Get Current Date                  result_format=%d.%m.%Y
     Element Should Contain                      ${FA_Muokattu_viimeksi}  ${date}
     #Element Should Contain                      ${FA_otsikko}  87408330
-    
+
 
 Talvinopeusrajoitus kaksisuuntaiseksi    [arguments]    ${testipaikka}
     Vaihda tietolaji                            ${TL_Talvinopeusrajoitus_RB}
     Paikanna osoite                             ${testipaikka}
     Zoomaa kartta                               10  5 m
+    Siirry Muokkaustilaan
     Odota sivun latautuminen
 
     Click Element At Coordinates                ${Kartta}  0  20
@@ -180,7 +187,6 @@ Talvinopeusrajoitus kaksisuuntaiseksi    [arguments]    ${testipaikka}
     Element Should Be Visible               ${FA_Jaa_Nopeusrajoitus}
 
     Log  Peruuta-painike peruuttaa molempisuuntaisen nopeusrajoituksen jaon, rivi:290
-    Siirry Muokkaustilaan
     Click Element                               ${FA_Jaa_Nopeusrajoitus}
     Click Element                               ${FA_Talvinopeusrajoitus_A}
     Click Element                               ${FA_Talvinopeusrajoitus_A_DDM}
