@@ -38,7 +38,7 @@ Resource                    KW_Eurooppatienumero.robot
 Resource                    KW_Liittymänumero.robot
 Resource                    KW_Talvinopeus.robot
 
-Resource                    C:/Users/joni.laari/Documents/DRownvariables.robot
+
 
 *** Variables ***
 ${BROWSER}                  Firefox
@@ -213,7 +213,8 @@ Suorita monivalinta
     Click Element At Coordinates                ${Kartta}  -100  -100
     Click Element At Coordinates                ${Kartta}  100  -100
     Click Element At Coordinates                ${Kartta}  100  100
-    Doubleclick Element At Coordinates          ${Kartta}  -100  100
+    Click Element At Coordinates                ${Kartta}  -100  100
+    Click Element At Coordinates                ${Kartta}  -100  100
 
 Suorita laatikkovalinta
     Click Element At Coordinates                ${Kartta}  0  0
