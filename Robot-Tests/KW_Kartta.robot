@@ -19,7 +19,7 @@ Kartta_1
     wait until element is visible               ${skaala}
     ${temp}=    SeleniumLibrary.Get Text        ${skaala}
     set selenium speed   0.5
-    doubleclick_element_at_coordinates          ${kartta}   0  20
+   selenium_extensions.doubleclick_element_at_coordinates          ${kartta}   0  20
     #sikulilibrary.Double Click                 kartta1_kartta.png
     Odota sivun latautuminen
     Set Selenium Speed                          ${DELAY}

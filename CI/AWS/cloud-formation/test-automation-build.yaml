@@ -1,0 +1,240 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: >
+  Triggered code build for digiroad test automation
+Parameters:
+  ApplicationName:
+    Description: Application name
+    Type: String
+  GitBranchName:
+    Description: GitHub branch name
+    Type: String
+  GitRepositoryName:
+    Description: GitHub repository name
+    Type: String
+  GitHubOwner:
+    Type: String
+  GitHubWebhookSecret:
+    Description: Personal access token that is needed to access the webhook of Codepipeline to invoke the pipeline
+    Type: String
+    NoEcho: true
+    MinLength: 20
+
+Resources:
+  ArtifactBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: digiroad-test-automation-artifact-bucket
+      LifecycleConfiguration:
+        Rules:
+          - Id: DeleteOldObjects
+            Status: Enabled
+            ExpirationInDays: 60
+
+  ArtifactBucketPolicy:
+    Type: 'AWS::S3::BucketPolicy'
+    Properties:
+      Bucket: !Ref ArtifactBucket
+      PolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Sid: DenyUnEncryptedObjectUploads
+            Effect: Deny
+            Principal: '*'
+            Action: 's3:PutObject'
+            Resource: !Sub "${ArtifactBucket.Arn}/*"
+            Condition:
+              StringNotEquals:
+                's3:x-amz-server-side-encryption': 'aws:kms'
+          - Sid: DenyInsecureConnections
+            Effect: Deny
+            Principal: '*'
+            Action: 's3:*'
+            Resource: !Sub "${ArtifactBucket.Arn}/*"
+            Condition:
+              Bool:
+                'aws:SecureTransport': false          
+
+  CodeBuild:
+    Type: AWS::CodeBuild::Project
+    Properties:
+      Name: !Ref ApplicationName
+      Description: "Run robot automation tests"
+      ServiceRole: !Ref CodeBuildRole
+      Source:
+        Type: GITHUB
+        Location: !Sub "https://github.com/${GitHubOwner}/${GitRepositoryName}"
+        GitCloneDepth: 1
+      SourceVersion: !Sub ${GitBranchName}  
+      Artifacts:
+        Type: S3
+        Location: !Ref ArtifactBucket
+        Packaging: ZIP
+        OverrideArtifactName: true
+      Environment:
+        ComputeType: BUILD_GENERAL1_SMALL
+        Image: 475079312496.dkr.ecr.eu-west-1.amazonaws.com/digiroadautomation:latest
+        Type: LINUX_CONTAINER
+        PrivilegedMode: false
+      TimeoutInMinutes: 240  
+      QueuedTimeoutInMinutes: 480
+
+  CodeBuildRole:
+    Type: AWS::IAM::Role
+    Properties:
+      Path: /
+      RoleName: !Sub "${ApplicationName}-codebuild-role"
+      AssumeRolePolicyDocument:
+        Statement:
+          - Effect: "Allow"
+            Principal:
+              Service: "codebuild.amazonaws.com"
+            Action:
+              - "sts:AssumeRole"
+      Policies:
+        - PolicyName: !Sub "${ApplicationName}-codebuild-policy"
+          PolicyDocument:
+            Statement:
+              - Effect: "Allow"
+                Resource: "*"
+                Action:
+                  - "ecr:GetAuthorizationToken"
+                  - "ecr:BatchCheckLayerAvailability"
+                  - "ecr:GetDownloadUrlForLayer"
+                  - "ecr:GetRepositoryPolicy"
+                  - "ecr:DescribeRepositories"
+                  - "ecr:ListImages"
+                  - "ecr:DescribeImages"
+                  - "ecr:BatchGetImage"
+                  - "ecr:GetLifecyclePolicy"
+                  - "ecr:GetLifecyclePolicyPreview"
+                  - "ecr:ListTagsForResource"
+                  - "ecr:DescribeImageScanFindings"
+                  - "ssm:GetParameters"
+                  - "codebuild:StartBuild"
+              - Effect: "Allow"
+                Resource: "*"
+                Action:
+                  - "logs:CreateLogGroup"
+                  - "logs:CreateLogStream"
+                  - "logs:PutLogEvents"
+              - Effect: "Allow"
+                Resource:
+                  - !Sub "${ArtifactBucket.Arn}/*"
+                Action:
+                  - "s3:GetObject"
+                  - "s3:GetObjectVersion"
+                  - "s3:PutObject"
+              - Effect: Allow
+                Action:
+                  - 'secretsmanager:DescribeSecret'
+                  - 'secretsmanager:GetSecretValue'
+                Resource: !Ref GitHubWebhookSecret
+              - Effect: Allow
+                Action:
+                  - "sns:Publish"
+                Resource: !Ref FailedBuildSNSTopic        
+
+  DailyTriggerRule:
+    Type: AWS::Events::Rule
+    Properties:
+      Description: "Daily trigger for test automation build"
+      ScheduleExpression: "cron(30 12 * * ? *)"
+      State: ENABLED
+      Targets:
+        - Arn: !GetAtt CodeBuild.Arn
+          Id: "CodeBuildTarget"
+          RoleArn: !GetAtt EventRole.Arn
+
+  EventRole:
+    Type: AWS::IAM::Role
+    Description: Role to allow Eventbridge to trigger CodeBuild build
+    Properties:
+      RoleName: !Sub "${ApplicationName}-event-role"
+      AssumeRolePolicyDocument:
+        Statement:
+        - Action: sts:AssumeRole
+          Effect: Allow
+          Principal:
+            Service:
+            - events.amazonaws.com
+          Sid: 1
+      Policies:
+      - PolicyName: !Sub "${ApplicationName}-event-policy"
+        PolicyDocument:
+          Statement:
+          - Action:
+            - codebuild:StartBuild
+            Effect: Allow
+            Resource: !GetAtt 'CodeBuild.Arn'
+
+  FailedBuildSNSTopic:
+    Type: AWS::SNS::Topic
+    Properties:
+      DisplayName: "RobotTestBuildFailureNotification"
+      Subscription:
+        - Protocol: email
+          Endpoint: kehitys@digiroad.fi
+
+  CodeBuildFailedSnsTopicPolicy:
+    Type: 'AWS::SNS::TopicPolicy'
+    Properties:
+      Topics:
+        - Ref: FailedBuildSNSTopic
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: 'Allow'
+            Principal:
+              Service: 'events.amazonaws.com'
+            Action: 'sns:Publish'
+            Resource: !Ref FailedBuildSNSTopic        
+
+  CodeBuildFailedEventRule:
+    Type: AWS::Events::Rule
+    Properties:
+      Description: "Rule for detecting failed Robot-test builds"
+      EventPattern:
+        source:
+          - "aws.codebuild"
+        detail-type:
+          - "CodeBuild Build State Change"
+        detail:
+          build-status:
+            - "FAILED"
+          project-name:
+            - !Ref ApplicationName
+      State: ENABLED
+      Targets:
+        - Arn: !Ref FailedBuildSNSTopic
+          Id: "CodeBuildFailedNotification"
+          InputTransformer:
+            InputPathsMap:
+              build-id: $.detail.build-id
+              build-status: $.detail.build-status
+              log-link: $.detail.additional-information.logs.deep-link
+              project-name: $.detail.project-name
+              time: $.time
+            InputTemplate: >-
+              "Build for build project '<project-name>' has reached the build
+              status of '<build-status>'. Build start time <time>. Link for
+              build logs <log-link>"
+
+  EventBridgeToSNSPublishRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+        - Action: sts:AssumeRole
+          Effect: Allow
+          Principal:
+            Service:
+            - events.amazonaws.com
+          Sid: 1
+      Policies:
+        - PolicyName: FailedAutomationTestPublishPolicy
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action: sns:Publish
+                Resource: !Ref FailedBuildSNSTopic       

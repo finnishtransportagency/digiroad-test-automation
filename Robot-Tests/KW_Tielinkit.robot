@@ -377,7 +377,7 @@ Tielinkit_10  [arguments]  ${testipaikka}  ${EkaLinkId}  ${TokaLinkId}
     set selenium speed     0
     #click element at coordinates                ${kartta}   0  20
     #click element at coordinates                ${kartta}   0  20
-    doubleclick_element_at_coordinates          ${kartta}   0  20
+   selenium_extensions.doubleclick_element_at_coordinates          ${kartta}   0  20
     set selenium speed      ${delay}
     wait until element is visible               ${FA_tielinkki_MML_ID}
     ${tmp_linkid}=  Seleniumlibrary.get text   ${FA_otsikko}
@@ -399,7 +399,7 @@ Tielinkit_10  [arguments]  ${testipaikka}  ${EkaLinkId}  ${TokaLinkId}
     set selenium speed     0.1
     #click element at coordinates                ${kartta}   304  -157           #-177
     #click element at coordinates                ${kartta}   305  -158           #-178
-    doubleclick_element_at_coordinates          ${kartta}   304  -157           #-177
+   selenium_extensions.doubleclick_element_at_coordinates          ${kartta}   304  -157           #-177
     set selenium speed      ${delay}
     wait until element is visible               ${FA_tielinkki_MML_ID}
     ${tmp_linkid}=  Seleniumlibrary.get text   ${FA_otsikko}

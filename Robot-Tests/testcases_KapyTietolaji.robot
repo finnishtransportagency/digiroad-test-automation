@@ -13,9 +13,9 @@ Test Setup          Testin Aloitus
 Kapy 1
     [Tags]              Kapy
     [Documentation]     Selain: ${BROWSER}
-    KW_KapyTietolaji.Kapy_1  ${TL_Käpy_tietolaji_RB}  7241957, 453498
+    KW_KapyTietolaji.Kapy_1  ${TL_Käpy_tietolaji_RB}  6822717, 328469
 
 Kapy 2
     [Tags]              Kapy
     [Documentation]     Selain: ${BROWSER}
-    KW_KapyTietolaji.Kapy_2  ${TL_Käpy_tietolaji_RB}  7241957, 453498
+    KW_KapyTietolaji.Kapy_2  ${TL_Käpy_tietolaji_RB}  6822717, 328469

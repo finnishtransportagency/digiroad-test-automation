@@ -13,4 +13,4 @@ Test Setup          Testin Aloitus
 VAK 1
     [Tags]              VAK
     [Documentation]     Selain: ${BROWSER}
-    KW_VAK.VAK_1  ${TL_VAK-rajoitus_RB}  6821830, 313602
+    KW_VAK.VAK_1  ${TL_VAK-rajoitus_RB}  6821696, 312907

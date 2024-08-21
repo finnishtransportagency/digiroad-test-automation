@@ -90,7 +90,7 @@ Valitse Kaista  [Arguments]  ${indeksi}
 
 
 Poista Ylimääräiset Kaistat
-    FOR  ${i}  IN RANGE  6
+    FOR  ${i}  IN RANGE  20
         Valitse Kaista                              1
         ${status}=  Run Keyword And Return Status  Element Should Contain  ${KT_Kaista}  1
         Exit For Loop If  ${status}==True
@@ -99,7 +99,7 @@ Poista Ylimääräiset Kaistat
     END
     
 
-    FOR  ${i}  IN RANGE  6
+    FOR  ${i}  IN RANGE  20
         #Tarkisetaan onko pääkaistan oikeallapuolella kaistoja
         ${status}=  Run Keyword And Return Status  Element Should Be Visible  css=div.preview-div tr:nth-child(2) td:nth-child(2)
         Exit For Loop If    ${Status}==False

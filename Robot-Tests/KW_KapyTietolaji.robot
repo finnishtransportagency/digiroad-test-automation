@@ -1,5 +1,5 @@
 *** Settings ***
-Documentation       Keywords for Suurin Sallittu 
+Documentation       Keywords for Walking/Biking
 
 
 *** Keywords ***
@@ -125,6 +125,7 @@ Tarkista Kapy Talletus  [Arguments]  @{lista}
     END
 
 Talleta Ja Tarkista Käpy Rajoitus
+    Log    Talletetaan ja tarkistetaan käpyrajoitus
 
 *** Variables ***
 ${FA_KapyDDM}               css=.form-control.cycling-and-walking

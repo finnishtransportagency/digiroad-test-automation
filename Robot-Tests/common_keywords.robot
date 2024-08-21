@@ -8,7 +8,7 @@ Library                     DateTime
 Resource                    variables.robot
 Resource                    API_KW_lanes_in_municipality.robot
 Resource                    API_KW_lanes_in_range.robot
-#Resource                    API_KW_lane_information.robot
+#Resource                    API_KW_lane_information.robot    #otettu pois käytöstä toistaiseksi rajapintaongelmien johdosta
 Resource                    KW_Tielinkit.robot
 Resource                    KW_Kartta.robot
 Resource                    KW_UI.robot
@@ -37,6 +37,8 @@ Resource                    KW_Kelirikko.robot
 Resource                    KW_Eurooppatienumero.robot
 Resource                    KW_Liittymänumero.robot
 Resource                    KW_Talvinopeus.robot
+Resource                    KW_Liikennemäärä.robot
+Resource                    KW_Hoitoluokat.robot
 
 
 
@@ -160,7 +162,7 @@ Tupla Klikkaa Kartan Keskelle
     Set Selenium Speed  0
     Click Element At Coordinates  ${Kartta}  0  20
     Click Element At Coordinates  ${Kartta}  0  20
-    doubleclick element at coordinates  ${Kartta}  0  20
+   selenium_extensions.doubleclick element at coordinates  ${Kartta}  0  20
     Set Selenium Speed  ${DELAY}
 
 Siirry Testipaikkaan
@@ -213,8 +215,7 @@ Suorita monivalinta
     Click Element At Coordinates                ${Kartta}  -100  -100
     Click Element At Coordinates                ${Kartta}  100  -100
     Click Element At Coordinates                ${Kartta}  100  100
-    Click Element At Coordinates                ${Kartta}  -100  100
-    Click Element At Coordinates                ${Kartta}  -100  100
+   selenium_extensions.doubleclick Element At Coordinates          ${Kartta}  -100  100
 
 Suorita laatikkovalinta
     Click Element At Coordinates                ${Kartta}  0  0
