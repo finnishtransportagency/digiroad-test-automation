@@ -1,4 +1,4 @@
-#Joni Laari    Sitowise    2023
+#Joni Laari    Sitowise    2024
 *** Settings ***
 Documentation        Pageobject for winter speed limit (talvinopeusrajoitus)
 Resource    common_keywords.robot
@@ -32,7 +32,6 @@ Talvinopeus perustestit    [arguments]    ${testipaikka}
         Capture Page Screenshot
     END
 
-    #Siirry Katselutilaan
     Click Element            ${FA_footer_Peruuta}
     Sleep  5 s
     Element Should Not Be Visible               ${FA_otsikko}
@@ -83,7 +82,6 @@ Talvinopeusrajoitus monivalinta    [arguments]    ${testipaikka}
     Suorita monivalinta
     Select Radio Button                         winter-speed-limits    enabled
     Click Element                               ${Popup_TalviNopeusRajoitus_DDM}
-    #Click Element                               ${Popup_TalviNopeusRajoitus_100}
     Click Element                               ${FA_header_Tallenna}
     Wait Until Element Is Not Visible           ${Spinner_Overlay}
     Odota sivun latautuminen
@@ -102,8 +100,6 @@ Talvinopeusrajoitus monivalinta    [arguments]    ${testipaikka}
     Press Keys    None    DOWN
     Press Keys    None    DOWN
     Press Keys    None    Enter
-    #Click Element                               ${Popup_TalviNopeusRajoitus}
-    #Click Element                               ${Popup_TalviNopeusRajoitus_DDM}
     Click Element                               ${FA_header_Tallenna}
     Wait Until Element Is Not Visible           ${Spinner_Overlay}
     Odota sivun latautuminen
@@ -141,7 +137,6 @@ Talvinopeusrajoituksen katkaisu    [arguments]    ${testipaikka}
     Element Should Contain                      ${MuokkausVaroitus}  ${MuokkausVaroitus_teksti}
     Click Element                               ${Muokkausvaroitus_Sulje_btn}
 
-    #Element Should Be Enabled                   ${FA_footer_Tallenna}
     Click Element                               ${FA_footer_Peruuta}
     Wait Until Element Is Not Visible           ${Spinner_Overlay}
     Odota sivun latautuminen
@@ -164,9 +159,6 @@ Talvinopeusrajoituksen katkaisu    [arguments]    ${testipaikka}
     Siirry Katselutilaan
 
     Click Element At Coordinates                ${Kartta}  0  40
-    #Wait Until Element Is Visible               css=#feature-attributes-header > span.edit-mode-title
-    #Element Should Contain                      xpath=//*[@id="feature-attributes-form"]/div/div/div[4]/div/p        80 km/h
-    #Click Element                               ${FA_header_Peruuta}
     Click Element At Coordinates    ${Kartta}    200    200
     Wait Until Element Is Not Visible           ${Spinner_Overlay}
     Odota sivun latautuminen
@@ -174,9 +166,6 @@ Talvinopeusrajoituksen katkaisu    [arguments]    ${testipaikka}
     Log  Valittaessa nopeusrajoituksen ominaisuustietonäkymässä näkyy nopeusrajoituksen ID, lisäys ja muokkaus tiedot. 206.30
     Click Element At Coordinates                ${Kartta}  0  20
     Wait Until Element Is Visible               ${FA_otsikko}
-    #${date}=  Get Current Date                  result_format=%d.%m.%Y
-    #Element Should Contain                      ${FA_Muokattu_viimeksi}  ${date}
-    #Element Should Contain                      ${FA_otsikko}  87408330
 
 
 Talvinopeusrajoitus kaksisuuntaiseksi    [arguments]    ${testipaikka}
@@ -212,7 +201,6 @@ Talvinopeusrajoitus kaksisuuntaiseksi    [arguments]    ${testipaikka}
     Click Element                               ${FA_Talvinopeusrajoitus_A_DDM}
     Click Element                               ${FA_Talvinopeusrajoitus_B}
     Click Element                               ${FA_Talvinopeusrajoitus_B_DDM}
-    #Element Should Be Enabled                   ${FA_footer_Tallenna}
     Click Element                               ${FA_footer_Peruuta}
     Wait Until Element Is Not Visible           ${Spinner_Overlay}
     Odota sivun latautuminen
