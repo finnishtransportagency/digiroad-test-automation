@@ -1,4 +1,4 @@
-#Joni Laari    2023    Sitowise
+#Joni Laari    23/08/2024    Sitowise
 
 *** Variables ***
 @{talvinopeudet_lista}    60    80    100    120
