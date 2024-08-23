@@ -36,6 +36,7 @@ Resource                    KW_Tietyot.robot
 Resource                    KW_Kelirikko.robot
 Resource                    KW_Eurooppatienumero.robot
 Resource                    KW_Liittymänumero.robot
+Resource                    KW_Talvinopeus.robot
 Resource                    KW_Liikennemäärä.robot
 Resource                    KW_Hoitoluokat.robot
 
@@ -120,6 +121,7 @@ Vaihda Tietolaji  [Arguments]  ${tietolaji_locator}
     click element                   ${valitse tietolaji}
     wait until element is visible   ${Valitse_tietolaji_ikkuna}
     select radio button             ${Tietolaji_RB_group}  ${tietolaji_locator}
+    Radio Button Should Be Set To   ${Tietolaji_RB_group}  ${tietolaji_locator}
     #    wait until element is visible   ${Siirry muokkaustilaan}
 
 Zoomaa kartta  [Arguments]   ${loopvalue}  ${maxskaala}
