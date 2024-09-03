@@ -1,12 +1,13 @@
 *** Settings ***
 Documentation       Keywords for Walking/Biking
 
+Resource    common_keywords.robot
 
 *** Keywords ***
 Kapy_1  [Arguments]  ${tietolaji}  ${testipaikka}
     Log  Testataan jokaisen mahdollisen Käpy tietolajin talletus
     Siirry Testipaikkaan  ${tietolaji}  ${testipaikka}
-
+    Odota sivun latautuminen
     Log  Nollataan tarvittaessa tietolaji
     Click Element At Coordinates  ${Kartta}  0  20
     Wait Until Element Is Visible  ${FA_otsikko}
@@ -35,6 +36,7 @@ Kapy_2  [Arguments]  ${tietolaji}  ${testipaikka}
     Log  Talletetaan tielle tietolaji suorakulmio työkalulla.
     Siirry Muokkaustilaan
     Wait Until Element Is Not Visible  ${Map_popup}
+    Odota sivun latautuminen
     Click Element                   css=.${tietolaji} .rectangle
     Click Element At Coordinates    ${Kartta}  -50  -30
     Click Element At Coordinates    ${Kartta}  50  100
@@ -45,6 +47,7 @@ Kapy_2  [Arguments]  ${tietolaji}  ${testipaikka}
     Wait Until Element Is Not Visible   ${Spinner_Overlay}
     Odota sivun latautuminen
     Siirry Katselutilaan
+    Odota sivun latautuminen
     Click Element At Coordinates    ${Kartta}  0  20
     Wait Until Element Is Visible   ${FA_otsikko}
     Element Should Contain          ${FA_Käpyt_tietolaji_tyyppi}  Kävelykatu
@@ -70,6 +73,7 @@ Kapy_2  [Arguments]  ${tietolaji}  ${testipaikka}
     Wait Until Element Is Not Visible   ${Spinner_Overlay}
     Odota sivun latautuminen
     Siirry Katselutilaan
+    Odota sivun latautuminen
 
     Click Element At Coordinates    ${Kartta}  -20  20
     Wait Until Element Is Visible   ${FA_otsikko}

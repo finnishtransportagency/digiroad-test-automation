@@ -25,7 +25,7 @@ Esterakennelma 2
     [Tags]              Este
     [Documentation]     Esterakennelma, selain: ${BROWSER}
     ...  - Tarkistetaan esterakenelmien tyyppi
-    KW_Esterakennelma.Este_2  6711851,240709  Suljettu yhteys
+    KW_Esterakennelma.Este_2  6711851,240709  Ei tiedossa
     KW_Esterakennelma.Este_2  6820366,336639  Avattava puomi
     #KW_Esterakennelma.Este_2  6711833,239489  Geometrian ulkopuolella
 
@@ -33,7 +33,7 @@ Esterakennelma 3
     [Tags]              Este
     [Documentation]     Esterakennelma, selain: ${BROWSER}
     ...   - Esterakennelmaa voi siirtää, sekä tyyppiä muokata.
-    KW_Esterakennelma.Este_3  6761072,212356  Suljettu yhteys
+    KW_Esterakennelma.Este_3  6761072,212356  Muu pysyvä esterakenne
 
 Esterakennelma 4
     [Tags]              Este  AWS

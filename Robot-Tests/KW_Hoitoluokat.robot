@@ -38,6 +38,7 @@ Hoitoluokan tarkastelu    [arguments]    ${testipaikka}
 
 
 Hoitoluokan muokkaus koko ketjulle    [arguments]    ${testipaikka}    ${hoitoluokan_arvo}    ${hoitoluokan_vuodenaika}    ${indeksi}
+    Testin Aloitus
     Log    Hoitoluokan muokkaus koko ketjulle
     Vaihda Tietolaji                 ${TL_Hoitoluokat_RB}
     Paikanna osoite                  ${testipaikka}
@@ -69,6 +70,7 @@ Hoitoluokan muokkaus koko ketjulle    [arguments]    ${testipaikka}    ${hoitolu
 
 
 Hoitoluokan muokkaus ketjun osalle    [arguments]    ${testipaikka}    ${hoitoluokan_arvo}    ${hoitoluokan_vuodenaika}    ${indeksi}
+    Testin Aloitus
     Log    Hoitoluokan muokkaus ketjun osalle
     Vaihda Tietolaji                  ${TL_Hoitoluokat_RB}
     Paikanna osoite                   ${testipaikka}
@@ -102,6 +104,7 @@ Hoitoluokan muokkaus ketjun osalle    [arguments]    ${testipaikka}    ${hoitolu
 
 Hoitoluokan laatikkovalinta    [arguments]    ${testipaikka}    ${dropdown_nappi}
     Log    Hoitoluokan lisääminen laatikolla
+    Testin Aloitus
     Vaihda Tietolaji    ${TL_Hoitoluokat_RB}
     Paikanna osoite                             ${testipaikka}
     Zoomaa kartta                               5   50 m
@@ -126,6 +129,7 @@ Hoitoluokan laatikkovalinta    [arguments]    ${testipaikka}    ${dropdown_nappi
 
 
 Hoitoluokan polygonvalinta    [arguments]    ${testipaikka}    ${dropdown_nappi}
+    Testin Aloitus
     Log    Hoitoluokan lisääminen polygonilla
     Vaihda Tietolaji    ${TL_Hoitoluokat_RB}
     Paikanna osoite                             ${testipaikka}
@@ -151,6 +155,7 @@ Hoitoluokan polygonvalinta    [arguments]    ${testipaikka}    ${dropdown_nappi}
 
 
 Hoitoluokan katkaisu    [arguments]    ${testipaikka}    ${dropdown_nappi}
+    Testin Aloitus
     Log    Hoitoluokan katkaisu
     Vaihda Tietolaji            ${TL_Hoitoluokat_RB}
     Paikanna osoite            ${testipaikka}

@@ -40,8 +40,8 @@ Este_2  [arguments]  ${testipaikka}  ${Este_tyyppi}
     Run Keyword if  '${Este_tyyppi}'=='Geometrian ulkopuolella'  
     ...  Element Should Contain  ${FA_Geometria_Notifikaatio}  tarkista ja korjaa
 
-    Run Keyword if  '${Este_tyyppi}'=='Suljettu yhteys'  
-    ...  Element Should Contain  ${FA_Esterakennelma_tyyppi}  Suljettu yhteys
+    Run Keyword if  '${Este_tyyppi}'=='Ei tiedossa'  
+    ...  Element Should Contain  ${FA_Esterakennelma_tyyppi}  Ei tiedossa
 
     Run Keyword if  '${Este_tyyppi}'=='Avattava puomi'  
     ...  Element Should Contain  ${FA_Esterakennelma_tyyppi}  Avattava puomi

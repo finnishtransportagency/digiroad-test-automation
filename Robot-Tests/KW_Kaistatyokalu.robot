@@ -3,6 +3,7 @@
 
 *** Settings ***
 Documentation       Pageobject for lane tool (Kaistatyökalu)
+Resource    common_keywords.robot
 
 *** Keywords ***
 
@@ -33,6 +34,7 @@ Kaistatyökalu_1  [arguments]  ${testipaikka}
 
 Kaistatyökalu_2  [arguments]  ${testipaikka}
     Log  Vaihdetaan experimetal osoitteseen ja siirrytään testipaikkaan.
+    Testin Aloitus
     vaihda tietolaji                            ${TL_Kaistan_mallinnustyökalu_RB}
     Paikanna osoite                             ${testipaikka}
     Zoomaa kartta                               5  50 m

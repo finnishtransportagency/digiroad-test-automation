@@ -53,7 +53,7 @@ JLP_1  [arguments]  ${testipaikka}
     Siirry Testipaikkaan                        ${TL_Joukkoliikenteen_pysäkki_RB}  ${testipaikka}
     Odota sivun latautuminen
     Click Element At Coordinates                ${Kartta}  0  20
-    Wait Until Element Is Visible               ${FA_otsikko}
+    Wait Until Element Is Visible               ${FA_Lisätty_Järjestelmään}
 
     Log  zoomataan kauemmas ja varmistetaan, ettei Pysäkkiä ole enää näkyvissä
     set selenium speed                          0.3

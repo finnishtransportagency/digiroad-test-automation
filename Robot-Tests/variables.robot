@@ -44,7 +44,7 @@ ${Valitse_tietolaji_ikkuna}                     css=.asset-selection
 ${Tietolaji_RB_group}                           navigation-radio
 
 ${TL_Tielinkki_RB}                              linkProperty
-${TL_Kaistan_mallinnustyökalu_RB}               nav-laneModellingTool
+${TL_Kaistan_mallinnustyökalu_RB}               laneModellingTool
 ${TL_Nopeusrajoitus_RB}                         speedLimit
 ${TL_Kääntymisrajoitus_RB}                      manoeuvre
 ${TL_Ajoneuvokohtaiset_rajoitukset_RB}          prohibition
