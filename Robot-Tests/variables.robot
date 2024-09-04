@@ -83,14 +83,14 @@ ${TL_Rautatien_tasoristeys_RB}                  railwayCrossings
 ${TL_Opastustaulu_RB}                           directionalTrafficSigns
 ${TL_Suojatie_RB}                               pedestrianCrossings
 ${TL_Liikennevalo_RB}                           trafficLights
-${TL_Liikennemerkit_RB}                         nav-trafficSigns
+${TL_Liikennemerkit_RB}                         trafficSigns
 ${TL_Palvelupiste_RB}                           servicePoints
 
 ${TL_TR_suurin_sallittu_korkeus_RB}             trHeightLimits
 ${TL_TR_suurin_sallittu_leveys_RB}              trWidthLimits
 ${TL_TR_Painorajpotilset_RB}                    trWeightLimits
 
-${TL_Rautateiden_huoltotie_RB}                  nav-maintenanceRoad
+${TL_Rautateiden_huoltotie_RB}                  maintenanceRoad
 
 
 #${TL_Ruuhkaantumisherkkyys_RB}                  congestionTendency
