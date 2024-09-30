@@ -41,7 +41,7 @@ Resource                    KW_Liikennemäärä.robot
 Resource                    KW_Hoitoluokat.robot
 Resource                    KW_Rautatien_huoltotie.robot
 
-
+Resource                    C:/Users/joni.laari/Documents/DRownvariables.robot
 
 *** Variables ***
 ${BROWSER}                  Firefox
