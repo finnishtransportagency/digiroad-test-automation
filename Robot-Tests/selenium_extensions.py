@@ -1,4 +1,5 @@
 # Matti Telenius       Sitowise Oy     2019
+# Joni Laari           Sitowise        2024
 
 #import pyautogui as ag
 
@@ -160,3 +161,9 @@ def mouse_cl(locator):
 def set_max_redirects():
     session = requests.Session()
     session.max_redirects = 100
+
+def is_checked(item):
+    s2l = BuiltIn().get_library_instance('SeleniumLibrary')
+    driver = s2l.driver
+    checked = driver.execute_script(("return document.getElementById('%s').checked") % item)
+    return checked

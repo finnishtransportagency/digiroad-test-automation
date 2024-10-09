@@ -91,12 +91,12 @@ Rautateiden huoltotien muokkaus koko ketjulle    [arguments]    ${testipaikka}  
 
     Select Radio Button               maintenanceRoad   enabled
     Radio Button Should Be Set To     maintenanceRoad   enabled
-    Click Element    css=#feature-attributes-form > div > div > div.dynamic-form.editable.form-editable-maintenanceRoad > div.input-unit-combination > div:nth-child(1) > select
+    Click Element    ${huoltotie_käyttöoikeus_pudotusvalikko}
 
     FOR    ${j}    IN    @{Huoltotie_käyttöoikeus_kohteet}
         Log    ${j}
         Press Keys    None    ARROW_DOWN
-        Element Should Contain    css=#feature-attributes-form > div > div > div.dynamic-form.editable.form-editable-maintenanceRoad > div.input-unit-combination > div:nth-child(1) > select    ${j}
+        Element Should Contain    ${huoltotie_käyttöoikeus_pudotusvalikko}    ${j}
         Press Keys    None    ENTER
     END
 
@@ -104,7 +104,7 @@ Rautateiden huoltotien muokkaus koko ketjulle    [arguments]    ${testipaikka}  
     Click Element                ${FA_footer_Tallenna}
 
 
-Rautateiden huoltotien muokkaus ketjun osalle    [arguments]    ${testipaikka}    ${j}
+Rautateiden huoltotien muokkaus ketjun osalle    [arguments]    ${testipaikka}    ${k}
     Log    Muokataan rautatien huoltotietä ketjun osalle
     Testin Aloitus
     Vaihda Tietolaji    ${TL_Rautateiden_huoltotie_RB}
@@ -122,21 +122,20 @@ Rautateiden huoltotien muokkaus ketjun osalle    [arguments]    ${testipaikka}  
 
     Select Radio Button               maintenanceRoad   enabled
     Radio Button Should Be Set To     maintenanceRoad   enabled
-    Click Element    css=#feature-attributes-form > div > div > div.dynamic-form.editable.form-editable-maintenanceRoad > div.input-unit-combination > div:nth-child(1) > select
-    Click Element    css=#feature-attributes-form > div > div > div.dynamic-form.editable.form-editable-maintenanceRoad > div.input-unit-combination > div:nth-child(1) > select
+    Click Element    ${huoltotie_käyttöoikeus_pudotusvalikko}
+    Click Element    ${huoltotie_käyttöoikeus_pudotusvalikko}
 
-    FOR    ${j}    IN    @{Huoltotie_käyttöoikeus_kohteet}
-        Log    ${j}
+    FOR    ${k}    IN    @{Huoltotie_käyttöoikeus_kohteet}
+        Log    ${k}
         Press Keys    None    ARROW_DOWN
-        Element Should Contain    css=#feature-attributes-form > div > div > div.dynamic-form.editable.form-editable-maintenanceRoad > div.input-unit-combination > div:nth-child(1) > select    ${j}
+        Element Should Contain    ${huoltotie_käyttöoikeus_pudotusvalikko}    ${k}
         Press Keys    None    ENTER
     END
-
     Element Should Be Enabled    ${FA_footer_Peruuta}
     Click Element                ${FA_footer_Tallenna}
 
 
-Rautateiden huoltotien lisääminen usealle laatikolla    [arguments]    ${testipaikka}
+Rautateiden huoltotien lisääminen usealle laatikolla    [arguments]    ${testipaikka}    ${l}    ${m}
     Log    Testataan usean linkin lisääminen laatikkovalinnalla
     Testin Aloitus
     Vaihda Tietolaji    ${TL_Rautateiden_huoltotie_RB}
@@ -154,14 +153,19 @@ Rautateiden huoltotien lisääminen usealle laatikolla    [arguments]    ${testi
     Select Radio Button                         maintenanceRoad    enabled
     Radio Button Should Be Set To               maintenanceRoad    enabled
 
+    Select From List By Value                   name=huoltotie_kayttooikeus    ${l}
+    Select From List By Value                   name=huoltotie_huoltovastuu    ${m}
+    Input Text                                  name=huoltotie_tiehoitokunta    dummypopup
+    Click Button                                name=huoltotie_tarkistettu-
+
     Element Should Be Enabled                   ${FA_header_Tallenna}
     Click Element                               ${FA_header_Peruuta}
     Odota sivun latautuminen
     Siirry Katselutilaan
 
 
-Rautateiden huoltotien lisääminen usealle polygonilla    [arguments]    ${testipaikka}
-    Log    Testataan usean linkin lisääminen laatikkovalinnalla
+Rautateiden huoltotien lisääminen usealle polygonilla    [arguments]    ${testipaikka}    ${l}    ${m}
+    Log    Testataan usean linkin lisääminen monivalinnalla
     Testin Aloitus
     Vaihda Tietolaji    ${TL_Rautateiden_huoltotie_RB}
     Paikanna osoite                             ${testipaikka}
@@ -178,10 +182,88 @@ Rautateiden huoltotien lisääminen usealle polygonilla    [arguments]    ${test
     Select Radio Button                         maintenanceRoad    enabled
     Radio Button Should Be Set To               maintenanceRoad    enabled
 
+    Select From List By Value                   name=huoltotie_kayttooikeus    ${l}
+    Select From List By Value                   name=huoltotie_huoltovastuu    ${m}
+    Input Text                                  name=huoltotie_tiehoitokunta    dummypopup
+    Click Button                                name=huoltotie_tarkistettu-
+
     Element Should Be Enabled                   ${FA_header_Tallenna}
     Click Element                               ${FA_header_Peruuta}
     Odota sivun latautuminen
     Siirry Katselutilaan
+
+
+Rautateiden huoltotien lisääminen usealle ctrl    [arguments]    ${testipaikka}    ${l}    ${m}
+    Log    Testataan usean linkin lisääminen ctrl-valinnalla
+    #testattava sijainnilla, jossa on suoraan pohjois-etelä-suunnassa kulkeva linkki
+    Testin Aloitus
+    Log    Usean rautatien huoltotietiedon lisäämistapojen testaaminen
+    Vaihda Tietolaji                                          ${TL_Rautateiden_huoltotie_RB}
+    Paikanna osoite                                           ${testipaikka}
+    Zoomaa kartta                                             5  20 m
+    Odota sivun latautuminen
+    Siirry Muokkaustilaan
+    Wait Until Element Is Not Visible                         ${Map_popup}
+
+    #painetaan control pohjaan ja klikataan
+    Hold Control And Click Element At Coordinates             ${Kartta}  0  0
+    selenium_extensions.Hold Control And Drag By Offset       ${Kartta}  0  100
+    Click Element At Coordinates                              ${Kartta}  0  0
+    selenium_extensions.Hold Control And Drag By Offset       ${Kartta}  0  -200
+    Click Element At Coordinates                              ${Kartta}  0  0
+    Release Control
+
+    Wait Until Element Is Visible               css=.modal-dialog
+    Radio Button Should Be Set To               maintenanceRoad    disabled
+    Select Radio Button                         maintenanceRoad    enabled
+    Radio Button Should Be Set To               maintenanceRoad    enabled
+
+    Select From List By Value                   name=huoltotie_kayttooikeus    ${l}
+    Select From List By Value                   name=huoltotie_huoltovastuu    ${m}
+    Input Text                                  name=huoltotie_tiehoitokunta    dummypopup
+    Click Button                                name=huoltotie_tarkistettu-
+
+    Element Should Be Enabled                   ${FA_header_Tallenna}
+    Click Element                               ${FA_header_Peruuta}
+    Odota sivun latautuminen
+    Siirry Katselutilaan
+
+
+Rautateiden huoltotien katkaisu    [arguments]    ${testipaikka}    ${l}    ${m}
+    Testin Aloitus
+    Log    Testataan rautateiden huoltotien katkaisu
+    Vaihda Tietolaji                            ${TL_Rautateiden_huoltotie_RB}
+    Paikanna osoite                             ${testipaikka}
+    Zoomaa kartta                               5    100m
+
+    Odota sivun latautuminen
+    Siirry Muokkaustilaan
+    Log    Leikataan tielinkki kahteen osaan
+    Wait Until Element Is Visible              ${Muokkaustila_Leikkaus}
+    Click Element                              ${Muokkaustila_Leikkaus}
+
+    Odota sivun latautuminen
+    Click Element At Coordinates               ${Kartta}  0  10
+    Odota sivun latautuminen
+
+    #katkaistu linkki a
+    Click Element    css=#feature-attributes-form > div > div > div.dynamic-form.editable.form-editable-maintenanceRoad-a > div.input-unit-combination > div:nth-child(1) > select
+    Select From List By Value    name=huoltotie_kayttooikeus    ${l}
+    Select From List By Value    name=huoltotie_huoltovastuu    ${m}
+    Press Keys    none    ENTER
+    Click Button    name=huoltotie_tarkistettu-a
+    Input Text    name=huoltotie_tiehoitokunta    dummy-a
+
+    #katkaistu linkki b
+    Click Element    css=#feature-attributes-form > div > div > div.dynamic-form.editable.form-editable-maintenanceRoad-a > div.input-unit-combination > div:nth-child(2) > select
+    Select From List By Value    name=huoltotie_kayttooikeus    ${l}
+    Select From List By Value    name=huoltotie_huoltovastuu    ${m}
+    Press Keys    none    ENTER
+    Click Button    name=huoltotie_tarkistettu-b
+    Input Text    name=huoltotie_tiehoitokunta    dummy-b
+
+    Element Should Be Enabled                   ${FA_footer_Tallenna}
+    Click Element                               ${FA_footer_Peruuta}
 
 
 *** Variables ***
@@ -190,4 +272,5 @@ ${huoltotie_käyttöoikeus}    css=#feature-attributes-form > div > div > div.dy
 ${huoltotie_huoltovastuu}    css=#feature-attributes-form > div > div > div.dynamic-form.editable.form-editable-maintenanceRoad > div.input-unit-combination > div:nth-child(2) > p
 ${huoltotie_tiehoitokunta}    css=#feature-attributes-form > div > div > div.dynamic-form.editable.form-editable-maintenanceRoad > div.input-unit-combination > div:nth-child(3) > p
 ${huoltotie_tarkistettu}    css=#feature-attributes-form > div > div > div.dynamic-form.editable.form-editable-maintenanceRoad > div.input-unit-combination > div:nth-child(4) > p
+${huoltotie_käyttöoikeus_pudotusvalikko}    css=#feature-attributes-form > div > div > div.dynamic-form.editable.form-editable-maintenanceRoad > div.input-unit-combination > div:nth-child(1) > select
 ${k}    0
