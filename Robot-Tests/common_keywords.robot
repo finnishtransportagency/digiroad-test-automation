@@ -39,6 +39,7 @@ Resource                    KW_Liittymänumero.robot
 Resource                    KW_Talvinopeus.robot
 Resource                    KW_Liikennemäärä.robot
 Resource                    KW_Hoitoluokat.robot
+Resource                    KW_Rautatien_huoltotie.robot
 
 
 
