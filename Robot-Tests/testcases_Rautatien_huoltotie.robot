@@ -69,11 +69,11 @@ Rautateiden huoltotien lisääminen usealle polygonilla
     [Tags]    Rautateiden_huoltotiet
     [Documentation]    Huoltoteiden lisääminen polygonilla
     Log    Testataan usean linkin lisääminen polygonilla
-    FOR    ${l}        IN    @{Huoltotie_käyttöoikeus_numerot}
-        FOR    ${m}    IN    @{Huoltotie_huoltovastuu_numerot}
-            Log    ${l}
-            Log    ${m}
-            KW_Rautatien_huoltotie.Rautateiden huoltotien lisääminen usealle polygonilla    6747441, 481740    ${l}    ${m}
+    FOR    ${n}        IN    @{Huoltotie_käyttöoikeus_numerot}
+        FOR    ${o}    IN    @{Huoltotie_huoltovastuu_numerot}
+            Log    ${n}
+            Log    ${o}
+            KW_Rautatien_huoltotie.Rautateiden huoltotien lisääminen usealle polygonilla    6747441, 481740    ${n}    ${o}
         END
     END
 
@@ -82,11 +82,11 @@ Rautateiden huoltotien lisääminen usealle ctrl
     [Tags]    Rautateiden_huoltotiet
     [Documentation]    Huoltoteiden lisääminen ctrl
     Log    Testataan usean linkin lisääminen ctrl
-    FOR    ${l}        IN    @{Huoltotie_käyttöoikeus_numerot}
-        FOR    ${m}    IN    @{Huoltotie_huoltovastuu_numerot}
-            Log    ${l}
-            Log    ${m}
-            KW_Rautatien_huoltotie.Rautateiden huoltotien lisääminen usealle ctrl    6676576, 384823    ${l}    ${m}
+    FOR    ${p}        IN    @{Huoltotie_käyttöoikeus_numerot}
+        FOR    ${q}    IN    @{Huoltotie_huoltovastuu_numerot}
+            Log    ${p}
+            Log    ${q}
+            KW_Rautatien_huoltotie.Rautateiden huoltotien lisääminen usealle ctrl    6676576, 384823    ${p}    ${q}
         END
     END
 
@@ -95,10 +95,10 @@ Rautateiden huoltotien katkaisu
     [Tags]    Rautateiden_huoltotiet
     [Documentation]    Huoltoteiden katkaisu
     Log    Testataan rautateiden huoltotien katkaisu
-    FOR    ${l}        IN    @{Huoltotie_käyttöoikeus_numerot}
-        FOR    ${m}    IN    @{Huoltotie_huoltovastuu_numerot}
-            Log    ${l}
-            Log    ${m}
-            KW_Rautatien_huoltotie.Rautateiden huoltotien katkaisu    6676576, 384823    ${l}    ${m}
+    FOR    ${r}        IN    @{Huoltotie_käyttöoikeus_numerot}
+        FOR    ${s}    IN    @{Huoltotie_huoltovastuu_numerot}
+            Log    ${r}
+            Log    ${s}
+            KW_Rautatien_huoltotie.Rautateiden huoltotien katkaisu    6676576, 384823    ${r}    ${s}
         END
     END

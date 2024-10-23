@@ -44,7 +44,7 @@ Rautateiden huoltotien tarkastelu huoltovastuu     [arguments]    ${testipaikka}
     Testin Aloitus
     Log    Tarkastellaan rautateiden huoltotien ilmestyminen zoomatessa
     Vaihda Tietolaji    ${TL_Rautateiden_huoltotie_RB}
-    Radio Button Should Be Set To    labelingRadioButton    rightOfUse
+    Radio Button Should Be Set To    labelingRadioButton    responsibility
     Paikanna osoite    ${testipaikka}
     Zoomaa kartta    2    200
     Odota sivun latautuminen
@@ -112,7 +112,7 @@ Rautateiden huoltotien muokkaus ketjun osalle    [arguments]    ${testipaikka}  
     Zoomaa kartta    2    200
     Odota sivun latautuminen
 
-    Click Element At Coordinates      ${Kartta}    0    20
+    Tupla Klikkaa Kartan Keskelle
     Wait Until Element Is Visible     ${FA_otsikko}
     Element Should Be Visible         ${FA_Lisätty_Järjestelmään}
     Element Should Be Visible         ${FA_Muokattu_viimeksi}
@@ -122,7 +122,6 @@ Rautateiden huoltotien muokkaus ketjun osalle    [arguments]    ${testipaikka}  
 
     Select Radio Button               maintenanceRoad   enabled
     Radio Button Should Be Set To     maintenanceRoad   enabled
-    Click Element    ${huoltotie_käyttöoikeus_pudotusvalikko}
     Click Element    ${huoltotie_käyttöoikeus_pudotusvalikko}
 
     FOR    ${k}    IN    @{Huoltotie_käyttöoikeus_kohteet}
@@ -164,7 +163,7 @@ Rautateiden huoltotien lisääminen usealle laatikolla    [arguments]    ${testi
     Siirry Katselutilaan
 
 
-Rautateiden huoltotien lisääminen usealle polygonilla    [arguments]    ${testipaikka}    ${l}    ${m}
+Rautateiden huoltotien lisääminen usealle polygonilla    [arguments]    ${testipaikka}    ${n}    ${m}
     Log    Testataan usean linkin lisääminen monivalinnalla
     Testin Aloitus
     Vaihda Tietolaji    ${TL_Rautateiden_huoltotie_RB}
@@ -182,7 +181,7 @@ Rautateiden huoltotien lisääminen usealle polygonilla    [arguments]    ${test
     Select Radio Button                         maintenanceRoad    enabled
     Radio Button Should Be Set To               maintenanceRoad    enabled
 
-    Select From List By Value                   name=huoltotie_kayttooikeus    ${l}
+    Select From List By Value                   name=huoltotie_kayttooikeus    ${n}
     Select From List By Value                   name=huoltotie_huoltovastuu    ${m}
     Input Text                                  name=huoltotie_tiehoitokunta    dummypopup
     Click Button                                name=huoltotie_tarkistettu-
@@ -193,7 +192,7 @@ Rautateiden huoltotien lisääminen usealle polygonilla    [arguments]    ${test
     Siirry Katselutilaan
 
 
-Rautateiden huoltotien lisääminen usealle ctrl    [arguments]    ${testipaikka}    ${l}    ${m}
+Rautateiden huoltotien lisääminen usealle ctrl    [arguments]    ${testipaikka}    ${p}    ${q}
     Log    Testataan usean linkin lisääminen ctrl-valinnalla
     #testattava sijainnilla, jossa on suoraan pohjois-etelä-suunnassa kulkeva linkki
     Testin Aloitus
@@ -218,8 +217,8 @@ Rautateiden huoltotien lisääminen usealle ctrl    [arguments]    ${testipaikka
     Select Radio Button                         maintenanceRoad    enabled
     Radio Button Should Be Set To               maintenanceRoad    enabled
 
-    Select From List By Value                   name=huoltotie_kayttooikeus    ${l}
-    Select From List By Value                   name=huoltotie_huoltovastuu    ${m}
+    Select From List By Value                   name=huoltotie_kayttooikeus    ${p}
+    Select From List By Value                   name=huoltotie_huoltovastuu    ${q}
     Input Text                                  name=huoltotie_tiehoitokunta    dummypopup
     Click Button                                name=huoltotie_tarkistettu-
 
@@ -229,7 +228,7 @@ Rautateiden huoltotien lisääminen usealle ctrl    [arguments]    ${testipaikka
     Siirry Katselutilaan
 
 
-Rautateiden huoltotien katkaisu    [arguments]    ${testipaikka}    ${l}    ${m}
+Rautateiden huoltotien katkaisu    [arguments]    ${testipaikka}    ${r}    ${s}
     Testin Aloitus
     Log    Testataan rautateiden huoltotien katkaisu
     Vaihda Tietolaji                            ${TL_Rautateiden_huoltotie_RB}
@@ -248,16 +247,16 @@ Rautateiden huoltotien katkaisu    [arguments]    ${testipaikka}    ${l}    ${m}
 
     #katkaistu linkki a
     Click Element    css=#feature-attributes-form > div > div > div.dynamic-form.editable.form-editable-maintenanceRoad-a > div.input-unit-combination > div:nth-child(1) > select
-    Select From List By Value    name=huoltotie_kayttooikeus    ${l}
-    Select From List By Value    name=huoltotie_huoltovastuu    ${m}
+    Select From List By Value    name=huoltotie_kayttooikeus    ${r}
+    Select From List By Value    name=huoltotie_huoltovastuu    ${s}
     Press Keys    none    ENTER
     Click Button    name=huoltotie_tarkistettu-a
     Input Text    name=huoltotie_tiehoitokunta    dummy-a
 
     #katkaistu linkki b
     Click Element    css=#feature-attributes-form > div > div > div.dynamic-form.editable.form-editable-maintenanceRoad-a > div.input-unit-combination > div:nth-child(2) > select
-    Select From List By Value    name=huoltotie_kayttooikeus    ${l}
-    Select From List By Value    name=huoltotie_huoltovastuu    ${m}
+    Select From List By Value    name=huoltotie_kayttooikeus    ${r}
+    Select From List By Value    name=huoltotie_huoltovastuu    ${s}
     Press Keys    none    ENTER
     Click Button    name=huoltotie_tarkistettu-b
     Input Text    name=huoltotie_tiehoitokunta    dummy-b
@@ -273,4 +272,3 @@ ${huoltotie_huoltovastuu}    css=#feature-attributes-form > div > div > div.dyna
 ${huoltotie_tiehoitokunta}    css=#feature-attributes-form > div > div > div.dynamic-form.editable.form-editable-maintenanceRoad > div.input-unit-combination > div:nth-child(3) > p
 ${huoltotie_tarkistettu}    css=#feature-attributes-form > div > div > div.dynamic-form.editable.form-editable-maintenanceRoad > div.input-unit-combination > div:nth-child(4) > p
 ${huoltotie_käyttöoikeus_pudotusvalikko}    css=#feature-attributes-form > div > div > div.dynamic-form.editable.form-editable-maintenanceRoad > div.input-unit-combination > div:nth-child(1) > select
-${k}    0
