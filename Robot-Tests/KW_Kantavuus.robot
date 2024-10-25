@@ -184,7 +184,7 @@ Kantavuuden lisäys katkaisua varten    [arguments]    ${routivuuskerroin}
     Wait Until Element Is Visible               ${Kantavuus_header_linkkien_lukumäärä}
     Element Should Be Disabled                  ${FA_header_Tallenna}
     ${kantavuus_katkaisu_evaluointi}=    Run Keyword And Return Status    Radio Button Should Be Set To               ${Kantavuus_radionappi_header_kantavuus}    disabled
-    IF    $kantavuus_katkaisu_evaluointi == $True
+    IF    '${kantavuus_katkaisu_evaluointi}' == '${True}'
         Select Radio Button                         ${Kantavuus_radionappi_header_kantavuus}    enabled
         Radio Button Should Be Set To               ${Kantavuus_radionappi_header_kantavuus}    enabled
 

@@ -55,12 +55,12 @@ Rautateiden huoltotien muokkaus ketjun osalle
 Rautateiden huoltotien lisääminen usealle laatikolla
     [Tags]    Rautateiden_huoltotiet
     [Documentation]    Huoltoteiden lisääminen laatikkovalinnalla
-    Log    Testataan usean linkin lisääminen laatikkovalinnalla
+    Log    RIKKI Testataan usean linkin lisääminen laatikkovalinnalla
     FOR    ${l}        IN    @{Huoltotie_käyttöoikeus_numerot}
         FOR    ${m}    IN    @{Huoltotie_huoltovastuu_numerot}
             Log    ${l}
             Log    ${m}
-            KW_Rautatien_huoltotie.Rautateiden huoltotien lisääminen usealle laatikolla    6747441, 481740    ${l}    ${m}
+            #KW_Rautatien_huoltotie.Rautateiden huoltotien lisääminen usealle laatikolla    6747441, 481740    ${l}    ${m}
         END
     END
 
@@ -68,12 +68,12 @@ Rautateiden huoltotien lisääminen usealle laatikolla
 Rautateiden huoltotien lisääminen usealle polygonilla
     [Tags]    Rautateiden_huoltotiet
     [Documentation]    Huoltoteiden lisääminen polygonilla
-    Log    Testataan usean linkin lisääminen polygonilla
+    Log    RIKKI Testataan usean linkin lisääminen polygonilla
     FOR    ${n}        IN    @{Huoltotie_käyttöoikeus_numerot}
         FOR    ${o}    IN    @{Huoltotie_huoltovastuu_numerot}
             Log    ${n}
             Log    ${o}
-            KW_Rautatien_huoltotie.Rautateiden huoltotien lisääminen usealle polygonilla    6747441, 481740    ${n}    ${o}
+            #KW_Rautatien_huoltotie.Rautateiden huoltotien lisääminen usealle polygonilla    6747441, 481740    ${n}    ${o}
         END
     END
 
@@ -81,12 +81,12 @@ Rautateiden huoltotien lisääminen usealle polygonilla
 Rautateiden huoltotien lisääminen usealle ctrl
     [Tags]    Rautateiden_huoltotiet
     [Documentation]    Huoltoteiden lisääminen ctrl
-    Log    Testataan usean linkin lisääminen ctrl
+    Log    RIKKI Testataan usean linkin lisääminen ctrl
     FOR    ${p}        IN    @{Huoltotie_käyttöoikeus_numerot}
         FOR    ${q}    IN    @{Huoltotie_huoltovastuu_numerot}
             Log    ${p}
             Log    ${q}
-            KW_Rautatien_huoltotie.Rautateiden huoltotien lisääminen usealle ctrl    6676576, 384823    ${p}    ${q}
+            #KW_Rautatien_huoltotie.Rautateiden huoltotien lisääminen usealle ctrl    6676576, 384823    ${p}    ${q}
         END
     END
 

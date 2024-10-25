@@ -52,7 +52,7 @@ Hoitoluokan muokkaus koko ketjulle    [arguments]    ${testipaikka}    ${hoitolu
     Element Should Be Visible         ${FA_Muokattu_viimeksi}
     Element Should Be Visible         ${FA_linkkien_lukumaara}
 
-    IF    $hoitoluokan_vuodenaika == "winterCare"
+    IF    '${hoitoluokan_vuodenaika}' == 'winterCare'
         Siirry Muokkaustilaan
         Wait Until Element Is Visible     ${FA_Hoitoluokka_choicegroup}
         Select Radio Button               careClass    enabled
@@ -85,7 +85,7 @@ Hoitoluokan muokkaus ketjun osalle    [arguments]    ${testipaikka}    ${hoitolu
     Element Should Be Visible         ${FA_Muokattu_viimeksi}
     Element Should Be Visible         ${FA_linkkien_lukumaara}
 
-    IF    $hoitoluokan_vuodenaika == "winterCare"
+    IF    '${hoitoluokan_vuodenaika}'' == 'winterCare'
         Siirry Muokkaustilaan
         Wait Until Element Is Visible     ${FA_Hoitoluokka_choicegroup}
         Select Radio Button               careClass    enabled
