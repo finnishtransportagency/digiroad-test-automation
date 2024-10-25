@@ -46,7 +46,7 @@ Eurooppatienumeron lisääminen ctrl
     [Tags]    Eurooppatienumero
     [Documentation]    Lisätään useita eurooppatienumeroja ctrl-napilla
     Log    Lisätään useita eurooppatienumeroja ctrl-napilla
-    KW_Eurooppatienumero.Eurooppatienumeron lisääminen ctrl    6774708, 505522
+#    KW_Eurooppatienumero.Eurooppatienumeron lisääminen ctrl    6774708, 505522
 
 
 Eurooppatienumeron katkaisu

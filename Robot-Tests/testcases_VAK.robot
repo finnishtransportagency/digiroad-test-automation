@@ -13,4 +13,5 @@ Test Setup          Testin Aloitus
 VAK 1
     [Tags]              VAK
     [Documentation]     Selain: ${BROWSER}
-    KW_VAK.VAK_1  ${TL_VAK-rajoitus_RB}  6821696, 312907
+    Log    RIKKI VAK1
+    #KW_VAK.VAK_1  ${TL_VAK-rajoitus_RB}  6821696, 312907

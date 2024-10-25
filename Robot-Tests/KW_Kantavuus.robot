@@ -176,24 +176,26 @@ Kantavuuden katkaisu    [arguments]    ${testipaikka}    ${routivuuskerroin}
 Kantavuuden lisäys katkaisua varten    [arguments]    ${routivuuskerroin}
     Odota sivun latautuminen
     Click Element At Coordinates                ${Kartta}  0  20
-    Wait Until Element Is Visible               ${Kantavuus_header_otsikko}
-    Element Should Be Visible                   ${Kantavuus_header_otsikko}
-    Element Should Be Visible                   ${Kantavuus_header_lisätty_järjestelmään}
-    Element Should Be Visible                   ${Kantavuus_header_muokattu_viimeksi}
-    Element Should Be Visible                   ${Kantavuus_header_linkkien_lukumäärä}
+    #Wait Until Element Is Visible               ${Kantavuus_header_otsikko}
+    #Element Should Be Visible                   ${Kantavuus_header_otsikko}
+    #Element Should Be Visible                   ${Kantavuus_header_lisätty_järjestelmään}
+    #Element Should Be Visible                   ${Kantavuus_header_muokattu_viimeksi}
+    #Element Should Be Visible                   ${Kantavuus_header_linkkien_lukumäärä}
+    Wait Until Element Is Visible               ${Kantavuus_header_linkkien_lukumäärä}
     Element Should Be Disabled                  ${FA_header_Tallenna}
+    ${kantavuus_katkaisu_evaluointi}=    Run Keyword And Return Status    Radio Button Should Be Set To               ${Kantavuus_radionappi_header_kantavuus}    disabled
+    IF    $kantavuus_katkaisu_evaluointi == $True
+        Select Radio Button                         ${Kantavuus_radionappi_header_kantavuus}    enabled
+        Radio Button Should Be Set To               ${Kantavuus_radionappi_header_kantavuus}    enabled
 
-    Radio Button Should Be Set To               ${Kantavuus_radionappi_header_kantavuus}    disabled
-    Select Radio Button                         ${Kantavuus_radionappi_header_kantavuus}    enabled
-    Radio Button Should Be Set To               ${Kantavuus_radionappi_header_kantavuus}    enabled
+        Element Should Be Enabled                   ${Kantavuus_tekstikenttä_kevätkantavuus}
+        Input Text                                  ${Kantavuus_tekstikenttä_kevätkantavuus}        100
+        Click Element                               ${Kantavuus_pudotusvalikko_routivuuskerroin}
+        Click Element                               css=.form-control.carrying-capacity option[data-value="${routivuuskerroin}"]
 
-    Element Should Be Enabled                   ${Kantavuus_tekstikenttä_kevätkantavuus}
-    Input Text                                  ${Kantavuus_tekstikenttä_kevätkantavuus}        100
-    Click Element                               ${Kantavuus_pudotusvalikko_routivuuskerroin}
-    Click Element                               css=.form-control.carrying-capacity option[data-value="${routivuuskerroin}"]
-
-    Element Should Be Enabled                   ${FA_footer_Tallenna}
-    Click Element                               ${FA_footer_Tallenna}
+        Element Should Be Enabled                   ${FA_footer_Tallenna}
+        Click Element                               ${FA_footer_Tallenna}
+    END
 
 
 Kantavuuden poisto

@@ -17,6 +17,7 @@ Nopeusrajoitus 2
     [Tags]  AWS
     [Documentation]  Nopeusrajotusten perus testit.
     ...  Testaa regressio testit 206.1, 206.6, 206.8, 206.25, 206.26, 206.27, 206.28, 206.36, 206.37
+    Log    Nopeusrajoitus 2 RIKKI
     KW_Nopeusrajoitus.Nopeusrajoitus 2  6777683, 314888
 
 

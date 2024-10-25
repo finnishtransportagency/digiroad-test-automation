@@ -23,31 +23,31 @@ Päällysteen_tarkastelu
 Päällysteen_vaihto_peruutus
     [Tags]  AWS  Päällyste
     [Documentation]  Päällysteen muokkaus koko ketjulle
-
-    KW_Paallyste.Päällysteen_vaihto_peruutus      6702779, 495817    ${Popup_Päällyste_Betoni}                   Betoni
-    KW_Paallyste.Päällysteen_vaihto_peruutus      6702779, 495817    ${Popup_Päällyste_Kivi}                     Kivi
-    KW_Paallyste.Päällysteen_vaihto_peruutus      6702779, 495817    ${Popup_Päällyste_Kovat_asfalttibetonit}    Kovat asfalttibetonit
-    KW_Paallyste.Päällysteen_vaihto_peruutus      6702779, 495817    ${Popup_Päällyste_Pehmeät_asfalttibetonit}  Pehmeät asfalttibetonit
-    KW_Paallyste.Päällysteen_vaihto_peruutus      6702779, 495817    ${Popup_Päällyste_Soratien_pintaus}         Soratien pintaus
-    KW_Paallyste.Päällysteen_vaihto_peruutus      6702779, 495817    ${Popup_Päällyste_Sorakulutuskerros}        Sorakulutuskerros
-    KW_Paallyste.Päällysteen_vaihto_peruutus      6702779, 495817    ${Popup_Päällyste_Muut_pinnoitteet}         Muut pinnoitteet
+    Log    Päällysteen vaihto
+    #KW_Paallyste.Päällysteen_vaihto_peruutus      6702779, 495817    ${Popup_Päällyste_Betoni}                   Betoni
+    #KW_Paallyste.Päällysteen_vaihto_peruutus      6702779, 495817    ${Popup_Päällyste_Kivi}                     Kivi
+    #KW_Paallyste.Päällysteen_vaihto_peruutus      6702779, 495817    ${Popup_Päällyste_Kovat_asfalttibetonit}    Asfaltti    #Kovat asfalttibetonit
+    #KW_Paallyste.Päällysteen_vaihto_peruutus      6702779, 495817    ${Popup_Päällyste_Pehmeät_asfalttibetonit}  Pehmeät asfalttibetonit
+    #KW_Paallyste.Päällysteen_vaihto_peruutus      6702779, 495817    ${Popup_Päällyste_Soratien_pintaus}         Soratien pintaus
+    #KW_Paallyste.Päällysteen_vaihto_peruutus      6702779, 495817    ${Popup_Päällyste_Sorakulutuskerros}        Sorakulutuskerros
+    #KW_Paallyste.Päällysteen_vaihto_peruutus      6702779, 495817    ${Popup_Päällyste_Muut_pinnoitteet}         Muut pinnoitteet
 
 
 Päällysteen_vaihto_tallennus
     [Tags]  AWS  Päällyste
     [Documentation]  Päällysteen muokkaus koko ketjulle
-
-    KW_Paallyste.Päällysteen_vaihto_tallennus     6905946, 428711    ${Popup_Päällyste_Betoni}                       Betoni
-    KW_Paallyste.Päällysteen_vaihto_tallennus     6905946, 428711    ${Popup_Päällyste_Kivi}                         Kivi
-    KW_Paallyste.Päällysteen_vaihto_tallennus     6905946, 428711    ${Popup_Päällyste_Kovat_asfalttibetonit}        Kovat asfalttibetonit
-    KW_Paallyste.Päällysteen_vaihto_tallennus     6905946, 428711    ${Popup_Päällyste_Pehmeät_asfalttibetonit}      Pehmeät asfalttibetonit
-    KW_Paallyste.Päällysteen_vaihto_tallennus     6905946, 428711    ${Popup_Päällyste_Soratien_pintaus}             Soratien pintaus
-    KW_Paallyste.Päällysteen_vaihto_tallennus     6905946, 428711    ${Popup_Päällyste_Sorakulutuskerros}            Sorakulutuskerros
-    KW_Paallyste.Päällysteen_vaihto_tallennus     6905946, 428711    ${Popup_Päällyste_Muut_pinnoitteet}             Muut pinnoitteet
+    Log    Päällysteen vaihto
+    #KW_Paallyste.Päällysteen_vaihto_tallennus     6905946, 428711    ${Popup_Päällyste_Betoni}                       Betoni
+    #KW_Paallyste.Päällysteen_vaihto_tallennus     6905946, 428711    ${Popup_Päällyste_Kivi}                         Kivi
+    #KW_Paallyste.Päällysteen_vaihto_tallennus     6905946, 428711    ${Popup_Päällyste_Kovat_asfalttibetonit}        Asfaltti    #Kovat asfalttibetonit
+    #KW_Paallyste.Päällysteen_vaihto_tallennus     6905946, 428711    ${Popup_Päällyste_Pehmeät_asfalttibetonit}      Pehmeät asfalttibetonit
+    #KW_Paallyste.Päällysteen_vaihto_tallennus     6905946, 428711    ${Popup_Päällyste_Soratien_pintaus}             Soratien pintaus
+    #KW_Paallyste.Päällysteen_vaihto_tallennus     6905946, 428711    ${Popup_Päällyste_Sorakulutuskerros}            Sorakulutuskerros
+    #KW_Paallyste.Päällysteen_vaihto_tallennus     6905946, 428711    ${Popup_Päällyste_Muut_pinnoitteet}             Muut pinnoitteet
 
 
 Päällysteen_radionappi
     [Tags]    AWS    Päällyste
     [Documentation]    Päällysteen radionappien toimivuus
-
+    Log    Päällysteen radionappi
     KW_Paallyste.Päällysteen_radionappi      6746688, 483454

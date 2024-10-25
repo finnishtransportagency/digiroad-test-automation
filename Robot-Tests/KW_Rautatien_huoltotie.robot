@@ -102,6 +102,7 @@ Rautateiden huoltotien muokkaus koko ketjulle    [arguments]    ${testipaikka}  
 
     Element Should Be Enabled    ${FA_footer_Peruuta}
     Click Element                ${FA_footer_Tallenna}
+    Odota sivun latautuminen
 
 
 Rautateiden huoltotien muokkaus ketjun osalle    [arguments]    ${testipaikka}    ${k}
@@ -132,6 +133,7 @@ Rautateiden huoltotien muokkaus ketjun osalle    [arguments]    ${testipaikka}  
     END
     Element Should Be Enabled    ${FA_footer_Peruuta}
     Click Element                ${FA_footer_Tallenna}
+    Odota sivun latautuminen
 
 
 Rautateiden huoltotien lisääminen usealle laatikolla    [arguments]    ${testipaikka}    ${l}    ${m}
@@ -160,7 +162,6 @@ Rautateiden huoltotien lisääminen usealle laatikolla    [arguments]    ${testi
     Element Should Be Enabled                   ${FA_header_Tallenna}
     Click Element                               ${FA_header_Peruuta}
     Odota sivun latautuminen
-    Siirry Katselutilaan
 
 
 Rautateiden huoltotien lisääminen usealle polygonilla    [arguments]    ${testipaikka}    ${n}    ${m}
@@ -189,7 +190,6 @@ Rautateiden huoltotien lisääminen usealle polygonilla    [arguments]    ${test
     Element Should Be Enabled                   ${FA_header_Tallenna}
     Click Element                               ${FA_header_Peruuta}
     Odota sivun latautuminen
-    Siirry Katselutilaan
 
 
 Rautateiden huoltotien lisääminen usealle ctrl    [arguments]    ${testipaikka}    ${p}    ${q}
@@ -225,7 +225,6 @@ Rautateiden huoltotien lisääminen usealle ctrl    [arguments]    ${testipaikka
     Element Should Be Enabled                   ${FA_header_Tallenna}
     Click Element                               ${FA_header_Peruuta}
     Odota sivun latautuminen
-    Siirry Katselutilaan
 
 
 Rautateiden huoltotien katkaisu    [arguments]    ${testipaikka}    ${r}    ${s}
@@ -263,6 +262,7 @@ Rautateiden huoltotien katkaisu    [arguments]    ${testipaikka}    ${r}    ${s}
 
     Element Should Be Enabled                   ${FA_footer_Tallenna}
     Click Element                               ${FA_footer_Peruuta}
+    Odota sivun latautuminen
 
 
 *** Variables ***

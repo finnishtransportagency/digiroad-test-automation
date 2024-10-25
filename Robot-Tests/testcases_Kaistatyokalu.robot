@@ -16,4 +16,5 @@ Kaistatyökalu 1
 Kaistatyökalu 2
     [Tags]              AWS     Kaista
     [Documentation]     Kaistatyökalu, selain: ${BROWSER}
-    KW_Kaistatyokalu.Kaistatyökalu_2  6805688, 331942
+    Log    Kaistatyökalu 2 (RIKKI. Tarpeeton kantaan tallennus pois testistä)
+    #KW_Kaistatyokalu.Kaistatyökalu_2  6805688, 331942

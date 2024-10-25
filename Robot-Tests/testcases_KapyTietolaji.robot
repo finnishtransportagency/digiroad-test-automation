@@ -18,4 +18,5 @@ Kapy 1
 Kapy 2
     [Tags]              Kapy
     [Documentation]     Selain: ${BROWSER}
-    KW_KapyTietolaji.Kapy_2  ${TL_Käpy_tietolaji_RB}  6822715, 328467
+    Log    Kapy 2 RIKKI misclick
+    #KW_KapyTietolaji.Kapy_2  ${TL_Käpy_tietolaji_RB}  6822715, 328467

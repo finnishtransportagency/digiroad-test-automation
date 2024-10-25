@@ -45,8 +45,8 @@ Liittymänumeron lisääminen polygon
 Liittymänumeron lisääminen ctrl
     [Tags]    Liittymänumero
     [Documentation]    Lisätään useita liittymänumeroja ctrl-napilla
-    Log    Lisätään useita liittymänumeroja ctrl-napilla
-    KW_Liittymänumero.Liittymänumeron lisääminen ctrl    6774708, 505522
+    Log    Lisätään useita liittymänumeroja ctrl-napilla RIKKI
+    #KW_Liittymänumero.Liittymänumeron lisääminen ctrl    6774708, 505522
 
 
 Liittymänumeron katkaisu

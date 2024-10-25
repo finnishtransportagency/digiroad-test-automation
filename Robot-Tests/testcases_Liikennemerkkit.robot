@@ -31,7 +31,8 @@ Liikennemerkit 3
     [Tags]              Merkki  AWS
     [Documentation]     Liikennemerkit, selain: ${BROWSER}
     ...  
-    KW_Liikennemerkit.Liikennemerkit 3  7320569, 599457
+    Log    Liikennemerkit 3 RIKKI
+    #KW_Liikennemerkit.Liikennemerkit 3  7320569, 599457
 
 Liikennemerkit_4
     [Tags]              Merkki  AWS

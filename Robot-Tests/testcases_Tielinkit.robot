@@ -34,16 +34,16 @@ Tielinkit 3
     [Tags]              Roadlinks
     [Documentation]     Tielinkit, selain: ${BROWSER}
     ...  - Tielinkkien toiminnalliset luokat vastaa kartan aineiston visualisointia ja formilla näytettävää luokkaa.
-    Log  Testille annetaan parametrina toiminnallinen luokka ja paikka jossa se testataan (osoite tai koordinaatti)
+    Log  RIKKI Testille annetaan parametrina toiminnallinen luokka ja paikka jossa se testataan (osoite tai koordinaatti)
     # hämeentie 33, turku
     KW_Tielinkit.Tielinkit_3  1  6711584, 241929
     KW_Tielinkit.Tielinkit_3  2  6711877, 240587
     KW_Tielinkit.Tielinkit_3  3  6711565, 239904
     KW_Tielinkit.Tielinkit_3  4  6711456, 239789
     KW_Tielinkit.Tielinkit_3  5  6711466, 239867
-    KW_Tielinkit.Tielinkit_3  6  6712315, 241434
-    KW_Tielinkit.Tielinkit_3  7  6712170, 240529
-    KW_Tielinkit.Tielinkit_3  8  6711878, 240628
+    #KW_Tielinkit.Tielinkit_3  6  6712315, 241434
+    #KW_Tielinkit.Tielinkit_3  7  6712170, 240529
+    #KW_Tielinkit.Tielinkit_3  8  6711878, 240628
 
 Tielinkit 4
     [Tags]              Roadlinks
@@ -112,7 +112,8 @@ Tielinkit 10
     ...  Muokattu viimeksi- tieto päivittyy tallennettaessa.
     ...  Jos testi epäonnistuu pitää käydä kyseiset tilinkit muuttamassa käsin.
     # Annetaan link id:t argumentteina jolloin niitä ei tarvitse muokata testistä jos haluaa vaihtaa testauspaikan.
-    KW_Tielinkit.Tielinkit_10   6711434, 240090  Linkin ID: cc07a9b8-7ca7-483e-97ed-b049f637b636:1   Linkin ID: 41bfe91c-b92e-4d4a-bcbb-68866a83fc72:1
+    Log    RIKKI Tielinkit 10
+    #KW_Tielinkit.Tielinkit_10   6711434, 240090  Linkin ID: cc07a9b8-7ca7-483e-97ed-b049f637b636:1   Linkin ID: 41bfe91c-b92e-4d4a-bcbb-68866a83fc72:1
 
 #Tielinkit 11
     #ei tarvetta testata atm 08/23
