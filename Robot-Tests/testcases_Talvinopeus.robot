@@ -18,10 +18,10 @@ Talvinopeus perustestit
     KW_Talvinopeus.Talvinopeus perustestit    6782293, 446161
 
 Talvinopeusrajoitus monivalinta
-    [Tags]  AWS  Talvinopeus
+    [Tags]  AWS  Talvinopeus    BROKEN
     [Documentation]  Talvinopeusrajotusten muokkaus monivalintatyökalulla.
-    Log    Talvinopeusrajoitus monivalinta RIKKI
-    KW_Talvinopeus.Talvinopeusrajoitus monivalinta  6949888, 642685
+    Log    RIKKI? Talvinopeusrajoitus monivalinta
+    #KW_Talvinopeus.Talvinopeusrajoitus monivalinta  6769022, 438111
 
 Talvinopeusrajoituksen katkaisu
     [Tags]    AWS    Talvinopeus

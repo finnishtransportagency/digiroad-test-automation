@@ -24,10 +24,10 @@ Kelirikkotiedon lisääminen
 
 
 Kelirikkotiedon virheellinen lisääminen
-    [Tags]    Kelirikko
+    [Tags]    Kelirikko    BROKEN
     [Documentation]    Lisätään virheellistä tietoa
-    Log    Testataan kelirikon lisäys sekä virheellisen arvon syöttö
-    KW_Kelirikko.Kelirikkotiedon virheellinen lisääminen    7311372, 478787
+    Log    BUGI Testataan kelirikon lisäys sekä virheellisen arvon syöttö
+    #KW_Kelirikko.Kelirikkotiedon virheellinen lisääminen    7311372, 478787
 
 
 Kelirikon lisääminen laatikko

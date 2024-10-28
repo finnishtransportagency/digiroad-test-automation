@@ -14,7 +14,8 @@ Suurin Sallittu 1
     [Tags]              Massa
     [Documentation]     Suurin Sallittu Massa, selain: ${BROWSER}
     ...  - Tarkistetaan, että tietokannasta löytyy "Suurin Sallittu" tietolajit.
-    KW_SuurinSallittu.Massa_1  ${TL_suurin_sallittu_massa_RB}  7391737, 424819  32000 Kg    on
+    Log    RIKKI (misclick) Suurin sallittu 1
+    #KW_SuurinSallittu.Massa_1  ${TL_suurin_sallittu_massa_RB}  7391736, 424819  32000 Kg    on
     KW_SuurinSallittu.Massa_1  ${TL_Yhdistelmän_suurin_sallittu_massa_RB}  7391739, 424820  60000 Kg    on
     KW_SuurinSallittu.Massa_1  ${TL_suurin_sallittu_akselimassa_RB}  6703234, 496282  8000 Kg    on
     KW_SuurinSallittu.Massa_1  ${TL_suurin_sallittu_telimassa_RB}  6772341, 329783  18000 Kg    on

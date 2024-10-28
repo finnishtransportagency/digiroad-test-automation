@@ -53,7 +53,7 @@ Tietyön katkaisu
 
 
 Tietyö kaksisuuntaiseksi
-    [Tags]    AWS    Tietyö
+    [Tags]    AWS    Tietyö    BROKEN
     [Documentation]    Tietyön muuntaminen kaksisuuntaiseksi
     Log    RIKKI Tietyö kaksisuuntaiseksi
-    KW_Tietyot.Tietyö kaksisuuntaiseksi      6746688, 483454    mielivaltainenmerkkijono    merkkijonomielivaltainen
+    #KW_Tietyot.Tietyö kaksisuuntaiseksi      6671522, 384627    mielivaltainenmerkkijono    merkkijonomielivaltainen

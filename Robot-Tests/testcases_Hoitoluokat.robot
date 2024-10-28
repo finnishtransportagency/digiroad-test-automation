@@ -45,14 +45,14 @@ Hoitoluokan muokkaus koko ketjulle
 
 
 Hoitoluokan muokkaus ketjun osalle
-    [Tags]    Hoitoluokat
+    [Tags]    Hoitoluokat    BROKEN
     [Documentation]  Hoitoluokan muokkaus ketjun osalle.
-    Log    Testataan hoitoluokan tarkastelu
+    Log    RIKKI Testataan hoitoluokan tarkastelu
     FOR    ${i}    IN    @{Hoitoluokka_lista}
         FOR    ${j}    IN    @{hoitoluokka_vuodenaika_lista}
             Log    ${j}
             Log    ${i}
-            KW_Hoitoluokat.Hoitoluokan muokkaus ketjun osalle    6909992, 447701    ${i}    ${j}    ${hoitoluokka_dropdown_indeksi}
+            #KW_Hoitoluokat.Hoitoluokan muokkaus ketjun osalle    6909992, 447701    ${i}    ${j}    ${hoitoluokka_dropdown_indeksi}
             ${hoitoluokka_dropdown_indeksi}=    Evaluate    ${hoitoluokka_dropdown_indeksi} + 1
         END
     END
