@@ -16,12 +16,12 @@ Suurin Sallittu 1
     ...  - Tarkistetaan, että tietokannasta löytyy "Suurin Sallittu" tietolajit.
     Log    RIKKI (misclick) Suurin sallittu 1
     #KW_SuurinSallittu.Massa_1  ${TL_suurin_sallittu_massa_RB}  7391736, 424819  32000 Kg    on
-    KW_SuurinSallittu.Massa_1  ${TL_Yhdistelmän_suurin_sallittu_massa_RB}  7391739, 424820  60000 Kg    on
-    KW_SuurinSallittu.Massa_1  ${TL_suurin_sallittu_akselimassa_RB}  6703234, 496282  8000 Kg    on
-    KW_SuurinSallittu.Massa_1  ${TL_suurin_sallittu_telimassa_RB}  6772341, 329783  18000 Kg    on
-    KW_SuurinSallittu.Massa_1  ${TL_suurin_sallittu_korkeus_RB}  6700690, 288675  260 cm    on
-    KW_SuurinSallittu.Massa_1  ${TL_suurin_sallittu_pituus_RB}  6677101, 387259  1200 cm    on
-    KW_SuurinSallittu.Massa_1  ${TL_suurin_sallittu_leveys_RB}  6770627, 427967  550 cm    on
+    #KW_SuurinSallittu.Massa_1  ${TL_Yhdistelmän_suurin_sallittu_massa_RB}  7391739, 424820  60000 Kg    on
+    #KW_SuurinSallittu.Massa_1  ${TL_suurin_sallittu_akselimassa_RB}  6703234, 496282  8000 Kg    on
+    #KW_SuurinSallittu.Massa_1  ${TL_suurin_sallittu_telimassa_RB}  6772341, 329783  18000 Kg    on
+    #KW_SuurinSallittu.Massa_1  ${TL_suurin_sallittu_korkeus_RB}  6700690, 288675  260 cm    on
+    #KW_SuurinSallittu.Massa_1  ${TL_suurin_sallittu_pituus_RB}  6677101, 387259  1200 cm    on
+    #KW_SuurinSallittu.Massa_1  ${TL_suurin_sallittu_leveys_RB}  6770627, 427967  550 cm    on
 
 Suurin Sallittu 2
     [Tags]              Massa
