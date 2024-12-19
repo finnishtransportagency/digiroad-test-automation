@@ -25,7 +25,7 @@ Valaistuksen_radionappi
     [Tags]  Valaistus
     [Documentation]    Valaistuksen radionappien toimivuus
 
-    KW_Valaistus.Valaistuksen_radionappi    6900126, 432644
+    KW_Valaistus.Valaistuksen_radionappi    6749261, 481920
 
 
 Valaistustieto usealle linkille laatikolla
