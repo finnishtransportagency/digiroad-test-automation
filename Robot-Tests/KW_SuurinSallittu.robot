@@ -82,7 +82,7 @@ Palauta Rajoituksen Tunniste  [arguments]  ${tietolaji}
     ELSE IF  '${tietolaji}'=="totalWeightLimit"
     ${tunniste}=  Set Variable  total-weight-limit
     END
-    [Return]  ${tunniste}
+    RETURN  ${tunniste}
 
 Nollaa Rajoitus  [arguments]  ${tunniste}
     Click Element  css=[value=disabled]

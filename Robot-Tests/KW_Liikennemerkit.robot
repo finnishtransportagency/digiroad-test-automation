@@ -303,7 +303,7 @@ Arvo Numero
     FOR  ${num}  IN  @{Nopeusrajoitukset}
         ${status}=  Run Keyword and return status  Should Be Equal  ${num}  ${numero}
     END
-    [Return]  ${numero}  ${status}
+    RETURN  ${numero}  ${status}
 
 *** Variables ***
 ${LM_Varoitusmerkit}    generalWarningSigns
