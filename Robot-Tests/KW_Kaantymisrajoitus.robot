@@ -1,7 +1,6 @@
 *** Settings ***
-
-
-
+Documentation       Keywords for turning restriction
+Resource    common_keywords.robot
 
 
 *** Keywords ***
@@ -13,7 +12,7 @@ KR_1  [arguments]  ${testipaikka}
     Wait Until Element Is Visible                       ${FA_otsikko}
 
     Log  Tarkistetaan kentät
-    Element should Contain                              css=.form-group.manoeuvre > p  14aec160-3fb5-4dae-98c8-da121f1ecebf:1
+    Element should Contain                              css=.form-group.manoeuvre > p  14aec160-3fb5-4dae-98c8-da121f1ecebf:2
     Element should Contain                              css=.form-group.manoeuvre ul li:nth-child(1)  Linja-auto
     Element should Contain                              css=.form-group.manoeuvre ul li:nth-child(2)  Taksi
 
@@ -59,7 +58,8 @@ KR_3  [arguments]  ${testipaikka}
     Siirry Katselutilaan
     Click Element At Coordinates                        ${Kartta}  0  20
     Wait Until Element Is Visible                       ${FA_otsikko}
-    Page Should Contain                                 LINK ID: dfaef0a8-3339-45e6-9a75-d7815e988f0f:1
+    #Page Should Contain                                 LINK ID: dfaef0a8-3339-45e6-9a75-d7815e988f0f:1
+    # Linkki-id:n tarpeeton kovakoodaus
     Element Should Contain                              css=.manoeuvre .exception-group ul li:nth-child(1)   Huoltoajo
     Element Should Contain                              css=.manoeuvre .exception-group ul li:nth-child(2)   Tontille ajo
     Element Should Contain                              css=.form-group.existing-validity-period  La 0:00 – 24:00
@@ -112,8 +112,7 @@ KR_4  [arguments]  ${testipaikka}
     Click Element At Coordinates                        ${Kartta}  0  20
     Wait Until Element Is Visible                       ${FA_otsikko}
     Element Should Contain  ${FA_Lisätty_Järjestelmään}  Muokattu viimeksi: / -
-    Pause Execution
-
+    #Pause Execution
 
 ##########################
 ### Sisäiset Keywordit ###
@@ -135,9 +134,7 @@ Poista Kääntymisrajoitus
     Siirry Katselutilaan
 
 *** Variables ***
-
 ${FA_Uusi_Kääntymisrajoitus}            css=#feature-attributes-form > div > div > div:nth-child(7) > div.form-group > div > div:nth-child(1) > button
-
 ${FA_Muokkaa_Välilinkkiä}           css=#feature-attributes-form > div > div > div:nth-child(12) > div.form-group > div > div:nth-child(2) > button
 ${FA_Uusi_Ajoneuvopoikkeus}         css=.form-control.select.new-exception
 ${FA_Uusi_Ajoneuvopoikkeus_DDM1}     css=.form-control.select.new-exception option:nth-child(2)

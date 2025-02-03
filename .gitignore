@@ -13,3 +13,4 @@ testi.robot
 .config
 *.ps1
 .venv
+settings.json
