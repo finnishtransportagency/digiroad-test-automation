@@ -2,6 +2,8 @@
 Documentation       Pageobject for User Interface testcases
 # Resource            PO_MainPage.robot
 Library    SeleniumLibrary
+Resource    common_keywords.robot
+Resource    selenium_extensions.py
 
 *** Variables ***
 ${LocatorForDDM}                                css=select.form-control
@@ -229,7 +231,7 @@ UI_6
     Siirry muokkaustilaan
     click element at coordinates            ${kartta}   0   20
     Paikanna osoite                         6711929, 240618
-    click_element_and_press_control_at_coordinates   ${kartta}   0   20
+    selenium_extensions.click element and press control at coordinates   ${kartta}   0   20
     wait until element is visible           ${mass_update_modal_otsikko}
     click element                           ${mass_update_modal_peruuta}
 

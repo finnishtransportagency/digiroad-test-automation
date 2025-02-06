@@ -1,6 +1,7 @@
 
 *** Settings ***
 Documentation       Keywords for obstacles (Esterakennelma)
+Resource    common_keywords.robot
 
 *** Variables ***
 ${LocatorForDDM}                                css=#feature-attributes .form-group.editable select:first-of-type
@@ -56,7 +57,7 @@ Este_3  [arguments]  ${testipaikka}  ${Este_tyyppi}
     Valitse Esterakennelma
     Element Should Contain                      ${FA_Esterakennelma_tyyppi}  ${Este_tyyppi}
 
-    Log  Siirretään setettä ja tarkistetaan, että siirron jälkeen tulee muokkausvaroitus.
+    Log  Siirretään estettä ja tarkistetaan, että siirron jälkeen tulee muokkausvaroitus.
     Siirry muokkaustilaan
     Siirrä Kohde                                 -100  25
     Click element at coordinates                ${Kartta}  100  100
@@ -66,9 +67,10 @@ Este_3  [arguments]  ${testipaikka}  ${Este_tyyppi}
     #Sleep  5 s
 
     Log  Tarkistetaan, että ominaisuustietojen muokkauksesta tulee muokkausvaroitus.
+    #Otettu pois koska ei toimi luotettavasti CI ympäristössä
+
     #click element at coordinates                ${kartta}   0   20
     #wait until element is visible               ${FA_otsikko}
-    #Otettu pois koska ei toimi luotettavasti CI ympäristössä
     #DDM_tietolajit
     #Click element at coordinates                ${Kartta}  100  100
     #Wait Until Element Is Visible               ${Muokkausvaroitus}
