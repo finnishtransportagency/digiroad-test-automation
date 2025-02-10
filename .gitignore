@@ -14,3 +14,4 @@ testi.robot
 *.ps1
 .venv
 settings.json
+.DS_Store

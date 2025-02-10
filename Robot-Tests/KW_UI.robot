@@ -3,7 +3,7 @@ Documentation       Pageobject for User Interface testcases
 # Resource            PO_MainPage.robot
 Library    SeleniumLibrary
 Resource    common_keywords.robot
-Resource    selenium_extensions.py
+
 
 *** Variables ***
 ${LocatorForDDM}                                css=select.form-control

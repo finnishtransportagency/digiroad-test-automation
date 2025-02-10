@@ -25,7 +25,7 @@ Esterakennelma 2
     [Tags]              Este
     [Documentation]     Esterakennelma, selain: ${BROWSER}
     ...  - Tarkistetaan esterakenelmien tyyppi
-    KW_Esterakennelma.Este_2  6993613,566976  Ei tiedossa
+    KW_Esterakennelma.Este_2  6993615,566976  Ei tiedossa
     KW_Esterakennelma.Este_2  6820366,336639  Avattava puomi
     #KW_Esterakennelma.Este_2  6711833,239489  Geometrian ulkopuolella
 
