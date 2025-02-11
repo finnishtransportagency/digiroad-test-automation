@@ -1,6 +1,7 @@
 
 *** Settings ***
 Documentation       Pageobject for obstacles (Opastustaulu)
+Resource    common_keywords.robot
 
 *** Variables ***
 ${LocatorForDDM}                                css=#feature-attributes .form-group.editable select:first-of-type

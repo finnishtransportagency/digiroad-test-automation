@@ -21,12 +21,12 @@ Suojatie 1
     ...  - Kartalla näkyvät Suojatie kun mittakaava on 1:20000 tai tarkempi.
     KW_Suojatie.Suojatie_1  6773658, 266918
 
-Suojatie 2
-    #Laatuvirhe lista ei avaa suojatie kohteita
-    [Tags]              Suojatie
-    [Documentation]     Suojatie, selain: ${BROWSER}
-    ...  - Tarkistetaan olemassa olevaa Suojatietä - Formin id
-    KW_Suojatie.Suojatie_2  Geometrian
+#Suojatie 2
+    #11.2.25 TARPEETTOMAKSI KÄYNYT TESTI
+    #[Tags]              Suojatie
+    #[Documentation]     Suojatie, selain: ${BROWSER}
+    #...  - Tarkistetaan olemassa olevaa Suojatietä - Formin id
+    #KW_Suojatie.Suojatie_2  Geometrian
     #Testin Aloitus
     #KW_Suojatie.Suojatie_2  Laatuvirhe
 

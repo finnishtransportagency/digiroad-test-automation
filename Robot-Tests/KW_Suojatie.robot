@@ -32,6 +32,7 @@ Suojatie_1  [arguments]  ${testipaikka}
 
 
 Suojatie_2  [arguments]  ${Lista}
+    #OTETTU POIS 11.2.25
     Log  Arvotaan Geometrian ulkopuolelle jääneet opastustaulut tai Laatuvirhe Listalta kohde ja tarkistetaan, että ID Täsmää.
     Vaihda Tietolaji                            ${TL_Suojatie_RB}
 

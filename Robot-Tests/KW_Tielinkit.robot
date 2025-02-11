@@ -518,7 +518,8 @@ Vaihda Tielinkin visualisointi  [Arguments]  ${tielinkin_visualisointi}
 
 Arvo linkki korjattavien listalta
     Log  Arvotaan listalta linkki väliltä 1-25
-    ${RandListItem}=            Evaluate                random.randint(1,25)       modules=random
+    #${RandListItem}=            Evaluate                random.randint(1,25)       modules=random    #Ei tuota lisäarvoa testiin: ympäristöön luodaan testikohde jota vasten testataan. 10.2.2025
+    ${RandListItem}=    Set Variable        1
     ${tmp_ListLocator}=         set variable            xpath=(.//*[@id='work-list']//*[@class='work-list-item'])[${RandListItem}]
     Set Test Variable           ${tmp_ListLocator}
 

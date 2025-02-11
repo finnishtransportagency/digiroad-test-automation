@@ -21,11 +21,12 @@ Opastustaulu 1
     ...  - Kartalla näkyvät  Opastustaulu kun mittakaava on 1:20000 tai tarkempi.
     KW_Opastustaulu.Opastustaulu_1  6738107,251253
 
-Opastustaulu 2
-    [Tags]              Opastustaulu
-    [Documentation]      Opastustaulu, selain: ${BROWSER}
-    ...  - Geometrian Ulkopuolelle jääneet opastaulut.
-    KW_Opastustaulu.Opastustaulu_2  6738106,251254
+#Opastustaulu 2
+    #11.2.25 TARPEETTOMAKSI KÄYNYT TESTI
+    #[Tags]              Opastustaulu
+    #[Documentation]      Opastustaulu, selain: ${BROWSER}
+    #...  - Geometrian Ulkopuolelle jääneet opastaulut.
+    #KW_Opastustaulu.Opastustaulu_2  6738106,251254
 
 Opastustaulu 3
     [Tags]              Opastustaulu
