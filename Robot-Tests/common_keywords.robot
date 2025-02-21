@@ -51,6 +51,7 @@ ${LOGIN URL}                https://digiroadtest.testivaylapilvi.fi/
 ${LiviUserNameField}        id=username
 ${LiviPasswordField}        id=password
 ${LiviLoginButton}          css=.submit
+${VaylaMFAButton}           css=body > div.container > div > div.modal-content.background-customizable.modal-content-mobile.visible-md.visible-lg > div.modal-body > div:nth-child(2) > div > div:nth-child(1) > div > div > form > div > div > input:nth-child(2)    #ainoastaan koko selector toimii 21.02.2025
 ${IMAGE_DIR}                ${CURDIR}\\img
 
 *** Keywords ***
@@ -64,6 +65,9 @@ Login To DigiRoad
     #Maximize Browser Window
     set window size    1920   1080
     Set Selenium Speed              ${DELAY}
+    wait until element is visible   ${VaylaMFAButton}
+    Click Button                   ${VaylaMFAButton}
+
     wait until element is visible   ${LiviUserNameField}
     #${temp}=                        set variable            ${LOG LEVEL}
     #Set Log Level                   NONE
