@@ -35,7 +35,7 @@ ENV ALPINE_GLIBC 2.35-r1
 #2.31-r0
 ENV CHROMIUM_VERSION 119.0.6045.159
 #86.0
-ENV FIREFOX_VERSION 115.9.1-r0
+#ENV FIREFOX_VERSION 115.9.1-r0
 #115.6.0-r0
 ENV GECKO_DRIVER_VERSION v0.34.0
 #v0.26.0
@@ -76,7 +76,7 @@ RUN apk update \
   && apk --no-cache add \
     "chromium~$CHROMIUM_VERSION" \
     "chromium-chromedriver~$CHROMIUM_VERSION" \
-    "firefox-esr~$FIREFOX_VERSION" \
+    #"firefox-esr~$FIREFOX_VERSION" \
     xauth \
     "xvfb-run~$XVFB_VERSION" \
   #&& mv /usr/lib/chromium/chrome /usr/lib/chromium/chrome-original \
@@ -104,11 +104,11 @@ RUN apk update \
     && rm /etc/apk/keys/sgerrand.rsa.pub \
 #
 # Download Gecko drivers directly from the GitHub repository
-  && wget -q "https://github.com/mozilla/geckodriver/releases/download/$GECKO_DRIVER_VERSION/geckodriver-$GECKO_DRIVER_VERSION-linux64.tar.gz" \
-    && tar xzf geckodriver-$GECKO_DRIVER_VERSION-linux64.tar.gz \
-    && rm geckodriver-$GECKO_DRIVER_VERSION-linux64.tar.gz \
-    && chmod +x geckodriver \
-    && mv geckodriver /usr/bin/
+#  && wget -q "https://github.com/mozilla/geckodriver/releases/download/$GECKO_DRIVER_VERSION/geckodriver-$GECKO_DRIVER_VERSION-linux64.tar.gz" \
+#    && tar xzf geckodriver-$GECKO_DRIVER_VERSION-linux64.tar.gz \
+#    && rm geckodriver-$GECKO_DRIVER_VERSION-linux64.tar.gz \
+#    && chmod +x geckodriver \
+#    && mv geckodriver /usr/bin/
 #
     #&& mkdir -p /opt/robotframework/drivers/ \
     #&& mv geckodriver /opt/robotframework/drivers/geckodriver \
@@ -131,8 +131,8 @@ ENV PATH=/opt/robotframework/bin:/opt/robotframework/drivers:$PATH
 ENV CHROME_BIN=/usr/bin/chromium-browser \
     CHROME_PATH=/usr/lib/chromium/
 # Path and binary location for firefox esr
-ENV FIREFOX_BIN=/usr/bin/firefox-esr \
-    FIREFOX_PATH=/usr/lib/firefox-esr/
+#ENV FIREFOX_BIN=/usr/bin/firefox-esr \
+#    FIREFOX_PATH=/usr/lib/firefox-esr/
 # Set up a volume for the generated reports
 VOLUME ${ROBOT_REPORTS_DIR}
 #
