@@ -1,6 +1,6 @@
-ARG image="python:alpine3.18"
+ARG image="alpine:latest"
 #FROM ${image}
-FROM public.ecr.aws/docker/library/python:alpine3.18
+FROM public.ecr.aws/docker/library/alpine:latest
 #
 #MAINTAINER 
 LABEL description Robot Framework in Docker.
