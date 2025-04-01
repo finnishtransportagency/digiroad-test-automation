@@ -86,11 +86,16 @@ RUN apk update \
 # Install Robot Framework and Selenium Library
   && pip3 install \
     --no-cache-dir \
-    robotframework==$ROBOT_FRAMEWORK_VERSION \
-    selenium==$SELENIUM_VERSION \
-    robotframework-pabot==$PABOT_VERSION \
-    robotframework-seleniumlibrary==$SELENIUM_LIBRARY_VERSION \
-    robotframework-requests==$ROBOT_FRAMEWORK_REQUESTS_VERSION \
+    robotframework \
+    #robotframework==$ROBOT_FRAMEWORK_VERSION \
+    selenium \
+    #selenium==$SELENIUM_VERSION \
+    robotframework-pabot \
+    #robotframework-pabot \
+    robotframework-seleniumlibrary \
+    #robotframework-seleniumlibrary==$SELENIUM_LIBRARY_VERSION \
+    robotframework-requests \
+    #robotframework-requests==$ROBOT_FRAMEWORK_REQUESTS_VERSION \
     PyYAML \
 #
 # Download the glibc package for Alpine Linux from its GitHub repository
