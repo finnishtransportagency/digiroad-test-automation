@@ -72,7 +72,7 @@ RUN rm -rf /var/cache/apk/* && \
 RUN apk update \
   && apk --no-cache upgrade \
   && apk --no-cache --virtual .build-deps add \
-    py3-pip \
+    pipx \
     gcc \
     libffi-dev \
     linux-headers \
@@ -93,7 +93,7 @@ RUN apk update \
 # FIXME: above is a workaround, as the path is ignored
 #
 # Install Robot Framework and Selenium Library
-  && pip3 install \
+  && pipx install \
     --no-cache-dir \
     robotframework \
     #robotframework==$ROBOT_FRAMEWORK_VERSION \
