@@ -73,7 +73,7 @@ RUN apk update \
   && apk --no-cache upgrade \
   && apk --no-cache --virtual .build-deps add \
     python3 \
-    pip3 \
+    py3-pip \
     gcc \
     libffi-dev \
     linux-headers \
