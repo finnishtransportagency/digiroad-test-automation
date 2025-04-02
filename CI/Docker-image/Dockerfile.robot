@@ -32,20 +32,28 @@ ENV ROBOT_GID 1000
 #
 # Dependency versions
 ENV ALPINE_GLIBC 2.35-r1
-#2.31-r0
+#2.35-r1
+#
 ENV CHROMIUM_VERSION 134.0.6998.88-r0
-#119.0.6045.159
+#134.0.6998.88-r0
 #ENV FIREFOX_VERSION 115.9.1-r0
 #115.6.0-r0
+#
 ENV GECKO_DRIVER_VERSION v0.34.0
-#v0.26.0
+#v0.34.0
+#
 ENV PABOT_VERSION 2.15.0
-#1.10.0
+#2.15.0
+#
 ENV ROBOT_FRAMEWORK_VERSION 5.0.1
-#4.0.2
-ENV SELENIUM_LIBRARY_VERSION 5.1.3
+#5.0.1
+#
+ENV SELENIUM_LIBRARY_VERSION latest
 #6.0.0 not working, downgraded back to 5.1.3. Hotfix coming in 6.1.1
-ENV XVFB_VERSION 1.20
+#
+ENV XVFB_VERSION latest
+#1.20
+#
 ENV ROBOT_FRAMEWORK_REQUESTS_VERSION 0.9.4
 #0.9.4
 ENV SELENIUM_VERSION 4.9.1
@@ -74,11 +82,11 @@ RUN apk update \
     which \
     wget \
   && apk --no-cache add \
-    "chromium~$CHROMIUM_VERSION" \
-    "chromium-chromedriver~$CHROMIUM_VERSION" \
+    "chromium" \
+    "chromium-chromedriver" \
     #"firefox-esr~$FIREFOX_VERSION" \
     xauth \
-    "xvfb-run~$XVFB_VERSION" \
+    "xvfb-run" \
   #&& mv /usr/lib/chromium/chrome /usr/lib/chromium/chrome-original \
   #&& ln -sfv /opt/robotframework/bin/chromium-browser /usr/lib/chromium/chrome \
 # FIXME: above is a workaround, as the path is ignored
