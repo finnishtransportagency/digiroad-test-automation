@@ -72,6 +72,8 @@ RUN rm -rf /var/cache/apk/* && \
 RUN apk update \
   && apk --no-cache upgrade \
   && apk --no-cache --virtual .build-deps add \
+    python3 \
+    pip3 \
     gcc \
     libffi-dev \
     linux-headers \
