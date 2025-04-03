@@ -94,7 +94,7 @@ RUN apk update \
 #
 # Install Robot Framework and Selenium Library
   && pipx install \
-    --no-cache-dir \
+    #--no-cache-dir \
     robotframework \
     #robotframework==$ROBOT_FRAMEWORK_VERSION \
     selenium \
