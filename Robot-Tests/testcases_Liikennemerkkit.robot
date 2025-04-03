@@ -18,7 +18,7 @@ Liikennemerkit 2
     [Tags]              Liikennemerkit
     [Documentation]     Liikennemerkit, selain: ${BROWSER}
     ...  - Tarkistetaan kaikki eri tyyppiset liikennemerkit
-    KW_Liikennemerkit.Liikennemerkit 2  6715386, 243668  ${LM_Varoitusmerkit}   Varoitusmerkit
+    KW_Liikennemerkit.Liikennemerkit 2  6903772, 435632  ${LM_Varoitusmerkit}   Varoitusmerkit
     KW_Liikennemerkit.Liikennemerkit 2  6905720, 332155  ${LM_Etuajo-oikeus}    Etuajo-oikeus ja väistämismerkit
     KW_Liikennemerkit.Liikennemerkit 2  7320798, 599590  ${LM_Kielto}           Kielto- ja rajoitusmerkit
     KW_Liikennemerkit.Liikennemerkit 2  6905351, 332447  ${LM_Määräysmerkit}    Määräysmerkit
