@@ -45,7 +45,7 @@ ENV GECKO_DRIVER_VERSION v0.34.0
 ENV PABOT_VERSION 2.15.0
 #2.15.0
 #
-ENV ROBOT_FRAMEWORK_VERSION 5.0.1
+ENV ROBOT_FRAMEWORK_VERSION latest
 #5.0.1
 #
 ENV SELENIUM_LIBRARY_VERSION latest
@@ -72,7 +72,6 @@ RUN rm -rf /var/cache/apk/* && \
 RUN apk update \
   && apk --no-cache upgrade \
   && apk --no-cache --virtual .build-deps add \
-    pipx \
     gcc \
     libffi-dev \
     linux-headers \
@@ -92,8 +91,10 @@ RUN apk update \
   #&& ln -sfv /opt/robotframework/bin/chromium-browser /usr/lib/chromium/chrome \
 # FIXME: above is a workaround, as the path is ignored
 #
+&& pip install --upgrade pip \
+#
 # Install Robot Framework and Selenium Library
-  && pipx install \
+  && pip install \
     #--no-cache-dir \
     robotframework \
     #robotframework==$ROBOT_FRAMEWORK_VERSION \
