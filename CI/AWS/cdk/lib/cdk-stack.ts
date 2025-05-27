@@ -8,25 +8,28 @@ export class TestAutomationCodeBuildStack extends cdk.Stack {
 
     const project = new codebuild.Project(this, 'DigiroadTestAutomationBuild', {
       environment: {
-        buildImage: codebuild.LinuxBuildImage.fromDockerRegistry('alpine:latest'),
+        buildImage: codebuild.LinuxBuildImage.STANDARD_7_0,
         privileged: true,
       },
+      cache: codebuild.Cache.local(codebuild.LocalCacheMode.DOCKER_LAYER),
       buildSpec: codebuild.BuildSpec.fromObject({
         version: '0.2',
         phases: {
           install: {
             commands: [
-              //'pip install --upgrade awscli',
-              '$(aws ecr get-login --no-include-email --region eu-west-1)'
+            'apt-get update -y',
+            'apt-get install -y awscli docker.io',
+            'aws ecr get-login-password --region eu-west-1 | docker login --username AWS --password-stdin 475079312496.dkr.ecr.eu-west-1.amazonaws.com'
             ],
           },
           build: {
             commands: [
-              'docker build -f CI/Docker-image/Dockerfile.robot -t 475079312496.dkr.ecr.eu-west-1.amazonaws.com/digiroadautomation:latest . --build-arg image=475079312496.dkr.ecr.eu-west-1.amazonaws.com/python-alpine:latest',
-              'docker tag 475079312496.dkr.ecr.eu-west-1.amazonaws.com/digiroadautomation:latest 475079312496.dkr.ecr.eu-west-1.amazonaws.com/digiroadautomation:$CODEBUILD_BUILD_NUMBER',
-              'docker push 475079312496.dkr.ecr.eu-west-1.amazonaws.com/digiroadautomation:latest',
-              'docker push 475079312496.dkr.ecr.eu-west-1.amazonaws.com/digiroadautomation:$CODEBUILD_BUILD_NUMBER'
-            ],
+          'docker run --rm alpine:latest apk add curl bash',
+          'docker build -f Dockerfile.robot -t 475079312496.dkr.ecr.eu-west-1.amazonaws.com/digiroadautomation:latest .',
+          'docker tag 475079312496.dkr.ecr.eu-west-1.amazonaws.com/digiroadautomation:latest 475079312496.dkr.ecr.eu-west-1.amazonaws.com/digiroadautomation:$CODEBUILD_BUILD_NUMBER',
+          'docker push 475079312496.dkr.ecr.eu-west-1.amazonaws.com/digiroadautomation:latest',
+          'docker push 475079312496.dkr.ecr.eu-west-1.amazonaws.com/digiroadautomation:$CODEBUILD_BUILD_NUMBER'
+          ],
           },
         },
       }),
