@@ -79,6 +79,8 @@ RUN apk update \
     unzip \
     which \
     wget \
+    python3 \
+    py3-pip \
   && apk --no-cache add \
     "chromium" \
     "chromium-chromedriver" \
@@ -89,10 +91,10 @@ RUN apk update \
   #&& ln -sfv /opt/robotframework/bin/chromium-browser /usr/lib/chromium/chrome \
 # FIXME: above is a workaround, as the path is ignored
 #
-&& pip install --upgrade pip \
+&& pip install --upgrade pip --break-system-packages \
 #
 # Install Robot Framework and Selenium Library
-  && pip install \
+  && pip install --break-system-packages \
     #--no-cache-dir \
     robotframework \
     #robotframework==$ROBOT_FRAMEWORK_VERSION \
@@ -114,7 +116,7 @@ RUN apk update \
     && apk add glibc-bin-$ALPINE_GLIBC.apk \
     && rm glibc-$ALPINE_GLIBC.apk \
     && rm glibc-bin-$ALPINE_GLIBC.apk \
-    && rm /etc/apk/keys/sgerrand.rsa.pub \
+    && rm /etc/apk/keys/sgerrand.rsa.pub
 #
 # Download Gecko drivers directly from the GitHub repository
 #  && wget -q "https://github.com/mozilla/geckodriver/releases/download/$GECKO_DRIVER_VERSION/geckodriver-$GECKO_DRIVER_VERSION-linux64.tar.gz" \
