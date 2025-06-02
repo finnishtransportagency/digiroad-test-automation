@@ -9,13 +9,13 @@ export class TestAutomationCodeBuildStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
-    //Docker image asset
+    const dockerfilePath = './Dockerfile';
+
     const dockerAsset = new DockerImageAsset(this, 'AutomationDockerAsset', {
-      directory: path.join(__dirname, './'),
+      directory: path.join(__dirname, '.'),
       file: 'Dockerfile',
     });
 
-    // Optionally output the image URI
     new cdk.CfnOutput(this, 'DockerImageURI', {
       value: dockerAsset.imageUri,
     });
@@ -31,8 +31,6 @@ export class TestAutomationCodeBuildStack extends cdk.Stack {
         phases: {
           install: {
             commands: [
-            'pwd',
-            'find . -type f -print',
             'apt-get update -y',
             'apt-get install -y awscli docker.io',
             'aws ecr get-login-password --region eu-west-1 | docker login --username AWS --password-stdin 475079312496.dkr.ecr.eu-west-1.amazonaws.com'
@@ -42,7 +40,7 @@ export class TestAutomationCodeBuildStack extends cdk.Stack {
             commands: [
           //'docker pull public.ecr.aws/docker/library/alpine:latest',
           //'docker run --rm public.ecr.aws/docker/library/alpine:latest apk add curl bash',
-          'docker build -f ../lib/Dockerfile -t 475079312496.dkr.ecr.eu-west-1.amazonaws.com/digiroadautomation:latest .',
+          `docker build -t ${dockerAsset.imageUri} .`,
           'docker tag 475079312496.dkr.ecr.eu-west-1.amazonaws.com/digiroadautomation:latest 475079312496.dkr.ecr.eu-west-1.amazonaws.com/digiroadautomation:$CODEBUILD_BUILD_NUMBER',
           'docker push 475079312496.dkr.ecr.eu-west-1.amazonaws.com/digiroadautomation:latest',
           'docker push 475079312496.dkr.ecr.eu-west-1.amazonaws.com/digiroadautomation:$CODEBUILD_BUILD_NUMBER'
