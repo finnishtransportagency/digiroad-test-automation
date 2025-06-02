@@ -32,7 +32,7 @@ export class TestAutomationCodeBuildStack extends cdk.Stack {
           install: {
             commands: [
             'pwd',
-            'ls -la',
+            'find . -type f -print',
             'apt-get update -y',
             'apt-get install -y awscli docker.io',
             'aws ecr get-login-password --region eu-west-1 | docker login --username AWS --password-stdin 475079312496.dkr.ecr.eu-west-1.amazonaws.com'
@@ -42,7 +42,7 @@ export class TestAutomationCodeBuildStack extends cdk.Stack {
             commands: [
           //'docker pull public.ecr.aws/docker/library/alpine:latest',
           //'docker run --rm public.ecr.aws/docker/library/alpine:latest apk add curl bash',
-          'docker build -f ./Dockerfile -t 475079312496.dkr.ecr.eu-west-1.amazonaws.com/digiroadautomation:latest .',
+          'docker build -f ../lib/Dockerfile -t 475079312496.dkr.ecr.eu-west-1.amazonaws.com/digiroadautomation:latest .',
           'docker tag 475079312496.dkr.ecr.eu-west-1.amazonaws.com/digiroadautomation:latest 475079312496.dkr.ecr.eu-west-1.amazonaws.com/digiroadautomation:$CODEBUILD_BUILD_NUMBER',
           'docker push 475079312496.dkr.ecr.eu-west-1.amazonaws.com/digiroadautomation:latest',
           'docker push 475079312496.dkr.ecr.eu-west-1.amazonaws.com/digiroadautomation:$CODEBUILD_BUILD_NUMBER'
