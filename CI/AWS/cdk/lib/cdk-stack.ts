@@ -9,10 +9,8 @@ export class TestAutomationCodeBuildStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
-    const dockerfilePath = './Dockerfile';
-
     const dockerAsset = new DockerImageAsset(this, 'AutomationDockerAsset', {
-      directory: path.join(__dirname, '.'),
+      directory: path.join(__dirname, './'),
       file: 'Dockerfile',
     });
 
@@ -41,9 +39,9 @@ export class TestAutomationCodeBuildStack extends cdk.Stack {
           //'docker pull public.ecr.aws/docker/library/alpine:latest',
           //'docker run --rm public.ecr.aws/docker/library/alpine:latest apk add curl bash',
           `docker build -t ${dockerAsset.imageUri} .`,
-          'docker tag 475079312496.dkr.ecr.eu-west-1.amazonaws.com/digiroadautomation:latest 475079312496.dkr.ecr.eu-west-1.amazonaws.com/digiroadautomation:$CODEBUILD_BUILD_NUMBER',
-          'docker push 475079312496.dkr.ecr.eu-west-1.amazonaws.com/digiroadautomation:latest',
-          'docker push 475079312496.dkr.ecr.eu-west-1.amazonaws.com/digiroadautomation:$CODEBUILD_BUILD_NUMBER'
+          `docker tag 475079312496.dkr.ecr.eu-west-1.amazonaws.com/digiroadautomation:latest 475079312496.dkr.ecr.eu-west-1.amazonaws.com/digiroadautomation:$CODEBUILD_BUILD_NUMBER`,
+          `docker push 475079312496.dkr.ecr.eu-west-1.amazonaws.com/digiroadautomation:latest`,
+          `docker push 475079312496.dkr.ecr.eu-west-1.amazonaws.com/digiroadautomation:$CODEBUILD_BUILD_NUMBER`
           ],
           },
         },
