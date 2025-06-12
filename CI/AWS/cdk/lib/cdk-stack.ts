@@ -43,8 +43,8 @@ export class TestAutomationCodeBuildStack extends cdk.Stack {
             commands: [
           //'docker pull public.ecr.aws/docker/library/alpine:latest',
           //'docker run --rm public.ecr.aws/docker/library/alpine:latest apk add curl bash',
-          //'docker build -f "$(find /output -type f -name Dockerfile | head -n 1)" -t ${dockerAsset.imageUri}',
-          `docker build -t ${dockerAsset.imageUri} docker`,
+          'docker build -f "$(find /codebuild/output -type f -name Dockerfile | head -n 1)" -t ${dockerAsset.imageUri} .',
+          //`docker build -t ${dockerAsset.imageUri} docker`,
           `docker tag 475079312496.dkr.ecr.eu-west-1.amazonaws.com/digiroadautomation:latest 475079312496.dkr.ecr.eu-west-1.amazonaws.com/digiroadautomation:$CODEBUILD_BUILD_NUMBER`,
           `docker push 475079312496.dkr.ecr.eu-west-1.amazonaws.com/digiroadautomation:latest`,
           `docker push 475079312496.dkr.ecr.eu-west-1.amazonaws.com/digiroadautomation:$CODEBUILD_BUILD_NUMBER`
