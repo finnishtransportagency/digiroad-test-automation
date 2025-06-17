@@ -5,6 +5,7 @@ env:
     Password: "DigiroadUserPassword"
     Username: "DigiroadUserUsername"
     APIkey: "/qa/apikey/dr_apikey"
+  shell: bash
 
 phases:
   build:

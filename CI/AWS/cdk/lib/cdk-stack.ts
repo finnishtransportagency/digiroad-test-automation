@@ -3,6 +3,7 @@ import { Construct } from 'constructs';
 import * as codebuild from 'aws-cdk-lib/aws-codebuild';
 import { DockerImageAsset } from 'aws-cdk-lib/aws-ecr-assets';
 import * as path from 'path';
+import { env } from 'process';
 
 
 export class TestAutomationCodeBuildStack extends cdk.Stack {
@@ -28,9 +29,18 @@ export class TestAutomationCodeBuildStack extends cdk.Stack {
         buildImage: codebuild.LinuxBuildImage.STANDARD_7_0,
         privileged: true,
       },
+        //make an environment asset to avoid using dot symbol
+        environmentVariables: {
+        DOCKER_ASSET_IMAGE_URI: {
+          value: dockerAsset.imageUri,
+        },
+      },
       cache: codebuild.Cache.local(codebuild.LocalCacheMode.DOCKER_LAYER),
       buildSpec: codebuild.BuildSpec.fromObject({
         version: 0.2,
+        env: {
+          shell: 'bash'
+            },
         phases: {
           install: {
             commands: [
@@ -43,7 +53,10 @@ export class TestAutomationCodeBuildStack extends cdk.Stack {
             commands: [
           //'docker pull public.ecr.aws/docker/library/alpine:latest',
           //'docker run --rm public.ecr.aws/docker/library/alpine:latest apk add curl bash',
-          'docker build -f "$(find /codebuild/output -type f -name Dockerfile | head -n 1)" -t ${dockerAsset.imageUri} .',
+          "sed -i '1i #!/bin/bash' /codebuild/output/tmp/script.sh", //changes to correct bash shell to prevent error 2
+          'head -n 1 /codebuild/output/tmp/script.sh',
+          'echo "Image URI: ${DOCKER_ASSET_IMAGE_URI}"',
+          'bash -c docker build -f "$(find /codebuild/output -type f -name Dockerfile | head -n 1)" -t ${DOCKER_ASSET_IMAGE_URI} .',
           //`docker build -t ${dockerAsset.imageUri} docker`,
           `docker tag 475079312496.dkr.ecr.eu-west-1.amazonaws.com/digiroadautomation:latest 475079312496.dkr.ecr.eu-west-1.amazonaws.com/digiroadautomation:$CODEBUILD_BUILD_NUMBER`,
           `docker push 475079312496.dkr.ecr.eu-west-1.amazonaws.com/digiroadautomation:latest`,
