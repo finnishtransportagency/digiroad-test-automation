@@ -51,15 +51,16 @@ export class TestAutomationCodeBuildStack extends cdk.Stack {
           },
           build: {
             commands: [
-          "docker pull ${DOCKER_ASSET_IMAGE_URI}",
+          //"docker pull ${DOCKER_ASSET_IMAGE_URI}",
           //'docker run --rm public.ecr.aws/docker/library/alpine:latest apk add curl bash',
           "sed -i '1i #!/bin/bash' /codebuild/output/tmp/script.sh", //changes to correct bash shell to prevent error 2
           'head -n 1 /codebuild/output/tmp/script.sh',
           'echo "Image URI: ${DOCKER_ASSET_IMAGE_URI}"',
-          //'docker -t digiroadautomation:latest build ./CI/AWS/cdk/docker/',
           //'docker build ./CI/AWS/cdk/docker/', //last working build
+          'docker build -t local-tag ./CI/AWS/cdk/docker/',
           'docker images',
-          "docker tag ${DOCKER_ASSET_IMAGE_URI} 475079312496.dkr.ecr.eu-west-1.amazonaws.com/digiroadautomation:$CODEBUILD_BUILD_NUMBER",
+          "docker tag local-tag 475079312496.dkr.ecr.eu-west-1.amazonaws.com/digiroadautomation:$CODEBUILD_BUILD_NUMBER",
+          //"docker tag ${DOCKER_ASSET_IMAGE_URI} 475079312496.dkr.ecr.eu-west-1.amazonaws.com/digiroadautomation:$CODEBUILD_BUILD_NUMBER",
           //"docker push ${DOCKER_ASSET_IMAGE_URI}",
           //"docker tag digiroadautomation:latest 475079312496.dkr.ecr.eu-west-1.amazonaws.com/digiroadautomation:$CODEBUILD_BUILD_NUMBER",
           `docker push 475079312496.dkr.ecr.eu-west-1.amazonaws.com/digiroadautomation:$CODEBUILD_BUILD_NUMBER`
