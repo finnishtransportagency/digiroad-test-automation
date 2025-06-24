@@ -56,10 +56,10 @@ export class TestAutomationCodeBuildStack extends cdk.Stack {
           "sed -i '1i #!/bin/bash' /codebuild/output/tmp/script.sh", //changes to correct bash shell to prevent error 2
           'head -n 1 /codebuild/output/tmp/script.sh',
           'echo "Image URI: ${DOCKER_ASSET_IMAGE_URI}"',
-          'bash -c docker build -f "$(find /codebuild/output -type f -name Dockerfile | head -n 1)" -t ${DOCKER_ASSET_IMAGE_URI} .',
-          //`docker build -t ${dockerAsset.imageUri} docker`,
-          `docker tag 475079312496.dkr.ecr.eu-west-1.amazonaws.com/digiroadautomation:latest 475079312496.dkr.ecr.eu-west-1.amazonaws.com/digiroadautomation:$CODEBUILD_BUILD_NUMBER`,
-          `docker push 475079312496.dkr.ecr.eu-west-1.amazonaws.com/digiroadautomation:latest`,
+          //"docker build ${DOCKER_ASSET_IMAGE_URI}",
+          'docker build ./CI/AWS/cdk/docker/',
+          "docker push ${DOCKER_ASSET_IMAGE_URI}",
+          "docker tag ${DOCKER_ASSET_IMAGE_URI} 475079312496.dkr.ecr.eu-west-1.amazonaws.com/digiroadautomation:$CODEBUILD_BUILD_NUMBER",
           `docker push 475079312496.dkr.ecr.eu-west-1.amazonaws.com/digiroadautomation:$CODEBUILD_BUILD_NUMBER`
           ],
           },
