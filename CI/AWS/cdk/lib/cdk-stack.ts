@@ -58,7 +58,7 @@ export class TestAutomationCodeBuildStack extends cdk.Stack {
           'echo "Image URI: ${DOCKER_ASSET_IMAGE_URI}"',
           //"docker build ${DOCKER_ASSET_IMAGE_URI}",
           'docker build ./CI/AWS/cdk/docker/',
-          "docker push ${DOCKER_ASSET_IMAGE_URI}",
+          //"docker push ${DOCKER_ASSET_IMAGE_URI}",
           "docker tag ${DOCKER_ASSET_IMAGE_URI} 475079312496.dkr.ecr.eu-west-1.amazonaws.com/digiroadautomation:$CODEBUILD_BUILD_NUMBER",
           `docker push 475079312496.dkr.ecr.eu-west-1.amazonaws.com/digiroadautomation:$CODEBUILD_BUILD_NUMBER`
           ],
