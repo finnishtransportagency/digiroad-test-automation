@@ -7,7 +7,7 @@ Resource    common_keywords.robot
 ${LocatorForDDM}                                css=#feature-attributes .form-group.editable select:first-of-type
 ${LocatorForDDM_Selection}                      css=select > option:nth-child(2)
 ${Esteen_poisto}                                Haluatko varmasti poistaa esteen?
-${FA_Esterakennelma_tyyppi}                     css=#feature-attributes-form > div > div > div.form-group.editable.form-obstacle > p
+${FA_Esterakennelma_tyyppi}                     css=#feature-attributes-form > div > div > div.edit-mode > div > p
 
 
 *** Keywords ***
@@ -44,8 +44,15 @@ Este_2  [arguments]  ${testipaikka}  ${Este_tyyppi}
     Run Keyword if  '${Este_tyyppi}'=='Ei tiedossa'  
     ...  Element Should Contain  ${FA_Esterakennelma_tyyppi}  Ei tiedossa
 
-    Run Keyword if  '${Este_tyyppi}'=='Avattava puomi'  
-    ...  Element Should Contain  ${FA_Esterakennelma_tyyppi}  Avattava puomi
+        Run Keyword if  '${Este_tyyppi}'=='Kiinteä esterakennelma'  
+    ...  Element Should Contain  ${FA_Esterakennelma_tyyppi}  Kiinteä esterakennelma
+
+    Run Keyword if  '${Este_tyyppi}'=='Avattava esterakennelma'  
+    ...  Element Should Contain  ${FA_Esterakennelma_tyyppi}  Avattava esterakennelma
+    ...  
+
+    Run Keyword if  '${Este_tyyppi}'=='Kaivanto'  
+    ...  Element Should Contain  ${FA_Esterakennelma_tyyppi}  Kaivanto
 
     click element at coordinates                ${kartta}   0  -100
 
