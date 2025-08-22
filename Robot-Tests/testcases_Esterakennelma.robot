@@ -35,7 +35,7 @@ Esterakennelma 3
     [Tags]              Este
     [Documentation]     Esterakennelma, selain: ${BROWSER}
     ...   - Esterakennelmaa voi siirtää, sekä tyyppiä muokata.
-    KW_Esterakennelma.Este_3  6761071,212356  Muu pysyvä esterakenne
+    KW_Esterakennelma.Este_3  6761071,212356  Kiinteä esterakennelma
 
 Esterakennelma 4
     [Tags]              Este  AWS

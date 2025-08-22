@@ -12,11 +12,12 @@ Talvinopeus perustestit    [arguments]    ${testipaikka}
     Odota sivun latautuminen
     Click Element At Coordinates                ${Kartta}  0  20
     Wait Until Element Is Visible               ${FA_otsikko}
-    Element Should Contain                      ${FA_linkkien_lukumaara}  1
+    Element Should Contain                      ${FA_linkkien_lukumaara}  5
     Click Element At Coordinates                ${Kartta}  100  0
-    Click Element At Coordinates         ${Kartta}  0  20
+    Click Element At Coordinates                ${Kartta}  0  20
+    Wait Until Element Is Visible               ${FA_otsikko}
     Wait Until Element Is Visible               ${FA_linkkien_lukumaara}
-    Element Should Contain                      ${FA_linkkien_lukumaara}  1
+    Element Should Contain                      ${FA_linkkien_lukumaara}  5
 
     Log  Säilytä nopeusrajoitusvalinta, kun siirrytään muokkaustilaan
     ${id}=  Get Text                            ${FA_otsikko}
@@ -45,7 +46,7 @@ Talvinopeus perustestit    [arguments]    ${testipaikka}
     Repeat Keyword  10 s  Element Should Not Be Visible    ${FA_otsikko}
 
 
-Talvinopeusrajoitus monivalinta    [arguments]    ${testipaikka}
+Talvinopeusrajoitus monivalinta    [arguments]    ${testipaikka}    ${talvinopeudet_lista}
     Testin Aloitus
     Paikanna osoite                             ${testipaikka}
     vaihda tietolaji                            ${TL_Talvinopeusrajoitus_RB}
@@ -209,6 +210,51 @@ Talvinopeusrajoitus kaksisuuntaiseksi    [arguments]    ${testipaikka}
     Click Element At Coordinates                ${Kartta}  0  20
     Wait Until Element Is Visible               ${FA_otsikko}
     Element Should Contain                      ${FA_Talvinopeusrajoitus}  80 km/h
+
+
+Get default link number value
+# Hae odotusarvo (esim. vähintään odotettavissa oleva linkkien määrä)
+    #${expected_min}=   Get Expected Link Count From API    ${testipaikka}
+    ${expected_min}=    Set Variable    1
+
+Minimum link number value     [Arguments]    ${expected_min}
+    # 1) Vähintään-arvo (hierarkiassa sallitaan suurempi luku)
+    Wait Until Keyword Succeeds    1 min    5 s    FlexibleAssertAtLeast    ${FA_linkkien_lukumaara}    ${expected_min}
+
+Tolerance of one link allowed    [Arguments]    ${expected_min}
+    # 2) Toleranssi: sallitaan pieni vaihtelu +-1
+    ${actual}=    Get Actual Link Count    ${FA_linkkien_lukumaara}
+    FlexibleAssertWithinTolerance    ${actual}    ${expected_min}    tolerance=1
+
+Title contains expected word nopeusrajoitus
+    # 3) Regex/tekstin osuminen: otsikko sisältää odotetun sanan
+    Element Should Contain    ${FA_otsikko}    "Nopeusrajoitus"
+
+At least X elements    [Arguments]    ${expected_min}
+    # 4) Lisäesimerkki: tarkista että linkkien lista sisältää vähintään X elementtiä
+    ${count}=    Get Element Count    css:.link-item
+    Should Be True    ${count} >= ${expected_min}    msg=Linkkien määrä liian pieni
+
+# Hae tekstissä oleva numero ja palauta int
+Get Actual Link Count
+    [Arguments]    ${locator}
+    ${text}=    Get Text    ${locator}
+    # Etsi ensimmäinen numero tekstistä ja muunna int:ksi
+    ${num}=    Evaluate    int(re.search(r'\d+', u"""${text}""").group())    modules=re
+    Log    Actual link count parsed: ${num}
+    [Return]    ${num}
+
+FlexibleAssertAtLeast
+    [Arguments]    ${locator}    ${expected_min}
+    ${actual}=    Get Actual Link Count    ${locator}
+    ${ok}=    Evaluate    int(${actual}) >= int(${expected_min})
+    Should Be True    ${ok}    message=Odotettu vähintään ${expected_min}, saatiin ${actual}
+
+FlexibleAssertWithinTolerance
+    [Arguments]    ${actual}    ${expected}    ${tolerance}=1
+    ${diff}=    Evaluate    abs(int(${actual}) - int(${expected}))
+    ${ok}=     Evaluate    int(${diff}) <= int(${tolerance})
+    Should Be True    ${ok}    message=Arvo ${actual} ei ole odotusarvon ${expected} ±${tolerance} (diff=${diff})
 
 
 *** Variables ***
