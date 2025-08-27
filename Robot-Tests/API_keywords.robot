@@ -5,6 +5,7 @@ Library                 RequestsLibrary
 Library                 Collections
 Library                 BuiltIn
 Library                 OperatingSystem
+Resource                common_keywords.robot
 
 *** Variables ***
 

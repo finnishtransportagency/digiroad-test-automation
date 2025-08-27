@@ -242,7 +242,7 @@ Get Actual Link Count
     # Etsi ensimmäinen numero tekstistä ja muunna int:ksi
     ${num}=    Evaluate    int(re.search(r'\d+', u"""${text}""").group())    modules=re
     Log    Actual link count parsed: ${num}
-    [Return]    ${num}
+    RETURN    ${num}
 
 FlexibleAssertAtLeast
     [Arguments]    ${locator}    ${expected_min}

@@ -128,9 +128,9 @@ JLP_4  [arguments]  ${testipaikka}  ${ylläpitäjä}
 ## Sisäiset keywordit #
 #######################
 
-Siirrä Pysäkkiä  [Arguments]  ${xKoord}  ${yKoord}
+Siirrä Pysäkkiä  [Arguments]    ${pysakkipallura}  ${xKoord}  ${yKoord}
 
-    SikuliLibrary.Drag And Drop By Offset        ${pysakkipallura}  ${xKoord}  ${yKoord}
+    SeleniumLibrary.Drag And Drop By Offset        ${pysakkipallura}  ${xKoord}  ${yKoord}
 
 
 Wanha_Siirrä Pysäkkiä  [Arguments]  ${xKoord}  ${yKoord}
