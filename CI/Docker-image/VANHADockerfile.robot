@@ -1,3 +1,5 @@
+#REMOVE THIS DOCKERFILE
+#
 #FROM ${image}
 FROM public.ecr.aws/docker/library/alpine:latest
 #MAINTAINER 
