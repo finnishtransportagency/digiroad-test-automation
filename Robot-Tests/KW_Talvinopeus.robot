@@ -12,12 +12,14 @@ Talvinopeus perustestit    [arguments]    ${testipaikka}
     Odota sivun latautuminen
     Click Element At Coordinates                ${Kartta}  0  20
     Wait Until Element Is Visible               ${FA_otsikko}
-    Element Should Contain                      ${FA_linkkien_lukumaara}  5
+    # Tarkistetaan, että tielinkkien lukumäärä on yli 1, koska klikattiin tietä kerran.
+    # Pitäisi siis antaa koko tie eikä osio.
+    Tielinkkien Lukumäärän Tulee Olla Näkyvissä ja Yli 1
     Click Element At Coordinates                ${Kartta}  100  0
     Click Element At Coordinates                ${Kartta}  0  20
     Wait Until Element Is Visible               ${FA_otsikko}
     Wait Until Element Is Visible               ${FA_linkkien_lukumaara}
-    Element Should Contain                      ${FA_linkkien_lukumaara}  5
+    Tielinkkien Lukumäärän Tulee Olla Näkyvissä ja Yli 1
 
     Log  Säilytä nopeusrajoitusvalinta, kun siirrytään muokkaustilaan
     ${id}=  Get Text                            ${FA_otsikko}
@@ -46,7 +48,13 @@ Talvinopeus perustestit    [arguments]    ${testipaikka}
     Repeat Keyword  10 s  Element Should Not Be Visible    ${FA_otsikko}
 
 
-Talvinopeusrajoitus monivalinta    [arguments]    ${testipaikka}    ${talvinopeudet_lista}
+Tielinkkien Lukumäärän Tulee Olla Näkyvissä ja Yli 1
+    ${koko_kinkkien_lkm_teksti} =   Get Text    ${FA_linkkien_lukumaara}
+    ${linkkien_lkm} =   Split String    ${koko_kinkkien_lkm_teksti}    ${empty}
+    ${linkkien_lkm}    Set Variable    ${linkkien_lkm[-1]}
+    Builtin.Should Be True    ${linkkien_lkm} > 1
+
+Talvinopeusrajoitus monivalinta    [arguments]    ${testipaikka}    @{talvinopeudet_lista}
     Testin Aloitus
     Paikanna osoite                             ${testipaikka}
     vaihda tietolaji                            ${TL_Talvinopeusrajoitus_RB}
@@ -55,14 +63,13 @@ Talvinopeusrajoitus monivalinta    [arguments]    ${testipaikka}    ${talvinopeu
     Click Element                               ${Muokkaustila_PolygonTool}
     Suorita monivalinta
     Wait Until Element Is Visible               ${Popup_valikko_talvinopeus}
-    Element Should Be Visible                   ${Popup_valikko_talvinopeus}
     Element Should Be Enabled                   ${FA_header_Tallenna}
     Click Element                               ${FA_header_Peruuta}
 
     Siirry Katselutilaan
     sleep  1 s
     Click Element at Coordinates                ${Kartta}  0  20
-    Wait Until Element contains                 ${FA_Talvinopeusrajoitus}  ${talvinopeudet_lista}[2] km/h
+    Wait Until Element Contains                 ${FA_Talvinopeusrajoitus}  ${talvinopeudet_lista}[2] km/h    timeout=10
 
     Log  Ei voi aloittaa monivalintaa, jos on muokannut jotain toista nopeusrajoitusta ensin 206.118
     Siirry Muokkaustilaan

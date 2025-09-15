@@ -15,3 +15,4 @@ testi.robot
 .venv
 settings.json
 .DS_Store
+DRownvariables.robot

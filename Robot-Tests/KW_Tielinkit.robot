@@ -217,8 +217,8 @@ Tielinkit_4  [Arguments]  ${Luokan_odotusarvo}  ${testipaikka}
     Vaihda Tielinkin visualisointi          ${TL_Tielinkin tyyppi_RB}
     Log  Valitaan tielinkki kartalta
     Odota sivun latautuminen
-    double click element at coordinates     ${kartta}   0   20
-    wait until element is visible           ${FA_otsikko}
+    double click element at coordinates     ${kartta}   0   25
+    wait until element is visible           ${FA_otsikko}    timeout=10
     Log  Varmistetaan, että formin tielinkin tyyppi vastaa annettua odotusarvoa
     SeleniumLibrary.Element Text Should Be                  ${FA_tielinkki_tielinkintyyppi}  ${Luokan_odotusarvo}
     Log  Varmistetaan, että valitun tielinkin tyypin värinen vektori on näkyvissä

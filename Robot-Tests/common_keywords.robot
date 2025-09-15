@@ -4,7 +4,9 @@ Library                     SeleniumLibrary     timeout=60.0   run_on_failure=Ca
 Library                     String
 Library                     selenium_extensions.py
 Library                     DateTime
+# Library                     DebugLibrary
 
+Resource                    DRownvariables.robot
 Resource                    variables.robot
 Resource                    API_KW_lanes_in_municipality.robot
 Resource                    API_KW_lanes_in_range.robot
@@ -51,7 +53,8 @@ ${LOGIN URL}                https://digiroadtest.testivaylapilvi.fi/
 ${LiviUserNameField}        id=username
 ${LiviPasswordField}        id=password
 ${LiviLoginButton}          css=.submit
-${VaylaMFAButton}           css=body > div.container > div > div.modal-content.background-customizable.modal-content-mobile.visible-md.visible-lg > div.modal-body > div:nth-child(2) > div > div:nth-child(1) > div > div > form > div > div > input:nth-child(2)    #ainoastaan koko selector toimii 21.02.2025
+#${VaylaMFAButton}           css=body > div.container > div > div.modal-content.background-customizable.modal-content-mobile.visible-md.visible-lg > div.modal-body > div:nth-child(2) > div > div:nth-child(1) > div > div > form > div > div > input:nth-child(2)    #ainoastaan koko selector toimii 21.02.2025
+${VaylaMFAButton}           css=div[class*='visible-md'] input[aria-label='Vayla12cTestOAM']
 ${IMAGE_DIR}                ${CURDIR}\\img
 
 *** Keywords ***
@@ -61,7 +64,7 @@ Login To DigiRoad
     Open Browser                    ${LOGIN URL}  ${BROWSER}
     ...  options=add_argument('--no-sandbox');add_argument('--disable-gpu');add_argument('--verbose')
     #    ...  service_log_path=driver.log
-    
+
     #Maximize Browser Window
     set window size    1920   1080
     Set Selenium Speed              ${DELAY}
@@ -106,8 +109,8 @@ VerifyValue         [Arguments]     ${locator}    ${context}
 
 #Verifies value of elements attribute against given value
 VerifyAttribute     [Arguments]     ${locator}    ${context}
-    ${LocatorValue}=                                            ${locator}
-    Should Be Equal                 ${LocatorValue}             ${context}
+    ${LocatorValue} =    Set Variable    ${locator}
+    Should Be Equal    ${LocatorValue}    ${context}
 
 Odota sivun latautuminen
     Sleep                           1 s
@@ -127,7 +130,7 @@ Vaihda Tietolaji  [Arguments]  ${tietolaji_locator}
     wait until element is visible   ${Valitse_tietolaji_ikkuna}
     select radio button             ${Tietolaji_RB_group}  ${tietolaji_locator}
     Radio Button Should Be Set To   ${Tietolaji_RB_group}  ${tietolaji_locator}
-    #    wait until element is visible   ${Siirry muokkaustilaan}
+    wait until element is visible   ${Siirry muokkaustilaan}
 
 Zoomaa kartta  [Arguments]   ${loopvalue}  ${maxskaala}
     log  Zoomataan karttaa annetun maksimin mukaan, tai jos maksimia ei ole annettu kunnes mittasuhde on 1:10 000

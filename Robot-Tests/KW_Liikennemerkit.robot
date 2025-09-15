@@ -1,5 +1,6 @@
 *** Settings ***
 Documentation       Pageobject for Traffic signs (Liikennemerkit)
+Resource            common_keywords.robot
 
 *** Keywords ***
 
@@ -98,7 +99,11 @@ Liikennemerkit_4  [Arguments]  ${testipaikka}
     Alusta Testipaikka
 
     Click Element At Coordinates  ${Kartta}  0  -40
-    ${status}=  Run Keyword And Return Status  Wait Until Element Is Visible  ${FA_otsikko}
+    ${status} =    Run Keyword And Return Status
+    ...    Wait Until Element Is Visible
+    ...    ${FA_otsikko}
+    ...    timeout=10
+    
     Run Keyword If  ${status}==True  Poista Kohde
 
 
@@ -112,8 +117,9 @@ Liikennemerkit_4  [Arguments]  ${testipaikka}
     Log  Täytetään liikennemerkin kentät.
     Click Element                           ${Tyyppi}
     Click Element                           ${Tyyppi_DDM}
-    Click Element                           ${Alityyppi}
-    Click Element                           ${Alityyppi_DDM}
+    Select From List By Label    css=select#trafficSigns_type    C32 Nopeusrajoitus
+    #Click Element                           ${Alityyppi}
+    #Click Element                           ${Alityyppi_DDM}
     Input Text                              ${Arvo}  100
     Täytä Lisäkilven Kentät
     Click Element                           ${FA_footer_Tallenna}
@@ -132,7 +138,9 @@ Liikennemerkit_4  [Arguments]  ${testipaikka}
     Log  Tarkistetaan onko liikennemerkki siirtynyt. 
     Log  Klikataan vanhaan kohtaan, jolloin merkki ei pitäisi aueta
     Click Element At coordinates            ${Kartta}  0  20
-    ${status}=  Run Keyword And Return Status  Wait Until Element Is Visible  ${FA_otsikko}
+    ${status} =    Run Keyword And Return Status    Wait Until Element Is Visible
+    ...    ${FA_otsikko}
+    ...    timeout=10
     Run Keyword If  ${status}==True         Alusta Testipaikka
     Run Keyword If  ${status}==True         Fail  Liikennemerkki ei siirtynyt.
 
@@ -211,38 +219,41 @@ Täytä Liikennemerkin kentät
     Click Element   ${Tyyppi}
     Click Element   ${Tyyppi_DDM}
     Click Element   ${Alityyppi}
-    Click Element   ${Alityyppi_DDM}
+    #Debug
+    Select From List By Label    css=select#trafficSigns_type    C32 Nopeusrajoitus
+    #Click Element   ${Alityyppi_DDM}
     Input Text      ${Arvo}                 100
-    Input Text      ${Päämerkin_Teksti}     Testi         
-    Input Text      ${Kunnan_ID}            Kunta12                
-    Input Text      ${Lisätieto}            HienoMerkki             
-    Click Element   ${Rakenne}                      
-    Click Element   ${Rakenne_DDM}                    
-    Click Element   ${Kunto}                          
-    Click Element   ${Kunto_DDM}                     
-    Click Element   ${Koko}                          
-    Click Element   ${Koko_DDM}                    
-    Input Text      ${Korkeus}  100                     
-    Click Element   ${Kalvon_Tyypi}                  
-    Click Element   ${Kalvon_Tyypi_DDM}            
-    Click Element   ${Merkin_Materiaali}             
-    Click Element   ${Merkin_Materiaali_DDM}        
-    Click Element   ${Sijaintitarkenne}               
-    Click Element   ${Sijaintitarkenne_DDM}           
-    Input Text      ${Maastokoordinaatti_X}  82          
-    Input Text      ${Maastokoordinaatti_Y}  86         
-    #Input Text      ${Kaista}   2            
-    Click Element   ${Kaistan_Tyyppi}                 
-    Click Element   ${Kaistan_Tyyppi_DDM}             
-    Click Element   ${Tila}                             
-    Click Element   ${Tila_DDM}                       
-    Input Text      ${Alkupäivämäärä}        1.12.2025            
-    Input Text      ${Loppupäivämäärä}       1.12.2026          
-    Click Element   ${Vauriotyyppi}                    
-    Click Element   ${Vauriotyyppi_DDM}                 
-    Click Element   ${Korjauksen_Kiireellisyys}        
-    Click Element   ${Korjauksen_Kiireellisyys_DDM}     
-    Input Text      ${Arvioitu_Käyttöikä}       1     
+    Input Text      ${Päämerkin_Teksti}     Testi
+    Input Text      ${Kunnan_ID}            Kunta12
+    Input Text      ${Lisätieto}            HienoMerkki
+    Click Element   ${Rakenne}
+    Click Element   ${Rakenne_DDM}
+    Click Element   ${Kunto}
+    Click Element   ${Kunto_DDM}
+    Click Element   ${Koko}
+    Click Element   ${Koko_DDM}
+    Input Text      ${Korkeus}  100
+    Click Element   ${Kalvon_Tyypi}
+    Click Element   ${Kalvon_Tyypi_DDM}
+    Click Element   ${Merkin_Materiaali}
+    Click Element   ${Merkin_Materiaali_DDM}
+    Click Element   ${Sijaintitarkenne}
+    Click Element   ${Sijaintitarkenne_DDM}
+    Input Text      ${Maastokoordinaatti_X}  82
+    Input Text      ${Maastokoordinaatti_Y}  86
+    #Input Text      ${Kaista}   2
+    Click Element   ${Kaistan_Tyyppi}
+    Click Element   ${Kaistan_Tyyppi_DDM}
+    Click Element   ${Tila}
+    Click Element   ${Tila_DDM}
+    Input Text      ${Alkupäivämäärä}        1.12.2025
+    Input Text      ${Loppupäivämäärä}       1.12.2026
+    Click Element   ${Vauriotyyppi}
+    Click Element   ${Vauriotyyppi_DDM}
+    Click Element   ${Korjauksen_Kiireellisyys}
+    Click Element   ${Korjauksen_Kiireellisyys_DDM}
+    Input Text      ${Arvioitu_Käyttöikä}       1
+
 
 Täytä Lisäkilven Kentät
     Click Element  ${Lisakilpi}
