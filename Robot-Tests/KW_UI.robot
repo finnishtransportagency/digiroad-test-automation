@@ -61,16 +61,16 @@ UI_4
     Log     Muokkaustilassa sovellus huomauttaa dialogilla käyttöoikeuksista kaikissa tietolajeissa.
     Log     Muokkaustilassa "Olet muokkaustilassa..."-teksti sovelluksen yläreunassa on korostettuna sinisellä.
     # For Looppi joka käy jokaisen tietolajin läpi, valitsee tietolajin ja painaa muokkaustilan päälle ja tarkistaa tekstin
-    wait until element is visible           ${Taustakartta}
-    wait until element is enabled           ${Taustakartta}
-    Siirry muokkaustilaan
+    Wait Until Element Is Visible           ${Taustakartta}
+    Wait Until Element Is Enabled           ${Taustakartta}
+    Siirry Muokkaustilaan
     SeleniumLibrary.Element Text Should Be                  ${Map_popup}                ${Muokkaustila_Popup_context}
     Log     Loopataan kaikki tietolajit läpi - klikataan aina kyseisen tietolajin muokkaustila päälle ja tarkistetaan ilmoitusteksti
 
     FOR    ${i}  IN  @{Tietolaji_radiobtns}
-           vaihda tietolaji                    ${i}
+           Vaihda Tietolaji                    ${i}
            SeleniumLibrary.Element Text Should Be              ${Muokkaustila_ilmoitus}  ${Muokkaustila_ilmoitus_cont}
-           wait until element is not visible   ${Map_popup}
+           Wait Until Element Is Not Visible   ${Map_popup}
     END
 
     #Taustavärin tarkistus tekemättä. ei osaa

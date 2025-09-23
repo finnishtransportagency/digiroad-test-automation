@@ -64,20 +64,21 @@ Talvinopeusrajoitus monivalinta    [arguments]    ${testipaikka}    @{talvinopeu
     Suorita monivalinta
     Wait Until Element Is Visible               ${Popup_valikko_talvinopeus}
     Element Should Be Enabled                   ${FA_header_Tallenna}
-    Click Element                               ${FA_header_Peruuta}
+    # Teemu 23.9.2025. Vaihdettu siten että asetetaan nopeuideksi ensin 100 jotta testi toimii useamman kerran peräkkäin.
+    Click Element                               css=input[class*='winter-speed-limits'][value='enabled']
+    Select From List By Value                   css=select[class*='winter-speed-limits']    100
+    Click Element                                ${FA_header_Tallenna}
+    #Click Element                               ${FA_header_Peruuta}
 
     Siirry Katselutilaan
     sleep  1 s
     Click Element at Coordinates                ${Kartta}  0  20
-    Wait Until Element Contains                 ${FA_Talvinopeusrajoitus}  ${talvinopeudet_lista}[2] km/h    timeout=10
+    Wait Until Element Contains                 ${FA_Talvinopeusrajoitus}  100 km/h    timeout=10
 
     Log  Ei voi aloittaa monivalintaa, jos on muokannut jotain toista nopeusrajoitusta ensin 206.118
     Siirry Muokkaustilaan
     Click Element                               ${Popup_TalviNopeusRajoitus}
-    Click Element                               css=.form-control.winter-speed-limits
-    Press Keys    None    DOWN
-    Press Keys    None    DOWN
-    Press Keys    None    ENTER
+    Select From List By Value    css=select[class*='winter-speed-limits']    70
     Click Element                               css=.${TL_Talvinopeusrajoitus_RB} .polygon
     Click Element At Coordinates                ${Kartta}    100    100
     Wait Until Element Is Visible               ${MuokkausVaroitus}
@@ -103,11 +104,7 @@ Talvinopeusrajoitus monivalinta    [arguments]    ${testipaikka}    @{talvinopeu
     Click Element                               css=.${TL_Talvinopeusrajoitus_RB} .polygon
     Suorita monivalinta
     Select Radio Button    winter-speed-limits    enabled
-    Click Element    css=body > div.container > div.modal-overlay.mass-update-modal > div > div.form-elements-container > div > div > div.input-unit-combination > select
-    Press Keys    None    DOWN
-    Press Keys    None    DOWN
-    Press Keys    None    DOWN
-    Press Keys    None    Enter
+    Select From List By Value    css=select[class*='winter-speed-limits']    60
     Click Element                               ${FA_header_Tallenna}
     Wait Until Element Is Not Visible           ${Spinner_Overlay}
     Odota sivun latautuminen

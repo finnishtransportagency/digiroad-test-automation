@@ -107,19 +107,21 @@ Este_4  [arguments]  ${testipaikka}
 
 Tarkista esteen olemassaolo
     # Käytetään uutta estettä luotaessa - Tarkistaa jos este on jo olemassa ja poistaa sen.
-    click element at coordinates                ${kartta}  20  -30
+    Click Element At Coordinates                ${kartta}  20  -30
     ${passed}=  Run Keyword And Return Status   wait until element is visible    ${FA_otsikko}  timeout=3
-    run keyword if  ${passed}  Poista Kohde
+    Run Keyword If  ${passed}  Poista Kohde
+
 
 Luo este  [arguments]  ${tyyppi}
     Log  Vaihtaa muokkaustilaan ja luo uuden esterakennelman kartan osoittamaan kohtaan.
-    Siirry muokkaustilaan
-    Odota sivun latautuminen
-    Tarkista esteen olemassaolo
-    click element                               ${Muokkaustila_AddTool}
-    click element at coordinates                ${kartta}  0   20
-    wait until element is visible               ${FA_otsikko}
+    Siirry Muokkaustilaan
+    Odota Sivun Latautuminen
+    Tarkista Esteen Olemassaolo
+    Click Element                               ${Muokkaustila_AddTool}
+    Click Element At Coordinates                ${kartta}  0   20
+    Wait Until Element Is Visible               ${FA_otsikko}
     #Täytetään esteen kentät
+    Select From List By Value    css=select#esterakennelma-select    1
     Click Element                               ${FA_footer_Tallenna}
     Wait Until Element Is Not Visible           css=.spinner-overlay.modal-overlay
 

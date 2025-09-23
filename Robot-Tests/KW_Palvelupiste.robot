@@ -37,7 +37,6 @@ Palvelupiste_2  [Arguments]  ${testipaikka}  ${Pisteen_tyyppi}  ${Pisteen_teksti
     log  Paikannetaan Palvelupiste. Tarkistetaan palvelupisteen tyyppi.
     Siirry Testipaikkaan                        ${TL_Palvelupiste_RB}  ${testipaikka}
     Odota sivun latautuminen
-
     Click Element At Coordinates                ${Kartta}  0  20
     Wait Until Element Is Visible               ${FA_otsikko}
     Element Should Contain                      css=#feature-attributes-form  ${Pisteen_teksti}

@@ -4,7 +4,7 @@ Library                     SeleniumLibrary     timeout=60.0   run_on_failure=Ca
 Library                     String
 Library                     selenium_extensions.py
 Library                     DateTime
-# Library                     DebugLibrary
+#Library                     DebugLibrary
 
 Resource                    DRownvariables.robot
 Resource                    variables.robot
@@ -66,186 +66,212 @@ Login To DigiRoad
     #    ...  service_log_path=driver.log
 
     #Maximize Browser Window
-    set window size    1920   1080
-    Set Selenium Speed              ${DELAY}
-    wait until element is visible   ${VaylaMFAButton}
-    Click Button                   ${VaylaMFAButton}
-
-    wait until element is visible   ${LiviUserNameField}
+    Set Window Size    1920    1080
+    Set Selenium Speed    ${DELAY}
+    Wait Until Element Is Visible    ${VaylaMFAButton}
+    Click Button    ${VaylaMFAButton}
+    Wait Until Element Is Visible   ${LiviUserNameField}
     #${temp}=                        set variable            ${LOG LEVEL}
     #Set Log Level                   NONE
-    Input Password                  ${LiviUserNameField}    ${LiviUSER}
-    Input Password                  ${LiviPasswordField}    ${LiviPWD}
-    Click Button                    ${LiviLoginButton}
+    Input Password    ${LiviUserNameField}    ${LiviUSER}
+    Input Password    ${LiviPasswordField}    ${LiviPWD}
+    Click Button      ${LiviLoginButton}
     #Set Log Level                   ${temp}
-    wait until element is visible   ${kartta}  30
-    Odota sivun latautuminen
-    sleep  5
+    Wait Until Element Is Visible    ${kartta}    30
+    Odota Sivun Latautuminen
+    Sleep  5
+
 
 Sulje QA popup
-    wait until element is visible   css=.modal-overlay.confirm-modal .btn.btn-secondary.close
-    click element                   css=.modal-overlay.confirm-modal .btn.btn-secondary.close
+    Wait Until Element Is Visible    css=.modal-overlay.confirm-modal .btn.btn-secondary.close
+    Click Element    css=.modal-overlay.confirm-modal .btn.btn-secondary.close
+
 
 Testin Aloitus
-    Set Selenium Speed  ${DELAY}
-    Go to  ${LOGIN URL}
-    wait until element is enabled  ${kartta}
-    wait until element is visible  ${Siirry muokkaustilaan}  120
+    Set Selenium Speed    ${DELAY}
+    Go to    ${LOGIN URL}
+    Wait Until Element Is Enabled    ${kartta}
+    Wait Until Element Is Visible    ${Siirry muokkaustilaan}  120
 
 
 ###################
 # Common keywords #
 ###################
 
-#Verifies element text is not equal to given string
-VerifyTextNOT          [Arguments]  ${locator}    ${context}
-    ${LocatorValue}=                SeleniumLibrary.Get Text   ${locator}
-    should not be equal as strings  ${LocatorValue}             ${context}
+# Verifies element text is not equal to given string
+VerifyTextNOT    [Arguments]    ${locator}    ${context}
+    ${LocatorValue} =    SeleniumLibrary.Get Text     ${locator}
+    Should Not Be Equal As Strings    ${LocatorValue}     ${context}
+
 
 #Verifies elements value attribute against given value
-VerifyValue         [Arguments]     ${locator}    ${context}
-    ${LocatorValue}=                Get value                   ${locator}
-    Should Be Equal As Strings      ${LocatorValue}             ${context}
+VerifyValue    [Arguments]    ${locator}    ${context}
+    ${LocatorValue} =    Get value    ${locator}
+    Should Be Equal As Strings    ${LocatorValue}    ${context}
+
 
 #Verifies value of elements attribute against given value
-VerifyAttribute     [Arguments]     ${locator}    ${context}
+VerifyAttribute    [Arguments]    ${locator}    ${context}
     ${LocatorValue} =    Set Variable    ${locator}
     Should Be Equal    ${LocatorValue}    ${context}
 
+
 Odota sivun latautuminen
-    Sleep                           1 s
-    Wait Until Keyword Succeeds     10 min  10 sec  Element Should Not Be Visible  class=loadingBar
+    Sleep    1 s
+    Wait Until Keyword Succeeds    10 min    10 sec    Element Should Not Be Visible    class=loadingBar
 
 
 Zoomaa edestakaisin
-    click element                   ${zoombar_minus}
-    odota sivun latautuminen
-    click element                   ${zoombar_plus}
-    odota sivun latautuminen
+    Click Element    ${zoombar_minus}
+    Odota Sivun Latautuminen
+    Click Element    ${zoombar_plus}
+    Odota Sivun Latautuminen
 
 
-Vaihda Tietolaji  [Arguments]  ${tietolaji_locator}
-    wait until element is visible   ${valitse tietolaji}
-    click element                   ${valitse tietolaji}
-    wait until element is visible   ${Valitse_tietolaji_ikkuna}
-    select radio button             ${Tietolaji_RB_group}  ${tietolaji_locator}
-    Radio Button Should Be Set To   ${Tietolaji_RB_group}  ${tietolaji_locator}
-    wait until element is visible   ${Siirry muokkaustilaan}
+Vaihda Tietolaji    [Arguments]    ${tietolaji_locator}
+    Wait Until Element Is Visible    ${valitse tietolaji}
+    Click Element    ${valitse tietolaji}
+    Wait Until Element Is Visible    ${Valitse_tietolaji_ikkuna}
+    Select Radio Button    ${Tietolaji_RB_group}    ${tietolaji_locator}
+    Radio Button Should Be Set To    ${Tietolaji_RB_group}  ${tietolaji_locator}
+    # Teemu 23.9.2025. Vaihdettu tähän Siirry katselutilaan verifiointi koska testissä aiemmin mennään muokkaustilaan.
+    Wait Until Element Is Visible    ${Siirry katselutilaan}
+    #Wait Until Element Is Visible    ${Siirry muokkaustilaan}
+
 
 Zoomaa kartta  [Arguments]   ${loopvalue}  ${maxskaala}
-    log  Zoomataan karttaa annetun maksimin mukaan, tai jos maksimia ei ole annettu kunnes mittasuhde on 1:10 000
+    Log    Zoomataan karttaa annetun maksimin mukaan, tai jos maksimia ei ole annettu kunnes mittasuhde on 1:10 000
     FOR   ${i}     IN RANGE        ${loopvalue}
        ${var}=     SeleniumLibrary.Get Text        ${skaala}
-       Run Keyword If              '${var}' == '${maxskaala}'  Exit For Loop
+       Run Keyword If              '${var}' == '${maxskaala}'    Exit For Loop
        Click Element               ${zoombar_plus}
        sleep  0.5 sec
     END
     Odota sivun latautuminen
 
-Paikanna osoite     [Arguments]  ${Osoite}
+
+Paikanna osoite     [Arguments]    ${Osoite}
     Log   Käyttää hakua paikantamaan osoite
-    wait until element is visible       ${kartta}
-    SeleniumLibrary.input text         ${Hae_syotekentta}       ${Osoite}
-    click element                       ${Hae_btn}
-    wait until element is visible       ${Kartta}
-    wait until element is visible       ${Haku_tulokset}   10
-    Wait Until Keyword Succeeds  30 sec  5 sec  click element  ${Tyhjenna_tulokset_btn}
+    Wait Until Element Is Visible    ${kartta}
+    SeleniumLibrary.Input Text    ${Hae_syotekentta}    ${Osoite}
+    Click Element    ${Hae_btn}
+    Wait Until Element Is Visible    ${Kartta}
+    Wait Until Element Is Visible    ${Haku_tulokset}    10
+    Wait Until Keyword Succeeds    30 sec    5 sec    Click Element    ${Tyhjenna_tulokset_btn}
     #Odota sivun latautuminen
 
-Elements should be visible  [Arguments]  ${elem1}  ${elem2}
-    element should be visible           ${elem1}
-    element should be visible           ${elem2}
+
+Elements should be visible    [Arguments]    ${elem1}    ${elem2}
+    Element Should Be Visible    ${elem1}
+    Element Should Be Visible    ${elem2}
+
 
 Siirry Muokkaustilaan
-    Wait until element is visible       ${Siirry muokkaustilaan}
-    click element                       ${Siirry muokkaustilaan}
+    Wait Until Element Is Visible    ${Siirry muokkaustilaan}
+    Click Element    ${Siirry muokkaustilaan}
     #Wait Until Element Is Visible       ${Map_popup}  10
 
+
 Siirry Katselutilaan
-    Wait Until Element Is Visible      ${Siirry katselutilaan}
-    Click button                        ${Siirry katselutilaan}
-    Wait Until Element Is Not Visible      ${Map_popup}
+    Wait Until Element Is Visible    ${Siirry katselutilaan}
+    Click button    ${Siirry katselutilaan}
+    Wait Until Element Is Not Visible    ${Map_popup}
+
 
 Tupla Klikkaa Kartan Keskelle
-    Set Selenium Speed  0
-    Click Element At Coordinates  ${Kartta}  0  20
-    Click Element At Coordinates  ${Kartta}  0  20
-   selenium_extensions.doubleclick element at coordinates  ${Kartta}  0  20
-    Set Selenium Speed  ${DELAY}
+    Set Selenium Speed    0
+    Click Element At Coordinates    ${Kartta}    0    20
+    Click Element At Coordinates    ${Kartta}    0    20
+    selenium_extensions.Doubleclick Element At Coordinates    ${Kartta}    0    20
+    Set Selenium Speed    ${DELAY}
+
 
 Siirry Testipaikkaan
-    [Arguments]  ${Tietolaji}  ${Testipaikka}
-    wait until element is visible       ${valitse tietolaji}
-    vaihda tietolaji                    ${Tietolaji}
-    Paikanna osoite                     ${testipaikka}
-    Zoomaa kartta                       5  20 m
-    Odota sivun latautuminen
+    [Arguments]    ${Tietolaji}    ${Testipaikka}
+    Wait Until Element Is Visible     ${valitse tietolaji}
+    Vaihda Tietolaji    ${Tietolaji}
+    Paikanna Osoite    ${testipaikka}
+    Zoomaa Kartta    5   20 m
+    Odota Sivun Latautuminen
+
 
 Alusta Testipaikka
     Log  Jos testipaikalla on valmiiksi kohde, vanha poistetaan.
     Click Element At Coordinates                    ${Kartta}  0  20
-    ${status}=  Run Keyword And Return Status  Wait Until Element Is Visible  ${FA_otsikko}  10
-    Run Keyword If  '${status}'=='True'  Poista Kohde
+    ${status} =    Run Keyword And Return Status
+    ...    Wait Until Element Is Visible
+    ...    ${FA_otsikko}
+    ...    10
+    Run Keyword If    '${status}'=='True'    Poista Kohde
+
 
 Poista Kohde
     Siirry Muokkaustilaan
-    Click Element                               ${FA_Poista_chkbx}
-    Click Element                               ${FA_footer_Tallenna}
+    Click Element    ${FA_Poista_chkbx}
+    Click Element    ${FA_footer_Tallenna}
     #Odota sivun latautuminen
-    Wait Until Element Is Not Visible           css=.spinner-overlay.modal-overlay
+    Wait Until Element Is Not Visible    css=.spinner-overlay.modal-overlay
     Siirry Katselutilaan
 
-Siirrä Kohde  [Arguments]  ${xKoord}  ${yKoord}
+
+Siirrä Kohde    [Arguments]    ${xKoord}    ${yKoord}
     # Siirtää valittua Opastustaulu annetun offsetin verran, arvot positiivisia keskipisteestä oikealle ja alas
-    Seleniumlibrary.mouse down                      css=[class='crosshair crosshair-center']
-    Seleniumlibrary.drag and drop by offset         css=[class='crosshair crosshair-center']  ${xKoord}  ${yKoord}
-    Seleniumlibrary.mouse up                        css=[class='crosshair crosshair-center']
+    Seleniumlibrary.Mouse Down    css=[class='crosshair crosshair-center']
+    Seleniumlibrary.Drag And Drop By Offset    css=[class='crosshair crosshair-center']    ${xKoord}    ${yKoord}
+    Seleniumlibrary.Mouse Up    css=[class='crosshair crosshair-center']
+
 
 Valitse Kohde
-    FOR  ${n}  IN RANGE  10
-        click element at coordinates                ${kartta}   0   20
-        ${status}=  Run Keyword And Return Status  Wait Until Element Is Visible  ${FA_otsikko}
-        Exit For Loop If  '${status}'=='True'
+    FOR    ${n}    IN RANGE    10
+        Click Element At Coordinates    ${kartta}    0    20
+        ${status} =    Run Keyword And Return Status
+        ...    Wait Until Element Is Visible    ${FA_otsikko}
+        Exit For Loop If    '${status}'=='True'
     END
 
+
 Valitse Selain
-    [Documentation]  Valitsee selaimen testeihin viikonpäivän mukaan, käytössä CI ympäristössä
+    [Documentation]    Valitsee selaimen testeihin viikonpäivän mukaan, käytössä CI ympäristössä
     #Ei käytössä
-    [Arguments]  ${BROWSER}
-    ${date}=  Get Current Date
-    ${date}=  Convert Date  ${date}  result_format=%w
-    ${BROWSER}=  Run Keyword If  0<=${date}<5  Set Variable  Chrome
-    ...  ELSE IF  Set Variable  ${BROWSER}=    Firefox
-    log to console  ${BROWSER}
-    RETURN  ${BROWSER}
+    [Arguments]       ${BROWSER}
+    ${date} =    Get Current Date
+    ${date} =    Convert Date     ${date}    result_format=%w
+    ${BROWSER}=  Run Keyword If    0<=${date}<5    Set Variable    Chrome
+    ...  ELSE IF    Set Variable    ${BROWSER}=    Firefox
+    Log To Console    ${BROWSER}
+    RETURN    ${BROWSER}
+
 
 Suorita monivalinta
-    Click Element At Coordinates                ${Kartta}  -100  -100
-    Click Element At Coordinates                ${Kartta}  100  -100
-    Click Element At Coordinates                ${Kartta}  100  100
-   selenium_extensions.doubleclick Element At Coordinates          ${Kartta}  -100  100
+    Click Element At Coordinates    ${Kartta}    -100    -100
+    Click Element At Coordinates    ${Kartta}    100    -100
+    Click Element At Coordinates    ${Kartta}    100    100
+    selenium_extensions.Doubleclick Element At Coordinates    ${Kartta}    -100    100
+
 
 Suorita laatikkovalinta
-    Click Element At Coordinates                ${Kartta}  0  0
-    Click Element At Coordinates                ${Kartta}  100  -100
+    Click Element At Coordinates    ${Kartta}    0    0
+    Click Element At Coordinates    ${Kartta}    100    -100
+
 
 testklick
     [documentation]     Kutsutaan testklick, voidaan hakea testissä clikkaus paikka kohdille
     tklick    0   0
     FOR   ${i}   IN RANGE  2  35   3
        tklick    ${i}    ${i}
-       tklick   -${i}   -${i}
-       tklick    ${i}   -${i}
-       tklick   -${i}    ${i}
-       tklick    ${i}     0
-       tklick   -${i}     0
-       tklick     0      ${i}
-       tklick     0     -${i}
+       tklick    -${i}    -${i}
+       tklick    ${i}    -${i}
+       tklick    -${i}    ${i}
+       tklick    ${i}    0
+       tklick    -${i}    0
+       tklick     0    ${i}
+       tklick     0    -${i}
     END
-    
-tklick   [arguments]      ${x}   ${y}
-    click element at coordinates                ${kartta}  ${x}   ${y}
-    ${t} =   run keyword and return status   wait until element is visible       ${FA_otsikko}   timeout=1
+
+
+tklick    [arguments]    ${x}    ${y}
+    Click Element At Coordinates    ${kartta}    ${x}    ${y}
+    ${t} =    Run Keyword And Return Status     Wait Until Element Is Visible    ${FA_otsikko}    timeout=1
     #exit for loop if     ${t} == True
-    run keyword if     ${t} == True      log to console   ${x}
-    run keyword if     ${t} == True      log to console   ${y}
+    Run Keyword If    ${t} == True    Log To Console     ${x}
+    Run Keyword If    ${t} == True    Log To Console     ${y}
