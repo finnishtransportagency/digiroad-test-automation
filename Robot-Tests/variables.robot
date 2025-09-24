@@ -26,6 +26,7 @@ ${Hae_btn}                                      css=.panel-header .btn.btn-sm.bt
 ${Haku_tulokset}                                id=search-results
 ${Tyhjenna_tulokset_btn}                        css=.panel-section button.btn.btn-secondary
 ${valitse tietolaji}                            css=.panel-header .action-mode-btn.btn.btn-block.btn-primary
+${MUOKKAUSTILA_AKTIVOITU}                       false
 ${Siirry muokkaustilaan}                        css=.panel-group:not([style="display: none;"]) .action-mode-btn.btn.btn-block.edit-mode-btn.btn-primary
 ${Siirry katselutilaan}                         css=.panel-group:not([style="display: none;"]) .action-mode-btn.btn.btn-block.read-only-btn.btn-secondary
 ${Muokkaustila_SelectTool}                      css=.panel-group:not([style="display: none;"]) .action.select

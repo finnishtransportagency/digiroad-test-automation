@@ -102,6 +102,7 @@ Rautateiden huoltotien muokkaus koko ketjulle    [arguments]    ${testipaikka}  
 
     Element Should Be Enabled    ${FA_footer_Peruuta}
     Click Element                ${FA_footer_Tallenna}
+    Set Test Variable    ${MUOKKAUSTILA_AKTIVOITU}    False
     Odota sivun latautuminen
 
 
@@ -133,6 +134,7 @@ Rautateiden huoltotien muokkaus ketjun osalle    [arguments]    ${testipaikka}  
     END
     Element Should Be Enabled    ${FA_footer_Peruuta}
     Click Element                ${FA_footer_Tallenna}
+    Set Test Variable    ${MUOKKAUSTILA_AKTIVOITU}    False
     Odota sivun latautuminen
 
 

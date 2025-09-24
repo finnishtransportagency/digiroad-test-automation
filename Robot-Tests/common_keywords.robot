@@ -134,9 +134,12 @@ Vaihda Tietolaji    [Arguments]    ${tietolaji_locator}
     Wait Until Element Is Visible    ${Valitse_tietolaji_ikkuna}
     Select Radio Button    ${Tietolaji_RB_group}    ${tietolaji_locator}
     Radio Button Should Be Set To    ${Tietolaji_RB_group}  ${tietolaji_locator}
-    # Teemu 23.9.2025. Vaihdettu tähän Siirry katselutilaan verifiointi koska testissä aiemmin mennään muokkaustilaan.
-    Wait Until Element Is Visible    ${Siirry katselutilaan}
-    #Wait Until Element Is Visible    ${Siirry muokkaustilaan}
+    # Teemu 23.9.2025. Vaihdettu tähän Siirry katselutilaan ehdollinen verifiointi jos testissä aiemmin mennään muokkaustilaan.
+    IF    '${MUOKKAUSTILA_AKTIVOITU.lower()}' == 'true'
+        Wait Until Element Is Visible    ${Siirry katselutilaan}
+    ELSE
+        Wait Until Element Is Visible    ${Siirry muokkaustilaan}
+    END
 
 
 Zoomaa kartta  [Arguments]   ${loopvalue}  ${maxskaala}
@@ -169,6 +172,7 @@ Elements should be visible    [Arguments]    ${elem1}    ${elem2}
 Siirry Muokkaustilaan
     Wait Until Element Is Visible    ${Siirry muokkaustilaan}
     Click Element    ${Siirry muokkaustilaan}
+    Set Test Variable    ${MUOKKAUSTILA_AKTIVOITU}    true
     #Wait Until Element Is Visible       ${Map_popup}  10
 
 
@@ -176,6 +180,7 @@ Siirry Katselutilaan
     Wait Until Element Is Visible    ${Siirry katselutilaan}
     Click button    ${Siirry katselutilaan}
     Wait Until Element Is Not Visible    ${Map_popup}
+    Set Test Variable    ${MUOKKAUSTILA_AKTIVOITU}    false
 
 
 Tupla Klikkaa Kartan Keskelle
