@@ -6,7 +6,7 @@ Library                     selenium_extensions.py
 Library                     DateTime
 #Library                     DebugLibrary
 
-Resource                    DRownvariables.robot
+#Resource                    DRownvariables.robot
 Resource                    variables.robot
 Resource                    API_KW_lanes_in_municipality.robot
 Resource                    API_KW_lanes_in_range.robot
@@ -90,6 +90,7 @@ Sulje QA popup
 Testin Aloitus
     Set Selenium Speed    ${DELAY}
     Go to    ${LOGIN URL}
+    Set Test Variable    ${MUOKKAUSTILA_AKTIVOITU}    false
     Wait Until Element Is Enabled    ${kartta}
     Wait Until Element Is Visible    ${Siirry muokkaustilaan}  120
 
