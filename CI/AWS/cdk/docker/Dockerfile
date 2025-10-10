@@ -95,6 +95,7 @@ RUN apk update \
     #robotframework-seleniumlibrary==$SELENIUM_LIBRARY_VERSION \
     robotframework-requests \
     #robotframework-requests==$ROBOT_FRAMEWORK_REQUESTS_VERSION \
+    robotframework-retryfailed==0.2.0 \
     PyYAML
 # Download Gecko drivers directly from the GitHub repository
 #  && wget -q "https://github.com/mozilla/geckodriver/releases/download/$GECKO_DRIVER_VERSION/geckodriver-$GECKO_DRIVER_VERSION-linux64.tar.gz" \
