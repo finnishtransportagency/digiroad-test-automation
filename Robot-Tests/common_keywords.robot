@@ -4,9 +4,9 @@ Library                     SeleniumLibrary     timeout=60.0   run_on_failure=Ca
 Library                     String
 Library                     selenium_extensions.py
 Library                     DateTime
-#Library                     DebugLibrary
+# Library                     DebugLibrary
 
-#Resource                    DRownvariables.robot
+# Resource                    DRownvariables.robot
 Resource                    variables.robot
 Resource                    API_KW_lanes_in_municipality.robot
 Resource                    API_KW_lanes_in_range.robot
@@ -92,7 +92,17 @@ Testin Aloitus
     Go to    ${LOGIN URL}
     Set Test Variable    ${MUOKKAUSTILA_AKTIVOITU}    false
     Wait Until Element Is Enabled    ${kartta}
-    Wait Until Element Is Visible    ${Siirry muokkaustilaan}  120
+    # Trying to make starting test case more reliable.
+    # Especially in AWS it seems that page keeps on loading forever sometimes.
+    ${map_enabled} =    Run Keyword And Return Status
+    ...    Wait Until Element Is Enabled    ${kartta}
+    ${muokkaustila_button_visible} =    Run Keyword And Return Status
+    ...    Wait Until Element Is Visible    ${Siirry muokkaustilaan}    20
+    IF    ${muokkaustila_button_visible} == ${False} or ${map_enabled} == ${False}
+        Reload Page
+    END
+    Wait Until Element Is Enabled    ${kartta}
+    Wait Until Element Is Visible    ${Siirry muokkaustilaan}    60
 
 
 ###################
@@ -281,3 +291,23 @@ tklick    [arguments]    ${x}    ${y}
     #exit for loop if     ${t} == True
     Run Keyword If    ${t} == True    Log To Console     ${x}
     Run Keyword If    ${t} == True    Log To Console     ${y}
+
+
+Click Center Of The Map And Wait For Locator    [Arguments]    ${locator}=${FA_otsikko}
+    [Documentation]    Tries to click element in the middle of the map by changing y coordinate.
+    ...                Fails if header of right side info window not visible after clicking.
+    FOR    ${index}    IN RANGE    0    25    5
+        Log    Clicking map at coordinates 0 and ${index}
+        Click Element At Coordinates    ${Kartta}    0    ${index}
+        ${status} =    Run Keyword And Return Status
+        ...    Wait Until Element Is Visible    ${FA_otsikko}    timeout=5
+        IF    ${status} == ${False}
+            CONTINUE
+        ELSE
+            BREAK
+        END
+    END
+    IF    ${status} == ${False}
+        Fail
+        ...    Yritettiin klikata kohdetta kartan keskellä mutta tiedot eivät avautuneet oikealle klikkausyritysten jälkeen.
+    END

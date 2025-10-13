@@ -157,20 +157,21 @@ UI_5_chkbx  [Arguments]  ${TL}  ${testipaikka}
 
     #Siirry Testipaikkaan  ${TL}  ${testipaikka}
 
-    wait until element is visible       ${valitse tietolaji}
-    vaihda tietolaji                    ${TL}
-    Paikanna osoite                     ${testipaikka}
-    Zoomaa kartta                       5  20 m
-    Odota sivun latautuminen
+    Wait Until Element Is Visible       ${valitse tietolaji}
+    Vaihda Tietolaji                    ${TL}
+    Paikanna Osoite                     ${testipaikka}
+    Zoomaa Kartta                       5  20 m
+    Odota Sivun Latautuminen
 
     Siirry Muokkaustilaan
     Wait Until Element Is Not Visible       ${Map_popup}
     Sleep                                   3
-    click element at coordinates            ${kartta}  0  20
+    Click Center Of The Map And Wait For Locator    ${FA_otsikko}
+    # Click Element At Coordinates            ${kartta}  0  20
     #Run Keyword If                          '${TL}' == '${TL_Suojatie_RB}'  Siirry muokkaustilaan
     #   Scrollataan formin loppuun, jotta checkbox tulee näkyviin.
     #    pause execution
-    wait until element is visible              ${FA_otsikko}
+    # Wait Until Element Is Visible              ${FA_otsikko}
     # ${c} =   get element count      css=[class='form-group']
     # Run Keyword If                          ${c} == 0   click element at coordinates     ${kartta}   1   0
     Run Keyword If                          '${TL}' == '${TL_Joukkoliikenteen_pysäkki_RB}'

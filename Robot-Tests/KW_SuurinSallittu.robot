@@ -9,8 +9,9 @@ Massa_1  [arguments]  ${tietolaji}  ${testipaikka}  ${rajoitus}    ${rajoituksen
     Siirry Testipaikkaan                ${tietolaji}  ${testipaikka}
     Zoomaa kartta  5  5 m
     Odota sivun latautuminen
-    Click Element At Coordinates        ${Kartta}  0  20
-    Wait Until Element Is Visible       ${FA_otsikko}
+    Click Center Of The Map And Wait For Locator    ${FA_otsikko}
+    # Click Element At Coordinates        ${Kartta}  0  20
+    # Wait Until Element Is Visible       ${FA_otsikko}
     ${tunniste}=  Palauta Rajoituksen Tunniste  ${tietolaji}
     Element Should Contain              css=.form-control-static.${tunniste}  ${rajoituksen_arvo}
     Lue Rajoitus on kenttä              ${tietolaji}      ${rajoituksen_arvo}
@@ -19,8 +20,9 @@ Massa_1  [arguments]  ${tietolaji}  ${testipaikka}  ${rajoitus}    ${rajoituksen
 Massa_2  [arguments]  ${tietolaji}  ${testipaikka}  ${rajoitus}
     Siirry Testipaikkaan                ${tietolaji}  ${testipaikka}
     Odota sivun latautuminen
-    Click Element At Coordinates        ${Kartta}  0  10
-    Wait Until Element Is Visible       ${FA_otsikko}
+    # Click Element At Coordinates        ${Kartta}  0  10
+    # Wait Until Element Is Visible       ${FA_otsikko}
+    Click Center Of The Map And Wait For Locator    ${FA_otsikko}
     Siirry Muokkaustilaan
     ${tunniste}=  Palauta Rajoituksen Tunniste  ${tietolaji}
 
@@ -36,8 +38,9 @@ Massa_2  [arguments]  ${tietolaji}  ${testipaikka}  ${rajoitus}
     Siirry Katselutilaan
 
     #Tarkistetaan rajoituksen sisältö
-    Click Element At Coordinates        ${Kartta}  0  20
-    Wait Until Element Is Visible       ${FA_otsikko}
+    Click Center Of The Map And Wait For Locator    ${FA_otsikko}
+    # Click Element At Coordinates        ${Kartta}  0  20
+    # Wait Until Element Is Visible       ${FA_otsikko}
     Element Should Contain              css=.form-editable-${tunniste} > div.input-unit-combination > div:nth-child(1) > p  ${rajoitus}
     Siirry Muokkaustilaan
     Nollaa Rajoitus                     ${tunniste}
@@ -90,8 +93,9 @@ Nollaa Rajoitus  [arguments]  ${tunniste}
     Wait Until Element Is Not Visible  ${Spinner_Overlay}
     Odota sivun latautuminen
     Siirry Katselutilaan
-    Click Element At Coordinates        ${Kartta}  0  20
-    Wait Until Element Is Visible  ${FA_otsikko}
+    Click Center Of The Map And Wait For Locator    ${FA_otsikko}
+    # Click Element At Coordinates        ${Kartta}  0  20
+    # Wait Until Element Is Visible  ${FA_otsikko}
 
 
 
