@@ -4,9 +4,12 @@ Library                     SeleniumLibrary     timeout=60.0   run_on_failure=Ca
 Library                     String
 Library                     selenium_extensions.py
 Library                     DateTime
-# Library                     DebugLibrary
 
+# -> Comment before committing
+# Library                     DebugLibrary
 # Resource                    DRownvariables.robot
+# <- Comment before committing
+
 Resource                    variables.robot
 Resource                    API_KW_lanes_in_municipality.robot
 Resource                    API_KW_lanes_in_range.robot
@@ -91,7 +94,6 @@ Testin Aloitus
     Set Selenium Speed    ${DELAY}
     Go to    ${LOGIN URL}
     Set Test Variable    ${MUOKKAUSTILA_AKTIVOITU}    false
-    Wait Until Element Is Enabled    ${kartta}
     # Trying to make starting test case more reliable.
     # Especially in AWS it seems that page keeps on loading forever sometimes.
     ${map_enabled} =    Run Keyword And Return Status
@@ -311,3 +313,25 @@ Click Center Of The Map And Wait For Locator    [Arguments]    ${locator}=${FA_o
         Fail
         ...    Yritettiin klikata kohdetta kartan keskellä mutta tiedot eivät avautuneet oikealle klikkausyritysten jälkeen.
     END
+
+
+Tallenna Muutokset
+    [Documentation]    Clicks save buttton and checks if alerts present.
+    ...                If alert present tries clicking again.
+    ...                Spinner is sometimes stuck after saving so changing screen size
+    ...                to handle that. Needs to be investigated if real bug.
+    Click Element    ${FA_footer_Tallenna}
+    ${tallennus_epäonnistui} =    Run Keyword And Return Status
+    ...    Alert Should Be Present
+    ...    timeout=2
+    IF    ${tallennus_epäonnistui} == ${True}
+        Click Element    ${FA_footer_Tallenna}
+    END
+    ${spinner_not_visible} =    Run Keyword And Return Status
+    ...    Wait Until Element Is Not Visible    ${Spinner_Overlay}    timeout=30
+    IF    ${spinner_not_visible} == ${False}
+         Set Window Size    1500    1080
+         Set Window Size    1920    1080
+    END
+    Wait Until Element Is Not Visible    ${Spinner_Overlay}
+    ...    error=Spinner still visible on map after saving.

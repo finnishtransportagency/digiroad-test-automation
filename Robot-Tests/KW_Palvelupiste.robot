@@ -6,7 +6,8 @@ Resource    common_keywords.robot
 
 *** Keywords ***
 
-Palvelupiste_1  [arguments]  ${testipaikka}  ${Pisteen_tyyppi}  ${Pisteen_teksti}
+Palvelupiste_1
+    [arguments]    ${testipaikka}    ${Pisteen_tyyppi}    ${Pisteen_teksti}
     log  Luodaan uusi Palvelupiste, Täytetään kaikki kentät
     Siirry Testipaikkaan  ${TL_Palvelupiste_RB}  ${Testipaikka}
     Odota sivun latautuminen
@@ -15,34 +16,34 @@ Palvelupiste_1  [arguments]  ${testipaikka}  ${Pisteen_tyyppi}  ${Pisteen_teksti
     Log  Alustetaan testipaikka uusiksi. Tarkistetaan, että Palvelupiste näkyy oikeassa kategoriassa.
     Siirry Muokkaustilaan
     Click Element                               ${Muokkaustila_AddTool}
-    Click Element At Coordinates                ${Kartta}   0   20
-    Wait Until Element Is Visible               css=.form-control
+    Click Center Of The Map And Wait For Locator    css=.form-control
     Click Element                               css=.form-control
     Click Element                               ${PP_Pysäköintialue}
     Click Element                               ${PP_Alityyppi_Perusvarustelu}
     Input Text                                  css=.form-control.service-name  ${Pisteen_teksti}
     Input Text                                  css=.form-control.large-input   ${Pisteen_teksti}
     Input Text                                  css=.form-control.service-parking-place-count   300
-    Click Element                               ${FA_footer_Tallenna}
+    Tallenna Muutokset
     Siirry Katselutilaan
-    Click Element At Coordinates                ${Kartta}   0   20
-    ${date}=  Get Current Date                  result_format=%d.%m.%Y
+    Click Center Of The Map And Wait For Locator
+    ${date} =    Get Current Date               result_format=%d.%m.%Y
     Wait Until Element Is Visible               ${FA_otsikko}
     Tarkista Palvelupisteen Kentät              ${date}
     Alusta Testipaikka
 
 
-Palvelupiste_2  [Arguments]  ${testipaikka}  ${Pisteen_tyyppi}  ${Pisteen_teksti}
+Palvelupiste_2
+    [Arguments]    ${testipaikka}    ${Pisteen_tyyppi}    ${Pisteen_teksti}
     Testin Aloitus
     log  Paikannetaan Palvelupiste. Tarkistetaan palvelupisteen tyyppi.
     Siirry Testipaikkaan                        ${TL_Palvelupiste_RB}  ${testipaikka}
     Odota sivun latautuminen
-    Click Element At Coordinates                ${Kartta}  0  20
-    Wait Until Element Is Visible               ${FA_otsikko}
+    Click Center Of The Map And Wait For Locator    ${FA_otsikko}
     Element Should Contain                      css=#feature-attributes-form  ${Pisteen_teksti}
 
 
-Palvelupiste_3  [Arguments]  ${testipaikka}  ${Pisteen_tyyppi}  ${Pisteen_teksti}
+Palvelupiste_3
+    [Arguments]    ${testipaikka}    ${Pisteen_tyyppi}    ${Pisteen_teksti}
     log  Luodaan uusi Palvelupiste, Täytetään kaikki kentät
     Siirry Testipaikkaan  ${TL_Palvelupiste_RB}  ${Testipaikka}
     Odota sivun latautuminen
@@ -52,28 +53,26 @@ Palvelupiste_3  [Arguments]  ${testipaikka}  ${Pisteen_tyyppi}  ${Pisteen_teksti
     Siirry Muokkaustilaan
     Click Element                               ${Muokkaustila_AddTool}
     Wait Until Element Is Enabled               ${Kartta}
-    Click Element At Coordinates                ${Kartta}   0   20
-    Wait Until Element Is Visible               css=.form-control
+    Click Center Of The Map And Wait For Locator    css=.form-control
     Click Element                               css=.form-control
     Click Element                               css=.form-control option[data-value= ${Pisteen_teksti}]
     Input Text                                  css=.form-control.large-input   ${Pisteen_teksti}
-
-    Click Element                               ${FA_footer_Tallenna}
-    Wait Until Element Is Not Visible           css=.spinner-overlay.modal-overlay
+    Tallenna Muutokset
     Click Element                               ${Muokkaustila_SelectTool}
-    Click Element At Coordinates                ${Kartta}   0   20
+    Click Center Of The Map And Wait For Locator
     Click Element                               ${zoombar_minus}
     Siirrä Kohde                                300   0
     Odota sivun latautuminen
     Zoomaa kartta                               5   50 m
     Wait Until Element Is Visible               ${FA_Poista_chkbx}
     Click Element                               ${FA_Poista_chkbx}
-    Click Element                               ${FA_footer_Tallenna}
+    Tallenna Muutokset
     Siirry Katselutilaan
     Alusta Testipaikka
 
 
-Palvelupiste_4  [Arguments]  ${Testipaikka}    ${Pisteen_tyyppi}  ${Pisteen_teksti}
+Palvelupiste_4
+    [Arguments]    ${Testipaikka}    ${Pisteen_tyyppi}    ${Pisteen_teksti}
     Siirry Testipaikkaan  ${TL_Palvelupiste_RB}  ${Testipaikka}
     Odota sivun latautuminen
     Alusta Testipaikka

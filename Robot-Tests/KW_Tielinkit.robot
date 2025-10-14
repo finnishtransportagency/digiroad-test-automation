@@ -192,8 +192,7 @@ Tielinkit_3  [Arguments]  ${Luokan_odotusarvo}  ${testipaikka}
     mouse over    ${valitse tietolaji}
     double click element at coordinates     ${kartta}   0  20
     mouse over             ${kartta}
-    click element at coordinates     ${kartta}   0  20
-    wait until element is visible           ${FA_otsikko}
+    Click Center Of The Map And Wait For Locator    ${FA_otsikko}
     Log  Varmistetaan, että formin toiminnallinen luokkaa vastaa annettua odotusarvoa
     VerifyValue                             ${FA_tielinkki_valittu_toiminnallinenluokka}  ${Luokan_odotusarvo}
     Log  Varmistetaan, että valitun toiminnallisen luokan värinen vektori on näkyvissä

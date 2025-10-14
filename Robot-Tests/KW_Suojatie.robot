@@ -1,6 +1,7 @@
 
 *** Settings ***
 Documentation       Pageobject for obstacles (Suojatie)
+Resource    common_keywords.robot
 
 *** Variables ***
 ${LocatorForDDM}                                css=#feature-attributes .form-group.editable select:first-of-type
@@ -71,19 +72,16 @@ Suojatie_3  [arguments]  ${testipaikka}
     click element                               ${FA_footer_Peruuta}
 
 
-Suojatie_4  [arguments]  ${testipaikka}
-    ${date}=  Get Current Date                  result_format=%d.%m.%Y
-    Siirry Testipaikkaan                        ${TL_Suojatie_RB}  ${testipaikka}
-    Odota sivun latautuminen
-
+Suojatie_4    [arguments]    ${testipaikka}
+    ${date} =    Get Current Date    result_format=%d.%m.%Y
+    Siirry Testipaikkaan    ${TL_Suojatie_RB}    ${testipaikka}
+    Odota Sivun Latautuminen
     Alusta Testipaikka
-    Log  Luodaan uusi suojatie, tarkistetaan Datetimen avulla luontipäivä.
-
-    Luo Suojatie                                tyyppi
+    Log    Luodaan uusi suojatie, tarkistetaan Datetimen avulla luontipäivä.
+    Luo Suojatie    tyyppi
     Siirry Katselutilaan
-    Click Element At Coordinates                ${Kartta}  0  20
-    Wait Until Element Is Visible               ${FA_Lisätty_Järjestelmään}
-    Element Should Contain                      ${FA_Lisätty_Järjestelmään}  ${date}
+    Click Center Of The Map And Wait For Locator    ${FA_Lisätty_Järjestelmään}
+    Element Should Contain    ${FA_Lisätty_Järjestelmään}    ${date}
     Poista Kohde
 
 
@@ -92,34 +90,32 @@ Suojatie_4  [arguments]  ${testipaikka}
 #######################
 Siirrä Suojatie  [Arguments]  ${xKoord}  ${yKoord}
 # Siirtää valittua Suojatie annetun offsetin verran, arvot positiivisia keskipisteestä oikealle ja alas
-    Seleniumlibrary.mouse down                      css=[class='crosshair crosshair-center']
-    Seleniumlibrary.drag and drop by offset         css=[class='crosshair crosshair-center']  ${xKoord}  ${yKoord}
-    Seleniumlibrary.mouse up                        css=[class='crosshair crosshair-center']
+    Seleniumlibrary.Mouse Down    css=[class='crosshair crosshair-center']
+    Seleniumlibrary.Drag And Drop By Offset    css=[class='crosshair crosshair-center']    ${xKoord}    ${yKoord}
+    Seleniumlibrary.Mouse Up    css=[class='crosshair crosshair-center']
 
 
 Tarkista Suojatien olemassaolo
 # Käytetään uutta Suojatietä luotaessa - Tarkistaa jos Suojatie on jo olemassa ja poistaa sen.
-    click element at coordinates                ${kartta}  20  -30
-    ${passed}=  Run Keyword And Return Status   wait until element is visible    ${FA_otsikko}  timeout=3
-    run keyword if  ${passed}  Poista Suojatie
+    Click Element At Coordinates                ${kartta}  20  -30
+    ${passed} =    Run Keyword And Return Status    Wait Until Element Is Visible    ${FA_otsikko}    timeout=3
+    Run Keyword If    ${passed}    Poista Suojatie
 
 
 Poista Suojatie
-    click element                               ${FA_Suojatie_Poista_chkbx}
-    click element                               ${FA_footer_Tallenna}
-    wait until element is visible               ${MuokkausVaroitus}
-    SeleniumLibrary.Element Text Should Be                      ${MuokkausVaroitus}     ${Suojatien_poisto}
-    click element                               ${muokkausvaroitus_kyllä_btn}
+    Click Element    ${FA_Suojatie_Poista_chkbx}
+    Click Element    ${FA_footer_Tallenna}
+    Wait Until Element Is Visible    ${MuokkausVaroitus}
+    SeleniumLibrary.Element Text Should Be    ${MuokkausVaroitus}    ${Suojatien_poisto}
+    Click Element    ${muokkausvaroitus_kyllä_btn}
 
 
-Luo Suojatie  [arguments]  ${tyyppi}
+Luo Suojatie    [arguments]    ${tyyppi}
     Log  Vaihtaa muokkaustilaan ja luo uuden Suojatien kartan osoittamaan kohtaan.
-    Siirry muokkaustilaan
-    Odota sivun latautuminen
-    Tarkista Suojatien olemassaolo
-    click element                               ${Muokkaustila_AddTool}
-    click element at coordinates                ${kartta}  0    20
-    wait until element is visible               ${FA_otsikko}
-    Click Element                               ${FA_footer_Tallenna}
-    Wait Until Element Is Not Visible           ${Spinner_Overlay}
-    Odota sivun latautuminen
+    Siirry Muokkaustilaan
+    Odota Sivun Latautuminen
+    Tarkista Suojatien Olemassaolo
+    Click Element    ${Muokkaustila_AddTool}
+    Click Center Of The Map And Wait For Locator    ${FA_otsikko}
+    Tallenna Muutokset
+    Odota Sivun Latautuminen
