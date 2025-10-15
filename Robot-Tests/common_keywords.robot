@@ -7,7 +7,7 @@ Library                     DateTime
 
 # -> Comment before committing
 # Library                     DebugLibrary
-Resource                    DRownvariables.robot
+# Resource                    DRownvariables.robot
 # <- Comment before committing
 
 Resource                    variables.robot
