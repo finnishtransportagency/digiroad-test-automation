@@ -97,10 +97,9 @@ Pysakointi_2  [Arguments]  ${Tietolaji}  ${Testipaikka}
     #Kopio nopeusrajotus 3
     Siirry Testipaikkaan  ${Tietolaji}  ${Testipaikka}
     Odota sivun latautuminen
-
     Siirry Muokkaustilaan
     Click Element                               css=.${Tietolaji} .polygon
-
+    
     Log  Monivalinnan voi peruuttaa 206.116
     Suorita monivalinta
     Click Element                               ${FA_Lisaa_Pysakointikielto}
@@ -108,12 +107,11 @@ Pysakointi_2  [Arguments]  ${Tietolaji}  ${Testipaikka}
     Click Element                               ${FA_Pysakointirajoitus_DDM}
     Click Element                               ${FA_header_Peruuta}
     Click Element                               ${Muokkaustila_SelectTool}
-
     Siirry Katselutilaan
     sleep  1 s
-    Click Element at Coordinates                ${Kartta}  0  20
-    Wait Until Element contains                 ${FA_Pysakointikielto}  ei ole
-
+    Click Center Of The Map And Wait For Locator
+    Wait Until Element contains    ${FA_Pysakointikielto}    ei ole    timeout=5
+    
     Log  Ei voi aloittaa monivalintaa, jos on muokannut jotain toista pysäköintikieltoa ensin 206.118
     Siirry Muokkaustilaan
     Click Element                               ${FA_Lisaa_Pysakointikielto}
@@ -122,7 +120,7 @@ Pysakointi_2  [Arguments]  ${Tietolaji}  ${Testipaikka}
     Wait Until Element Is Not Visible           ${Map_popup}
     Click Element                               ${Muokkausvaroitus_Sulje_btn}
     Click Element                               ${FA_footer_Peruuta}
-
+    
     Log  Talletetaan rajoitus monivalintatyökalulla.
     Click Element                               css=.${Tietolaji} .polygon
     Suorita monivalinta
@@ -131,20 +129,19 @@ Pysakointi_2  [Arguments]  ${Tietolaji}  ${Testipaikka}
     Click Element                               ${FA_Pysakointirajoitus_DDM}
     Click Element                               ${FA_Pysakointi_aika}
     Click Element                               ${FA_Pysakointi_aika_DDM}
-    Click Element                               ${FA_header_Tallenna}
-    Wait Until Element Is Not Visible           ${Spinner_Overlay}
-    Odota sivun latautuminen
+    Tallenna Dialogista
+    Odota Sivun Latautuminen
 
     Log  Tarkistetaan edellinen talletus, sekä asetetaan pysäköintikiellon sunnuntaille.
     Siirry Katselutilaan
-    Click Element At Coordinates                ${Kartta}  0  20
-    Wait Until Element Is Visible               ${FA_otsikko}
+    Click Center Of The Map And Wait For Locator    ${FA_otsikko}
+    # Click Element At Coordinates                ${Kartta}  0  20
+    # Wait Until Element Is Visible               ${FA_otsikko}
     Element Should Contain                      ${FA_Pysakointirajoitus_Tyyppi}  Pysäköinti kielletty
     Siirry Muokkaustilaan
     Click Element                               css=.${Tietolaji} .polygon
     Suorita monivalinta
-    Click Element                               ${FA_header_Tallenna}
-    Wait Until Element Is Not Visible           ${Spinner_Overlay}
+    Tallenna Dialogista
     Odota sivun latautuminen
 
 Pysakointi_3  [Arguments]  ${Tietolaji}  ${Testipaikka}

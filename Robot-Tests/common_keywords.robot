@@ -7,7 +7,7 @@ Library                     DateTime
 
 # -> Comment before committing
 # Library                     DebugLibrary
-# Resource                    DRownvariables.robot
+Resource                    DRownvariables.robot
 # <- Comment before committing
 
 Resource                    variables.robot
@@ -52,23 +52,23 @@ Resource                    KW_Rautatien_huoltotie.robot
 ${BROWSER}                  Firefox
 ${DELAY}                    0.2
 
-${LOGIN URL}                https://digiroadtest.testivaylapilvi.fi/
-${LiviUserNameField}        id=username
-${LiviPasswordField}        id=password
-${LiviLoginButton}          css=.submit
-#${VaylaMFAButton}           css=body > div.container > div > div.modal-content.background-customizable.modal-content-mobile.visible-md.visible-lg > div.modal-body > div:nth-child(2) > div > div:nth-child(1) > div > div > form > div > div > input:nth-child(2)    #ainoastaan koko selector toimii 21.02.2025
-${VaylaMFAButton}           css=div[class*='visible-md'] input[aria-label='Vayla12cTestOAM']
-${IMAGE_DIR}                ${CURDIR}\\img
+${LOGIN URL}                      https://digiroadtest.testivaylapilvi.fi/
+${LiviUserNameField}              id=username
+${LiviPasswordField}              id=password
+${LiviLoginButton}                css=.submit
+${VaylaMFAButton}                 css=div[class*='visible-md'] input[aria-label='Vayla12cTestOAM']
+${IMAGE_DIR}                      ${CURDIR}\\img
+
 
 *** Keywords ***
 Login To DigiRoad
-    Log                             ${BROWSER}
-    Log                             ${LOGIN URL}
-    Open Browser                    ${LOGIN URL}  ${BROWSER}
+    Log    ${BROWSER}
+    Log    ${LOGIN URL}
+    Open Browser    ${LOGIN URL}    ${BROWSER}
     ...  options=add_argument('--no-sandbox');add_argument('--disable-gpu');add_argument('--verbose')
     #    ...  service_log_path=driver.log
 
-    #Maximize Browser Window
+    # Maximize Browser Window
     Set Window Size    1920    1080
     Set Selenium Speed    ${DELAY}
     Wait Until Element Is Visible    ${VaylaMFAButton}
@@ -78,7 +78,7 @@ Login To DigiRoad
     #Set Log Level                   NONE
     Input Password    ${LiviUserNameField}    ${LiviUSER}
     Input Password    ${LiviPasswordField}    ${LiviPWD}
-    Click Button      ${LiviLoginButton}
+    Click Button    ${LiviLoginButton}
     #Set Log Level                   ${temp}
     Wait Until Element Is Visible    ${kartta}    30
     Odota Sivun Latautuminen
@@ -302,7 +302,7 @@ Click Center Of The Map And Wait For Locator    [Arguments]    ${locator}=${FA_o
         Log    Clicking map at coordinates 0 and ${index}
         Click Element At Coordinates    ${Kartta}    0    ${index}
         ${status} =    Run Keyword And Return Status
-        ...    Wait Until Element Is Visible    ${FA_otsikko}    timeout=5
+        ...    Wait Until Element Is Visible    ${locator}    timeout=5
         IF    ${status} == ${False}
             CONTINUE
         ELSE
@@ -335,3 +335,8 @@ Tallenna Muutokset
     END
     Wait Until Element Is Not Visible    ${Spinner_Overlay}
     ...    error=Spinner still visible on map after saving.
+
+
+Tallenna Dialogista
+    Click Element    ${FA_header_Tallenna}
+    Wait Until Element Is Not Visible    ${Spinner_Overlay}    timeout=10
