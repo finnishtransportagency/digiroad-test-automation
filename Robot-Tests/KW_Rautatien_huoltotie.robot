@@ -7,70 +7,62 @@ Resource            common_keywords.robot
 
 
 *** Keywords ***
-Rautateiden huoltotien tarkastelu käyttöoikeus     [arguments]    ${testipaikka}    ${rautatien_huoltotiet_radionappi}
+Rautateiden Huoltotien Tarkastelu Käyttöoikeus
+    [arguments]    ${testipaikka}    ${rautatien_huoltotiet_radionappi}
     Testin Aloitus
     Log    Tarkastellaan rautateiden huoltotien ilmestyminen zoomatessa
     Vaihda Tietolaji    ${TL_Rautateiden_huoltotie_RB}
     Radio Button Should Be Set To    labelingRadioButton    rightOfUse
     Paikanna osoite    ${testipaikka}
     Zoomaa kartta    2    200
-    Odota sivun latautuminen
-
-    Click Element At Coordinates      ${Kartta}    0    20
-    Wait Until Element Is Visible     ${FA_otsikko}
-    Element Should Be Visible         ${FA_Lisätty_Järjestelmään}
-    Element Should Be Visible         ${FA_Muokattu_viimeksi}
-    Element Should Be Visible         ${Rautatien_huoltotie_tarkastelu_boolean}
-    Element Should Contain            ${Rautatien_huoltotie_tarkastelu_boolean}    on
-
-    Element Should Be Visible         ${huoltotie_käyttöoikeus}
-    Element Should Be Visible         ${huoltotie_huoltovastuu}
-    Element Should Be Visible         ${huoltotie_tiehoitokunta}
-    Element Should Be Visible         ${huoltotie_tarkistettu}
-
-    Click Element At Coordinates      ${Kartta}    200    0
-    Odota sivun latautuminen
-    Tupla Klikkaa Kartan Keskelle
-    Wait Until Element Is Visible     ${FA_otsikko}
-    Element Should Be Visible         ${FA_Lisätty_Järjestelmään}
-    Element Should Be Visible         ${FA_Muokattu_viimeksi}
-    Element Should Be Visible         ${Rautatien_huoltotie_tarkastelu_boolean}
-    Element Should Contain            ${Rautatien_huoltotie_tarkastelu_boolean}    on
-    Click Element At Coordinates      ${Kartta}    200    0
+    Odota Sivun Latautuminen
+    Click Center Of The Map And Wait For Locator     ${FA_otsikko}
+    Element Should Be Visible    ${FA_Lisätty_Järjestelmään}
+    Element Should Be Visible    ${FA_Muokattu_viimeksi}
+    Element Should Be Visible    ${Rautatien_huoltotie_tarkastelu_boolean}
+    Element Should Contain    ${Rautatien_huoltotie_tarkastelu_boolean}    on
+    Element Should Be Visible    ${huoltotie_käyttöoikeus}
+    Element Should Be Visible    ${huoltotie_huoltovastuu}
+    Element Should Be Visible    ${huoltotie_tiehoitokunta}
+    Element Should Be Visible    ${huoltotie_tarkistettu}
+    Click Element At Coordinates    ${Kartta}    200    0
+    Odota Sivun Latautuminen
+    Tuplaklikkaa Kartan Keskella Ja Odota Lokaattori    ${FA_otsikko}
+    Element Should Be Visible    ${FA_Lisätty_Järjestelmään}
+    Element Should Be Visible    ${FA_Muokattu_viimeksi}
+    Element Should Be Visible    ${Rautatien_huoltotie_tarkastelu_boolean}
+    Element Should Contain    ${Rautatien_huoltotie_tarkastelu_boolean}    on
+    Click Element At Coordinates    ${Kartta}    200    0
     Odota sivun latautuminen
 
 
-Rautateiden huoltotien tarkastelu huoltovastuu     [arguments]    ${testipaikka}    ${rautatien_huoltotiet_radionappi}
+Rautateiden Huoltotien Tarkastelu Huoltovastuu
+    [arguments]    ${testipaikka}    ${rautatien_huoltotiet_radionappi}
     Testin Aloitus
     Log    Tarkastellaan rautateiden huoltotien ilmestyminen zoomatessa
     Vaihda Tietolaji    ${TL_Rautateiden_huoltotie_RB}
     Radio Button Should Be Set To    labelingRadioButton    responsibility
-    Paikanna osoite    ${testipaikka}
+    Paikanna Osoite    ${testipaikka}
     Zoomaa kartta    2    200
-    Odota sivun latautuminen
-
-    Click Element At Coordinates      ${Kartta}    0    20
-    Wait Until Element Is Visible     ${FA_otsikko}
-    Element Should Be Visible         ${FA_Lisätty_Järjestelmään}
-    Element Should Be Visible         ${FA_Muokattu_viimeksi}
-    Element Should Be Visible         ${Rautatien_huoltotie_tarkastelu_boolean}
-    Element Should Contain            ${Rautatien_huoltotie_tarkastelu_boolean}    on
-
-    Element Should Be Visible         ${huoltotie_käyttöoikeus}
-    Element Should Be Visible         ${huoltotie_huoltovastuu}
-    Element Should Be Visible         ${huoltotie_tiehoitokunta}
-    Element Should Be Visible         ${huoltotie_tarkistettu}
-
+    Odota Sivun Latautuminen
+    Click Center Of The Map And Wait For Locator     ${FA_otsikko}
+    Element Should Be Visible    ${FA_Lisätty_Järjestelmään}
+    Element Should Be Visible    ${FA_Muokattu_viimeksi}
+    Element Should Be Visible    ${Rautatien_huoltotie_tarkastelu_boolean}
+    Element Should Contain    ${Rautatien_huoltotie_tarkastelu_boolean}    on
+    Element Should Be Visible    ${huoltotie_käyttöoikeus}
+    Element Should Be Visible    ${huoltotie_huoltovastuu}
+    Element Should Be Visible    ${huoltotie_tiehoitokunta}
+    Element Should Be Visible    ${huoltotie_tarkistettu}
     Click Element At Coordinates      ${Kartta}    200    0
     Odota sivun latautuminen
-    Tupla Klikkaa Kartan Keskelle
-    Wait Until Element Is Visible     ${FA_otsikko}
-    Element Should Be Visible         ${FA_Lisätty_Järjestelmään}
-    Element Should Be Visible         ${FA_Muokattu_viimeksi}
-    Element Should Be Visible         ${Rautatien_huoltotie_tarkastelu_boolean}
-    Element Should Contain            ${Rautatien_huoltotie_tarkastelu_boolean}    on
-    Click Element At Coordinates      ${Kartta}    200    0
-    Odota sivun latautuminen
+    Tuplaklikkaa Kartan Keskella Ja Odota Lokaattori    ${FA_otsikko}
+    Element Should Be Visible    ${FA_Lisätty_Järjestelmään}
+    Element Should Be Visible    ${FA_Muokattu_viimeksi}
+    Element Should Be Visible    ${Rautatien_huoltotie_tarkastelu_boolean}
+    Element Should Contain    ${Rautatien_huoltotie_tarkastelu_boolean}    on
+    Click Element At Coordinates    ${Kartta}    200    0
+    Odota Sivun Latautuminen
 
 
 Rautateiden Huoltotien Muokkaus Koko Ketjulle
@@ -133,139 +125,139 @@ Rautateiden Huoltotien Muokkaus Ketjun Osalle    [arguments]    ${testipaikka}  
     Odota sivun latautuminen
 
 
-Rautateiden huoltotien lisääminen usealle laatikolla    [arguments]    ${testipaikka}    ${l}    ${m}
+Rautateiden Huoltotien Lisääminen Usealle Laatikolla
+    [arguments]    ${testipaikka}    ${l}    ${m}
     Log    Testataan usean linkin lisääminen laatikkovalinnalla
     Testin Aloitus
     Vaihda Tietolaji    ${TL_Rautateiden_huoltotie_RB}
-    Paikanna osoite                             ${testipaikka}
-    Zoomaa kartta                               5   50 m
-    Odota sivun latautuminen
+    Paikanna Osoite    ${testipaikka}
+    Zoomaa Kartta    5   50 m
+    Odota Sivun Latautuminen
     Siirry Muokkaustilaan
-    Wait Until Element Is Not Visible           ${Map_popup}
+    Wait Until Element Is Not Visible    ${Map_popup}
     Log    Tarkistetaan laatikkotyökalu
-    Wait Until Element Is Visible               ${Muokkaustila_Laatikko}
-    Click Element                               ${Muokkaustila_Laatikko}
+    Wait Until Element Is Visible    ${Muokkaustila_Laatikko}
+    Click Element    ${Muokkaustila_Laatikko}
     Suorita laatikkovalinta
-    Wait Until Element Is Visible               css=.modal-dialog
-    Radio Button Should Be Set To               maintenanceRoad    disabled
-    Select Radio Button                         maintenanceRoad    enabled
-    Radio Button Should Be Set To               maintenanceRoad    enabled
-
-    Select From List By Value                   name=huoltotie_kayttooikeus    ${l}
-    Select From List By Value                   name=huoltotie_huoltovastuu    ${m}
-    Input Text                                  name=huoltotie_tiehoitokunta    dummypopup
-    Click Button                                name=huoltotie_tarkistettu-
-
-    Element Should Be Enabled                   ${FA_header_Tallenna}
-    Click Element                               ${FA_header_Peruuta}
+    Wait Until Element Is Visible    css=.modal-dialog
+    Radio Button Should Be Set To    maintenanceRoad    disabled
+    Select Radio Button    maintenanceRoad    enabled
+    Radio Button Should Be Set To    maintenanceRoad    enabled
+    Select From List By Value    name=huoltotie_kayttooikeus    ${l}
+    Select From List By Value    name=huoltotie_huoltovastuu    ${m}
+    Input Text    name=huoltotie_tiehoitokunta    dummypopup
+    Click Button    name=huoltotie_tarkistettu-
+    Element Should Be Enabled    ${FA_header_Tallenna}
+    Click Element    ${FA_header_Peruuta}
     Odota sivun latautuminen
 
 
-Rautateiden huoltotien lisääminen usealle polygonilla    [arguments]    ${testipaikka}    ${n}    ${m}
+Rautateiden Huoltotien Lisääminen Usealle Polygonilla
+    [arguments]    ${testipaikka}    ${n}    ${m}
     Log    Testataan usean linkin lisääminen monivalinnalla
     Testin Aloitus
     Vaihda Tietolaji    ${TL_Rautateiden_huoltotie_RB}
-    Paikanna osoite                             ${testipaikka}
-    Zoomaa kartta                               5   50 m
-    Odota sivun latautuminen
+    Paikanna Osoite    ${testipaikka}
+    Zoomaa Kartta    5   50 m
+    Odota Sivun Latautuminen
     Siirry Muokkaustilaan
-    Wait Until Element Is Not Visible           ${Map_popup}
+    Wait Until Element Is Not Visible    ${Map_popup}
     Log    Tarkistetaan laatikkotyökalu
-    Wait Until Element Is Visible               ${Muokkaustila_PolygonTool}
-    Click Element                               ${Muokkaustila_PolygonTool}
-    Suorita monivalinta
-    Wait Until Element Is Visible               css=.modal-dialog
-    Radio Button Should Be Set To               maintenanceRoad    disabled
-    Select Radio Button                         maintenanceRoad    enabled
-    Radio Button Should Be Set To               maintenanceRoad    enabled
-
-    Select From List By Value                   name=huoltotie_kayttooikeus    ${n}
-    Select From List By Value                   name=huoltotie_huoltovastuu    ${m}
-    Input Text                                  name=huoltotie_tiehoitokunta    dummypopup
-    Click Button                                name=huoltotie_tarkistettu-
-
-    Element Should Be Enabled                   ${FA_header_Tallenna}
-    Click Element                               ${FA_header_Peruuta}
+    Wait Until Element Is Visible    ${Muokkaustila_PolygonTool}
+    Click Element    ${Muokkaustila_PolygonTool}
+    Suorita Monivalinta
+    Wait Until Element Is Visible    css=.modal-dialog
+    Radio Button Should Be Set To    maintenanceRoad    disabled
+    Select Radio Button    maintenanceRoad    enabled
+    Radio Button Should Be Set To    maintenanceRoad    enabled
+    Select From List By Value    name=huoltotie_kayttooikeus    ${n}
+    Select From List By Value    name=huoltotie_huoltovastuu    ${m}
+    Input Text    name=huoltotie_tiehoitokunta    dummypopup
+    Click Button    name=huoltotie_tarkistettu-
+    Element Should Be Enabled    ${FA_header_Tallenna}
+    Click Element    ${FA_header_Peruuta}
     Odota sivun latautuminen
 
 
-Rautateiden huoltotien lisääminen usealle ctrl    [arguments]    ${testipaikka}    ${p}    ${q}
+Rautateiden Huoltotien Lisääminen Usealle Ctrl
+    [Arguments]    ${testipaikka}    ${p}    ${q}
     Log    Testataan usean linkin lisääminen ctrl-valinnalla
-    #testattava sijainnilla, jossa on suoraan pohjois-etelä-suunnassa kulkeva linkki
+    # testattava sijainnilla, jossa on suoraan pohjois-etelä-suunnassa kulkeva linkki
     Testin Aloitus
     Log    Usean rautatien huoltotietiedon lisäämistapojen testaaminen
-    Vaihda Tietolaji                                          ${TL_Rautateiden_huoltotie_RB}
-    Paikanna osoite                                           ${testipaikka}
-    Zoomaa kartta                                             5  20 m
-    Odota sivun latautuminen
+    Vaihda Tietolaji    ${TL_Rautateiden_huoltotie_RB}
+    Paikanna Osoite    ${testipaikka}
+    Zoomaa Kartta    5  20 m
+    Odota Sivun Latautuminen
     Siirry Muokkaustilaan
-    Wait Until Element Is Not Visible                         ${Map_popup}
-
-    #painetaan control pohjaan ja klikataan
-    Hold Control And Click Element At Coordinates             ${Kartta}  0  0
-    selenium_extensions.Hold Control And Drag By Offset       ${Kartta}  0  100
-    Click Element At Coordinates                              ${Kartta}  0  0
-    selenium_extensions.Hold Control And Drag By Offset       ${Kartta}  0  -200
-    Click Element At Coordinates                              ${Kartta}  0  0
+    Wait Until Element Is Not Visible    ${Map_popup}
+    # painetaan control pohjaan ja klikataan
+    Hold Control And Click Element At Coordinates    ${Kartta}    0    0
+    selenium_extensions.Hold Control And Drag By Offset    ${Kartta}    0    100
+    Click Element At Coordinates    ${Kartta}    0    0
+    selenium_extensions.Hold Control And Drag By Offset    ${Kartta}    0    -200
+    Click Element At Coordinates    ${Kartta}    0    0
     Release Control
-
-    Wait Until Element Is Visible               css=.modal-dialog
-    Radio Button Should Be Set To               maintenanceRoad    disabled
-    Select Radio Button                         maintenanceRoad    enabled
-    Radio Button Should Be Set To               maintenanceRoad    enabled
-
-    Select From List By Value                   name=huoltotie_kayttooikeus    ${p}
-    Select From List By Value                   name=huoltotie_huoltovastuu    ${q}
-    Input Text                                  name=huoltotie_tiehoitokunta    dummypopup
-    Click Button                                name=huoltotie_tarkistettu-
-
+    Wait Until Element Is Visible    css=.modal-dialog
+    Radio Button Should Be Set To    maintenanceRoad    disabled
+    Select Radio Button    maintenanceRoad    enabled
+    Radio Button Should Be Set To    maintenanceRoad    enabled
+    Select From List By Value    name=huoltotie_kayttooikeus    ${p}
+    Select From List By Value    name=huoltotie_huoltovastuu    ${q}
+    Input Text    name=huoltotie_tiehoitokunta    dummypopup
+    Click Button    name=huoltotie_tarkistettu-
     Element Should Be Enabled                   ${FA_header_Tallenna}
     Click Element                               ${FA_header_Peruuta}
     Odota sivun latautuminen
 
 
-Rautateiden huoltotien katkaisu    [arguments]    ${testipaikka}    ${r}    ${s}
+Rautateiden Huoltotien Katkaisu
+    [Arguments]    ${testipaikka}    ${r}    ${s}
     Testin Aloitus
     Log    Testataan rautateiden huoltotien katkaisu
-    Vaihda Tietolaji                            ${TL_Rautateiden_huoltotie_RB}
-    Paikanna osoite                             ${testipaikka}
-    Zoomaa kartta                               5    100m
-
-    Odota sivun latautuminen
+    Vaihda Tietolaji    ${TL_Rautateiden_huoltotie_RB}
+    Paikanna Osoite    ${testipaikka}
+    Zoomaa Kartta    5    100m
+    Odota Sivun Latautuminen
     Siirry Muokkaustilaan
     Log    Leikataan tielinkki kahteen osaan
-    Wait Until Element Is Visible              ${Muokkaustila_Leikkaus}
-    Click Element                              ${Muokkaustila_Leikkaus}
-
-    Odota sivun latautuminen
+    Wait Until Element Is Visible    ${Muokkaustila_Leikkaus}
+    Click Element    ${Muokkaustila_Leikkaus}
+    Odota Sivun Latautuminen
     Click Element At Coordinates               ${Kartta}  0  10
-    Odota sivun latautuminen
-
+    Odota Sivun Latautuminen
     #katkaistu linkki a
-    Click Element    css=#feature-attributes-form > div > div > div.dynamic-form.editable.form-editable-maintenanceRoad-a > div.input-unit-combination > div:nth-child(1) > select
+    Click Element
+    ...    css=#feature-attributes-form > div > div > div.dynamic-form.editable.form-editable-maintenanceRoad-a > div.input-unit-combination > div:nth-child(1) > select
     Select From List By Value    name=huoltotie_kayttooikeus    ${r}
     Select From List By Value    name=huoltotie_huoltovastuu    ${s}
     Press Keys    none    ENTER
     Click Button    name=huoltotie_tarkistettu-a
     Input Text    name=huoltotie_tiehoitokunta    dummy-a
-
     #katkaistu linkki b
-    Click Element    css=#feature-attributes-form > div > div > div.dynamic-form.editable.form-editable-maintenanceRoad-a > div.input-unit-combination > div:nth-child(2) > select
+    Click Element
+    ...    css=#feature-attributes-form > div > div > div.dynamic-form.editable.form-editable-maintenanceRoad-a > div.input-unit-combination > div:nth-child(2) > select
     Select From List By Value    name=huoltotie_kayttooikeus    ${r}
     Select From List By Value    name=huoltotie_huoltovastuu    ${s}
     Press Keys    none    ENTER
     Click Button    name=huoltotie_tarkistettu-b
     Input Text    name=huoltotie_tiehoitokunta    dummy-b
-
-    Element Should Be Enabled                   ${FA_footer_Tallenna}
-    Click Element                               ${FA_footer_Peruuta}
-    Odota sivun latautuminen
+    Element Should Be Enabled    ${FA_footer_Tallenna}
+    Click Element    ${FA_footer_Peruuta}
+    Odota Sivun Latautuminen
 
 
 *** Variables ***
-${Rautatien_huoltotie_tarkastelu_boolean}    css=#feature-attributes-form > div > div > div.dynamic-form.editable.form-editable-maintenanceRoad > p
-${huoltotie_käyttöoikeus}    css=#feature-attributes-form > div > div > div.dynamic-form.editable.form-editable-maintenanceRoad > div.input-unit-combination > div:nth-child(1) > p
-${huoltotie_huoltovastuu}    css=#feature-attributes-form > div > div > div.dynamic-form.editable.form-editable-maintenanceRoad > div.input-unit-combination > div:nth-child(2) > p
-${huoltotie_tiehoitokunta}    css=#feature-attributes-form > div > div > div.dynamic-form.editable.form-editable-maintenanceRoad > div.input-unit-combination > div:nth-child(3) > p
-${huoltotie_tarkistettu}    css=#feature-attributes-form > div > div > div.dynamic-form.editable.form-editable-maintenanceRoad > div.input-unit-combination > div:nth-child(4) > p
-${huoltotie_käyttöoikeus_pudotusvalikko}    css=#feature-attributes-form > div > div > div.dynamic-form.editable.form-editable-maintenanceRoad > div.input-unit-combination > div:nth-child(1) > select
+# Need to find better locators to these.
+${Rautatien_huoltotie_tarkastelu_boolean}
+...    css=#feature-attributes-form > div > div > div.dynamic-form.editable.form-editable-maintenanceRoad > p
+${huoltotie_käyttöoikeus}
+...    css=#feature-attributes-form > div > div > div.dynamic-form.editable.form-editable-maintenanceRoad > div.input-unit-combination > div:nth-child(1) > p
+${huoltotie_huoltovastuu}
+...    css=#feature-attributes-form > div > div > div.dynamic-form.editable.form-editable-maintenanceRoad > div.input-unit-combination > div:nth-child(2) > p
+${huoltotie_tiehoitokunta}
+...    css=#feature-attributes-form > div > div > div.dynamic-form.editable.form-editable-maintenanceRoad > div.input-unit-combination > div:nth-child(3) > p
+${huoltotie_tarkistettu}
+...    css=#feature-attributes-form > div > div > div.dynamic-form.editable.form-editable-maintenanceRoad > div.input-unit-combination > div:nth-child(4) > p
+${huoltotie_käyttöoikeus_pudotusvalikko}
+...    css=#feature-attributes-form > div > div > div.dynamic-form.editable.form-editable-maintenanceRoad > div.input-unit-combination > div:nth-child(1) > select

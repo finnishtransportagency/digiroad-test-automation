@@ -1,6 +1,5 @@
 *** Settings ***
 Documentation       Keywords for Walking/Biking
-
 Resource    common_keywords.robot
 
 *** Keywords ***

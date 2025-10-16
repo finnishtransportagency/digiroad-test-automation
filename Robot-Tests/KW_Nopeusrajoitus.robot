@@ -1,5 +1,6 @@
 *** Settings ***
 Documentation       Pageobject for speedlimit (Nopeusrajoitus)
+Resource    common_keywords.robot
 
 
 *** Keywords ***

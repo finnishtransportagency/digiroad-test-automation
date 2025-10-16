@@ -1,6 +1,7 @@
 
 *** Settings ***
 Documentation       Pageobject for Map testcases
+Resource    common_keywords.robot
 
 
 *** Keywords ***

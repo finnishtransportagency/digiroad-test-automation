@@ -105,7 +105,7 @@ Rautateiden Huoltotien Katkaisu
         FOR    ${s}    IN    @{Huoltotie_huoltovastuu_numerot}
             Log    ${r}
             Log    ${s}
-            KW_Rautatien_huoltotie.Rautateiden huoltotien katkaisu
+            KW_Rautatien_huoltotie.Rautateiden Huoltotien Katkaisu
             ...    6676576, 384823    ${r}    ${s}
         END
     END
