@@ -73,59 +73,54 @@ Rautateiden huoltotien tarkastelu huoltovastuu     [arguments]    ${testipaikka}
     Odota sivun latautuminen
 
 
-Rautateiden huoltotien muokkaus koko ketjulle    [arguments]    ${testipaikka}    ${j}
+Rautateiden Huoltotien Muokkaus Koko Ketjulle
+    [Arguments]    ${testipaikka}    ${j}
     Log    Muokataan rautatien huoltotietä koko ketjulle
     Testin Aloitus
     Vaihda Tietolaji    ${TL_Rautateiden_huoltotie_RB}
-    Paikanna osoite    ${testipaikka}
-    Zoomaa kartta    2    200
-    Odota sivun latautuminen
-
-    Click Element At Coordinates      ${Kartta}    0    20
-    Wait Until Element Is Visible     ${FA_otsikko}
-    Element Should Be Visible         ${FA_Lisätty_Järjestelmään}
-    Element Should Be Visible         ${FA_Muokattu_viimeksi}
-    Element Should Be Visible         ${Rautatien_huoltotie_tarkastelu_boolean}
-    Element Should Contain            ${Rautatien_huoltotie_tarkastelu_boolean}    on
+    Paikanna Osoite    ${testipaikka}
+    Zoomaa Kartta    2    200
+    Odota Sivun Latautuminen
+    Click Center Of The Map And Wait For Locator     ${FA_otsikko}
+    Element Should Be Visible    ${FA_Lisätty_Järjestelmään}
+    Element Should Be Visible    ${FA_Muokattu_viimeksi}
+    Element Should Be Visible    ${Rautatien_huoltotie_tarkastelu_boolean}
+    Element Should Contain    ${Rautatien_huoltotie_tarkastelu_boolean}    on
     Siirry Muokkaustilaan
-
-    Select Radio Button               maintenanceRoad   enabled
-    Radio Button Should Be Set To     maintenanceRoad   enabled
+    Select Radio Button    maintenanceRoad    enabled
+    Radio Button Should Be Set To    maintenanceRoad    enabled
     Click Element    ${huoltotie_käyttöoikeus_pudotusvalikko}
-
     FOR    ${j}    IN    @{Huoltotie_käyttöoikeus_kohteet}
         Log    ${j}
         Press Keys    None    ARROW_DOWN
         Element Should Contain    ${huoltotie_käyttöoikeus_pudotusvalikko}    ${j}
         Press Keys    None    ENTER
     END
-
     Element Should Be Enabled    ${FA_footer_Peruuta}
-    Click Element                ${FA_footer_Tallenna}
+    Tallenna Muutokset
+    # Click Element                ${FA_footer_Tallenna}
     Set Test Variable    ${MUOKKAUSTILA_AKTIVOITU}    False
-    Odota sivun latautuminen
+    Odota Sivun Latautuminen
 
 
-Rautateiden huoltotien muokkaus ketjun osalle    [arguments]    ${testipaikka}    ${k}
+Rautateiden Huoltotien Muokkaus Ketjun Osalle    [arguments]    ${testipaikka}    ${k}
     Log    Muokataan rautatien huoltotietä ketjun osalle
     Testin Aloitus
     Vaihda Tietolaji    ${TL_Rautateiden_huoltotie_RB}
     Paikanna osoite    ${testipaikka}
     Zoomaa kartta    2    200
     Odota sivun latautuminen
-
-    Tupla Klikkaa Kartan Keskelle
-    Wait Until Element Is Visible     ${FA_otsikko}
-    Element Should Be Visible         ${FA_Lisätty_Järjestelmään}
-    Element Should Be Visible         ${FA_Muokattu_viimeksi}
-    Element Should Be Visible         ${Rautatien_huoltotie_tarkastelu_boolean}
-    Element Should Contain            ${Rautatien_huoltotie_tarkastelu_boolean}    on
+    Tuplaklikkaa Kartan Keskella Ja Odota Lokaattori    ${FA_otsikko}
+    #Tupla Klikkaa Kartan Keskelle
+    #Wait Until Element Is Visible     ${FA_otsikko}
+    Element Should Be Visible    ${FA_Lisätty_Järjestelmään}
+    Element Should Be Visible    ${FA_Muokattu_viimeksi}
+    Element Should Be Visible    ${Rautatien_huoltotie_tarkastelu_boolean}
+    Element Should Contain       ${Rautatien_huoltotie_tarkastelu_boolean}    on
     Siirry Muokkaustilaan
-
-    Select Radio Button               maintenanceRoad   enabled
-    Radio Button Should Be Set To     maintenanceRoad   enabled
+    Select Radio Button    maintenanceRoad     enabled
+    Radio Button Should Be Set To    maintenanceRoad    enabled
     Click Element    ${huoltotie_käyttöoikeus_pudotusvalikko}
-
     FOR    ${k}    IN    @{Huoltotie_käyttöoikeus_kohteet}
         Log    ${k}
         Press Keys    None    ARROW_DOWN
@@ -133,7 +128,7 @@ Rautateiden huoltotien muokkaus ketjun osalle    [arguments]    ${testipaikka}  
         Press Keys    None    ENTER
     END
     Element Should Be Enabled    ${FA_footer_Peruuta}
-    Click Element                ${FA_footer_Tallenna}
+    Tallenna Muutokset
     Set Test Variable    ${MUOKKAUSTILA_AKTIVOITU}    False
     Odota sivun latautuminen
 

@@ -7,7 +7,7 @@ Library                     DateTime
 
 # -> Comment before committing
 # Library                     DebugLibrary
-# Resource                    DRownvariables.robot
+Resource                    DRownvariables.robot
 # <- Comment before committing
 
 Resource                    variables.robot
@@ -198,10 +198,38 @@ Siirry Katselutilaan
 
 Tupla Klikkaa Kartan Keskelle
     Set Selenium Speed    0
-    Click Element At Coordinates    ${Kartta}    0    20
-    Click Element At Coordinates    ${Kartta}    0    20
+    # Tried commenting these out since separate double click exists.
+    # Need to still improve by doubleclick and wait
+    # Click Element At Coordinates    ${Kartta}    0    20
+    # Click Element At Coordinates    ${Kartta}    0    20
     selenium_extensions.Doubleclick Element At Coordinates    ${Kartta}    0    20
     Set Selenium Speed    ${DELAY}
+
+
+Tuplaklikkaa Kartan Keskella Ja Odota Lokaattori    [Arguments]    ${locator}
+    TRY
+        Set Selenium Speed    0
+        FOR    ${index}    IN RANGE    20    -1    -10
+            Log    DoubleClicking map at coordinates 0 and ${index}
+            selenium_extensions.Doubleclick Element At Coordinates    ${Kartta}    0    ${index}
+            ${status} =    Run Keyword And Return Status
+            ...    Wait Until Element Is Visible    ${locator}    timeout=3
+            IF    ${status} == ${False}
+                CONTINUE
+            ELSE
+                BREAK
+            END
+        END
+        IF    ${status} == ${False}
+            Fail
+            ...    Tuplaklikkaus kartan keskelle epäonnistui:
+        END
+    EXCEPT    AS    ${error_msg}
+        Fail
+        ...    Yritettiin tuplaklikata kartan keskelle ja odottaa lokaattoria ${locator} mutta ${error_msg}
+    FINALLY
+        Set Selenium Speed    ${DELAY}
+    END
 
 
 Siirry Testipaikkaan
@@ -298,7 +326,7 @@ tklick    [arguments]    ${x}    ${y}
 Click Center Of The Map And Wait For Locator    [Arguments]    ${locator}=${FA_otsikko}
     [Documentation]    Tries to click element in the middle of the map by changing y coordinate.
     ...                Fails if header of right side info window not visible after clicking.
-    FOR    ${index}    IN RANGE    0    25    5
+    FOR    ${index}    IN RANGE    20    -1    -10
         Log    Clicking map at coordinates 0 and ${index}
         Click Element At Coordinates    ${Kartta}    0    ${index}
         ${status} =    Run Keyword And Return Status

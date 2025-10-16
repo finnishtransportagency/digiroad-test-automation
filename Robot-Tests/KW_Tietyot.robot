@@ -226,68 +226,53 @@ Usean_tietyön_muuttaminen_polygonilla    [arguments]        ${testipaikka}    $
     Click Element                               ${FA_header_Peruuta}
 
 
-Tietyön katkaisu    [arguments]        ${testipaikka}    ${tietyöteksti}    ${tietyöteksti2}
+Tietyön katkaisu
+    [Arguments]
+    ...    ${testipaikka}    ${tietyöteksti}    ${tietyöteksti2}
     Testin Aloitus
-    Vaihda Tietolaji                            ${TL_Tietyöt_RB}
-    Paikanna osoite                             ${testipaikka}
-    Zoomaa kartta                               5   50 m
-    Odota sivun latautuminen
+    Vaihda Tietolaji    ${TL_Tietyöt_RB}
+    Paikanna Osoite     ${testipaikka}
+    Zoomaa Kartta    5   50 m
+    Odota Sivun Latautuminen
     Siirry Muokkaustilaan
-    Wait Until Element Is Not Visible           ${Map_popup}
-    Click Element At Coordinates                ${Kartta}  0  20
-    Wait Until Element Is Visible               ${FA_tietyö_Lisätty_järjestelmään}
-    Element Should Be Visible                   ${FA_tietyö_Muokattu_viimeksi}
-    Element Should Be Visible                   ${FA_tietyö_Linkkien_lukumäärä}
-
-    Select Radio Button                         road-works-asset    enabled
-    Radio Button Should Be Set To               road-works-asset    enabled
-    Input Text                                  ${FA_tietyö_tietyön_kuvaus}    ${tietyöteksti}
-    Element Should Be Visible                   ${FA_tietyö_aloituspvm}
-    Click Element                               ${FA_tietyö_aloituspvm}
-    Press Keys                                  None    ARROW_RIGHT
-    Press Keys                                  None    ENTER
-
-    Element Should Be Visible                   ${FA_tietyö_päättymispvm}
-    Click Element                               ${FA_tietyö_päättymispvm}
-
+    Wait Until Element Is Not Visible    ${Map_popup}
+    Click Center Of The Map And Wait For Locator    ${FA_tietyö_Lisätty_järjestelmään}
+    Element Should Be Visible    ${FA_tietyö_Muokattu_viimeksi}
+    Element Should Be Visible    ${FA_tietyö_Linkkien_lukumäärä}
+    Select Radio Button    road-works-asset    enabled
+    Radio Button Should Be Set To    road-works-asset    enabled
+    Input Text    ${FA_tietyö_tietyön_kuvaus}    ${tietyöteksti}
+    Element Should Be Visible    ${FA_tietyö_aloituspvm}
+    Click Element    ${FA_tietyö_aloituspvm}
+    Press Keys    None    ARROW_RIGHT
+    Press Keys    None    ENTER
+    Element Should Be Visible    ${FA_tietyö_päättymispvm}
+    Click Element    ${FA_tietyö_päättymispvm}
     Kalenterin siirto 10x
-
-    Element Should Be Enabled                   ${FA_footer_Tallenna}
-    Click Element                               ${FA_footer_Tallenna}
-
-    Wait Until Element Is Not Visible           ${Map_popup}
-    Wait Until Element Is Visible               ${Muokkaustila_Leikkaus}
-    Click Element                               ${Muokkaustila_Leikkaus}
-    Click Element At Coordinates                ${Kartta}  0  20
-    Wait Until Element Is Visible               ${FA_tietyö_Lisätty_järjestelmään}
-    Element Should Be Visible                   ${FA_tietyö_Muokattu_viimeksi}
-    Element Should Be Visible                   ${FA_tietyö_Linkkien_lukumäärä}
-
-    Input Text                                  ${Tietyö_FA_työntunnus_katkaisu_B}    ${tietyöteksti2}
-
-
-    Radio Button Should Be Set To               road-works-asset-a    enabled
-
-    Radio Button Should Be Set To               road-works-asset-b    enabled
-
-
-    Element Should Be Enabled                   ${FA_footer_Peruuta}
-    Click Element                               ${FA_footer_Peruuta}
-    Odota sivun latautuminen
-    Wait Until Element Is Enabled               ${Muokkaustila_SelectTool}
-    Click Element                               ${Muokkaustila_SelectTool}
-
-    Odota sivun latautuminen
-    Click Element At Coordinates                ${Kartta}  0  20
-    Wait Until Element Is Visible               ${FA_tietyö_Lisätty_järjestelmään}
-    Element Should Be Visible                   ${FA_tietyö_Muokattu_viimeksi}
-    Element Should Be Visible                   ${FA_tietyö_Linkkien_lukumäärä}
-
-    Select Radio Button                         road-works-asset    disabled
-    Radio Button Should Be Set To               road-works-asset    disabled
-
-    Element Should Be Enabled                   ${FA_header_Tallenna}
-    Click Element                               ${FA_header_Tallenna}
+    Element Should Be Enabled    ${FA_footer_Tallenna}
+    Tallenna Muutokset
+    Wait Until Element Is Not Visible    ${Map_popup}
+    Wait Until Element Is Visible    ${Muokkaustila_Leikkaus}
+    Click Element    ${Muokkaustila_Leikkaus}
+    Click Center Of The Map And Wait For Locator    ${FA_tietyö_Lisätty_järjestelmään}
+    Element Should Be Visible    ${FA_tietyö_Muokattu_viimeksi}
+    Element Should Be Visible    ${FA_tietyö_Linkkien_lukumäärä}
+    Input Text    ${Tietyö_FA_työntunnus_katkaisu_B}    ${tietyöteksti2}
+    Radio Button Should Be Set To    road-works-asset-a    enabled
+    Radio Button Should Be Set To    road-works-asset-b    enabled
+    Element Should Be Enabled    ${FA_footer_Peruuta}
+    Click Element    ${FA_footer_Peruuta}
+    Odota Sivun Latautuminen
+    Wait Until Element Is Enabled    ${Muokkaustila_SelectTool}
+    Click Element    ${Muokkaustila_SelectTool}
+    Odota Sivun Latautuminen
+    Click Center Of The Map And Wait For Locator    ${FA_tietyö_Lisätty_järjestelmään}
+    Element Should Be Visible    ${FA_tietyö_Muokattu_viimeksi}
+    Element Should Be Visible    ${FA_tietyö_Linkkien_lukumäärä}
+    Select Radio Button    road-works-asset    disabled
+    Radio Button Should Be Set To    road-works-asset    disabled
+    Element Should Be Enabled    ${FA_header_Tallenna}
+    Tallenna Dialogista
 
 
 Tietyö kaksisuuntaiseksi    [arguments]        ${testipaikka}    ${tietyöteksti}    ${tietyöteksti2}

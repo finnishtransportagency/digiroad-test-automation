@@ -2,194 +2,162 @@
 Documentation       Pageobject for Traffic signs (Liikennemerkit)
 Resource            common_keywords.robot
 
-*** Keywords ***
 
-Liikennemerkit_1  [arguments]  ${testipaikka}
-    log  Luodaan uusi Liikennemerkki, Täytetään kaikki kentät
-    Siirry Testipaikkaan  ${TL_Liikennemerkit_RB}  ${Testipaikka}
+*** Keywords ***
+Liikennemerkit_1    [arguments]    ${testipaikka}
+    log    Luodaan uusi Liikennemerkki, Täytetään kaikki kentät
+    Siirry Testipaikkaan    ${TL_Liikennemerkit_RB}    ${Testipaikka}
     #Valitse kaikki Liikennemerkit
     Odota sivun latautuminen
-
     Alusta Testipaikka
     Luo Liikennemerkki
-
-    Log  Alustetaan testipaikka uusiksi. Tarkistetaan, että liikennemerkki näkyy oikeassa kategoriassa.
+    Log    Alustetaan testipaikka uusiksi. Tarkistetaan, että liikennemerkki näkyy oikeassa kategoriassa.
     Siirry Katselutilaan
     Testin Aloitus
-    Siirry Testipaikkaan                        ${TL_Liikennemerkit_RB}  ${Testipaikka}
+    Siirry Testipaikkaan    ${TL_Liikennemerkit_RB}    ${Testipaikka}
     #Click Element                               ${LM_Kielto}
     Odota sivun latautuminen
-    ${date}=  Get Current Date                  result_format=%d.%m.%Y
-    Click Element At Coordinates                ${Kartta}  0  20
-    Wait Until Element Is Visible               ${FA_otsikko}
-    Tarkista Merkin Kentät                      ${date}
-    Siirry Muokkaustilaan
-    Click Element                               ${FA_Poista_chkbx}
-    Click Element                               ${FA_footer_Tallenna}
-    Wait Until Element Is Not Visible           ${Spinner_Overlay}
-
-
-Liikennemerkit_2  [Arguments]  ${testipaikka}  ${Merkin_tyyppi}  ${Merkin_teksti}
-    Testin Aloitus
-    log  Paikannetaan Liikennemerkki. Tarkistetaan liikennemerkin tyyppi.
-    Siirry Testipaikkaan            ${TL_Liikennemerkit_RB}  ${testipaikka}
-    Valitse kaikki Liikennemerkit
-    Click Element                   ${Merkin_tyyppi}
-    Odota sivun latautuminen
-
+    ${date} =    Get Current Date    result_format=%d.%m.%Y
     Click Element At Coordinates    ${Kartta}  0  20
-    Wait Until Element Is Visible   ${FA_otsikko}
-    Element Should Contain          css=#feature-attributes-form  ${Merkin_teksti}
+    Wait Until Element Is Visible    ${FA_otsikko}
+    Tarkista Merkin Kentät    ${date}
+    Siirry Muokkaustilaan
+    Click Element    ${FA_Poista_chkbx}
+    Tallenna Muutokset
 
-Liikennemerkit_3  [Arguments]  ${testipaikka}
-    Log  Loudaan uusi merkki. Tarkistetaan kentän raja-arvot ja xss/html injektiot.
-    Siirry Testipaikkaan  ${TL_Liikennemerkit_RB}  ${Testipaikka}
+
+Liikennemerkit_2
+    [Arguments]    ${testipaikka}    ${Merkin_tyyppi}    ${Merkin_teksti}
+    Testin Aloitus
+    Log    Paikannetaan Liikennemerkki. Tarkistetaan liikennemerkin tyyppi.
+    Siirry Testipaikkaan    ${TL_Liikennemerkit_RB}    ${testipaikka}
+    Valitse kaikki Liikennemerkit
+    Click Element    ${Merkin_tyyppi}
+    Odota sivun latautuminen
+    Click Center Of The Map And Wait For Locator    ${FA_otsikko}
+    Element Should Contain    css=#feature-attributes-form    ${Merkin_teksti}
+
+
+Liikennemerkit_3    [Arguments]    ${testipaikka}
+    Log    Loudaan uusi merkki. Tarkistetaan kentän raja-arvot ja xss/html injektiot.
+    Siirry Testipaikkaan    ${TL_Liikennemerkit_RB}    ${Testipaikka}
     #Valitse kaikki Liikennemerkit
     Odota sivun latautuminen
-
-    Log  Luodaan uusi liikennemerkki, ja testtaan voidaanko virheellisiä arvoja tallettaa
+    Log    Luodaan uusi liikennemerkki, ja testtaan voidaanko virheellisiä arvoja tallettaa
     Alusta Testipaikka
     Siirry Muokkaustilaan
     Odota sivun latautuminen
-    click element                           ${Muokkaustila_AddTool}
-    Click Element At Coordinates            ${Kartta}  0  20
-    Wait Until Element Is Visible           ${FA_otsikko}
-    Element Should Be Enabled               ${FA_footer_Peruuta}
-    Click Element   ${Tyyppi}
-    Click Element   ${Tyyppi_DDM}
-    Click Element   ${Alityyppi}
-    Click Element   ${Alityyppi_DDM}
-
+    Click Element                           ${Muokkaustila_AddTool}
+    Click Center Of The Map And Wait For Locator    ${FA_otsikko}
+    Element Should Be Enabled    ${FA_footer_Peruuta}
+    Click Element     ${Tyyppi}
+    Click Element     ${Tyyppi_DDM}
+    Click Element     ${Alityyppi}
+    Click Element     ${Alityyppi_DDM}
     FOR  ${teksti}  IN  @{Haku_Muuttujat}
-        Syota virheellinen arvo                 ${Arvo}  ${teksti}
+        Syota Virheellinen Arvo    ${Arvo}    ${teksti}
     END
-
-    Log  Arvotaan satunnainen numero, tallennus pitäisi olla poissa. Jos nopeus = oikea rajoitus, testiä ei ajeta.
-    ${numero}  ${status}=  Arvo Numero
-    Run Keyword If  '${status}'=='False'  Input Text  ${Arvo}  ${numero}
-    Element Should Be Disabled                  ${FA_footer_Tallenna}
-
-    Log  Arvotaan satunnainen string, tallennus pitäisi olla poissa.
-    ${str}=  Generate Random String
-    Input Text                                  ${Arvo}  ${str}
-    Click Element                               ${Päämerkin_Teksti}
-    Element Should Be Disabled                  ${FA_footer_Tallenna}
-
-    FOR  ${teksti}  IN  @{Nopeusrajoitukset}
-        Syota kelvollinen arvo                  ${Arvo}  ${teksti}
+    Log    Arvotaan satunnainen numero, tallennus pitäisi olla poissa. Jos nopeus = oikea rajoitus, testiä ei ajeta.
+    ${numero}    ${status}=    Arvo Numero
+    Run Keyword If    '${status}'=='False'    Input Text    ${Arvo}    ${numero}
+    Element Should Be Disabled    ${FA_footer_Tallenna}
+    Log    Arvotaan satunnainen string, tallennus pitäisi olla poissa.
+    ${str} =    Generate Random String
+    Input Text    ${Arvo}    ${str}
+    Click Element    ${Päämerkin_Teksti}
+    Element Should Be Disabled    ${FA_footer_Tallenna}
+    FOR    ${teksti}    IN    @{Nopeusrajoitukset}
+        Syota Kelvollinen Arvo    ${Arvo}    ${teksti}
     END
-
-    Log  Kaista numeron testit
-
-    FOR  ${teksti}  IN  10  00  40  30  100  999
-        Syota virheellinen arvo                 ${Kaista}  ${teksti}
+    Log    Kaista numeron testit
+    FOR    ${teksti}    IN    10    00    40    30    100    999
+        Syota Virheellinen Arvo    ${Kaista}    ${teksti}
     END
-
-    FOR  ${teksti}  IN  11  19  25  24  31  39
-        Syota kelvollinen arvo                  ${Kaista}  ${teksti}
+    FOR    ${teksti}    IN    11    19    25    24    31    39
+        Syota Kelvollinen Arvo    ${Kaista}    ${teksti}
     END
 
 
-Liikennemerkit_4  [Arguments]  ${testipaikka}
-    Siirry Testipaikkaan  ${TL_Liikennemerkit_RB}  ${Testipaikka}
+Liikennemerkit_4    [Arguments]    ${testipaikka}
+    Siirry Testipaikkaan    ${TL_Liikennemerkit_RB}    ${Testipaikka}
     #Valitse kaikki Liikennemerkit
     Odota sivun latautuminen
-
-    Log  Luodaan uusi merkki, ja sille lisä kilpi. Siirretään molempia yhdessä.
+    Log    Luodaan uusi merkki, ja sille lisä kilpi. Siirretään molempia yhdessä.
     Alusta Testipaikka
-
-    Click Element At Coordinates  ${Kartta}  0  -40
+    Click Element At Coordinates    ${Kartta}    0    -40
     ${status} =    Run Keyword And Return Status
     ...    Wait Until Element Is Visible
     ...    ${FA_otsikko}
     ...    timeout=10
-    
-    Run Keyword If  ${status}==True  Poista Kohde
-
-
+    Run Keyword If    ${status}==True    Poista Kohde
     Siirry Muokkaustilaan
     Odota sivun latautuminen
-    click element                           ${Muokkaustila_AddTool}
-    Click Element At Coordinates            ${Kartta}  0  20
-    Wait Until Element Is Visible           ${FA_otsikko}
-    Element Should Be Enabled               ${FA_footer_Peruuta}
-
+    Click Element    ${Muokkaustila_AddTool}
+    Click Center Of The Map And Wait For Locator    ${FA_otsikko}
+    Element Should Be Enabled    ${FA_footer_Peruuta}
     Log  Täytetään liikennemerkin kentät.
-    Click Element                           ${Tyyppi}
-    Click Element                           ${Tyyppi_DDM}
+    Click Element    ${Tyyppi}
+    Click Element    ${Tyyppi_DDM}
     Select From List By Label    css=select#trafficSigns_type    C32 Nopeusrajoitus
     #Click Element                           ${Alityyppi}
     #Click Element                           ${Alityyppi_DDM}
-    Input Text                              ${Arvo}  100
+    Input Text    ${Arvo}  100
     Täytä Lisäkilven Kentät
-    Click Element                           ${FA_footer_Tallenna}
-    Wait Until Element Is Not Visible       ${Spinner_Overlay}
+    Tallenna Muutokset
     Odota sivun latautuminen
-
-    Log  Siirretään liikennemerkkiä lisäkilvellä
-    Click Element                           ${Muokkaustila_SelectTool}
-    Click Element at Coordinates            ${Kartta}  0  20
-    Wait Until Element Is Visible           ${FA_otsikko}
-    Siirrä Kohde                            0  -40
-    Click Element                           ${FA_footer_Tallenna}
-    Wait Until Element Is Not Visible       ${Spinner_Overlay}
+    Log    Siirretään liikennemerkkiä lisäkilvellä
+    Click Element    ${Muokkaustila_SelectTool}
+    Click Center Of The Map And Wait For Locator    ${FA_otsikko}
+    Siirrä Kohde    0    -40
+    Tallenna Muutokset
     Odota sivun latautuminen
-
-    Log  Tarkistetaan onko liikennemerkki siirtynyt. 
-    Log  Klikataan vanhaan kohtaan, jolloin merkki ei pitäisi aueta
-    Click Element At coordinates            ${Kartta}  0  20
+    Log    Tarkistetaan onko liikennemerkki siirtynyt. 
+    Log    Klikataan vanhaan kohtaan, jolloin merkki ei pitäisi aueta
+    Click Element At coordinates    ${Kartta}    0    20
     ${status} =    Run Keyword And Return Status    Wait Until Element Is Visible
     ...    ${FA_otsikko}
     ...    timeout=10
-    Run Keyword If  ${status}==True         Alusta Testipaikka
-    Run Keyword If  ${status}==True         Fail  Liikennemerkki ei siirtynyt.
-
-    Click Element At coordinates            ${Kartta}  0  -40
-    Wait Until Element Is Visible           ${FA_otsikko}
-    Click Element                           ${FA_Poista_chkbx}
-    Click Element                           ${FA_footer_Tallenna}
-    Wait Until Element Is Not Visible       ${Spinner_Overlay}
-
+    Run Keyword If    ${status}==True    Alusta Testipaikka
+    Run Keyword If    ${status}==True    Fail  Liikennemerkki ei siirtynyt.
+    Click Element At Coordinates    ${Kartta}    0    -40
+    Wait Until Element Is Visible    ${FA_otsikko}
+    Click Element    ${FA_Poista_chkbx}
+    Click Element    ${FA_footer_Tallenna}
+    Wait Until Element Is Not Visible    ${Spinner_Overlay}
     #Siirry Katselutilaan
     #Alusta Testipaikka
 
-Liikennemerkit_5  [Arguments]  ${Testipaikka}
-    Siirry Testipaikkaan  ${TL_Liikennemerkit_RB}  ${Testipaikka}
+
+Liikennemerkit_5    [Arguments]    ${Testipaikka}
+    Siirry Testipaikkaan    ${TL_Liikennemerkit_RB}    ${Testipaikka}
     Odota sivun latautuminen
     Alusta Testipaikka
-
-    Log  Liikennemerkkiä ei voi lisätä muokkaustyökalulla. Rivi:779
+    Log    Liikennemerkkiä ei voi lisätä muokkaustyökalulla. Rivi:779
     Siirry Muokkaustilaan
-    Click Element At Coordinates            ${Kartta}  0  20
-    Repeat Keyword  10 s  Element Should Not Be Visible  ${FA_otsikko}
-
+    Click Element At Coordinates    ${Kartta}    0    20
+    Repeat Keyword    10 s    Element Should Not Be Visible    ${FA_otsikko}
     Log  Liikennemerkin voi lisätä lisäystyökalulla. Rivi: 778
-    Click Element                           ${Muokkaustila_AddTool}
-    Click Element At Coordinates            ${Kartta}  0  20
+    Click Element    ${Muokkaustila_AddTool}
+    Click Element At Coordinates    ${Kartta}  0  20
     Log  Klikkaamalla kartalta sijainti uudelle liikennemerkille, avautuu ominaisuustietonäkymä uudelle liikennemerkille. Rivi: 781
-    Wait Until Element Is Visible           ${FA_otsikko}
-
+    Wait Until Element Is Visible    ${FA_otsikko}
     Log  Uuden liikennemerkin luonti peruutetaan painamalla "Peruuta" -painiketta. Rivi: 785
-    Click Element                           ${FA_footer_Peruuta}
-    Wait Until Element Is Not Visible       ${FA_otsikko}
-
-    Log  Jos lisäystyökalulla klikkaa kohtaa, jolla ei ole linkkiä, liikennemerkki muodostuu lähimmälle linkille. Rivi: 782
-    Click Element At Coordinates            ${Kartta}  40  20
-    Wait Until Element Is Visible           ${FA_otsikko}
-    Log  Uusi liikennemerkki luodaan painamalla "Tallenna"-painiketta. Rivi: 784
-    Click Element                           ${FA_footer_Tallenna}
-    Wait Until Element Is Not Visible       ${Spinner_Overlay}
+    Click Element    ${FA_footer_Peruuta}
+    Wait Until Element Is Not Visible    ${FA_otsikko}
+    Log    Jos lisäystyökalulla klikkaa kohtaa, jolla ei ole linkkiä, liikennemerkki muodostuu lähimmälle linkille. Rivi: 782
+    Click Element At Coordinates    ${Kartta}  40  20
+    Wait Until Element Is Visible    ${FA_otsikko}
+    Log    Uusi liikennemerkki luodaan painamalla "Tallenna"-painiketta. Rivi: 784
+    Tallenna Muutokset
     Odota sivun latautuminen
-
-    Click Element                           ${Muokkaustila_SelectTool}
-    Click Element At Coordinates            ${Kartta}  0  20
-    Wait Until Element Is Visible           ${FA_otsikko}
-    Log  Liikennemerkin voi poistaa: Rivi 790
-    Click Element                           ${FA_Poista_chkbx}
-    Click Element                           ${FA_footer_Tallenna}
-    Wait Until Element Is Not Visible       ${Spinner_Overlay}
+    Click Element    ${Muokkaustila_SelectTool}
+    Click Element At Coordinates    ${Kartta}  0  20
+    Wait Until Element Is Visible    ${FA_otsikko}
+    Log    Liikennemerkin voi poistaa: Rivi 790
+    Click Element    ${FA_Poista_chkbx}
+    Click Element    ${FA_footer_Tallenna}
+    Wait Until Element Is Not Visible    ${Spinner_Overlay}
     Odota sivun latautuminen
-
 
 
 #######################
@@ -197,124 +165,129 @@ Liikennemerkit_5  [Arguments]  ${Testipaikka}
 #######################
 
 Valitse kaikki Liikennemerkit
-    FOR  ${selector}  IN  @{LM_lista}
-        Click Element  ${selector}
+    FOR    ${selector}    IN    @{LM_lista}
+        Click Element    ${selector}
     END
+
 
 Luo Liikennemerkki
     Siirry Muokkaustilaan
     Odota sivun latautuminen
-    click element                           ${Muokkaustila_AddTool}
-    Click Element At Coordinates            ${Kartta}  0  20
-    Wait Until Element Is Visible           ${FA_otsikko}
-    Element Should Be Enabled                ${FA_footer_Peruuta}
+    Click Element                           ${Muokkaustila_AddTool}
+    Click Center Of The Map And Wait For Locator    ${FA_otsikko}
+    # Click Element At Coordinates            ${Kartta}  0  20
+    # Wait Until Element Is Visible           ${FA_otsikko}
+    Element Should Be Enabled    ${FA_footer_Peruuta}
     Täytä Liikennemerkin kentät
-    Click Element                           ${FA_footer_Tallenna}
-    sleep  1
-    Wait Until Element Is Not Visible           ${Spinner_Overlay}  timeout=30 s
+    Tallenna Muutokset
     Odota sivun latautuminen
 
 
 Täytä Liikennemerkin kentät
-    Click Element   ${Tyyppi}
-    Click Element   ${Tyyppi_DDM}
-    Click Element   ${Alityyppi}
-    #Debug
+    Click Element     ${Tyyppi}
+    Click Element     ${Tyyppi_DDM}
+    Click Element     ${Alityyppi}
     Select From List By Label    css=select#trafficSigns_type    C32 Nopeusrajoitus
     #Click Element   ${Alityyppi_DDM}
-    Input Text      ${Arvo}                 100
-    Input Text      ${Päämerkin_Teksti}     Testi
-    Input Text      ${Kunnan_ID}            Kunta12
-    Input Text      ${Lisätieto}            HienoMerkki
-    Click Element   ${Rakenne}
-    Click Element   ${Rakenne_DDM}
-    Click Element   ${Kunto}
-    Click Element   ${Kunto_DDM}
-    Click Element   ${Koko}
-    Click Element   ${Koko_DDM}
-    Input Text      ${Korkeus}  100
-    Click Element   ${Kalvon_Tyypi}
-    Click Element   ${Kalvon_Tyypi_DDM}
-    Click Element   ${Merkin_Materiaali}
-    Click Element   ${Merkin_Materiaali_DDM}
-    Click Element   ${Sijaintitarkenne}
-    Click Element   ${Sijaintitarkenne_DDM}
-    Input Text      ${Maastokoordinaatti_X}  82
-    Input Text      ${Maastokoordinaatti_Y}  86
+    Input Text    ${Arvo}    100
+    Input Text    ${Päämerkin_Teksti}    Testi
+    Input Text    ${Kunnan_ID}    Kunta12
+    Input Text    ${Lisätieto}    HienoMerkki
+    Click Element    ${Rakenne}
+    Click Element    ${Rakenne_DDM}
+    Click Element    ${Kunto}
+    Click Element    ${Kunto_DDM}
+    Click Element    ${Koko}
+    Click Element    ${Koko_DDM}
+    Input Text    ${Korkeus}  100
+    Click Element    ${Kalvon_Tyypi}
+    Click Element    ${Kalvon_Tyypi_DDM}
+    Click Element    ${Merkin_Materiaali}
+    Click Element    ${Merkin_Materiaali_DDM}
+    Click Element    ${Sijaintitarkenne}
+    Click Element    ${Sijaintitarkenne_DDM}
+    Input Text       ${Maastokoordinaatti_X}    82
+    Input Text       ${Maastokoordinaatti_Y}    86
     #Input Text      ${Kaista}   2
-    Click Element   ${Kaistan_Tyyppi}
-    Click Element   ${Kaistan_Tyyppi_DDM}
-    Click Element   ${Tila}
-    Click Element   ${Tila_DDM}
-    Input Text      ${Alkupäivämäärä}        1.12.2025
-    Input Text      ${Loppupäivämäärä}       1.12.2026
-    Click Element   ${Vauriotyyppi}
-    Click Element   ${Vauriotyyppi_DDM}
-    Click Element   ${Korjauksen_Kiireellisyys}
-    Click Element   ${Korjauksen_Kiireellisyys_DDM}
-    Input Text      ${Arvioitu_Käyttöikä}       1
+    Click Element    ${Kaistan_Tyyppi}
+    Click Element    ${Kaistan_Tyyppi_DDM}
+    Click Element    ${Tila}
+    Click Element    ${Tila_DDM}
+    Input Text       ${Alkupäivämäärä}        1.12.2025
+    Input Text       ${Loppupäivämäärä}       1.12.2026
+    Click Element    ${Vauriotyyppi}
+    Click Element    ${Vauriotyyppi_DDM}
+    Click Element    ${Korjauksen_Kiireellisyys}
+    Click Element    ${Korjauksen_Kiireellisyys_DDM}
+    Input Text    ${Arvioitu_Käyttöikä}       1
 
 
 Täytä Lisäkilven Kentät
-    Click Element  ${Lisakilpi}
-    Click Element  ${LK_Alityyppi}
-    Click Element  ${LK_Alityyppi_DDM}
-    Input Text     ${LK_Arvo}                          40
-    Input Text     ${LK_Teksti}                        teksti
-    Input Text     ${LK_Lisatieto}                     ei lisä tietoaäöäÅ
-    Click Element  ${LK_Koko}
-    Click Element  ${LK_Koko_DDM}
-    Click Element  ${LK_KalvonTyyppi}
-    Click Element  ${LK_KalvonTyyppi_DDM}
-    Click Element  ${LK_LisakilvenVari}
-    Click Element  ${LK_LisakilvenVari_DDM}
+    Click Element    ${Lisakilpi}
+    Click Element    ${LK_Alityyppi}
+    Click Element    ${LK_Alityyppi_DDM}
+    Input Text    ${LK_Arvo}                          40
+    Input Text    ${LK_Teksti}                        teksti
+    Input Text    ${LK_Lisatieto}    ei lisä tietoaäöäÅ
+    Click Element    ${LK_Koko}
+    Click Element    ${LK_Koko_DDM}
+    Click Element    ${LK_KalvonTyyppi}
+    Click Element    ${LK_KalvonTyyppi_DDM}
+    Click Element    ${LK_LisakilvenVari}
+    Click Element    ${LK_LisakilvenVari_DDM}
+
 
 Tarkista Merkin Kentät  
-    [Arguments]  ${date}
-    Element Should Contain                      ${FA_Lisätty_Järjestelmään}  ${date}
-    Element Should Contain                      ${FA_Tyyppi}  Kielto- ja rajoitusmerkit
-    Element Should Contain                      ${FA_Alityyppi}  C32 Nopeusrajoitus
-    Element Should Contain                      ${FA_Arvo}  100
-    Element Should Contain                      ${FA_Päämerkin_Teksti}  Testi
-    Element Should Contain                      ${FA_Kunnan_ID}  Kunta12
-    Element Should Contain                      ${FA_Lisätieto}  HienoMerkki
-    Element Should Contain                      ${FA_Rakenne}  Silta
-    Element Should Contain                      ${FA_Kunto}  Tyydyttävä
-    Element Should Contain                      ${FA_Koko}  Normaalikokoinen merkki
-    Element Should Contain                      ${FA_Korkeus}  100
-    Element Should Contain                      ${FA_Kalvon_Tyyppi}  R2-luokan kalvo
-    Element Should Contain                      ${FA_Merkin_Materiaali}  Alumiini
-    Element Should Contain                      ${FA_Sijaintitarkenne}  Väylän vasen puoli
-    Element Should Contain                      ${FA_Maastokoordinaatti_X}  82
-    Element Should Contain                      ${FA_Maastokoordinaatti_Y}  86
-    Element Should Contain                      ${FA_Kaista}  –
-    Element Should Contain                      ${FA_Kaistan_Tyyppi}  Ohituskaista
-    Element Should Contain                      ${FA_Tila}  Rakenteilla
-    Element Should Contain                      ${FA_Alkupäivämäärä}  01.12.2025
-    Element Should Contain                      ${FA_Loppupäivämäärä}  01.12.2026
-    Element Should Contain                      ${FA_Vauriotyyppi}  Kolhiintunut
-    Element Should Contain                      ${FA_Korjauksen_Kiireellisyys}  Kiireellinen
-    Element Should Contain                      ${FA_Arvioitu_Käyttöikä}  1
+    [Arguments]    ${date}
+    Element Should Contain    ${FA_Lisätty_Järjestelmään}    ${date}
+    Element Should Contain    ${FA_Tyyppi}    Kielto- ja rajoitusmerkit
+    Element Should Contain    ${FA_Alityyppi}    C32 Nopeusrajoitus
+    Element Should Contain    ${FA_Arvo}    100
+    Element Should Contain    ${FA_Päämerkin_Teksti}    Testi
+    Element Should Contain    ${FA_Kunnan_ID}    Kunta12
+    Element Should Contain    ${FA_Lisätieto}    HienoMerkki
+    Element Should Contain    ${FA_Rakenne}    Silta
+    Element Should Contain    ${FA_Kunto}    Tyydyttävä
+    Element Should Contain    ${FA_Koko}    Normaalikokoinen merkki
+    Element Should Contain    ${FA_Korkeus}    100
+    Element Should Contain    ${FA_Kalvon_Tyyppi}    R2-luokan kalvo
+    Element Should Contain    ${FA_Merkin_Materiaali}    Alumiini
+    Element Should Contain    ${FA_Sijaintitarkenne}    Väylän vasen puoli
+    Element Should Contain    ${FA_Maastokoordinaatti_X}    82
+    Element Should Contain    ${FA_Maastokoordinaatti_Y}    86
+    Element Should Contain    ${FA_Kaista}    –
+    Element Should Contain    ${FA_Kaistan_Tyyppi}    Ohituskaista
+    Element Should Contain    ${FA_Tila}    Rakenteilla
+    Element Should Contain    ${FA_Alkupäivämäärä}    01.12.2025
+    Element Should Contain    ${FA_Loppupäivämäärä}    01.12.2026
+    Element Should Contain    ${FA_Vauriotyyppi}    Kolhiintunut
+    Element Should Contain    ${FA_Korjauksen_Kiireellisyys}    Kiireellinen
+    Element Should Contain    ${FA_Arvioitu_Käyttöikä}    1
+
 
 Syota virheellinen arvo  
-    [Arguments]                 ${kenttä}  ${arvo}
-    Input Text                  ${kenttä}  ${Arvo}
-    Click Element               ${Päämerkin_Teksti}
-    Element Should Be Disabled  ${FA_footer_Tallenna}
+    [Arguments]    ${kenttä}    ${arvo}
+    Input Text    ${kenttä}    ${Arvo}
+    Click Element    ${Päämerkin_Teksti}
+    Element Should Be Disabled    ${FA_footer_Tallenna}
+
 
 Syota kelvollinen arvo
-    [Arguments]                 ${kenttä}  ${arvo}
-    Input Text                  ${kenttä}  ${Arvo}
-    Click Element               ${Päämerkin_Teksti}
-    Element Should Be Enabled   ${FA_footer_Tallenna}
+    [Arguments]    ${kenttä}    ${arvo}
+    Input Text    ${kenttä}    ${Arvo}
+    Click Element    ${Päämerkin_Teksti}
+    Element Should Be Enabled    ${FA_footer_Tallenna}
+
 
 Arvo Numero
-    ${numero}=  Evaluate  random.randint(0, sys.maxsize)
-    ${numero}=  Convert To String  ${numero}
-    FOR  ${num}  IN  @{Nopeusrajoitukset}
-        ${status}=  Run Keyword and return status  Should Be Equal  ${num}  ${numero}
+    ${numero} =    Evaluate    random.randint(0, sys.maxsize)
+    ${numero} =    Convert To String    ${numero}
+    FOR    ${num}    IN    @{Nopeusrajoitukset}
+        ${status} =    Run Keyword and return status
+        ...    Should Be Equal    ${num}    ${numero}
     END
-    RETURN  ${numero}  ${status}
+    RETURN    ${numero}    ${status}
+
 
 *** Variables ***
 ${LM_Varoitusmerkit}    generalWarningSigns
