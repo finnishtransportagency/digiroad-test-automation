@@ -209,7 +209,7 @@ Tupla Klikkaa Kartan Keskelle
 Tuplaklikkaa Kartan Keskella Ja Odota Lokaattori    [Arguments]    ${locator}
     TRY
         Set Selenium Speed    0
-        FOR    ${index}    IN RANGE    20    -1    -10
+        FOR    ${index}    IN RANGE    20    -1    -5
             Log    DoubleClicking map at coordinates 0 and ${index}
             selenium_extensions.Doubleclick Element At Coordinates    ${Kartta}    0    ${index}
             ${status} =    Run Keyword And Return Status

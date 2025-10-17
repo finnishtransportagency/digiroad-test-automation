@@ -4,31 +4,33 @@
 @{talvinopeudet_lista}    60    80    100    120
 
 *** Settings ***
-Documentation    Regression testcases for Digiroad
-Resource         common_keywords.robot
-
-Suite Setup      Login To DigiRoad
+Documentation     Regression testcases for Digiroad
+Resource          common_keywords.robot
+Suite Setup       Login To DigiRoad
 Suite Teardown    Close All Browsers
 
 
 *** Test Cases ***
-Talvinopeus perustestit
+Talvinopeus Perustestit
     [Tags]    AWS    Talvinopeus
     [Documentation]    Talvinopeusrajoituksen perustestit
-    KW_Talvinopeus.Talvinopeus perustestit    6876213, 481863
+    KW_Talvinopeus.Talvinopeus Perustestit    6876213, 481863
 
-Talvinopeusrajoitus monivalinta
-    [Tags]  AWS  Talvinopeus    BROKEN
-    [Documentation]  Talvinopeusrajotusten muokkaus monivalintatyökalulla.
+
+TAlvinopeusrajoitus Monivalinta
+    [Tags]    AWS    Talvinopeus    BROKEN
+    [Documentation]    Talvinopeusrajotusten muokkaus monivalintatyökalulla.
     Log    RIKKI? Talvinopeusrajoitus monivalinta
-    KW_Talvinopeus.Talvinopeusrajoitus monivalinta  6769022, 438111    @{talvinopeudet_lista}
+    KW_Talvinopeus.Talvinopeusrajoitus Monivalinta    6769022, 438111    @{talvinopeudet_lista}
 
-Talvinopeusrajoituksen katkaisu
+
+Talvinopeusrajoituksen Katkaisu
     [Tags]    AWS    Talvinopeus
     [Documentation]    Talvinopeusrajoituksen muokkaus leikkaustyökalulla.
-    KW_Talvinopeus.Talvinopeusrajoituksen katkaisu    6783934, 508727
+    KW_Talvinopeus.Talvinopeusrajoituksen Katkaisu    6783934, 508727
 
-Talvinopeusrajoitus kaksisuuntaiseksi
+
+Talvinopeusrajoitus Kaksisuuntaiseksi
     [Tags]    AWS    Talvinopeus
     [Documentation]    Talvinopeusrajoituksen muuttaminen kaksisuuntaiseksi.
-    KW_Talvinopeus.Talvinopeusrajoitus kaksisuuntaiseksi    6915150, 541904
+    KW_Talvinopeus.Talvinopeusrajoitus Kaksisuuntaiseksi    6915150, 541904
