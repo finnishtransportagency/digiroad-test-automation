@@ -254,9 +254,8 @@ Alusta Testipaikka
 Poista Kohde
     Siirry Muokkaustilaan
     Click Element    ${FA_Poista_chkbx}
-    Click Element    ${FA_footer_Tallenna}
-    #Odota sivun latautuminen
-    Wait Until Element Is Not Visible    css=.spinner-overlay.modal-overlay
+    Tallenna Muutokset
+    # Odota sivun latautuminen
     Siirry Katselutilaan
 
 
@@ -367,4 +366,17 @@ Tallenna Muutokset
 
 Tallenna Dialogista
     Click Element    ${FA_header_Tallenna}
-    Wait Until Element Is Not Visible    ${Spinner_Overlay}    timeout=10
+    ${tallennus_epäonnistui} =    Run Keyword And Return Status
+    ...    Alert Should Be Present
+    ...    timeout=2
+    IF    ${tallennus_epäonnistui} == ${True}
+        Log    Tallennus epäonnistui dialogi näkyvissä, kun yritettiin tallentaa dialogista.
+    END
+    ${spinner_not_visible} =    Run Keyword And Return Status
+    ...    Wait Until Element Is Not Visible    ${Spinner_Overlay}    timeout=30
+    IF    ${spinner_not_visible} == ${False}
+         Set Window Size    1500    1080
+         Set Window Size    1920    1080
+    END
+    Wait Until Element Is Not Visible    ${Spinner_Overlay}
+    ...    error=Spinner still visible on map after saving.

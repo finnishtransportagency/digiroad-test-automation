@@ -100,6 +100,10 @@ Talvinopeusrajoitus Monivalinta    [Arguments]    ${testipaikka}    @{talvinopeu
     Select From List By Value    css=select[class*='winter-speed-limits']    60
     Tallenna Dialogista
     Odota Sivun Latautuminen
+    Log    Tarkistetaan edellinen talletus, sekä asetetaan rajoitus\=60 km/h
+    Siirry Katselutilaan
+    Click Center Of The Map And Wait For Locator    ${FA_otsikko}
+    Element Should Contain    ${FA_Talvinopeusrajoitus}    60 km/h
 
 
 Talvinopeusrajoituksen Katkaisu    [Arguments]    ${testipaikka}
