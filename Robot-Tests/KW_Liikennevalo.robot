@@ -5,82 +5,80 @@ Resource   common_keywords.robot
 *** Keywords ***
 Valo 1
     #testipaikan koordinaatit 6881312, 290858
-    ${json}=  Muunna Json  ${Liikennevalo_json}
+    ${json} =    Muunna Json    ${Liikennevalo_json}
     Init Session
-    Log  Talletetaan uusi liikennevalo
-    ${response}=  POST On Session  Digiroad  ${API_URI_TL}      json=${json}
-    Log  Etsitään talletettu liikennevalo bbox haulla
-    ${hakutulos}=  Suorita BB Haku  ${API_URI_TL}  ${Likennevalo_bbox}
-    ${n}=  Get Length      ${hakutulos}[propertyData]
-    Log  Tarkisetaan että talletetut arvot ovat oikein
-    FOR  ${i}      IN RANGE      ${n}
-        ${status}=      Run Keyword And Return Status  Dictionary Should Contain Key  ${Tiedot}      ${hakutulos}[propertyData][${i}][publicId]
-        Run Keyword If  ${status}  Should Be Equal As Strings  ${hakutulos}[propertyData][${i}][values][0][propertyDisplayValue]      ${tiedot}[${hakutulos}[propertyData][${i}][publicId]]
+    Log    Talletetaan uusi liikennevalo
+    ${response} =    POST On Session    Digiroad    ${API_URI_TL}    json=${json}
+    Log    Etsitään talletettu liikennevalo bbox haulla
+    ${hakutulos} =    Suorita BB Haku    ${API_URI_TL}    ${Likennevalo_bbox}
+    ${n} =    Get Length    ${hakutulos}[propertyData]
+    Log    Tarkisetaan että talletetut arvot ovat oikein
+    FOR    ${i}    IN RANGE    ${n}
+        ${status} =    Run Keyword And Return Status
+        ...    Dictionary Should Contain Key
+        ...    ${Tiedot}
+        ...    ${hakutulos}[propertyData][${i}][publicId]
+        Run Keyword If    ${status}    Should Be Equal As Strings
+        ...    ${hakutulos}[propertyData][${i}][values][0][propertyDisplayValue]
+        ...    ${tiedot}[${hakutulos}[propertyData][${i}][publicId]]
     END
-    [Teardown]  Poista Kohde Apin Kautta  ${API_URI_TL}      ${response.content}
+    [Teardown]    Poista Kohde Apin Kautta    ${API_URI_TL}    ${response.content}
 
 
-Valo 2  [Arguments]  ${testipaikka}
-    Log  Vaihdetaan liikennevalon suuntaa
-    Siirry Testipaikkaan                ${TL_Liikennevalo_RB}  ${testipaikka}
-    Click Element At Coordinates        ${Kartta}  0  20
-    Wait Until Element Is Visible       ${FA_otsikko}
+Valo 2    [Arguments]    ${testipaikka}
+    Log    Vaihdetaan liikennevalon suuntaa
+    Siirry Testipaikkaan    ${TL_Liikennevalo_RB}  ${testipaikka}
+    Click Center Of The Map And Wait For Locator    ${FA_otsikko}
     Siirry Muokkaustilaan
-    Click Element                       css=button.change-validity-direction
-    Element Should Be Enabled           ${FA_footer_Tallenna}
-    Click Element At Coordinates        ${Kartta}  0  -100
-    Wait Until Element Is Visible       ${MuokkausVaroitus}
-    Wait Until Element Is Not Visible   ${Map_popup}
-    Click Element                       ${Muokkausvaroitus_Sulje_btn}
+    Click Element    css=button.change-validity-direction
+    Element Should Be Enabled    ${FA_footer_Tallenna}
+    Click Element At Coordinates    ${Kartta}  0  -100
+    Wait Until Element Is Visible    ${MuokkausVaroitus}
+    Wait Until Element Is Not Visible    ${Map_popup}
+    Click Element    ${Muokkausvaroitus_Sulje_btn}
     #Element Should Be Disabled          ${FA_footer_Tallenna}
-    Click Element                       ${FA_footer_Peruuta}
+    Click Element    ${FA_footer_Peruuta}
 
-Valo 3  [Arguments]  ${testipaikka}
+
+Valo 3    [Arguments]    ${testipaikka}
     Log  Tarkistetaan onko testipaikassa valmiiksi liikennevalo
-    Siirry Testipaikkaan                ${TL_Liikennevalo_RB}  ${testipaikka}
+    Siirry Testipaikkaan    ${TL_Liikennevalo_RB}    ${testipaikka}
     Odota sivun latautuminen
-    Click Element At Coordinates        ${Kartta}  0  20
-    ${status}=  Run Keyword And Return Status  Wait Until Element Is Visible  ${FA_otsikko}  timeout=10 s
-    Run Keyword If  ${status}==True  Poista Liikennevalo
-    Click Element At Coordinates        ${Kartta}  -18  70
-    ${status}=  Run Keyword And Return Status  Wait Until Element Is Visible  ${FA_otsikko}  timeout=10 s
-    Run Keyword If  ${status}==True  Poista Liikennevalo
-
-    Log  Talletetaan uusi liikennevalo sekä lisäopastinlaite
+    Click Element At Coordinates    ${Kartta}  0  20
+    ${status} =    Run Keyword And Return Status
+    ...    Wait Until Element Is Visible    ${FA_otsikko}    timeout=10 s
+    Run Keyword If    ${status}==True    Poista Liikennevalo
+    Click Element At Coordinates    ${Kartta}  -18  70
+    ${status} =    Run Keyword And Return Status
+    ...    Wait Until Element Is Visible    ${FA_otsikko}    timeout=10 s
+    Run Keyword If    ${status}==True    Poista Liikennevalo
+    Log    Talletetaan uusi liikennevalo sekä lisäopastinlaite
     Siirry Muokkaustilaan
-    Wait Until Element Is Not Visible   ${Map_popup}
-    Click Element                       ${Muokkaustila_AddTool}
-    Click Element At Coordinates        ${Kartta}  0  20
-    Wait Until Element Is Visible       ${FA_otsikko}
-    Input Text                          id=trafficLight_info-1  lisätieto1
-    Click Element                       ${Lisää_Opastinlaite}
-    Input Text                          id=trafficLight_info-2  lisätieto2
-    Click Element                       ${FA_footer_Tallenna}
-    Wait Until Element Is Not Visible   ${Spinner_Overlay}
+    Wait Until Element Is Not Visible    ${Map_popup}
+    Click Element    ${Muokkaustila_AddTool}
+    Click Center Of The Map And Wait For Locator    ${FA_otsikko}
+    Input Text    id=trafficLight_info-1    lisätieto1
+    Click Element    ${Lisää_Opastinlaite}
+    Input Text    id=trafficLight_info-2  lisätieto2
+    Tallenna Muutokset
     Odota sivun latautuminen
     Siirry Katselutilaan
-
-    Log  Tarkistetaan liikennevalon tiedot
-    #BUGI DROTH-3013, Tiedot tallettuvat väärälle valolle
-    Click Element At Coordinates        ${Kartta}  0  20
-    Wait Until Element Is Visible       ${FA_otsikko}
-    Element Should Contain              ${FA_lisätieto-2}  lisätieto1
-    Element Should Contain              ${FA_lisätieto-1}  lisätieto2
-
-    Log  Siirretään liikennevaloa
+    Log    Tarkistetaan liikennevalon tiedot
+    # BUGI DROTH-3013, Tiedot tallettuvat väärälle valolle
+    Click Center Of The Map And Wait For Locator    ${FA_otsikko}
+    Element Should Contain    ${FA_lisätieto-2}    lisätieto1
+    Element Should Contain    ${FA_lisätieto-1}    lisätieto2
+    Log    Siirretään liikennevaloa
     Siirry Muokkaustilaan
-    Siirrä Liikennevalo                 -20  50
-    Click Element                       ${FA_footer_Tallenna}
-    Wait Until Element Is Not Visible   ${Spinner_Overlay}
+    Siirrä Liikennevalo    -20  50
+    Tallenna Muutokset
     Odota sivun latautuminen
     Siirry Katselutilaan
-
-    Click Element At Coordinates        ${Kartta}  -18    70
-    Wait Until Element Is Visible       ${FA_otsikko}
-    
-    
-    Log  Poistetaan liikennevalo
+    Click Element At Coordinates    ${Kartta}  -18    70
+    Wait Until Element Is Visible    ${FA_otsikko}
+    Log    Poistetaan liikennevalo
     Poista Liikennevalo
+
 
 ##########################
 ### Sisäiset Keywordit ###
@@ -88,36 +86,37 @@ Valo 3  [Arguments]  ${testipaikka}
 
 Poista Liikennevalo
     Siirry Muokkaustilaan
-    Click Element  ${FA_Poista_chkbx}
-    Click Element   ${FA_footer_Tallenna}
-    Wait Until Element Is Not Visible  ${Spinner_Overlay}
+    Click Element    ${FA_Poista_chkbx}
+    Tallenna Muutokset
     Odota sivun latautuminen
     Siirry Katselutilaan
 
-Siirrä Liikennevalo  [Arguments]  ${xKoord}  ${yKoord}
-# Siirtää valittua liikennevaloa annetun offsetin verran, arvot positiivisia keskipisteestä oikealle ja alas
-    Seleniumlibrary.mouse down                      css=[class='crosshair crosshair-center']
-    Seleniumlibrary.drag and drop by offset         css=[class='crosshair crosshair-center']  ${xKoord}  ${yKoord}
-    Seleniumlibrary.mouse up                        css=[class='crosshair crosshair-center']
+
+Siirrä Liikennevalo    [Arguments]    ${xKoord}    ${yKoord}
+    # Siirtää valittua liikennevaloa annetun offsetin verran,
+    # arvot positiivisia keskipisteestä oikealle ja alas
+    Seleniumlibrary.Mouse Down    css=[class='crosshair crosshair-center']
+    Seleniumlibrary.Drag And Drop By Offset
+    ...    css=[class='crosshair crosshair-center']    ${xKoord}    ${yKoord}
+    Seleniumlibrary.Mouse Up    css=[class='crosshair crosshair-center']
 
 
 Tarkista Liikennevalon Tiedot  
-    [Arguments]  ${data}
-    ${data}=  Convert To String  ${data}
-    FOR  ${line}  IN  @{Tiedot}
-        Should Contain  ${data}  ${line}
+    [Arguments]    ${data}
+    ${data} =    Convert To String    ${data}
+    FOR    ${line}    IN    @{Tiedot}
+        Should Contain    ${data}    ${line}
     END
 
 
-
 *** Variables ***
-${Lisää_Opastinlaite}  id=button-add-traffic-light-1
-${FA_lisätieto-1}       css=#traffic-light-container-1 > div:nth-child(3) > p
-${FA_lisätieto-2}       css=#traffic-light-container-2 > div:nth-child(3) > p
+${Lisää_Opastinlaite}    id=button-add-traffic-light-1
+${FA_lisätieto-1}        css=#traffic-light-container-1 > div:nth-child(3) > p
+${FA_lisätieto-2}        css=#traffic-light-container-2 > div:nth-child(3) > p
 
 
 
-${API_URI_TL}     api/trafficLights
+${API_URI_TL}    api/trafficLights
 ${Liikennevalo_json}  {"asset":{"propertyData": [
 ...     {"groupedId":1,"name":"Tyyppi","propertyType":"single_choice","publicId":"trafficLight_type","values":[{"propertyValue":1}],"localizedName":"Tyyppi"},
 ...     {"groupedId":1,"name":"Opastimen suhteellinen sijainti","propertyType":"single_choice","publicId":"trafficLight_relative_position","values":[{"propertyValue":"2","propertyDisplayValue":""}],"localizedName":"Opastimen suhteellinen sijainti"},
