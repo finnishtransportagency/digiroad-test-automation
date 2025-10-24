@@ -13,7 +13,7 @@ Library                     DateTime
 Resource                    variables.robot
 Resource                    API_KW_lanes_in_municipality.robot
 Resource                    API_KW_lanes_in_range.robot
-#Resource                    API_KW_lane_information.robot    #otettu pois käytöstä toistaiseksi rajapintaongelmien johdosta
+# Resource                    API_KW_lane_information.robot    #otettu pois käytöstä toistaiseksi rajapintaongelmien johdosta
 Resource                    KW_Tielinkit.robot
 Resource                    KW_Kartta.robot
 Resource                    KW_UI.robot
