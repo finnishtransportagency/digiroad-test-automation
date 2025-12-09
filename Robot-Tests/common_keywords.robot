@@ -1,6 +1,6 @@
 *** Settings ***
 Library                     SeleniumLibrary     timeout=60.0   run_on_failure=Capture Page Screenshot
-#Library                     Dialogs
+# Library                     Dialogs
 Library                     String
 Library                     selenium_extensions.py
 Library                     DateTime
@@ -227,6 +227,33 @@ Tuplaklikkaa Kartan Keskella Ja Odota Lokaattori    [Arguments]    ${locator}
     EXCEPT    AS    ${error_msg}
         Fail
         ...    Yritettiin tuplaklikata kartan keskelle ja odottaa lokaattoria ${locator} mutta ${error_msg}
+    FINALLY
+        Set Selenium Speed    ${DELAY}
+    END
+
+
+Tuplaklikkaa Kartan Keskipisteen Yläpuolelle Ja Odota Lokaattori
+    [Arguments]    ${locator}    ${start_y}=30    ${end_y}=20    ${step}=-2
+    TRY
+        Set Selenium Speed    0
+        FOR    ${index}    IN RANGE    ${start_y}     ${end_y}     ${step}
+            Log    DoubleClicking map at coordinates 0 and ${index}
+            selenium_extensions.Doubleclick Element At Coordinates    ${Kartta}    0    ${index}
+            ${status} =    Run Keyword And Return Status
+            ...    Wait Until Element Is Visible    ${locator}    timeout=3
+            IF    ${status} == ${False}
+                CONTINUE
+            ELSE
+                BREAK
+            END
+        END
+        IF    ${status} == ${False}
+            Fail
+            ...    Tuplaklikkaus kartan keskelle epäonnistui:
+        END
+    EXCEPT    AS    ${error_msg}
+        Fail
+        ...    Yritettiin tuplaklikata kartan keskipisteen yläpuolelle ja odottaa lokaattoria ${locator} mutta ${error_msg}
     FINALLY
         Set Selenium Speed    ${DELAY}
     END
