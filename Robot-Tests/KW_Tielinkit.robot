@@ -176,7 +176,8 @@ Tielinkit_2
     END
     Log    Varmistetaan, että valinta poistuu klikkaamalla muualle
     Paikanna Osoite    6711084, 239747
-    Click Center Of The Map And Wait For Locator    ${FA_otsikko}
+    Click Element    ${kartta}
+    Wait Until Element Is Not Visible    ${FA_otsikko}
 
 
 Tielinkit_3    [Arguments]    ${Luokan_odotusarvo}    ${testipaikka}
